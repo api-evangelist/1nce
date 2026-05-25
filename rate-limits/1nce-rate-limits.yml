@@ -1,0 +1,80 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: 1NCE
+providerId: 1nce
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - IoT
+  - Rate Limiting
+  - Quotas
+description: Reconciled rate-limit and quota policy for the 1NCE Management API and the IoT Lifetime Flat connectivity
+  bundle. The Management API enforces per-account throttling on api.1nce.com/management-api; the connectivity bundle
+  enforces a hard SIM-level quota.
+sources:
+  - https://help.1nce.com/dev-hub/reference/api-welcome
+  - https://help.1nce.com/dev-hub/reference/api-best-practices
+  - https://www.1nce.com/en-us/1nce-connect
+authentication:
+  type: oauth2
+  flow: client-credentials
+  tokenUrl: https://api.1nce.com/management-api/oauth/token
+  basicAuthAtTokenEndpoint: true
+  tokenLifetimeHint: short-lived bearer token; refresh by re-issuing /oauth/token
+headers:
+  limit: x-rate-limit-limit
+  remaining: x-rate-limit-remaining
+  reset: x-rate-limit-reset
+  retryAfter: retry-after
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+algorithm: fixed-window
+notes:
+  - Concrete request-per-minute limits are not published on the public developer hub. 1NCE recommends respecting
+    Retry-After and x-rate-limit-* response headers and using exponential backoff per API best practices.
+  - Bearer tokens issued by /oauth/token are short-lived; clients should cache the token and refresh on 401.
+  - The IoT Lifetime Flat quota is enforced per ICCID by the connectivity platform, not the Management API.
+quotas:
+  - id: lifetime-data
+    scope: per-sim
+    metric: data
+    unit: bytes
+    limit: 524288000
+    window: 10y
+    description: 500 MB lifetime cellular data per Lifetime Flat SIM.
+  - id: lifetime-sms
+    scope: per-sim
+    metric: sms
+    unit: message
+    limit: 250
+    window: 10y
+    description: 250 SMS messages per Lifetime Flat SIM over the 10-year subscription.
+  - id: subscription-duration
+    scope: per-sim
+    metric: time
+    unit: year
+    limit: 10
+    window: lifetime
+    description: 10-year activation window per SIM.
+overage:
+  policy: top-up
+  options:
+    - High Data IoT add-on for additional data volume
+    - Volume Top Up API (/v1/sims/{iccid}/topup) for ad-hoc credit
+    - Volume Limits API (/v1/sims/{service}/limits) to cap or reset SIM-level usage
+endpoints:
+  - id: oauth-token
+    method: POST
+    path: /oauth/token
+    note: HTTP Basic auth required; rate-limited to discourage credential brute force.
+  - id: sim-management
+    methods: ["GET","POST","PUT","DELETE"]
+    pathPrefix: /v1/sims
+    note: Per-account throttling; recommend bulk operations via /v1/sims and /v1/sims/topup over per-SIM calls.
+  - id: 1nce-os
+    methods: ["GET","POST","PUT","DELETE"]
+    pathPrefix: /v1
+    note: Per-account throttling on Integrator, Locator, Inspector, Optimizer, and Plugin endpoints.

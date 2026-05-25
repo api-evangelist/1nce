@@ -1,0 +1,277 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "1NCE OS \u2014 Optimizer"
+  description: "1NCE OS \u2014 Optimizer. 6 operations. Lead operation: Test template. Self-contained Naftiko capability covering\
+    \ one 1NCE business surface."
+  tags:
+    - 1NCE
+    - IoT
+    - Optimizer
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      ONE_NCE_ACCESS_TOKEN: ONE_NCE_ACCESS_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: os-optimize
+      baseUri: https://api.1nce.com/management-api
+      description: "1NCE OS \u2014 Optimizer business capability. Self-contained, no shared references."
+      resources:
+        - name: v1-optimize-messages-test
+          path: /v1/optimize/messages/test
+          operations:
+            - name: create-test
+              method: POST
+              description: Test template
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-optimize-savings
+          path: /v1/optimize/savings
+          operations:
+            - name: get-savings
+              method: GET
+              description: Get savings
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-optimize-templates
+          path: /v1/optimize/templates
+          operations:
+            - name: get-templates
+              method: GET
+              description: Get Optimizer Templates
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+            - name: create-templates
+              method: POST
+              description: Create Optimizer Template
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-optimize-templates-templateid
+          path: /v1/optimize/templates/{templateId}
+          operations:
+            - name: delete-templates
+              method: DELETE
+              description: Delete Optimizer Template
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+            - name: patch-templates
+              method: PATCH
+              description: Update Optimizer Template
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+      authentication:
+        type: bearer
+        token: '{{env.ONE_NCE_ACCESS_TOKEN}}'
+  exposes:
+    - type: rest
+      namespace: os-optimize-rest
+      port: 8080
+      description: "REST adapter for 1NCE OS \u2014 Optimizer. One Spectral-compliant resource per consumed operation, prefixed\
+        \ with /v1."
+      resources:
+        - path: /v1/v1/optimize/messages/test
+          name: v1-optimize-messages-test
+          description: REST surface for v1-optimize-messages-test.
+          operations:
+            - method: POST
+              name: create-test
+              description: Test template
+              call: os-optimize.create-test
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/optimize/savings
+          name: v1-optimize-savings
+          description: REST surface for v1-optimize-savings.
+          operations:
+            - method: GET
+              name: get-savings
+              description: Get savings
+              call: os-optimize.get-savings
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/optimize/templates
+          name: v1-optimize-templates
+          description: REST surface for v1-optimize-templates.
+          operations:
+            - method: GET
+              name: get-templates
+              description: Get Optimizer Templates
+              call: os-optimize.get-templates
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: POST
+              name: create-templates
+              description: Create Optimizer Template
+              call: os-optimize.create-templates
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/optimize/templates/{templateId}
+          name: v1-optimize-templates-templateid
+          description: REST surface for v1-optimize-templates-templateid.
+          operations:
+            - method: DELETE
+              name: delete-templates
+              description: Delete Optimizer Template
+              call: os-optimize.delete-templates
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: PATCH
+              name: patch-templates
+              description: Update Optimizer Template
+              call: os-optimize.patch-templates
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: os-optimize-mcp
+      port: 9090
+      transport: http
+      description: "MCP adapter for 1NCE OS \u2014 Optimizer. One tool per consumed operation, routed inline through this\
+        \ capability consumes block."
+      tools:
+        - name: 1nce-create-test
+          description: Test template
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: os-optimize.create-test
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-savings
+          description: Get savings
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-optimize.get-savings
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-templates
+          description: Get Optimizer Templates
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-optimize.get-templates
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-create-templates
+          description: Create Optimizer Template
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: os-optimize.create-templates
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-delete-templates
+          description: Delete Optimizer Template
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: os-optimize.delete-templates
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-patch-templates
+          description: Update Optimizer Template
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: os-optimize.patch-templates
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.

@@ -1,0 +1,417 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "1NCE OS \u2014 Device Inspector"
+  description: "1NCE OS \u2014 Device Inspector. 9 operations. Lead operation: Get All Devices. Self-contained Naftiko capability\
+    \ covering one 1NCE business surface."
+  tags:
+    - 1NCE
+    - IoT
+    - Inspector
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      ONE_NCE_ACCESS_TOKEN: ONE_NCE_ACCESS_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: os-inspect
+      baseUri: https://api.1nce.com/management-api
+      description: "1NCE OS \u2014 Device Inspector business capability. Self-contained, no shared references."
+      resources:
+        - name: v1-inspect-devices
+          path: /v1/inspect/devices
+          operations:
+            - name: get-devices
+              method: GET
+              description: Get All Devices
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-inspect-devices-deviceid
+          path: /v1/inspect/devices/{deviceId}
+          operations:
+            - name: get-devices
+              method: GET
+              description: Get Single Device
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-devices-deviceid-actions
+          path: /v1/devices/{deviceId}/actions
+          operations:
+            - name: create-actions
+              method: POST
+              description: Create Action Request On Specific LwM2M Device.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-inspect-devices-deviceid-telemetry
+          path: /v1/inspect/devices/{deviceId}/telemetry
+          operations:
+            - name: get-telemetry
+              method: GET
+              description: Get Device Telemetry
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-inspect-devices-deviceid-history
+          path: /v1/inspect/devices/{deviceId}/history
+          operations:
+            - name: get-history
+              method: GET
+              description: Get Device Historian Messages
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-inspect-devices-history
+          path: /v1/inspect/devices/history
+          operations:
+            - name: get-history
+              method: GET
+              description: Get Historian Messages
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-inspect-devices-deviceid-history-insights
+          path: /v1/inspect/devices/{deviceId}/history/insights
+          operations:
+            - name: get-insights
+              method: GET
+              description: Get Device Historian Insights
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-inspect-devices-history-insights
+          path: /v1/inspect/devices/history/insights
+          operations:
+            - name: get-insights
+              method: GET
+              description: Get Historian Insights
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-devices-stats
+          path: /v1/devices/stats
+          operations:
+            - name: get-stats
+              method: GET
+              description: Get Devices Statistics
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+      authentication:
+        type: bearer
+        token: '{{env.ONE_NCE_ACCESS_TOKEN}}'
+  exposes:
+    - type: rest
+      namespace: os-inspect-rest
+      port: 8080
+      description: "REST adapter for 1NCE OS \u2014 Device Inspector. One Spectral-compliant resource per consumed operation,\
+        \ prefixed with /v1."
+      resources:
+        - path: /v1/v1/inspect/devices
+          name: v1-inspect-devices
+          description: REST surface for v1-inspect-devices.
+          operations:
+            - method: GET
+              name: get-devices
+              description: Get All Devices
+              call: os-inspect.get-devices
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/inspect/devices/{deviceId}
+          name: v1-inspect-devices-deviceid
+          description: REST surface for v1-inspect-devices-deviceid.
+          operations:
+            - method: GET
+              name: get-devices
+              description: Get Single Device
+              call: os-inspect.get-devices
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/devices/{deviceId}/actions
+          name: v1-devices-deviceid-actions
+          description: REST surface for v1-devices-deviceid-actions.
+          operations:
+            - method: POST
+              name: create-actions
+              description: Create Action Request On Specific LwM2M Device.
+              call: os-inspect.create-actions
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/inspect/devices/{deviceId}/telemetry
+          name: v1-inspect-devices-deviceid-telemetry
+          description: REST surface for v1-inspect-devices-deviceid-telemetry.
+          operations:
+            - method: GET
+              name: get-telemetry
+              description: Get Device Telemetry
+              call: os-inspect.get-telemetry
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/inspect/devices/{deviceId}/history
+          name: v1-inspect-devices-deviceid-history
+          description: REST surface for v1-inspect-devices-deviceid-history.
+          operations:
+            - method: GET
+              name: get-history
+              description: Get Device Historian Messages
+              call: os-inspect.get-history
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/inspect/devices/history
+          name: v1-inspect-devices-history
+          description: REST surface for v1-inspect-devices-history.
+          operations:
+            - method: GET
+              name: get-history
+              description: Get Historian Messages
+              call: os-inspect.get-history
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/inspect/devices/{deviceId}/history/insights
+          name: v1-inspect-devices-deviceid-history-insights
+          description: REST surface for v1-inspect-devices-deviceid-history-insights.
+          operations:
+            - method: GET
+              name: get-insights
+              description: Get Device Historian Insights
+              call: os-inspect.get-insights
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/inspect/devices/history/insights
+          name: v1-inspect-devices-history-insights
+          description: REST surface for v1-inspect-devices-history-insights.
+          operations:
+            - method: GET
+              name: get-insights
+              description: Get Historian Insights
+              call: os-inspect.get-insights
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/devices/stats
+          name: v1-devices-stats
+          description: REST surface for v1-devices-stats.
+          operations:
+            - method: GET
+              name: get-stats
+              description: Get Devices Statistics
+              call: os-inspect.get-stats
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: os-inspect-mcp
+      port: 9090
+      transport: http
+      description: "MCP adapter for 1NCE OS \u2014 Device Inspector. One tool per consumed operation, routed inline through\
+        \ this capability consumes block."
+      tools:
+        - name: 1nce-get-devices
+          description: Get All Devices
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-inspect.get-devices
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-devices
+          description: Get Single Device
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-inspect.get-devices
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-create-actions
+          description: Create Action Request On Specific LwM2M Device.
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: os-inspect.create-actions
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-telemetry
+          description: Get Device Telemetry
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-inspect.get-telemetry
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-history
+          description: Get Device Historian Messages
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-inspect.get-history
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-history
+          description: Get Historian Messages
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-inspect.get-history
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-insights
+          description: Get Device Historian Insights
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-inspect.get-insights
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-insights
+          description: Get Historian Insights
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-inspect.get-insights
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-stats
+          description: Get Devices Statistics
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-inspect.get-stats
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.

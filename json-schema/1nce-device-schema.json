@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/1nce/main/json-schema/1nce-device-schema.json",
+  "description": "JSON Schema for a 1NCE OS device record as returned by GET /v1/inspect/devices/{deviceId} on api.1nce.com/management-api. Derived from the 1NCE OS OpenAPI document.",
+  "properties": {
+    "name": {
+      "description": "Name of the device.",
+      "example": "<device_name>",
+      "minLength": 1,
+      "type": "string"
+    },
+    "id": {
+      "description": "Id of the device.",
+      "example": "<device_id>",
+      "minLength": 19,
+      "type": "string"
+    },
+    "iccid": {
+      "description": "Iccid of the device.",
+      "example": "8988280666000000000",
+      "pattern": "^[0-9]{19}$",
+      "type": "string"
+    },
+    "imsi1": {
+      "description": "IMSI1 of the device.",
+      "example": "901405100000018",
+      "pattern": "^[0-9]{15}$",
+      "type": "string"
+    },
+    "ip": {
+      "description": "Ip of the device.",
+      "example": "x.x.x.x",
+      "format": "ipv4",
+      "type": "string"
+    }
+  },
+  "required": [
+    "iccid",
+    "id",
+    "imsi1",
+    "ip"
+  ],
+  "title": "1NCE Device",
+  "type": "object"
+}

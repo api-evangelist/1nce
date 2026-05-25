@@ -1,0 +1,573 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "1NCE OS \u2014 IoT Integrator Clouds"
+  description: "1NCE OS \u2014 IoT Integrator Clouds. 13 operations. Lead operation: Get CloudFormation Parameters. Self-contained\
+    \ Naftiko capability covering one 1NCE business surface."
+  tags:
+    - 1NCE
+    - IoT
+    - Integrator
+    - Cloud
+    - AWS
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      ONE_NCE_ACCESS_TOKEN: ONE_NCE_ACCESS_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: os-integrate-clouds
+      baseUri: https://api.1nce.com/management-api
+      description: "1NCE OS \u2014 IoT Integrator Clouds business capability. Self-contained, no shared references."
+      resources:
+        - name: v1-integrate-clouds-aws-parameters
+          path: /v1/integrate/clouds/aws/parameters
+          operations:
+            - name: get-parameters
+              method: GET
+              description: Get CloudFormation Parameters
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-integrate-clouds-aws-integrationid-restart
+          path: /v1/integrate/clouds/aws/{integrationId}/restart
+          operations:
+            - name: create-restart
+              method: POST
+              description: Restart AWS Integration
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-integrate-clouds-aws-integrationid-test
+          path: /v1/integrate/clouds/aws/{integrationId}/test
+          operations:
+            - name: create-test
+              method: POST
+              description: Test AWS Integration
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-integrate-clouds-aws
+          path: /v1/integrate/clouds/aws
+          operations:
+            - name: create-aws
+              method: POST
+              description: Create AWS Integration
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-integrate-clouds-integrationid
+          path: /v1/integrate/clouds/{integrationId}
+          operations:
+            - name: delete-clouds
+              method: DELETE
+              description: Delete Integration
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+            - name: get-clouds
+              method: GET
+              description: Get Customer Integration
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+            - name: patch-clouds
+              method: PATCH
+              description: Patch Customer Integration
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-integrate-clouds
+          path: /v1/integrate/clouds
+          operations:
+            - name: get-clouds
+              method: GET
+              description: Get All Customer Integrations
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-integrate-clouds-eventtypes
+          path: /v1/integrate/clouds/eventTypes
+          operations:
+            - name: get-eventtypes
+              method: GET
+              description: Get Integration Event Types
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-integrate-clouds-webhooks
+          path: /v1/integrate/clouds/webhooks
+          operations:
+            - name: create-webhooks
+              method: POST
+              description: Create Webhook Integration
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-integrate-clouds-webhooks-integrationid
+          path: /v1/integrate/clouds/webhooks/{integrationId}
+          operations:
+            - name: patch-webhooks
+              method: PATCH
+              description: Patch Customer Webhook Integration
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-integrate-clouds-webhooks-integrationid-restart
+          path: /v1/integrate/clouds/webhooks/{integrationId}/restart
+          operations:
+            - name: create-restart
+              method: POST
+              description: Restart Webhook Integration
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-integrate-clouds-webhooks-integrationid-test
+          path: /v1/integrate/clouds/webhooks/{integrationId}/test
+          operations:
+            - name: create-test
+              method: POST
+              description: Test Webhook Integration
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+      authentication:
+        type: bearer
+        token: '{{env.ONE_NCE_ACCESS_TOKEN}}'
+  exposes:
+    - type: rest
+      namespace: os-integrate-clouds-rest
+      port: 8080
+      description: "REST adapter for 1NCE OS \u2014 IoT Integrator Clouds. One Spectral-compliant resource per consumed operation,\
+        \ prefixed with /v1."
+      resources:
+        - path: /v1/v1/integrate/clouds/aws/parameters
+          name: v1-integrate-clouds-aws-parameters
+          description: REST surface for v1-integrate-clouds-aws-parameters.
+          operations:
+            - method: GET
+              name: get-parameters
+              description: Get CloudFormation Parameters
+              call: os-integrate-clouds.get-parameters
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/integrate/clouds/aws/{integrationId}/restart
+          name: v1-integrate-clouds-aws-integrationid-restart
+          description: REST surface for v1-integrate-clouds-aws-integrationid-restart.
+          operations:
+            - method: POST
+              name: create-restart
+              description: Restart AWS Integration
+              call: os-integrate-clouds.create-restart
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/integrate/clouds/aws/{integrationId}/test
+          name: v1-integrate-clouds-aws-integrationid-test
+          description: REST surface for v1-integrate-clouds-aws-integrationid-test.
+          operations:
+            - method: POST
+              name: create-test
+              description: Test AWS Integration
+              call: os-integrate-clouds.create-test
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/integrate/clouds/aws
+          name: v1-integrate-clouds-aws
+          description: REST surface for v1-integrate-clouds-aws.
+          operations:
+            - method: POST
+              name: create-aws
+              description: Create AWS Integration
+              call: os-integrate-clouds.create-aws
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/integrate/clouds/{integrationId}
+          name: v1-integrate-clouds-integrationid
+          description: REST surface for v1-integrate-clouds-integrationid.
+          operations:
+            - method: DELETE
+              name: delete-clouds
+              description: Delete Integration
+              call: os-integrate-clouds.delete-clouds
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: GET
+              name: get-clouds
+              description: Get Customer Integration
+              call: os-integrate-clouds.get-clouds
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: PATCH
+              name: patch-clouds
+              description: Patch Customer Integration
+              call: os-integrate-clouds.patch-clouds
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/integrate/clouds
+          name: v1-integrate-clouds
+          description: REST surface for v1-integrate-clouds.
+          operations:
+            - method: GET
+              name: get-clouds
+              description: Get All Customer Integrations
+              call: os-integrate-clouds.get-clouds
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/integrate/clouds/eventTypes
+          name: v1-integrate-clouds-eventtypes
+          description: REST surface for v1-integrate-clouds-eventtypes.
+          operations:
+            - method: GET
+              name: get-eventtypes
+              description: Get Integration Event Types
+              call: os-integrate-clouds.get-eventtypes
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/integrate/clouds/webhooks
+          name: v1-integrate-clouds-webhooks
+          description: REST surface for v1-integrate-clouds-webhooks.
+          operations:
+            - method: POST
+              name: create-webhooks
+              description: Create Webhook Integration
+              call: os-integrate-clouds.create-webhooks
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/integrate/clouds/webhooks/{integrationId}
+          name: v1-integrate-clouds-webhooks-integrationid
+          description: REST surface for v1-integrate-clouds-webhooks-integrationid.
+          operations:
+            - method: PATCH
+              name: patch-webhooks
+              description: Patch Customer Webhook Integration
+              call: os-integrate-clouds.patch-webhooks
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/integrate/clouds/webhooks/{integrationId}/restart
+          name: v1-integrate-clouds-webhooks-integrationid-restart
+          description: REST surface for v1-integrate-clouds-webhooks-integrationid-restart.
+          operations:
+            - method: POST
+              name: create-restart
+              description: Restart Webhook Integration
+              call: os-integrate-clouds.create-restart
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/integrate/clouds/webhooks/{integrationId}/test
+          name: v1-integrate-clouds-webhooks-integrationid-test
+          description: REST surface for v1-integrate-clouds-webhooks-integrationid-test.
+          operations:
+            - method: POST
+              name: create-test
+              description: Test Webhook Integration
+              call: os-integrate-clouds.create-test
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: os-integrate-clouds-mcp
+      port: 9090
+      transport: http
+      description: "MCP adapter for 1NCE OS \u2014 IoT Integrator Clouds. One tool per consumed operation, routed inline through\
+        \ this capability consumes block."
+      tools:
+        - name: 1nce-get-parameters
+          description: Get CloudFormation Parameters
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-integrate-clouds.get-parameters
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-create-restart
+          description: Restart AWS Integration
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: os-integrate-clouds.create-restart
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-create-test
+          description: Test AWS Integration
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: os-integrate-clouds.create-test
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-create-aws
+          description: Create AWS Integration
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: os-integrate-clouds.create-aws
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-delete-clouds
+          description: Delete Integration
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: os-integrate-clouds.delete-clouds
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-clouds
+          description: Get Customer Integration
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-integrate-clouds.get-clouds
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-patch-clouds
+          description: Patch Customer Integration
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: os-integrate-clouds.patch-clouds
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-clouds
+          description: Get All Customer Integrations
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-integrate-clouds.get-clouds
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-eventtypes
+          description: Get Integration Event Types
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-integrate-clouds.get-eventtypes
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-create-webhooks
+          description: Create Webhook Integration
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: os-integrate-clouds.create-webhooks
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-patch-webhooks
+          description: Patch Customer Webhook Integration
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: os-integrate-clouds.patch-webhooks
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-create-restart
+          description: Restart Webhook Integration
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: os-integrate-clouds.create-restart
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-create-test
+          description: Test Webhook Integration
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: os-integrate-clouds.create-test
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.

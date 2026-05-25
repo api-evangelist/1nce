@@ -1,0 +1,355 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "1NCE OS \u2014 Device Locator"
+  description: "1NCE OS \u2014 Device Locator. 8 operations. Lead operation: Get Device Positions. Self-contained Naftiko\
+    \ capability covering one 1NCE business surface."
+  tags:
+    - 1NCE
+    - IoT
+    - Locator
+    - Geofence
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      ONE_NCE_ACCESS_TOKEN: ONE_NCE_ACCESS_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: os-locate
+      baseUri: https://api.1nce.com/management-api
+      description: "1NCE OS \u2014 Device Locator business capability. Self-contained, no shared references."
+      resources:
+        - name: v1-locate-devices-deviceid-positions
+          path: /v1/locate/devices/{deviceId}/positions
+          operations:
+            - name: get-positions
+              method: GET
+              description: Get Device Positions
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-locate-positions-latest
+          path: /v1/locate/positions/latest
+          operations:
+            - name: get-latest
+              method: GET
+              description: Get Latest Devices Positions
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-locate-devices-deviceid-activity
+          path: /v1/locate/devices/{deviceId}/activity
+          operations:
+            - name: get-activity
+              method: GET
+              description: Get Device Celltower location resolutions
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-locate-geofences
+          path: /v1/locate/geofences
+          operations:
+            - name: get-geofences
+              method: GET
+              description: Get all geofences
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+            - name: create-geofences
+              method: POST
+              description: Create geofence
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-locate-geofences-geofenceid
+          path: /v1/locate/geofences/{geofenceId}
+          operations:
+            - name: delete-geofences
+              method: DELETE
+              description: Delete geofence
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+            - name: get-geofences
+              method: GET
+              description: Get a geofence
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+            - name: patch-geofences
+              method: PATCH
+              description: Patch a geofence
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+      authentication:
+        type: bearer
+        token: '{{env.ONE_NCE_ACCESS_TOKEN}}'
+  exposes:
+    - type: rest
+      namespace: os-locate-rest
+      port: 8080
+      description: "REST adapter for 1NCE OS \u2014 Device Locator. One Spectral-compliant resource per consumed operation,\
+        \ prefixed with /v1."
+      resources:
+        - path: /v1/v1/locate/devices/{deviceId}/positions
+          name: v1-locate-devices-deviceid-positions
+          description: REST surface for v1-locate-devices-deviceid-positions.
+          operations:
+            - method: GET
+              name: get-positions
+              description: Get Device Positions
+              call: os-locate.get-positions
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/locate/positions/latest
+          name: v1-locate-positions-latest
+          description: REST surface for v1-locate-positions-latest.
+          operations:
+            - method: GET
+              name: get-latest
+              description: Get Latest Devices Positions
+              call: os-locate.get-latest
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/locate/devices/{deviceId}/activity
+          name: v1-locate-devices-deviceid-activity
+          description: REST surface for v1-locate-devices-deviceid-activity.
+          operations:
+            - method: GET
+              name: get-activity
+              description: Get Device Celltower location resolutions
+              call: os-locate.get-activity
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/locate/geofences
+          name: v1-locate-geofences
+          description: REST surface for v1-locate-geofences.
+          operations:
+            - method: GET
+              name: get-geofences
+              description: Get all geofences
+              call: os-locate.get-geofences
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: POST
+              name: create-geofences
+              description: Create geofence
+              call: os-locate.create-geofences
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/locate/geofences/{geofenceId}
+          name: v1-locate-geofences-geofenceid
+          description: REST surface for v1-locate-geofences-geofenceid.
+          operations:
+            - method: DELETE
+              name: delete-geofences
+              description: Delete geofence
+              call: os-locate.delete-geofences
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: GET
+              name: get-geofences
+              description: Get a geofence
+              call: os-locate.get-geofences
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: PATCH
+              name: patch-geofences
+              description: Patch a geofence
+              call: os-locate.patch-geofences
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: os-locate-mcp
+      port: 9090
+      transport: http
+      description: "MCP adapter for 1NCE OS \u2014 Device Locator. One tool per consumed operation, routed inline through\
+        \ this capability consumes block."
+      tools:
+        - name: 1nce-get-positions
+          description: Get Device Positions
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-locate.get-positions
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-latest
+          description: Get Latest Devices Positions
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-locate.get-latest
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-activity
+          description: Get Device Celltower location resolutions
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-locate.get-activity
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-geofences
+          description: Get all geofences
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-locate.get-geofences
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-create-geofences
+          description: Create geofence
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: os-locate.create-geofences
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-delete-geofences
+          description: Delete geofence
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: os-locate.delete-geofences
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-geofences
+          description: Get a geofence
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: os-locate.get-geofences
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-patch-geofences
+          description: Patch a geofence
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: os-locate.patch-geofences
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.

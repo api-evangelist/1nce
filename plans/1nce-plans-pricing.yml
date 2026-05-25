@@ -1,0 +1,141 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: 1NCE
+providerId: 1nce
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - IoT
+  - Connectivity
+  - SIM
+  - Lifetime Flat
+description: 'Reconciled plans and SIM/service pricing for 1NCE Connect, the IoT Lifetime Flat bundle, and 1NCE OS
+  add-ons. Source: 1nce.com pricing pages and 1NCE Connect feature documentation.'
+sources:
+  - https://www.1nce.com/en-us/1nce-connect
+  - https://www.1nce.com/en-us/1nce-connect/features/rest-api
+  - https://help.1nce.com/dev-hub/reference/api-welcome
+plans:
+  - id: iot-lifetime-flat
+    name: IoT Lifetime Flat
+    type: prepaid-bundle
+    description: 10-year prepaid IoT connectivity bundle including 500 MB of data and 250 SMS across 170+ countries.
+    entries:
+      - label: SIM Card Business
+        name: sim-business
+        type: one-time
+        metric: sim
+        limit: 1
+        timeFrame: lifetime
+        geo: global
+        unit: 1
+        price: '1.00'
+        userMultiplied: false
+        description: Non-eUICC SIM form factor.
+      - label: SIM Card Industrial
+        name: sim-industrial
+        type: one-time
+        metric: sim
+        limit: 1
+        timeFrame: lifetime
+        geo: global
+        unit: 1
+        price: '2.00'
+        userMultiplied: false
+        description: Industrial-grade SIM with eUICC remote provisioning support.
+      - label: SIM Chip Industrial
+        name: sim-chip-industrial
+        type: one-time
+        metric: sim
+        limit: 1
+        timeFrame: lifetime
+        geo: global
+        unit: 1
+        price: '2.50'
+        userMultiplied: false
+        description: Solderable industrial chip form factor with eUICC support.
+      - label: 10-year subscription
+        name: subscription-10y
+        type: one-time
+        metric: subscription
+        limit: 1
+        timeFrame: lifetime
+        geo: global
+        unit: 1
+        price: '14.00'
+        userMultiplied: false
+        description: Single upfront payment covering 10 years of connectivity, 500 MB data, and 250 SMS.
+    inclusions:
+      - 500 MB cellular data
+      - 250 SMS messages
+      - Coverage in 170+ countries
+      - 2G, 3G, 4G, LTE-M, NB-IoT
+      - REST API management
+      - 1NCE OS bundled platform
+      - Customer Portal access
+      - OpenVPN and APN
+  - id: high-data-iot
+    name: High Data IoT
+    type: add-on
+    description: Volume add-on for fleets exceeding the IoT Lifetime Flat data allowance. Pricing on request via
+      sales.
+    entries:
+      - label: Additional data
+        name: additional-data
+        type: metered
+        metric: bytes
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1048576
+        price: contact-sales
+        userMultiplied: false
+  - id: 1nce-fixers
+    name: 1NCE Fixers
+    type: add-on
+    description: Managed-troubleshooting service that lets 1NCE engineers diagnose and repair connectivity issues on
+      the customer's behalf. Pricing on request.
+    entries:
+      - label: Managed support
+        name: managed-support
+        type: subscription
+        metric: incident
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact-sales
+        userMultiplied: false
+  - id: 1nce-premium-service
+    name: 1NCE Premium Service
+    type: add-on
+    description: SLA-backed premium support for enterprise IoT deployments. Pricing on request.
+    entries:
+      - label: Premium support
+        name: premium-support
+        type: subscription
+        metric: account
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact-sales
+        userMultiplied: false
+  - id: 1nce-os
+    name: 1NCE OS
+    type: included
+    description: Bundled software platform with IoT Integrator, Device Locator, Device Inspector, Optimizer, and the
+      Plugin system for Datacake, Memfault, Mender, and Tartabit. Included with every IoT Lifetime Flat SIM.
+    entries:
+      - label: 1NCE OS access
+        name: os-access
+        type: included
+        metric: sim
+        limit: -1
+        timeFrame: lifetime
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false

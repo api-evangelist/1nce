@@ -1,0 +1,368 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "1NCE SIM Management \u2014 Usage"
+  description: "1NCE SIM Management \u2014 Usage. 8 operations. Lead operation: Get SIM Usage. Self-contained Naftiko capability\
+    \ covering one 1NCE business surface."
+  tags:
+    - 1NCE
+    - SIM
+    - Usage
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      ONE_NCE_ACCESS_TOKEN: ONE_NCE_ACCESS_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: sim-management-usage
+      baseUri: https://api.1nce.com/management-api
+      description: "1NCE SIM Management \u2014 Usage business capability. Self-contained, no shared references."
+      resources:
+        - name: v1-sims-iccid-usage
+          path: /v1/sims/{iccid}/usage
+          operations:
+            - name: get-usage
+              method: GET
+              description: Get SIM Usage
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-sims-iccid-quota-data
+          path: /v1/sims/{iccid}/quota/data
+          operations:
+            - name: get-data
+              method: GET
+              description: Get SIM Data Quota
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-sims-iccid-topup
+          path: /v1/sims/{iccid}/topup
+          operations:
+            - name: create-topup
+              method: POST
+              description: Create Single Top Up
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-sims-topup
+          path: /v1/sims/topup
+          operations:
+            - name: create-topup
+              method: POST
+              description: Create Multiple Top Up
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-sims-limits
+          path: /v1/sims/limits
+          operations:
+            - name: get-limits
+              method: GET
+              description: Get Global Limits
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+            - name: create-limits
+              method: POST
+              description: Create Global Limits
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-sims-service-limits
+          path: /v1/sims/{service}/limits
+          operations:
+            - name: get-limits
+              method: GET
+              description: Get SIM Limits
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: false
+        - name: v1-sims-extension
+          path: /v1/sims/extension
+          operations:
+            - name: create-extension
+              method: POST
+              description: Create SIM Extension
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+      authentication:
+        type: bearer
+        token: '{{env.ONE_NCE_ACCESS_TOKEN}}'
+  exposes:
+    - type: rest
+      namespace: sim-management-usage-rest
+      port: 8080
+      description: "REST adapter for 1NCE SIM Management \u2014 Usage. One Spectral-compliant resource per consumed operation,\
+        \ prefixed with /v1."
+      resources:
+        - path: /v1/v1/sims/{iccid}/usage
+          name: v1-sims-iccid-usage
+          description: REST surface for v1-sims-iccid-usage.
+          operations:
+            - method: GET
+              name: get-usage
+              description: Get SIM Usage
+              call: sim-management-usage.get-usage
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/sims/{iccid}/quota/data
+          name: v1-sims-iccid-quota-data
+          description: REST surface for v1-sims-iccid-quota-data.
+          operations:
+            - method: GET
+              name: get-data
+              description: Get SIM Data Quota
+              call: sim-management-usage.get-data
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/sims/{iccid}/topup
+          name: v1-sims-iccid-topup
+          description: REST surface for v1-sims-iccid-topup.
+          operations:
+            - method: POST
+              name: create-topup
+              description: Create Single Top Up
+              call: sim-management-usage.create-topup
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/sims/topup
+          name: v1-sims-topup
+          description: REST surface for v1-sims-topup.
+          operations:
+            - method: POST
+              name: create-topup
+              description: Create Multiple Top Up
+              call: sim-management-usage.create-topup
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/sims/limits
+          name: v1-sims-limits
+          description: REST surface for v1-sims-limits.
+          operations:
+            - method: GET
+              name: get-limits
+              description: Get Global Limits
+              call: sim-management-usage.get-limits
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: POST
+              name: create-limits
+              description: Create Global Limits
+              call: sim-management-usage.create-limits
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/sims/{service}/limits
+          name: v1-sims-service-limits
+          description: REST surface for v1-sims-service-limits.
+          operations:
+            - method: GET
+              name: get-limits
+              description: Get SIM Limits
+              call: sim-management-usage.get-limits
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/v1/sims/extension
+          name: v1-sims-extension
+          description: REST surface for v1-sims-extension.
+          operations:
+            - method: POST
+              name: create-extension
+              description: Create SIM Extension
+              call: sim-management-usage.create-extension
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: sim-management-usage-mcp
+      port: 9090
+      transport: http
+      description: "MCP adapter for 1NCE SIM Management \u2014 Usage. One tool per consumed operation, routed inline through\
+        \ this capability consumes block."
+      tools:
+        - name: 1nce-get-usage
+          description: Get SIM Usage
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: sim-management-usage.get-usage
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-data
+          description: Get SIM Data Quota
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: sim-management-usage.get-data
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-create-topup
+          description: Create Single Top Up
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: sim-management-usage.create-topup
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-create-topup
+          description: Create Multiple Top Up
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: sim-management-usage.create-topup
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-limits
+          description: Get Global Limits
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: sim-management-usage.get-limits
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-create-limits
+          description: Create Global Limits
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: sim-management-usage.create-limits
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-get-limits
+          description: Get SIM Limits
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: sim-management-usage.get-limits
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: 1nce-create-extension
+          description: Create SIM Extension
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: sim-management-usage.create-extension
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.

@@ -1,0 +1,143 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "1nce": "https://api.1nce.com/management-api/v1/",
+    "1nceV2": "https://api.1nce.com/management-api/v2/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+
+    "Sim": {
+      "@id": "1nce:Sim",
+      "@context": {
+        "iccid": { "@id": "1nce:Sim/iccid", "@type": "xsd:string" },
+        "imsi": { "@id": "1nce:Sim/imsi", "@type": "xsd:string" },
+        "msisdn": { "@id": "1nce:Sim/msisdn", "@type": "xsd:string" },
+        "imei": { "@id": "1nce:Sim/imei", "@type": "xsd:string" },
+        "ip": { "@id": "1nce:Sim/ip", "@type": "xsd:string" },
+        "label": { "@id": "1nce:Sim/label", "@type": "xsd:string" },
+        "status": { "@id": "1nce:Sim/status" },
+        "activationDate": { "@id": "1nce:Sim/activationDate", "@type": "xsd:dateTime" },
+        "expiryDate": { "@id": "1nce:Sim/expiryDate", "@type": "xsd:dateTime" },
+        "quota": { "@id": "1nce:Sim/quota" },
+        "connectivity": { "@id": "1nce:Sim/connectivity" }
+      }
+    },
+
+    "Device": {
+      "@id": "1nce:Device",
+      "@context": {
+        "id": { "@id": "1nce:Device/id", "@type": "xsd:string" },
+        "name": { "@id": "1nce:Device/name", "@type": "xsd:string" },
+        "iccid": { "@id": "1nce:Device/iccid", "@type": "xsd:string" },
+        "imsi1": { "@id": "1nce:Device/imsi1", "@type": "xsd:string" },
+        "ip": { "@id": "1nce:Device/ip", "@type": "xsd:string" },
+        "lastSeen": { "@id": "1nce:Device/lastSeen", "@type": "xsd:dateTime" },
+        "telemetry": { "@id": "1nce:Device/telemetry" }
+      }
+    },
+
+    "Quota": {
+      "@id": "1nce:Quota",
+      "@context": {
+        "totalVolume": { "@id": "1nce:Quota/totalVolume", "@type": "xsd:decimal" },
+        "remainingVolume": { "@id": "1nce:Quota/remainingVolume", "@type": "xsd:decimal" },
+        "expiryDate": { "@id": "1nce:Quota/expiryDate", "@type": "xsd:dateTime" },
+        "lastVolumeAdded": { "@id": "1nce:Quota/lastVolumeAdded", "@type": "xsd:decimal" },
+        "lastStatusChangeDate": { "@id": "1nce:Quota/lastStatusChangeDate", "@type": "xsd:dateTime" },
+        "threshold": { "@id": "1nce:Quota/threshold", "@type": "xsd:decimal" }
+      }
+    },
+
+    "Sms": {
+      "@id": "1nce:Sms",
+      "@context": {
+        "id": { "@id": "1nce:Sms/id", "@type": "xsd:string" },
+        "iccid": { "@id": "1nce:Sms/iccid", "@type": "xsd:string" },
+        "sourceAddress": { "@id": "1nce:Sms/sourceAddress", "@type": "xsd:string" },
+        "destinationAddress": { "@id": "1nce:Sms/destinationAddress", "@type": "xsd:string" },
+        "payload": { "@id": "1nce:Sms/payload", "@type": "xsd:string" },
+        "type": { "@id": "1nce:Sms/type", "@type": "xsd:string" },
+        "status": { "@id": "1nce:Sms/status", "@type": "xsd:string" },
+        "submitDate": { "@id": "1nce:Sms/submitDate", "@type": "xsd:dateTime" },
+        "deliveryDate": { "@id": "1nce:Sms/deliveryDate", "@type": "xsd:dateTime" }
+      }
+    },
+
+    "Event": {
+      "@id": "1nce:Event",
+      "@context": {
+        "id": { "@id": "1nce:Event/id", "@type": "xsd:string" },
+        "iccid": { "@id": "1nce:Event/iccid", "@type": "xsd:string" },
+        "type": { "@id": "1nce:Event/type", "@type": "xsd:string" },
+        "description": { "@id": "1nce:Event/description", "@type": "xsd:string" },
+        "timestamp": { "@id": "1nce:Event/timestamp", "@type": "xsd:dateTime" }
+      }
+    },
+
+    "Order": {
+      "@id": "1nce:Order",
+      "@context": {
+        "orderNumber": { "@id": "1nce:Order/orderNumber", "@type": "xsd:string" },
+        "status": { "@id": "1nce:Order/status", "@type": "xsd:string" },
+        "createdAt": { "@id": "1nce:Order/createdAt", "@type": "xsd:dateTime" },
+        "items": { "@id": "1nce:Order/items", "@container": "@list" }
+      }
+    },
+
+    "Product": {
+      "@id": "1nce:Product",
+      "@context": {
+        "id": { "@id": "1nce:Product/id", "@type": "xsd:string" },
+        "name": { "@id": "1nce:Product/name", "@type": "xsd:string" },
+        "type": { "@id": "1nce:Product/type", "@type": "xsd:string" },
+        "price": { "@id": "1nce:Product/price", "@type": "xsd:decimal" },
+        "currency": { "@id": "1nce:Product/currency", "@type": "xsd:string" }
+      }
+    },
+
+    "SupportTicket": {
+      "@id": "1nce:SupportTicket",
+      "@context": {
+        "id": { "@id": "1nce:SupportTicket/id", "@type": "xsd:string" },
+        "subject": { "@id": "1nce:SupportTicket/subject", "@type": "xsd:string" },
+        "description": { "@id": "1nce:SupportTicket/description", "@type": "xsd:string" },
+        "priority": { "@id": "1nce:SupportTicket/priority", "@type": "xsd:string" },
+        "status": { "@id": "1nce:SupportTicket/status", "@type": "xsd:string" }
+      }
+    },
+
+    "Position": {
+      "@id": "1nce:Position",
+      "@context": {
+        "deviceId": { "@id": "1nce:Position/deviceId", "@type": "xsd:string" },
+        "latitude": { "@id": "1nce:Position/latitude", "@type": "xsd:decimal" },
+        "longitude": { "@id": "1nce:Position/longitude", "@type": "xsd:decimal" },
+        "accuracy": { "@id": "1nce:Position/accuracy", "@type": "xsd:decimal" },
+        "timestamp": { "@id": "1nce:Position/timestamp", "@type": "xsd:dateTime" }
+      }
+    },
+
+    "Geofence": {
+      "@id": "1nce:Geofence",
+      "@context": {
+        "id": { "@id": "1nce:Geofence/id", "@type": "xsd:string" },
+        "name": { "@id": "1nce:Geofence/name", "@type": "xsd:string" },
+        "shape": { "@id": "1nce:Geofence/shape", "@type": "xsd:string" },
+        "coordinates": { "@id": "1nce:Geofence/coordinates" }
+      }
+    },
+
+    "AccessToken": {
+      "@id": "1nce:AccessToken",
+      "@context": {
+        "accessToken": { "@id": "1nce:AccessToken/accessToken", "@type": "xsd:string" },
+        "tokenType": { "@id": "1nce:AccessToken/tokenType", "@type": "xsd:string" },
+        "expiresIn": { "@id": "1nce:AccessToken/expiresIn", "@type": "xsd:integer" },
+        "scope": { "@id": "1nce:AccessToken/scope", "@type": "xsd:string" }
+      }
+    }
+  }
+}

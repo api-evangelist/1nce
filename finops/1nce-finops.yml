@@ -1,0 +1,120 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: 1NCE
+providerId: 1nce
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - FinOps
+  - Cost Management
+  - FOCUS
+  - IoT
+  - Connectivity
+description: FOCUS-aligned FinOps definition for 1NCE Connect IoT connectivity and the 1NCE OS bundled platform.
+  Single one-time charge per SIM under the IoT Lifetime Flat with per-SIM data and SMS quota meters that determine
+  any top-up or High Data IoT overage charges.
+sources:
+  - https://www.1nce.com/en-us/1nce-connect
+  - https://help.1nce.com/dev-hub/reference/api-welcome
+  - https://help.1nce.com/.well-known/api-catalog
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: 1NCE GmbH
+serviceCategory: Networking
+billingModel:
+  pricingCategory: Prepaid / Bundled
+  billingFrequency: One-Time
+  billingCurrency: USD
+  chargeCategories:
+    - Purchase
+    - Usage
+    - Tax
+    - Adjustment
+    - Credit
+  primaryUnit: sim
+  secondaryUnits:
+    - byte
+    - sms
+    - device
+focusColumns:
+  ServiceName: 1NCE Connect
+  ServiceCategory: Networking
+  ProviderName: 1NCE
+  PublisherName: 1NCE GmbH
+  InvoiceIssuerName: 1NCE GmbH
+  PricingCategory: Prepaid
+  PricingUnit: SIM
+  BillingCurrency: USD
+meters:
+  - name: sim_activation
+    unit: sim
+    aggregation: count
+    dimensions:
+      - account
+      - product
+      - form_factor
+    description: One charge per SIM at activation under the IoT Lifetime Flat tariff.
+  - name: data_volume
+    unit: byte
+    aggregation: sum
+    dimensions:
+      - iccid
+      - account
+      - country
+      - network
+    description: Cellular data consumed per ICCID; metered against the 500 MB lifetime allowance.
+  - name: sms_count
+    unit: sms
+    aggregation: count
+    dimensions:
+      - iccid
+      - account
+      - direction
+    description: MT and MO SMS counted per ICCID against the 250 SMS lifetime allowance.
+  - name: topup_purchase
+    unit: bundle
+    aggregation: count
+    dimensions:
+      - iccid
+      - account
+      - bundle_type
+    description: Discrete top-up purchases initiated via /v1/sims/{iccid}/topup or /v1/sims/topup.
+  - name: high_data_overage
+    unit: byte
+    aggregation: sum
+    dimensions:
+      - account
+      - country
+    description: Data consumed under the High Data IoT add-on once the Lifetime Flat allowance is exhausted.
+allocation:
+  primary:
+    - account
+    - iccid
+  secondary:
+    - country
+    - network
+    - device
+  tagSupport:
+    - iccid
+    - imei
+    - device_label
+practices:
+  inform:
+    - Use /v1/sims/{iccid}/usage and /v1/sims/{iccid}/quota/data for per-SIM consumption visibility.
+    - Use /v1/sims/{iccid}/events and /v1/sims/{iccid}/status for connectivity-state observability.
+    - Optimizer (/v1/optimize/savings, /v1/optimize/messages/test) quantifies payload-compression cost savings.
+  optimize:
+    - Apply Volume Limits (/v1/sims/{service}/limits) to enforce per-SIM consumption caps.
+    - Use the Optimizer service to compress LwM2M/CoAP payloads before transmission.
+    - Disable connectivity per SIM with /v1/sims/{iccid}/connectivity_info or PUT /v1/sims/{iccid} to stop runaway usage.
+  operate:
+    - Provision and reset SIMs in bulk through /v1/sims/simTransfer and /v1/sims rather than per-ICCID calls.
+    - Automate fleet onboarding to AWS IoT Core via the 1nce-iot-device-onboarding TypeScript project and
+      cfn-templates CloudFormation stacks.
+    - Route exceptions through Support Management (/v1/support) when devices exhaust their lifetime quota.

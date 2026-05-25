@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "1NCE Authorization \u2014 OAuth Token"
+  description: "1NCE Authorization \u2014 OAuth Token. 1 operations. Lead operation: Obtain Access Token. Self-contained Naftiko\
+    \ capability covering one 1NCE business surface."
+  tags:
+    - 1NCE
+    - Authorization
+    - OAuth
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      ONE_NCE_CLIENT_ID: ONE_NCE_CLIENT_ID
+      ONE_NCE_CLIENT_SECRET: ONE_NCE_CLIENT_SECRET
+capability:
+  consumes:
+    - type: http
+      namespace: authorization-oauth
+      baseUri: https://api.1nce.com/management-api
+      description: "1NCE Authorization \u2014 OAuth Token business capability. Self-contained, no shared references."
+      resources:
+        - name: oauth-token
+          path: /oauth/token
+          operations:
+            - name: create-token
+              method: POST
+              description: Obtain Access Token
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+      authentication:
+        type: basic
+        username: '{{env.ONE_NCE_CLIENT_ID}}'
+        password: '{{env.ONE_NCE_CLIENT_SECRET}}'
+  exposes:
+    - type: rest
+      namespace: authorization-oauth-rest
+      port: 8080
+      description: "REST adapter for 1NCE Authorization \u2014 OAuth Token. One Spectral-compliant resource per consumed operation,\
+        \ prefixed with /v1."
+      resources:
+        - path: /v1/oauth/token
+          name: oauth-token
+          description: REST surface for oauth-token.
+          operations:
+            - method: POST
+              name: create-token
+              description: Obtain Access Token
+              call: authorization-oauth.create-token
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: authorization-oauth-mcp
+      port: 9090
+      transport: http
+      description: "MCP adapter for 1NCE Authorization \u2014 OAuth Token. One tool per consumed operation, routed inline\
+        \ through this capability consumes block."
+      tools:
+        - name: 1nce-create-token
+          description: Obtain Access Token
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: authorization-oauth.create-token
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
