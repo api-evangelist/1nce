@@ -2,294 +2,283 @@ aid: 1nce
 url: https://raw.githubusercontent.com/api-evangelist/1nce/refs/heads/main/apis.yml
 name: 1NCE
 apis:
-- aid: 1nce:1nce-authorization-api
-  name: 1NCE Authorization API
-  tags:
-  - Authorization
-  - OAuth
-  - IoT
-  humanURL: https://help.1nce.com/dev-hub/reference/api-welcome
-  properties:
-  - url: https://help.1nce.com/api/authorization/
-    type: Documentation
-  - url: openapi/1nce-authorization-openapi.yml
-    type: OpenAPI
-  - url: openapi/1nce-authorization-v2-openapi.yml
-    type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/authorization-oauth.yaml
-  description: OAuth 2.0 client-credentials flow that issues bearer tokens for all 1NCE Management API endpoints. POST
-    /oauth/token (Basic Auth) returns a short-lived access token used to call SIM Management, Order Management,
-    Product Information, Support Management, and 1NCE OS services on api.1nce.com/management-api.
-- aid: 1nce:1nce-sim-management-api
-  name: 1NCE SIM Management API
-  tags:
-  - SIM
-  - Connectivity
-  - SMS
-  - Events
-  - Usage
-  - IoT
-  humanURL: https://help.1nce.com/api/sim-management/
-  properties:
-  - url: https://help.1nce.com/api/sim-management/
-    type: Documentation
-  - url: openapi/1nce-sim-management-openapi.yml
-    type: OpenAPI
-  - url: openapi/1nce-sim-management-v2-openapi.yml
-    type: OpenAPI
-  - url: json-schema/1nce-sim-schema.json
-    type: JSONSchema
-  - url: json-ld/1nce-context.jsonld
-    type: JSONLD
-  - type: NaftikoCapability
-    url: capabilities/sim-management-sims.yaml
-  - type: NaftikoCapability
-    url: capabilities/sim-management-sms.yaml
-  - type: NaftikoCapability
-    url: capabilities/sim-management-connectivity.yaml
-  - type: NaftikoCapability
-    url: capabilities/sim-management-events.yaml
-  - type: NaftikoCapability
-    url: capabilities/sim-management-usage.yaml
-  description: Manage, control, and monitor 1NCE IoT SIM cards by ICCID across the lifecycle. v1 covers General SIMs,
-    SMS (MT/MO), Connectivity, SIM Events, SIM Usage, Volume Limits, Volume Top Up, and SIM Extension; v2 (current)
-    covers SIMs, Connectivity, SMS, and SIM Events on the v2 API surface. Includes data and SMS quotas, connectivity
-    reset, status, top-ups, and event history.
-- aid: 1nce:1nce-os-api
-  name: 1NCE OS API
-  tags:
-  - IoT
-  - Device Integration
-  - Device Locator
-  - Device Inspector
-  - Optimizer
-  - Plugins
-  - AWS IoT
-  humanURL: https://help.1nce.com/api/1nce-os/
-  properties:
-  - url: https://help.1nce.com/api/1nce-os/
-    type: Documentation
-  - url: openapi/1nce-os-openapi.yml
-    type: OpenAPI
-  - url: json-schema/1nce-device-schema.json
-    type: JSONSchema
-  - type: NaftikoCapability
-    url: capabilities/os-integrate-devices.yaml
-  - type: NaftikoCapability
-    url: capabilities/os-integrate-clouds.yaml
-  - type: NaftikoCapability
-    url: capabilities/os-locate.yaml
-  - type: NaftikoCapability
-    url: capabilities/os-inspect.yaml
-  - type: NaftikoCapability
-    url: capabilities/os-optimize.yaml
-  - type: NaftikoCapability
-    url: capabilities/os-plugins.yaml
-  description: 1NCE OS APIs for the bundled IoT operating system services. Covers IoT Integrator (CoAP/UDP/LwM2M device
-    endpoints, PSK provisioning, AWS IoT cloud integration), Device Locator (positions, geofences), Device Inspector
-    (device stats and diagnostics), Optimizer (payload compression savings and message tests), Devices, Settings,
-    Administration Logs, Agreements, and the Plugin system (Datacake, Memfault, Mender, Tartabit).
-- aid: 1nce:1nce-order-management-api
-  name: 1NCE Order Management API
-  tags:
-  - Orders
-  - Provisioning
-  - IoT
-  humanURL: https://help.1nce.com/api/order-management/
-  properties:
-  - url: https://help.1nce.com/api/order-management/
-    type: Documentation
-  - url: openapi/1nce-order-management-openapi.yml
-    type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/order-management-orders.yaml
-  description: Programmatically create and inspect 1NCE orders. /v1/orders lists and submits new orders for SIM cards
-    or services; /v1/orders/{order_number} retrieves order detail, status, and line items so customers can automate
-    SIM provisioning flows.
-- aid: 1nce:1nce-product-information-api
-  name: 1NCE Product Information API
-  tags:
-  - Catalog
-  - Products
-  - IoT
-  humanURL: https://help.1nce.com/api/product-information/
-  properties:
-  - url: https://help.1nce.com/api/product-information/
-    type: Documentation
-  - url: openapi/1nce-product-information-openapi.yml
-    type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/product-information-products.yaml
-  description: Query the 1NCE product catalog including the IoT Lifetime Flat, Industrial and Business SIM form
-    factors, High Data IoT add-ons, and 1NCE OS service entitlements via /v1/products.
-- aid: 1nce:1nce-support-management-api
-  name: 1NCE Support Management API
-  tags:
-  - Support
-  - Tickets
-  - IoT
-  humanURL: https://help.1nce.com/api/support-management/
-  properties:
-  - url: https://help.1nce.com/api/support-management/
-    type: Documentation
-  - url: openapi/1nce-support-management-openapi.yml
-    type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/support-management-tickets.yaml
-  description: Open and track 1NCE customer support tickets programmatically via /v1/support so device-fleet operators
-    can escalate connectivity, billing, or 1NCE Fixers requests from inside their own systems.
+  - aid: 1nce:1nce-authorization-api
+    name: 1NCE Authorization API
+    tags:
+      - Authorization
+      - OAuth
+      - IoT
+    humanURL: https://help.1nce.com/dev-hub/reference/api-welcome
+    properties:
+      - url: https://help.1nce.com/api/authorization/
+        type: Documentation
+      - url: openapi/1nce-authorization-openapi.yml
+        type: OpenAPI
+      - url: openapi/1nce-authorization-v2-openapi.yml
+        type: OpenAPI
+    description: >-
+      OAuth 2.0 client-credentials flow that issues bearer tokens for all 1NCE Management API endpoints. POST
+      /oauth/token (Basic Auth) returns a short-lived access token used to call SIM Management, Order Management,
+      Product Information, Support Management, and 1NCE OS services on api.1nce.com/management-api.
+  - aid: 1nce:1nce-sim-management-api
+    name: 1NCE SIM Management API
+    tags:
+      - SIM
+      - Connectivity
+      - SMS
+      - Events
+      - Usage
+      - IoT
+    humanURL: https://help.1nce.com/api/sim-management/
+    properties:
+      - url: https://help.1nce.com/api/sim-management/
+        type: Documentation
+      - url: openapi/1nce-sim-management-openapi.yml
+        type: OpenAPI
+      - url: openapi/1nce-sim-management-v2-openapi.yml
+        type: OpenAPI
+      - url: json-schema/1nce-sim-schema.json
+        type: JSONSchema
+      - url: json-ld/1nce-context.jsonld
+        type: JSONLD
+    description: >-
+      Manage, control, and monitor 1NCE IoT SIM cards by ICCID across the lifecycle. v1 covers General SIMs, SMS
+      (MT/MO), Connectivity, SIM Events, SIM Usage, Volume Limits, Volume Top Up, and SIM Extension; v2 (current) covers
+      SIMs, Connectivity, SMS, and SIM Events on the v2 API surface. Includes data and SMS quotas, connectivity reset,
+      status, top-ups, and event history.
+  - aid: 1nce:1nce-os-api
+    name: 1NCE OS API
+    tags:
+      - IoT
+      - Device Integration
+      - Device Locator
+      - Device Inspector
+      - Optimizer
+      - Plugins
+      - AWS IoT
+    humanURL: https://help.1nce.com/api/1nce-os/
+    properties:
+      - url: https://help.1nce.com/api/1nce-os/
+        type: Documentation
+      - url: openapi/1nce-os-openapi.yml
+        type: OpenAPI
+      - url: json-schema/1nce-device-schema.json
+        type: JSONSchema
+    description: >-
+      1NCE OS APIs for the bundled IoT operating system services. Covers IoT Integrator (CoAP/UDP/LwM2M device
+      endpoints, PSK provisioning, AWS IoT cloud integration), Device Locator (positions, geofences), Device Inspector
+      (device stats and diagnostics), Optimizer (payload compression savings and message tests), Devices, Settings,
+      Administration Logs, Agreements, and the Plugin system (Datacake, Memfault, Mender, Tartabit).
+  - aid: 1nce:1nce-order-management-api
+    name: 1NCE Order Management API
+    tags:
+      - Orders
+      - Provisioning
+      - IoT
+    humanURL: https://help.1nce.com/api/order-management/
+    properties:
+      - url: https://help.1nce.com/api/order-management/
+        type: Documentation
+      - url: openapi/1nce-order-management-openapi.yml
+        type: OpenAPI
+    description: >-
+      Programmatically create and inspect 1NCE orders. /v1/orders lists and submits new orders for SIM cards or
+      services; /v1/orders/{order_number} retrieves order detail, status, and line items so customers can automate SIM
+      provisioning flows.
+  - aid: 1nce:1nce-product-information-api
+    name: 1NCE Product Information API
+    tags:
+      - Catalog
+      - Products
+      - IoT
+    humanURL: https://help.1nce.com/api/product-information/
+    properties:
+      - url: https://help.1nce.com/api/product-information/
+        type: Documentation
+      - url: openapi/1nce-product-information-openapi.yml
+        type: OpenAPI
+    description: >-
+      Query the 1NCE product catalog including the IoT Lifetime Flat, Industrial and Business SIM form factors, High
+      Data IoT add-ons, and 1NCE OS service entitlements via /v1/products.
+  - aid: 1nce:1nce-support-management-api
+    name: 1NCE Support Management API
+    tags:
+      - Support
+      - Tickets
+      - IoT
+    humanURL: https://help.1nce.com/api/support-management/
+    properties:
+      - url: https://help.1nce.com/api/support-management/
+        type: Documentation
+      - url: openapi/1nce-support-management-openapi.yml
+        type: OpenAPI
+    description: >-
+      Open and track 1NCE customer support tickets programmatically via /v1/support so device-fleet operators can
+      escalate connectivity, billing, or 1NCE Fixers requests from inside their own systems.
 common:
-- type: Portal
-  url: https://www.1nce.com/en-us/
-- type: Documentation
-  url: https://help.1nce.com/docs/
-- type: Documentation
-  url: https://help.1nce.com/dev-hub/reference/api-welcome
-- type: Documentation
-  url: https://help.1nce.com/dev-hub/reference/api-best-practices
-- type: GettingStarted
-  url: https://help.1nce.com/starting-guide/docs/api-general-information
-- url: https://help.1nce.com/api/v2/
-  name: 1NCE API Explorer v2
-  type: Sandbox
-- url: https://help.1nce.com/.well-known/api-catalog
-  name: 1NCE API Catalog (RFC 9727)
-  type: Documentation
-- url: https://portal.1nce.com/
-  name: 1NCE Customer Portal
-  type: Portal
-- url: https://portal.1nce.com/portal/customer/registration
-  type: SignUp
-- url: https://www.1nce.com/en-us/1nce-connect/features/rest-api
-  name: 1NCE REST API Feature
-  type: Documentation
-- url: https://www.1nce.com/en-us/1nce-connect
-  name: 1NCE Connect
-  type: Portal
-- url: https://www.1nce.com/en-us/1nce-os
-  name: 1NCE OS
-  type: Portal
-- url: https://www.1nce.com/en-us/resources/news/blog/iot-cookbook
-  name: IoT Cookbook
-  type: CodeExamples
-- url: https://www.1nce.com/en-us/resources/news/blog
-  type: Blog
-- url: https://github.com/1NCE-GmbH
-  type: GitHubOrganization
-- url: https://github.com/1NCE-GmbH/1nce-iot-c-sdk
-  name: 1NCE IoT C SDK
-  type: SDK
-- url: https://github.com/1NCE-GmbH/blueprint-freertos
-  name: FreeRTOS Blueprint
-  type: CodeExamples
-- url: https://github.com/1NCE-GmbH/blueprint-zephyr
-  name: Zephyr RTOS Blueprint
-  type: CodeExamples
-- url: https://github.com/1NCE-GmbH/blueprint-arduino
-  name: Arduino Blueprint
-  type: CodeExamples
-- url: https://github.com/1NCE-GmbH/1nce-iot-device-onboarding
-  name: AWS IoT Core Device Onboarding
-  type: CodeExamples
-- url: https://github.com/1NCE-GmbH/cfn-templates
-  name: CloudFormation Templates
-  type: CodeExamples
-- url: https://github.com/1NCE-GmbH/1nce-mcp-server
-  name: 1NCE MCP Server
-  type: Tool
-- url: https://www.linkedin.com/company/1nce-gmbh
-  type: LinkedIn
-- url: https://twitter.com/1nce_iot
-  type: Twitter
-- url: https://www.youtube.com/@1nce_iot
-  type: YouTube
-- url: https://www.1nce.com/en-us/legal/terms-and-conditions
-  type: TermsOfService
-- url: https://www.1nce.com/en-us/legal/privacy-policy
-  type: PrivacyPolicy
-- url: https://www.1nce.com/en-us/legal/imprint
-  type: Documentation
-- url: https://www.1nce.com/en-us/contact
-  type: ContactForm
-- url: https://www.1nce.com/en-us/support/faq
-  type: FAQ
-- url: https://help.1nce.com/dev-hub/reference/api-best-practices
-  name: API Best Practices
-  type: Documentation
-- url: plans/1nce-plans-pricing.yml
-  type: Plans
-- url: rate-limits/1nce-rate-limits.yml
-  type: RateLimits
-- url: finops/1nce-finops.yml
-  type: FinOps
-- type: Features
-  data:
-  - IoT Lifetime Flat — 500 MB data and 250 SMS over a 10-year subscription bundled with the SIM at a single
-    one-time price (USD 14 per SIM under the standard tariff)
-  - Three SIM form factors — Business SIM (non-eUICC, USD 1), Industrial SIM (eUICC-capable, USD 2), and Industrial
-    SIM Chip (eUICC, solderable, USD 2.50)
-  - Coverage in 170+ countries across 2G, 3G, 4G/LTE-M, and NB-IoT through Tier-1 partners including Deutsche
-    Telekom, SoftBank, and China Telecom
-  - 1NCE Management API on api.1nce.com/management-api covering Authorization, SIM Management v1 and v2, Order
-    Management, Product Information, Support Management, and 1NCE OS
-  - OAuth 2.0 client-credentials authorization via /oauth/token with bearer tokens for subsequent calls
-  - SIM lifecycle operations — list, retrieve, modify, transfer, status, connectivity info, connectivity reset,
-    events, usage, data and SMS quotas, top-ups, auto-topup, volume limits, and extension
-  - SMS API for MT (mobile-terminated) and MO (mobile-originated) messages on each SIM with cancellation and
-    delivery detail lookup
-  - 1NCE OS bundled platform — IoT Integrator (CoAP, UDP, LwM2M endpoints + PSK provisioning), Device Locator
-    (positions, geofences), Device Inspector (device stats), Optimizer (payload compression and savings reporting),
-    and Plugin system
-  - First-party AWS IoT Core integration with managed cloud parameters, restart, and test operations and the
-    1nce-iot-device-onboarding TypeScript project
-  - Ecosystem plugins for Datacake, Memfault, Mender, and Tartabit exposed through the 1NCE OS Plugin system
-  - Open-source 1NCE IoT C SDK with CoAP authentication, energy saver, and DTLS PSK helpers under MIT license
-  - Reference blueprints for FreeRTOS, Zephyr RTOS, and Arduino integrating the 1NCE SDK on constrained devices
-  - 1NCE MCP Server (Python) exposes the 1NCE Management API to LLM agents over Model Context Protocol
-  - CloudFormation templates for AWS deployments and public api-catalog discovery document under
-    /.well-known/api-catalog (RFC 9727)
-  - 1NCE Customer Portal at portal.1nce.com with the same management surface available through the REST API
-  - High Data IoT add-on for fleets exceeding the Lifetime Flat allowance, 1NCE Fixers managed-support service,
-    and 1NCE Premium Service
-  - Freedom to Switch (eUICC remote SIM provisioning) on Industrial SIMs allowing customers to change carrier profiles
-  - Self-service registration and provisioning workflow for new IoT projects with no monthly fee and a single
-    upfront payment for the full subscription window
-  sources:
-  - https://www.1nce.com/en-us/1nce-connect
-  - https://help.1nce.com/dev-hub/reference/api-welcome
-  - https://help.1nce.com/.well-known/api-catalog
-  - https://github.com/1NCE-GmbH
-  updated: '2026-05-25'
+  - type: Portal
+    url: https://www.1nce.com/en-us/
+  - type: Documentation
+    url: https://help.1nce.com/docs/
+  - type: Documentation
+    url: https://help.1nce.com/dev-hub/reference/api-welcome
+  - type: Documentation
+    url: https://help.1nce.com/dev-hub/reference/api-best-practices
+  - type: GettingStarted
+    url: https://help.1nce.com/starting-guide/docs/api-general-information
+  - url: https://help.1nce.com/api/v2/
+    name: 1NCE API Explorer v2
+    type: Sandbox
+  - url: https://help.1nce.com/.well-known/api-catalog
+    name: 1NCE API Catalog (RFC 9727)
+    type: Documentation
+  - url: https://portal.1nce.com/
+    name: 1NCE Customer Portal
+    type: Portal
+  - url: https://portal.1nce.com/portal/customer/registration
+    type: SignUp
+  - url: https://www.1nce.com/en-us/1nce-connect/features/rest-api
+    name: 1NCE REST API Feature
+    type: Documentation
+  - url: https://www.1nce.com/en-us/1nce-connect
+    name: 1NCE Connect
+    type: Portal
+  - url: https://www.1nce.com/en-us/1nce-os
+    name: 1NCE OS
+    type: Portal
+  - url: https://www.1nce.com/en-us/resources/news/blog/iot-cookbook
+    name: IoT Cookbook
+    type: CodeExamples
+  - url: https://www.1nce.com/en-us/resources/news/blog
+    type: Blog
+  - url: https://github.com/1NCE-GmbH
+    type: GitHubOrganization
+  - url: https://github.com/1NCE-GmbH/1nce-iot-c-sdk
+    name: 1NCE IoT C SDK
+    type: SDK
+  - url: https://github.com/1NCE-GmbH/blueprint-freertos
+    name: FreeRTOS Blueprint
+    type: CodeExamples
+  - url: https://github.com/1NCE-GmbH/blueprint-zephyr
+    name: Zephyr RTOS Blueprint
+    type: CodeExamples
+  - url: https://github.com/1NCE-GmbH/blueprint-arduino
+    name: Arduino Blueprint
+    type: CodeExamples
+  - url: https://github.com/1NCE-GmbH/1nce-iot-device-onboarding
+    name: AWS IoT Core Device Onboarding
+    type: CodeExamples
+  - url: https://github.com/1NCE-GmbH/cfn-templates
+    name: CloudFormation Templates
+    type: CodeExamples
+  - url: https://github.com/1NCE-GmbH/1nce-mcp-server
+    name: 1NCE MCP Server
+    type: Tool
+  - url: https://www.linkedin.com/company/1nce-gmbh
+    type: LinkedIn
+  - url: https://twitter.com/1nce_iot
+    type: Twitter
+  - url: https://www.youtube.com/@1nce_iot
+    type: YouTube
+  - url: https://www.1nce.com/en-us/legal/terms-and-conditions
+    type: TermsOfService
+  - url: https://www.1nce.com/en-us/legal/privacy-policy
+    type: PrivacyPolicy
+  - url: https://www.1nce.com/en-us/legal/imprint
+    type: Documentation
+  - url: https://www.1nce.com/en-us/contact
+    type: ContactForm
+  - url: https://www.1nce.com/en-us/support/faq
+    type: FAQ
+  - url: https://help.1nce.com/dev-hub/reference/api-best-practices
+    name: API Best Practices
+    type: Documentation
+  - url: plans/1nce-plans-pricing.yml
+    type: Plans
+  - url: rate-limits/1nce-rate-limits.yml
+    type: RateLimits
+  - url: finops/1nce-finops.yml
+    type: FinOps
+  - type: Features
+    data:
+      - >-
+        IoT Lifetime Flat — 500 MB data and 250 SMS over a 10-year subscription bundled with the SIM at a single
+        one-time price (USD 14 per SIM under the standard tariff)
+      - >-
+        Three SIM form factors — Business SIM (non-eUICC, USD 1), Industrial SIM (eUICC-capable, USD 2), and Industrial
+        SIM Chip (eUICC, solderable, USD 2.50)
+      - >-
+        Coverage in 170+ countries across 2G, 3G, 4G/LTE-M, and NB-IoT through Tier-1 partners including Deutsche
+        Telekom, SoftBank, and China Telecom
+      - >-
+        1NCE Management API on api.1nce.com/management-api covering Authorization, SIM Management v1 and v2, Order
+        Management, Product Information, Support Management, and 1NCE OS
+      - OAuth 2.0 client-credentials authorization via /oauth/token with bearer tokens for subsequent calls
+      - >-
+        SIM lifecycle operations — list, retrieve, modify, transfer, status, connectivity info, connectivity reset,
+        events, usage, data and SMS quotas, top-ups, auto-topup, volume limits, and extension
+      - >-
+        SMS API for MT (mobile-terminated) and MO (mobile-originated) messages on each SIM with cancellation and
+        delivery detail lookup
+      - >-
+        1NCE OS bundled platform — IoT Integrator (CoAP, UDP, LwM2M endpoints + PSK provisioning), Device Locator
+        (positions, geofences), Device Inspector (device stats), Optimizer (payload compression and savings reporting),
+        and Plugin system
+      - >-
+        First-party AWS IoT Core integration with managed cloud parameters, restart, and test operations and the
+        1nce-iot-device-onboarding TypeScript project
+      - Ecosystem plugins for Datacake, Memfault, Mender, and Tartabit exposed through the 1NCE OS Plugin system
+      - Open-source 1NCE IoT C SDK with CoAP authentication, energy saver, and DTLS PSK helpers under MIT license
+      - Reference blueprints for FreeRTOS, Zephyr RTOS, and Arduino integrating the 1NCE SDK on constrained devices
+      - 1NCE MCP Server (Python) exposes the 1NCE Management API to LLM agents over Model Context Protocol
+      - >-
+        CloudFormation templates for AWS deployments and public api-catalog discovery document under
+        /.well-known/api-catalog (RFC 9727)
+      - 1NCE Customer Portal at portal.1nce.com with the same management surface available through the REST API
+      - >-
+        High Data IoT add-on for fleets exceeding the Lifetime Flat allowance, 1NCE Fixers managed-support service, and
+        1NCE Premium Service
+      - >-
+        Freedom to Switch (eUICC remote SIM provisioning) on Industrial SIMs allowing customers to change carrier
+        profiles
+      - >-
+        Self-service registration and provisioning workflow for new IoT projects with no monthly fee and a single
+        upfront payment for the full subscription window
+    sources:
+      - https://www.1nce.com/en-us/1nce-connect
+      - https://help.1nce.com/dev-hub/reference/api-welcome
+      - https://help.1nce.com/.well-known/api-catalog
+      - https://github.com/1NCE-GmbH
+    updated: '2026-05-25'
 tags:
-- IoT
-- Connectivity
-- SIM
-- Cellular
-- NB-IoT
-- LTE-M
-- eUICC
-- Edge
-- Embedded
-- Global Roaming
+  - IoT
+  - Connectivity
+  - SIM
+  - Cellular
+  - NB-IoT
+  - LTE-M
+  - eUICC
+  - Edge
+  - Embedded
+  - Global Roaming
 kind: contract
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2026-05-25T00:00:00.000Z'
 modified: '2026-05-25'
 position: Consuming
-description: 1NCE is a Cologne-headquartered global IoT connectivity provider best known for the IoT Lifetime
-  Flat — a single one-time fee that bundles a multi-network SIM with 500 MB of data and 250 SMS over a 10-year
-  subscription. The 1NCE Management API on api.1nce.com/management-api exposes the same surface as the customer
-  portal across six product areas — Authorization, SIM Management (v1 and v2), Order Management, Product
-  Information, Support Management, and 1NCE OS — with OAuth 2.0 bearer-token security and a public api-catalog
-  document. 1NCE OS layers integration, device locator, inspector, optimizer, and partner-plugin services on top
-  of the connectivity bundle, while the company's GitHub organization publishes the 1NCE IoT C SDK, FreeRTOS /
-  Zephyr / Arduino blueprints, AWS IoT onboarding tooling, CloudFormation templates, and an MCP server for AI
-  agent integration.
+description: >-
+  1NCE is a Cologne-headquartered global IoT connectivity provider best known for the IoT Lifetime Flat — a single
+  one-time fee that bundles a multi-network SIM with 500 MB of data and 250 SMS over a 10-year subscription. The 1NCE
+  Management API on api.1nce.com/management-api exposes the same surface as the customer portal across six product areas
+  — Authorization, SIM Management (v1 and v2), Order Management, Product Information, Support Management, and 1NCE OS —
+  with OAuth 2.0 bearer-token security and a public api-catalog document. 1NCE OS layers integration, device locator,
+  inspector, optimizer, and partner-plugin services on top of the connectivity bundle, while the company's GitHub
+  organization publishes the 1NCE IoT C SDK, FreeRTOS / Zephyr / Arduino blueprints, AWS IoT onboarding tooling,
+  CloudFormation templates, and an MCP server for AI agent integration.
 maintainers:
-- FN: Kin Lane
-  email: info@apievangelist.com
-  X: apievangelist
-  url: https://apievangelist.com
+  - FN: Kin Lane
+    email: info@apievangelist.com
+    X: apievangelist
+    url: https://apievangelist.com
 specificationVersion: '0.16'
