@@ -1,0 +1,240 @@
+{
+  "item": [
+    {
+      "id": "c6c37936-67e0-440f-8d5a-c5fd43731983",
+      "name": "Products",
+      "description": {
+        "content": "Product Information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d2cc8652-5e5d-48cc-bd8c-84af2bacf3a9",
+          "name": "Get All Products",
+          "request": {
+            "name": "Get All Products",
+            "description": {
+              "content": "Get a list of all avaliable products.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2ec6fc72-0bbd-46a3-bc65-80998412655f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1001,\n    \"product\": \"1NCE IoT FlexSIM - Standard\",\n    \"material\": \"1NCE FlexSIM\",\n    \"package_size\": 1,\n    \"minQuantity\": 1,\n    \"maxQuantity\": 4455,\n    \"maxQuantityPerCustomer\": 2282,\n    \"min_contract_duration\": 120,\n    \"one_time_charges\": [\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      },\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      }\n    ],\n    \"recurring_charges\": [\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      },\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      }\n    ]\n  },\n  {\n    \"id\": 1001,\n    \"product\": \"1NCE IoT FlexSIM - Standard\",\n    \"material\": \"1NCE FlexSIM\",\n    \"package_size\": 1,\n    \"minQuantity\": 1,\n    \"maxQuantity\": 4549,\n    \"maxQuantityPerCustomer\": 3881,\n    \"min_contract_duration\": 120,\n    \"one_time_charges\": [\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      },\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      }\n    ],\n    \"recurring_charges\": [\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      },\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06ae3d2d-fc69-486c-bb85-f112f590c84d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d4aacf7c-288e-487a-a725-b0e1ac87bf0b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "30e6b87a-f9fd-4f42-8018-d2356cc10762",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.1nce.com/management-api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d7746582-c514-4be6-9b24-8de6c730be22",
+    "name": "Product Information",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation of the 1NCE API for Product Information\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+      "type": "text/plain"
+    }
+  }
+}

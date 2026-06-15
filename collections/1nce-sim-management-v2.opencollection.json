@@ -1,0 +1,425 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SIM Management",
+    "version": "v2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "General SIMs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All SIMs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> \"ip_address:127.0.0.1,imei:4711\"</p>"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort values in a comma seperated list. Prepend \"-\" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>\"ip_address,-imei\"</p>"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a List of SIMs for the current account."
+        },
+        {
+          "info": {
+            "name": "Get Single SIM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get detail information (status, label, MSISDN, IMSI, ICCID, Lifetime, etc.) for a singe SIM based on the ICCID."
+        },
+        {
+          "info": {
+            "name": "Modify SIM card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be changed."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Modification of a SIM card to activate, deactivate, change label, change IMEI lock, etc."
+        },
+        {
+          "info": {
+            "name": "Get SIM Data Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/quota/data",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the current data quota of a particular SIM."
+        },
+        {
+          "info": {
+            "name": "Get SIM SMS Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/quota/sms",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the current SMS quota of a particular SIM."
+        },
+        {
+          "info": {
+            "name": "Get SIM Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/status",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Query the current status of a specific SIM card.\n\nThis API retrieves connectivity details of a SIM. The following is a list of possible statuses: \n* `ATTACHED`:\n    The Endpoint has successfully attached to the Home Core network in the past.\n    The device will be shown as `ATTACHED` until the visited network has signaled that the device is inactive/offline.\n    Usually the visited network informs the Core Network within 1-2 days after a device went offline.\n\n* `ONLINE`:\n    The Endpoint has an "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Connectivity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Connectivity Reset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/reset",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be reset."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Trigger a connectivity reset for a given SIM. The actual reset will be done asynchronously. A positive-response only means that the connectivity-reset has been successfully placed into the queue."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SMS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get MT/MO-SMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/sms",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM for MT-SMS or MO-SMS."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The number of returned chunk within the complete set."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of items to return per page."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a list of SMS sent and received by a specific SIM card."
+        },
+        {
+          "info": {
+            "name": "Create SMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/sms",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM for MT-SMS or MO-SMS."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create and send an MT-SMS to a device."
+        },
+        {
+          "info": {
+            "name": "Get SMS Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/sms/:id",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM for MT-SMS or MO-SMS."
+              },
+              {
+                "name": "id",
+                "value": "123",
+                "type": "path",
+                "description": "The ID of the SMS message to be queried."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Query details about an individual SMS from a specific SIM card."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SMS by ICCID",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cancel SMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/sms/:id",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM for MT-SMS or MO-SMS."
+              },
+              {
+                "name": "id",
+                "value": "123",
+                "type": "path",
+                "description": "The ID of the SMS message to be cancelled."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Cancel a SMS message that is buffered to be delivered to the device with the SIM card but was not yet delivered."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SIM Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SIM Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/events",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of events per page, maximum allowed value is 1000."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get diagnostic/event information for a SIM card."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Volume Top Up",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Single Top Up",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/topup",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be topped up."
+              },
+              {
+                "name": "payment_method",
+                "value": "",
+                "type": "query",
+                "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Top up the data/SMS volume of one specific SIM."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

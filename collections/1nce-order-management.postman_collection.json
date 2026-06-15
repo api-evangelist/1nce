@@ -1,0 +1,865 @@
+{
+  "item": [
+    {
+      "id": "50c1768a-f06e-4bca-819a-a31528a96ed0",
+      "name": "Orders",
+      "description": {
+        "content": "Order Management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d4ac1e66-1e54-44df-92df-33325b7e15cf",
+          "name": "Get All Orders",
+          "request": {
+            "name": "Get All Orders",
+            "description": {
+              "content": "Get a complete list of all 1NCE orders for the given account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Number index of the requested order list page.  Use this parameter to iterate through all orders on the different pages. The total amount of pages is listed in the response header."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10",
+                  "description": "Defines the size of a page, the number of individual orders listed on one page. The maximum allowed value is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "order_number",
+                  "description": "Sort the order list by specific keys (order_number, order_status and/or order_date) in a comma seperated list. The default is order_number if no paramter is given."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "716f4b94-fbaf-404f-803f-be1f1a77c0cc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "order_status,order_date"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"order_number\": 2000000001,\n    \"order_type\": \"FIRST_ORDER\",\n    \"order_date\": \"1993-10-19T16:33:51.261Z\",\n    \"order_status\": \"COMPLETED\",\n    \"invoice_number\": \"20000002\",\n    \"invoice_amount\": \"19.99\",\n    \"currency\": \"EUR\",\n    \"shipping_address\": {\n      \"salutation\": \"1\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company\": \"string\",\n      \"street\": \"string\",\n      \"address_line2\": \"string\",\n      \"house_number\": \"string\",\n      \"zip\": \"string\",\n      \"city\": \"string\",\n      \"country\": \"DE\",\n      \"phone\": \"string\"\n    },\n    \"sims\": [\n      {\n        \"iccid\": \"8988280666000000000\",\n        \"_links\": [\n          {\n            \"rel\": \"self\",\n            \"href\": \"https://api.1nce.com/api/v1/sims/9999999999000000001\"\n          },\n          {\n            \"rel\": \"self\",\n            \"href\": \"https://api.1nce.com/api/v1/sims/9999999999000000001\"\n          }\n        ]\n      },\n      {\n        \"iccid\": \"8988280666000000000\",\n        \"_links\": [\n          {\n            \"rel\": \"self\",\n            \"href\": \"https://api.1nce.com/api/v1/sims/9999999999000000001\"\n          },\n          {\n            \"rel\": \"self\",\n            \"href\": \"https://api.1nce.com/api/v1/sims/9999999999000000001\"\n          }\n        ]\n      }\n    ],\n    \"products\": [\n      {\n        \"product_id\": 1001,\n        \"quantity\": 1\n      },\n      {\n        \"product_id\": 1001,\n        \"quantity\": 1\n      }\n    ]\n  },\n  {\n    \"order_number\": 2000000001,\n    \"order_type\": \"FIRST_ORDER\",\n    \"order_date\": \"2017-08-11T00:37:03.433Z\",\n    \"order_status\": \"COMPLETED\",\n    \"invoice_number\": \"20000002\",\n    \"invoice_amount\": \"19.99\",\n    \"currency\": \"EUR\",\n    \"shipping_address\": {\n      \"salutation\": \"1\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company\": \"string\",\n      \"street\": \"string\",\n      \"address_line2\": \"string\",\n      \"house_number\": \"string\",\n      \"zip\": \"string\",\n      \"city\": \"string\",\n      \"country\": \"DE\",\n      \"phone\": \"string\"\n    },\n    \"sims\": [\n      {\n        \"iccid\": \"8988280666000000000\",\n        \"_links\": [\n          {\n            \"rel\": \"self\",\n            \"href\": \"https://api.1nce.com/api/v1/sims/9999999999000000001\"\n          },\n          {\n            \"rel\": \"self\",\n            \"href\": \"https://api.1nce.com/api/v1/sims/9999999999000000001\"\n          }\n        ]\n      },\n      {\n        \"iccid\": \"8988280666000000000\",\n        \"_links\": [\n          {\n            \"rel\": \"self\",\n            \"href\": \"https://api.1nce.com/api/v1/sims/9999999999000000001\"\n          },\n          {\n            \"rel\": \"self\",\n            \"href\": \"https://api.1nce.com/api/v1/sims/9999999999000000001\"\n          }\n        ]\n      }\n    ],\n    \"products\": [\n      {\n        \"product_id\": 1001,\n        \"quantity\": 1\n      },\n      {\n        \"product_id\": 1001,\n        \"quantity\": 1\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c883c7b3-1f0e-4bb0-a8f7-c3060c6390e3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "order_status,order_date"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0dffcb1d-c7a2-428e-9706-bb065d41e9b1",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "order_status,order_date"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5d70c811-2097-4fa2-9ba1-cb2f6988e0f5",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "order_status,order_date"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d375660-d59d-492d-b21b-61abe5833041",
+          "name": "Create Order",
+          "request": {
+            "name": "Create Order",
+            "description": {
+              "content": "Trigger an order using a POST request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"products\": [\n    {\n      \"productId\": \"<integer>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"productId\": \"<integer>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"delivery_address\": {\n    \"salutation\": \"1\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street\": \"<string>\",\n    \"address_line2\": \"<string>\",\n    \"house_number\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"customer_reference\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "237e6d83-4d10-47ca-a909-cbf78b3d13e5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"products\": [\n    {\n      \"productId\": 1001,\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"productId\": 1001,\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"delivery_address\": {\n    \"salutation\": \"1\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street\": \"<string>\",\n    \"address_line2\": \"<string>\",\n    \"house_number\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"DE\",\n    \"phone\": \"<string>\"\n  },\n  \"customer_reference\": \"<customer_reference>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"productId\": 1001,\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"productId\": 1001,\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"delivery_address\": {\n    \"salutation\": \"1\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street\": \"<string>\",\n    \"address_line2\": \"<string>\",\n    \"house_number\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"DE\",\n    \"phone\": \"<string>\"\n  },\n  \"customer_reference\": \"<customer_reference>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff15ff2a-2513-49ac-bd70-8cf50800b9de",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"products\": [\n    {\n      \"productId\": 1001,\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"productId\": 1001,\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"delivery_address\": {\n    \"salutation\": \"1\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street\": \"<string>\",\n    \"address_line2\": \"<string>\",\n    \"house_number\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"DE\",\n    \"phone\": \"<string>\"\n  },\n  \"customer_reference\": \"<customer_reference>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1ea85bc5-e74d-4997-aafe-4d13b93bc38b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"products\": [\n    {\n      \"productId\": 1001,\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"productId\": 1001,\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"delivery_address\": {\n    \"salutation\": \"1\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street\": \"<string>\",\n    \"address_line2\": \"<string>\",\n    \"house_number\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"DE\",\n    \"phone\": \"<string>\"\n  },\n  \"customer_reference\": \"<customer_reference>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bc58ff32-4a23-4829-8044-800209bf799d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"products\": [\n    {\n      \"productId\": 1001,\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"productId\": 1001,\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"delivery_address\": {\n    \"salutation\": \"1\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street\": \"<string>\",\n    \"address_line2\": \"<string>\",\n    \"house_number\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"DE\",\n    \"phone\": \"<string>\"\n  },\n  \"customer_reference\": \"<customer_reference>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "934f7d89-0e40-4902-a682-a7fd8392d8c0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"products\": [\n    {\n      \"productId\": 1001,\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"productId\": 1001,\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"delivery_address\": {\n    \"salutation\": \"1\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street\": \"<string>\",\n    \"address_line2\": \"<string>\",\n    \"house_number\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"DE\",\n    \"phone\": \"<string>\"\n  },\n  \"customer_reference\": \"<customer_reference>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f33a27e-b305-42b3-bb2a-77603172b032",
+          "name": "Get Single Order",
+          "request": {
+            "name": "Get Single Order",
+            "description": {
+              "content": "Get a single Order, identified by its order_number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "orders",
+                ":order_number"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "order_number",
+                  "description": "(Required) Order number identifying one specific order."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3a084d12-bded-457d-ada8-14a87ed17448",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":order_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "order_number",
+                      "description": "(Required) Order number identifying one specific order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order_number\": 2000000001,\n  \"order_type\": \"FIRST_ORDER\",\n  \"order_date\": \"2014-05-15T12:21:37.330Z\",\n  \"order_status\": \"COMPLETED\",\n  \"invoice_number\": \"20000002\",\n  \"invoice_amount\": \"19.99\",\n  \"currency\": \"EUR\",\n  \"shipping_address\": {\n    \"salutation\": \"1\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street\": \"<string>\",\n    \"address_line2\": \"<string>\",\n    \"house_number\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"DE\",\n    \"phone\": \"<string>\"\n  },\n  \"sims\": [\n    {\n      \"iccid\": \"8988280666000000000\",\n      \"_links\": [\n        {\n          \"rel\": \"self\",\n          \"href\": \"https://api.1nce.com/api/v1/sims/9999999999000000001\"\n        },\n        {\n          \"rel\": \"self\",\n          \"href\": \"https://api.1nce.com/api/v1/sims/9999999999000000001\"\n        }\n      ]\n    },\n    {\n      \"iccid\": \"8988280666000000000\",\n      \"_links\": [\n        {\n          \"rel\": \"self\",\n          \"href\": \"https://api.1nce.com/api/v1/sims/9999999999000000001\"\n        },\n        {\n          \"rel\": \"self\",\n          \"href\": \"https://api.1nce.com/api/v1/sims/9999999999000000001\"\n        }\n      ]\n    }\n  ],\n  \"products\": [\n    {\n      \"product_id\": 1001,\n      \"quantity\": 1\n    },\n    {\n      \"product_id\": 1001,\n      \"quantity\": 1\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89fa4e2d-e6c7-4c5f-b5e2-58782ca349fb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":order_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "order_number",
+                      "description": "(Required) Order number identifying one specific order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c0ec7124-6b38-4456-9160-3a080da9356e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":order_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "order_number",
+                      "description": "(Required) Order number identifying one specific order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "29812521-0af8-4b5e-8638-b7286d189088",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":order_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "order_number",
+                      "description": "(Required) Order number identifying one specific order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.1nce.com/management-api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9fb1c924-ca19-423d-a71f-5f347544442f",
+    "name": "Order Management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation of the 1NCE API for Order Management.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+      "type": "text/plain"
+    }
+  }
+}
