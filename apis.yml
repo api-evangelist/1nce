@@ -136,7 +136,7 @@ common:
     name: 1NCE Customer Portal
     type: Portal
   - url: https://portal.1nce.com/portal/customer/registration
-    type: SignUp
+    type: Signup
   - url: https://www.1nce.com/en-us/1nce-connect/features/rest-api
     name: 1NCE REST API Feature
     type: Documentation
@@ -155,7 +155,7 @@ common:
     type: GitHubOrganization
   - url: https://github.com/1NCE-GmbH/1nce-iot-c-sdk
     name: 1NCE IoT C SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/1NCE-GmbH/blueprint-freertos
     name: FreeRTOS Blueprint
     type: CodeExamples
@@ -173,7 +173,7 @@ common:
     type: CodeExamples
   - url: https://github.com/1NCE-GmbH/1nce-mcp-server
     name: 1NCE MCP Server
-    type: Tool
+    type: Tools
   - url: https://www.linkedin.com/company/1nce-gmbh
     type: LinkedIn
   - url: https://twitter.com/1nce_iot

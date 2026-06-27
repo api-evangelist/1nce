@@ -3,13 +3,11 @@
   "feeds": [
     {
       "source": "https://www.1nce.com/en-us/resources/news/blog",
-      "feed_url": "https://www.1nce.com/en-us/resources/news/blog",
-      "title": "",
       "saved": 0,
-      "method": "none",
-      "note": "No RSS/Atom feed at /feed/, /rss/, /feed.xml, /rss.xml; blog index and news hub are JS-rendered and expose no post links to static fetch."
+      "error": "blog listing JS-rendered; no dated posts in static HTML"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-21T17:00:00Z"
+  "fetched": "2026-06-27T12:21:51Z",
+  "agent_pulled": "2026-06-27"
 }
