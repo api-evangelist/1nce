@@ -116,6 +116,12 @@ apis:
       Open and track 1NCE customer support tickets programmatically via /v1/support so device-fleet operators can
       escalate connectivity, billing, or 1NCE Fixers requests from inside their own systems.
 common:
+  - type: VulnerabilityDisclosure
+    url: security/1nce-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/1nce-domain-security.yml
+  - type: Authentication
+    url: authentication/1nce-authentication.yml
   - type: Portal
     url: https://www.1nce.com/en-us/
   - type: Documentation

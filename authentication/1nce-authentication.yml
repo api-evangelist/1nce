@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/1nce-authorization-openapi.yml, openapi/1nce-authorization-v2-openapi.yml, openapi/1nce-order-management-openapi.yml,
+  openapi/1nce-os-openapi.yml, openapi/1nce-product-information-openapi.yml, openapi/1nce-sim-management-openapi.yml,
+  openapi/1nce-sim-management-v2-openapi.yml, openapi/1nce-support-management-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BasicAuthentication
+  type: http
+  scheme: basic
+  description: Basic authentication used for obtaining the Bearer Authentication Token. The
+    Bearer Token can then be used to make any further API calls towards the 1NCE API.
+  sources:
+  - openapi/1nce-authorization-openapi.yml
+  - openapi/1nce-authorization-v2-openapi.yml
+- name: BearerAuthentication
+  type: http
+  scheme: bearer
+  description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer
+    to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+  sources:
+  - openapi/1nce-order-management-openapi.yml
+  - openapi/1nce-os-openapi.yml
+  - openapi/1nce-product-information-openapi.yml
+  - openapi/1nce-sim-management-openapi.yml
+  - openapi/1nce-sim-management-v2-openapi.yml
+  - openapi/1nce-support-management-openapi.yml
