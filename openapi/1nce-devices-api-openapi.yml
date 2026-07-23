@@ -1,0 +1,310 @@
+openapi: 3.0.1
+info:
+  title: Authorization Administration Logs Devices API
+  description: Documentation of the authentication used for the 1NCE APIs.
+  contact:
+    name: 1NCE GmbH
+    url: https://1nce.com
+    email: info@1nce.com
+  version: v2.1.1
+servers:
+- url: https://api.1nce.com/management-api
+tags:
+- description: Device Management
+  name: Devices
+paths:
+  /v1/devices/{deviceId}/actions:
+    post:
+      description: Initiate LwM2M action like read, write, execute on specific device. It has to be connected to 1NCE LwM2M endpoint to invoke this event.
+      parameters:
+      - description: The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          example: <device_id>
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postschema_1'
+        description: The Body for posting new LWM2M action to device.
+        required: true
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postResponseschema'
+          description: Message describing the result of operation
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '409':
+          $ref: '#/components/responses/ConflictError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Create Action Request On Specific LwM2M Device.
+      tags:
+      - Devices
+  /v1/devices/stats:
+    get:
+      description: Get general statistics related to customer devices
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/statisticsschema'
+          description: OK
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get Devices Statistics
+      tags:
+      - Devices
+components:
+  responses:
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unauthorizedRequestResponse'
+      description: Unauthorized
+    ConflictError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/conflictResponse'
+      description: Conflict
+    InternalServerError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/serverErrorResponse'
+      description: Internal Server Error
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/badRequestResponse'
+      description: Bad Request
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/notFoundResponse'
+      description: Not Found Error
+    ForbiddenError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/forbiddenResponse'
+      description: Forbidden
+  schemas:
+    statisticsschema:
+      additionalProperties: false
+      description: General statistics related to customer devices.
+      properties:
+        totalDevices:
+          description: Total amount of devices for the customer.
+          example: 10
+          type: integer
+        activatedDevices:
+          description: Total amount of devices that completed the activation process.
+          example: 5
+          type: integer
+      required:
+      - activatedDevices
+      - totalDevices
+      title: Devices Statistics
+      type: object
+    serverErrorResponse:
+      description: An API error response in case of a Server Side Error.
+      properties:
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unknown Error
+          - Server Error
+          type: string
+        errors:
+          description: List of errors encountered while calling the API.
+          items:
+            type: object
+          type: array
+      title: Server Error
+      type: object
+    conflictResponse:
+      description: An API error response when a conflict is found.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 409
+          type: integer
+        statusText:
+          description: Http Status Text
+          enum:
+          - Conflict
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Conflict
+      type: object
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
+      type: object
+    unauthorizedRequestResponse:
+      description: An API error response in case of an HTTP Unauthorized Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 401
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unauthorized
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Unauthorized Request
+      type: object
+    notFoundResponse:
+      description: An API error response when a resource is Not Found.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 404
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Not Found
+          type: string
+        errors:
+          description: Detailed error information
+          items:
+            type: object
+          type: array
+      title: Not Found
+      type: object
+    postschema_1:
+      additionalProperties: false
+      description: Post LwM2M device action.
+      properties:
+        action:
+          default: read
+          description: LwM2M action name to send to device.
+          enum:
+          - read
+          - write
+          - execute
+          - observe-start
+          - observe-end
+          example: read
+          type: string
+        resourceAddress:
+          description: LwM2M OMA object resource address.
+          example: /3/45/22
+          type: string
+        data:
+          description: Data which should be written to some resource, should be passed only in write operation.
+          example: enable_sensor
+          type: string
+        requestMode:
+          default: SEND_NOW
+          description: Action request execution mode
+          enum:
+          - SEND_NOW
+          - SEND_WHEN_ACTIVE
+          type: string
+        sendAttempts:
+          default: 1
+          description: The maximum number of attempts to send data to a device
+          maximum: 5
+          minimum: 1
+          type: number
+      required:
+      - action
+      - resourceAddress
+      title: Device action request
+      type: object
+    forbiddenResponse:
+      description: An API error response in case of an HTTP Forbidden Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 403
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Forbidden
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Forbidden Request
+      type: object
+    postResponseschema:
+      additionalProperties: false
+      description: Post device action response.
+      properties:
+        id:
+          description: Id of the created action request
+          example: trxHeBL0d234fsfds
+          type: string
+        message:
+          description: Message describing the result of operation.
+          example: Action write for resource /3/45/22 successfuly scheduled for device _vGxHeBL0dE9LG9EB2GHj.
+          type: string
+      required:
+      - id
+      - message
+      title: Device action response
+      type: object
+  securitySchemes:
+    BasicAuthentication:
+      type: http
+      scheme: basic
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

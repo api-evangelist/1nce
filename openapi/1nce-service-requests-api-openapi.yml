@@ -1,12 +1,12 @@
 openapi: 3.0.1
 info:
-  title: Support Management
-  description: Documentation of the 1NCE API for Support Management.
+  title: Authorization Administration Logs Service Requests API
+  description: Documentation of the authentication used for the 1NCE APIs.
   contact:
     name: 1NCE GmbH
     url: https://1nce.com
     email: info@1nce.com
-  version: v1.2
+  version: v2.1.1
 servers:
 - url: https://api.1nce.com/management-api
 tags:
@@ -23,8 +23,7 @@ paths:
       parameters:
       - name: page
         in: query
-        description: Number index of the requested service request page. Use this parameter to iterate through all service
-          requests on the different pages. The total amount of pages is listed in the response header.
+        description: Number index of the requested service request page. Use this parameter to iterate through all service requests on the different pages. The total amount of pages is listed in the response header.
         allowEmptyValue: false
         schema:
           minimum: 1
@@ -103,47 +102,6 @@ paths:
       x-codegen-request-body-name: request
 components:
   schemas:
-    Communication:
-      title: Communication Details
-      type: object
-      properties:
-        communicationDate:
-          type: string
-          description: Timestamp of the communication.
-          format: date-time
-        direction:
-          type: string
-          description: Direction of the communication of the service request.
-          example: IN
-          enum:
-          - IN
-          - OUT
-        id:
-          type: string
-          description: ID of the communication.
-          example: '1'
-        originator:
-          type: string
-          description: Origin of the service request.
-        subject:
-          type: string
-          description: Subject of the service request.
-          example: Connectivity Issues
-        text:
-          type: string
-          description: Text message of the service request.
-          example: Custom Text
-        type:
-          type: string
-          description: Source of the communication of the service request.
-          example: Portal
-          enum:
-          - PORTAL
-          - PHONE_IN
-          - PHONE_OUT
-          - MAIL_IN
-          - MAIL_OUT
-      description: Details about the communication in the service request.
     ManagementApiServiceRequest:
       title: Service Request
       type: object
@@ -201,12 +159,49 @@ components:
           description: Text body of the service request ticket.
           example: Custom Text
       description: Detailed content of the service request ticket.
+    Communication:
+      title: Communication Details
+      type: object
+      properties:
+        communicationDate:
+          type: string
+          description: Timestamp of the communication.
+          format: date-time
+        direction:
+          type: string
+          description: Direction of the communication of the service request.
+          example: IN
+          enum:
+          - IN
+          - OUT
+        id:
+          type: string
+          description: ID of the communication.
+          example: '1'
+        originator:
+          type: string
+          description: Origin of the service request.
+        subject:
+          type: string
+          description: Subject of the service request.
+          example: Connectivity Issues
+        text:
+          type: string
+          description: Text message of the service request.
+          example: Custom Text
+        type:
+          type: string
+          description: Source of the communication of the service request.
+          example: Portal
+          enum:
+          - PORTAL
+          - PHONE_IN
+          - PHONE_OUT
+          - MAIL_IN
+          - MAIL_OUT
+      description: Details about the communication in the service request.
   securitySchemes:
-    BearerAuthentication:
+    BasicAuthentication:
       type: http
-      scheme: bearer
-      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization
-        (/oauth/token) request for obtaining a Bearer Token.
-x-readme:
-  explorer-enabled: true
-  proxy-enabled: true
+      scheme: basic
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

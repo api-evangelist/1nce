@@ -1,0 +1,1714 @@
+openapi: 3.0.1
+info:
+  title: Authorization Administration Logs General SIMs API
+  description: Documentation of the authentication used for the 1NCE APIs.
+  contact:
+    name: 1NCE GmbH
+    url: https://1nce.com
+    email: info@1nce.com
+  version: v2.1.1
+servers:
+- url: https://api.1nce.com/management-api
+tags:
+- name: General SIMs
+  description: General SIM Management
+paths:
+  /v1/sims:
+    get:
+      tags:
+      - General SIMs
+      summary: Get All SIMs
+      description: Get a List of SIMs for the current account.
+      operationId: getSimsUsingGET
+      parameters:
+      - name: page
+        in: query
+        description: Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.
+        allowEmptyValue: false
+        schema:
+          minimum: 1
+          exclusiveMinimum: false
+          type: integer
+          default: 1
+      - name: pageSize
+        in: query
+        description: Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100.
+        allowEmptyValue: false
+        schema:
+          maximum: 100
+          exclusiveMaximum: false
+          minimum: 1
+          exclusiveMinimum: false
+          type: integer
+          default: 10
+      - name: q
+        in: query
+        description: 'Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> "ip_address:127.0.0.1,imei:4711"</p>'
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: Sort values in a comma seperated list. Prepend "-" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>"ip_address,-imei"</p>
+        allowEmptyValue: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Count-Per-Page:
+              description: Number of results per page.
+              schema:
+                type: integer
+            X-Current-Page:
+              description: Number of the current page.
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of results available.
+              schema:
+                type: integer
+            X-Total-Pages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SIM_card'
+            application/json;charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SIM_card'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+    post:
+      tags:
+      - General SIMs
+      summary: Create Multiple SIM Configuration
+      description: Change a list of SIMS for activate, deactivate, label, IMEI lock, etc. The actual change will be done asynchronously. A positive-response only means that the SIM changes has been successfully placed into the queue.
+      operationId: updateSimsUsingPOST
+      requestBody:
+        description: A list of SIM parameters where some parameters should be changed.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Values_for_a_SIM_update'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+      x-codegen-request-body-name: sims
+  /v1/sims/{iccid}:
+    get:
+      tags:
+      - General SIMs
+      summary: Get Single SIM
+      description: Get detail information (status, label, MSISDN, IMSI, ICCID, Lifetime, etc.) for a singe SIM based on the ICCID.
+      operationId: getSimUsingGET
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be queried.
+        required: true
+        schema:
+          type: string
+        example: 8988280666000000000
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SIM_card'
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/SIM_card'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+    put:
+      tags:
+      - General SIMs
+      summary: Create Single SIM Configuration
+      description: Modification of a SIM card to activate, deactivate, change label, change IMEI lock, etc.
+      operationId: updateSimUsingPUT
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be changed.
+        required: true
+        schema:
+          type: string
+        example: 8988280666000000000
+      requestBody:
+        description: Response with the modified data for the SIM that was selected.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Values_for_a_SIM_update'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+      x-codegen-request-body-name: sim
+  /v1/sims/{iccid}/status:
+    get:
+      tags:
+      - General SIMs
+      summary: Get SIM Status
+      description: Query the current status of a specific SIM card.
+      operationId: getStatusForSimUsingGET
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be queried.
+        required: true
+        schema:
+          type: string
+        example: 8988280666000000000
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connectivity'
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Connectivity'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+  /v1/sims/simTransfer:
+    post:
+      tags:
+      - General SIMs
+      summary: Create SIM Transfer
+      description: Trigger a SIM transfer workflow - if possible - for moving SIMs from one customer to another.
+      operationId: simTransferUsingPOST
+      requestBody:
+        description: request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimTransfer'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+      x-codegen-request-body-name: request
+  /v2/sims:
+    get:
+      tags:
+      - General SIMs
+      parameters:
+      - name: page
+        in: query
+        description: Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.
+        allowEmptyValue: false
+        schema:
+          minimum: 1
+          exclusiveMinimum: false
+          type: integer
+          default: 1
+      - name: pageSize
+        in: query
+        description: Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100.
+        allowEmptyValue: false
+        schema:
+          maximum: 100
+          exclusiveMaximum: false
+          minimum: 1
+          exclusiveMinimum: false
+          type: integer
+          default: 10
+      - name: q
+        in: query
+        description: 'Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> "ip_address:127.0.0.1,imei:4711"</p>'
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: Sort values in a comma seperated list. Prepend "-" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>"ip_address,-imei"</p>
+        allowEmptyValue: false
+        schema:
+          type: string
+      summary: Get All SIMs
+      description: Get a List of SIMs for the current account.
+      operationId: getSimsUsingGET
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Count-Per-Page:
+              description: Number of results per page.
+              schema:
+                type: integer
+            X-Current-Page:
+              description: Number of the current page.
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of results available.
+              schema:
+                type: integer
+            X-Total-Pages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SimsSim'
+            application/json;charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SimsSim'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+  /v2/sims/{iccid}:
+    get:
+      tags:
+      - General SIMs
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be queried.
+        required: true
+        schema:
+          type: string
+        example: '8988280666000000000'
+      summary: Get Single SIM
+      description: Get detail information (status, label, MSISDN, IMSI, ICCID, Lifetime, etc.) for a singe SIM based on the ICCID.
+      operationId: getSimUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimsSim'
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/SimsSim'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+    put:
+      tags:
+      - General SIMs
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be changed.
+        required: true
+        schema:
+          type: string
+        example: '8988280666000000000'
+      summary: Modify SIM card
+      description: Modification of a SIM card to activate, deactivate, change label, change IMEI lock, etc.
+      operationId: updateSimUsingPUT
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimsSimUpdateReq'
+      responses:
+        '200':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+  /v2/sims/{iccid}/quota/data:
+    get:
+      tags:
+      - General SIMs
+      summary: Get SIM Data Quota
+      description: Get the current data quota of a particular SIM.
+      operationId: getDataQuotaForSimUsingGET
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be queried.
+        required: true
+        schema:
+          type: string
+        example: '8988280666000000000'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimsQuota'
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/SimsQuota'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+  /v2/sims/{iccid}/quota/sms:
+    get:
+      tags:
+      - General SIMs
+      summary: Get SIM SMS Quota
+      description: Get the current SMS quota of a particular SIM.
+      operationId: getSmsQuotaForSimUsingGET
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be queried.
+        required: true
+        schema:
+          type: string
+        example: '8988280666000000000'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimsQuota'
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/SimsQuota'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+  /v2/sims/{iccid}/status:
+    get:
+      tags:
+      - General SIMs
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be queried.
+        required: true
+        schema:
+          type: string
+        example: '8988280666000000000'
+      summary: Get SIM Status
+      description: "Query the current status of a specific SIM card.\n\nThis API retrieves connectivity details of a SIM. The following is a list of possible statuses: \n* `ATTACHED`:\n    The Endpoint has successfully attached to the Home Core network in the past.\n    The device will be shown as `ATTACHED` until the visited network has signaled that the device is inactive/offline.\n    Usually the visited network informs the Core Network within 1-2 days after a device went offline.\n\n* `ONLINE`:\n    The Endpoint has an active data connection\n\n* `OFFLINE`:\n    The Endpoint has not attached to the core network yet or the device was previously attached but the visited network signaled that the device had no activity for the last 1-2 days.\n    Note: The device is not reachable for external services (e.g. SMS, MSRN lookup).\n\n* `BLOCKED`:\n    The Endpoint is blocked\n"
+      operationId: getStatusForSimUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimsConnectivityDetail'
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/SimsConnectivityDetail'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+components:
+  schemas:
+    NotFound:
+      description: Not found Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: Element not found
+          description: Error Message with more details goes here
+    Values_for_a_SIM_update:
+      title: SIM Update Values
+      type: object
+      required:
+      - iccid
+      - status
+      properties:
+        iccid:
+          type: string
+          description: ICCID of the queried SIM.
+          example: '8988280666000000000'
+        label:
+          type: string
+          description: Label of the SIM set by the customer in the 1NCE Portal.
+          example: DX-137-B12
+        imei_lock:
+          type: boolean
+          description: Flag that indicates if SIM is locked to the current device IMEI.
+          example: false
+          default: false
+        status:
+          type: string
+          description: Status of the SIM. A SIM can be enabled (active) or disabled (deactivated).
+          example: Enabled
+          default: Enabled
+          enum:
+          - Enabled
+          - Disabled
+      description: Information about a SIM card based on a SIM update procedure.
+    Quota_Status:
+      title: Quota Status
+      type: object
+      properties:
+        id:
+          type: number
+          description: 'Numeric indicator for the threshold levels: <ul><li>0: more than 20%</li><li>1: less than 20%</li><li>2: 0% remaining</li></ul>'
+          example: 0
+        description:
+          type: string
+          description: Text description of the quota status.
+        threshold_reached_date:
+          type: string
+          description: Date on which the threshold less than 20% of the quota avaliable was reached.
+          format: date-time
+        quota_exceeded_date:
+          type: string
+          description: Date on which 100% of the avaliable quota was exceeded.
+          format: date-time
+      description: Indicates whether more than 20%, less than 20% or 0% of the current quota SMS or data are still available.
+    SIM_card:
+      title: SIM Card
+      type: object
+      properties:
+        iccid:
+          type: string
+          description: ICCID identifier of the SIM.
+          example: '8988303000123456789'
+        iccid_with_luhn:
+          type: string
+          description: ICCID identifier of the SIM with Luhn check number.
+          example: '89883030001234567890'
+        imsi:
+          type: string
+          description: First IMSI of the SIM, used for normal 1NCE network.
+          example: '901405100000018'
+        imsi_2:
+          type: string
+          description: Second IMSI of the SIM, used for China+ network.
+          example: '901405100000018'
+        current_imsi:
+          type: string
+          description: Currently active IMSI, dependent on the region where the SIM is used.
+          example: '901405100000018'
+        msisdn:
+          type: string
+          description: MSISDN of the SIM.
+          example: '882285100000018'
+        imei:
+          type: string
+          description: IMEI of the device in which the SIM is inserted.
+          example: 0000000000000018
+        imei_lock:
+          type: boolean
+          description: Indicates if SIM is locked to the current device IMEI.
+          example: true
+        status:
+          type: string
+          description: The current status of the SIM card.
+          example: Disabled
+          enum:
+          - Enabled
+          - Disabled
+        activation_date:
+          type: string
+          description: The date when the SIM card was activated.
+          example: 2018-03-09T07:59:09.000+0000
+        ip_address:
+          type: string
+          description: The fixed IP address of the SIM card.
+          example: 100.100.100.18
+        current_quota:
+          type: number
+          description: The overall set data quota for the SIM in MB.
+          example: 500
+        quota_status:
+          $ref: '#/components/schemas/Quota_Status'
+        current_quota_SMS:
+          type: number
+          description: Current SMS Quota for the SIM.
+          example: 250
+        quota_status_SMS:
+          $ref: '#/components/schemas/Quota_Status'
+        label:
+          type: string
+          description: Label set by the customer in the 1NCE Portal for the SIM.
+          example: DX-137-B12
+      description: Detailed information about a SIM card.
+    SimsConnectivityDetail:
+      type: object
+      description: Information about the current SIM connectivity status, location and PDP Context of a SIM.
+      required:
+      - status
+      - services
+      properties:
+        status:
+          $ref: '#/components/schemas/SimsConnectivityStatus'
+        data_traffic_limit_state:
+          $ref: '#/components/schemas/SimsDataTrafficLimitState'
+        location:
+          $ref: '#/components/schemas/SimsLocation'
+        pdp_contexts:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimsPdpContext'
+        services:
+          type: array
+          description: List of services currently available.
+          items:
+            type: string
+            description: Currently used service.
+            example: GPRS
+    SimsSimQuotaStatus:
+      type: object
+      title: Quota Status
+      description: Indicates whether more than 20%, less than 20% or 0% of the current quota SMS or data are still available.
+      properties:
+        id:
+          type: number
+          description: 'Numeric indicator for the threshold levels: <ul><li>0: more than 20%</li><li>1: less than 20%</li><li>2: 0% remaining</li></ul>'
+          example: 0
+        description:
+          type: string
+          description: Text description of the quota status.
+        threshold_reached_date:
+          type: string
+          description: Date on which the threshold less than 20% of the quota avaliable was reached.
+          format: date-time
+        quota_exceeded_date:
+          type: string
+          description: Date on which 100% of the avaliable quota was exceeded.
+          format: date-time
+    IccidRange:
+      title: Iccid Range
+      type: object
+      properties:
+        from:
+          type: string
+          description: The first ICCID of the given range of SIMs.
+          example: '8988280666000000000'
+        to:
+          type: string
+          description: The last ICCID of the range of the given SIMs.
+          example: '8988280666000000010'
+    BadRequest:
+      description: Validation Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
+          description: Error Message with more details goes here
+    SimsQuota:
+      title: Sims Quota
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          minimum: 1
+          example: 1
+        status:
+          $ref: '#/components/schemas/SimsQuotaStatus'
+        volume:
+          type: number
+          format: double
+          description: 'Amount left i.e. still available for use:
+
+            - for SMS: the quantity/number of short messages
+
+            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
+
+            - can be negative
+
+            '
+          example: 435.787951
+        total_volume:
+          type: number
+          format: double
+          description: 'Initially provisioned volume or (in case the quota was topped up) the remaining volume at that time plus the
+
+            volume of the topup.
+
+            - for SMS: the quantity/number of short messages
+
+            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
+
+            '
+          example: 500
+        accumulated_total_volume:
+          type: number
+          format: double
+          description: 'Sum of initially provisioned volume and all topup volumes.
+
+            '
+          example: 100
+        last_volume_added:
+          type: number
+          format: double
+          description: 'Amount of SMS or data volume which was last purchased for this SIM:
+
+            - for SMS: the quantity/number of short messages
+
+            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
+
+            '
+          example: 500
+        service:
+          type: string
+          enum:
+          - sms
+          - data
+          example: data
+        threshold_percentage:
+          type: integer
+          format: int64
+          minimum: 0
+          maximum: 100
+          description: Percentage of the [total_volume] for triggering a threshold event.  The threshold event is triggered when the remaining volume reaches or falls below this percentage.
+          example: 20
+        threshold_volume:
+          type: number
+          format: double
+          description: 'Calculated upon quota creation and upon quota topup as [total_volume] * [threshold_percentage]:
+
+            - for SMS: the quantity/number of short messages
+
+            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
+
+            '
+          example: 20
+        expiry_date:
+          type: string
+          format: date-time
+          description: The date when this current quota will expire.
+          example: '2029-01-01T00:00:00.000Z'
+        created_at:
+          type: string
+          format: date-time
+          description: ISO8601 DateTime
+          example: '2024-08-24T13:13:21Z'
+    SimsQuotaStatus:
+      type: object
+      description: '- 0 - "EXHAUSTED"
+
+        - 1 - "ACTIVE"
+
+        - 2 - "EXPIRED"
+
+        '
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 0
+          enum:
+          - 0
+          - 1
+          - 2
+        description:
+          type: string
+          example: ACTIVE
+          enum:
+          - EXHAUSTED
+          - ACTIVE
+          - EXPIRED
+      example:
+        id: 0
+        description: ACTIVE
+    InternalServerError:
+      description: Internal Server Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: InternalServerError
+        message:
+          type: string
+          example: Internal Server Error
+          description: Error Message with more details goes here
+    SimsPdpContext:
+      type: object
+      required:
+      - pdp_context_id
+      - endpoint_id
+      - tariff_id
+      - ratezone_id
+      - organisation_id
+      - tx_teid_data_plane
+      - tx_teid_control_plane
+      - rx_teid
+      - rx_teid_data_plane
+      - rx_teid_control_plane
+      - gtp_version
+      - nsapi
+      - sgsn_control_plane_ip_address
+      - sgsn_data_plane_ip_address
+      - ggsn_control_plane_ip_address
+      - ggsn_data_plane_ip_address
+      - created
+      - mcc
+      - mnc
+      - lac
+      - ci
+      - sac
+      - rac
+      - ue_ip_address
+      - imeisv
+      - rat_type
+      - region
+      - apn
+      - sim_id
+      - imsi_id
+      - imsi
+      properties:
+        pdp_context_id:
+          type: string
+          description: ID of the current PDP Context.
+          example: '92415'
+        endpoint_id:
+          type: string
+          description: ID of the used SIM endpoint.
+          example: '166'
+        tariff_id:
+          type: string
+          description: ID of the used tariff.
+          example: '34'
+        ratezone_id:
+          type: string
+          description: ID of the used ratezone.
+          example: '70'
+        organisation_id:
+          type: string
+          description: ID of the internal organisation reference.
+          example: '2'
+        imsi_id:
+          type: string
+          description: ID of the used IMSI.
+          example: '627'
+        imsi:
+          type: string
+          description: IMSI of the specific SIM.
+          example: '901439999999999'
+        sim_id:
+          type: string
+          description: ID of the specific SIM.
+          example: '625'
+        tx_teid_data_plane:
+          type: string
+          description: Tunnel ID for the current PDP Context user plane.
+          example: '7116'
+        tx_teid_control_plane:
+          type: string
+          description: Tunnel ID for the current PDP Context control plane.
+          example: '7116'
+        rx_teid:
+          type: string
+          example: '7116'
+        rx_teid_data_plane:
+          type: string
+          example: '7116'
+        rx_teid_control_plane:
+          type: string
+          example: '7116'
+        gtp_version:
+          type: string
+          description: Version of the used GPRS Tunneling Protocol (GTP).
+          example: '1'
+        nsapi:
+          type: string
+          description: ID of the used Network Service Access Point Identifier (NSAPI).
+          example: '5'
+        sgsn_control_plane_ip_address:
+          type: string
+          example: 12.23.107.89
+          description: IP address of the Serving GPRS Support Node (SGSN) for the control plane.
+        sgsn_data_plane_ip_address:
+          type: string
+          example: 12.23.107.89
+          description: IP address of the Serving GPRS Support Node (SGSN) for the user data plane.
+        ggsn_control_plane_ip_address:
+          type: string
+          example: 12.23.107.89
+          description: IP address of the Gateway GPRS Support Node (GGSN) for the control plane.
+        ggsn_data_plane_ip_address:
+          type: string
+          example: 12.23.107.89
+          description: IP address of the Gateway GPRS Support Node (GGSN) for the user data plane.
+        created:
+          type: string
+          example: '2019-12-04T08:12:02.000Z'
+          description: Timestamp when the PDP Context was created.
+        mcc:
+          type: string
+          example: '262'
+          description: Mobile Country Code (MCC).
+        mnc:
+          type: string
+          example: '01'
+          description: Mobile Network Code (MNC).
+        operator_id:
+          type: string
+          example: '4'
+        lac:
+          type: string
+          example: '40217'
+          deprecated: true
+          description: '**Deprecated**. Use `gtp_v1_uli.lac` instead.
+
+            '
+        ci:
+          type: string
+          example: '12'
+          deprecated: true
+          description: '**Deprecated**. Use `gtp_v1_uli.ci` instead.
+
+            '
+        sac:
+          type: string
+          example: '7'
+          deprecated: true
+          description: '**Deprecated**. Use `gtp_v1_uli.sac` instead.
+
+            '
+        rac:
+          type: string
+          example: '8'
+          deprecated: true
+          description: '**Deprecated**. Use `gtp_v1_uli.rac` instead.
+
+            '
+        gtp_v1_uli:
+          type: object
+          description: GTP V1 User Location Information. Cannot be returned with both gtp_v1_uli and gtp_v2_uli. Only one is returned.
+          properties:
+            lac:
+              type: string
+              description: Location Area Code
+              example: '40217'
+            ci:
+              type: string
+              description: Cell ID
+              example: '12'
+            sac:
+              type: string
+              description: Service Area Code
+              example: '7'
+            rac:
+              type: string
+              description: Routing Area Code
+              example: '8'
+        gtp_v2_uli:
+          type: object
+          description: GTP V2 User Location Information. Cannot be returned with both gtp_v1_uli and gtp_v2_uli. Only one is returned.
+          properties:
+            cgi:
+              type: object
+              description: Cell Global Identification
+              properties:
+                lac:
+                  type: string
+                  description: Location Area Code
+                  example: '40217'
+                ci:
+                  type: string
+                  description: Cell ID
+                  example: '12'
+            sai:
+              type: object
+              description: Service Area Identity
+              properties:
+                lac:
+                  type: string
+                  description: Location Area Code
+                  example: '40217'
+                sac:
+                  type: string
+                  description: Service Area Code
+                  example: '7'
+            rai:
+              type: object
+              description: Routing Area Identity
+              properties:
+                lac:
+                  type: string
+                  description: Location Area Code
+                  example: '40217'
+                rac:
+                  type: string
+                  description: Routing Area Code
+                  example: '8'
+            tac:
+              type: string
+              description: Tracking Area Code
+              example: '38402'
+            eci:
+              type: string
+              description: E-UTRAN Cell Identifier
+              example: '12'
+            lac:
+              type: string
+              description: Location Area Code
+              example: '40217'
+            menbi:
+              type: string
+              description: Macro eNodeB ID
+              example: '88364'
+            emenbi:
+              type: string
+              description: Extended Macro eNodeB ID
+              example: '4'
+        ue_ip_address:
+          type: string
+          example: 10.199.5.223
+          description: IP address of the device using the SIM.
+        imeisv:
+          type: string
+          example: '3526510721968301'
+          description: IMEISV of the device with the SIM.
+        rat_type:
+          type: object
+          description: Describes the Radio Access Technology used in the PDP Context.
+          required:
+          - rat_type_id
+          - description
+          properties:
+            rat_type_id:
+              type: string
+              example: '2'
+              description: ID of the used RAT.
+            description:
+              type: string
+              example: NB-IoT
+              description: Radio Access Type name
+        region:
+          type: string
+          example: us-east-1
+        apn:
+          type: string
+          example: apn
+        ipcan_session_id:
+          type: string
+          example: '23'
+      description: Information about the current PDP Context of the SIM.
+    SimsConnectivityStatus:
+      type: object
+      description: The current connectivity status of a SIM.
+      required:
+      - description
+      properties:
+        description:
+          type: string
+          example: ONLINE
+          enum:
+          - ONLINE
+          - ATTACHED
+          - OFFLINE
+          - BLOCKED
+    SimTransfer:
+      title: Sim Transfer Request
+      type: object
+      properties:
+        target_organisation:
+          type: integer
+          description: The organisation id to transfer the SIMs TO. Required if transferring to a suborganisation.
+          example: 2000000001
+        iccid_ranges:
+          type: array
+          description: ICCID range of SIMs included or affected by this transfer.
+          items:
+            $ref: '#/components/schemas/IccidRange'
+        iccids:
+          type: array
+          description: Individual ICCIDs of SIMs included or affected by this transfer.
+          items:
+            type: string
+            description: List of ICCIDs of individual SIMs.
+            example: '8988280666000000000'
+      description: Request data for transferring SIMs from one customer account to another.
+    PdpContext:
+      title: PDP Context
+      type: object
+      properties:
+        pdp_context_id:
+          type: string
+          description: ID of the current PDP Context.
+          example: '1898708000'
+        endpoint_id:
+          type: string
+          description: ID of the used SIM endpoint.
+          example: '10458000'
+        tariff_profile_id:
+          type: string
+          description: ID of the used tariff profile.
+          example: '129700'
+        tariff_id:
+          type: string
+          description: ID of the used tariff.
+          example: '442'
+        ratezone_id:
+          type: string
+          description: ID of the used ratezone.
+          example: '2171'
+        organisation_id:
+          type: string
+          description: ID of the internal organisation reference.
+          example: 26xxx
+        imsi_id:
+          type: string
+          description: ID of the used IMSI.
+          example: 1610xxx
+        imsi:
+          type: string
+          description: IMSI of the specific SIM.
+          example: '901405100000018'
+        sim_id:
+          type: string
+          description: ID of the specific SIM.
+          example: 901xxx
+        teid_data_plane:
+          type: string
+          description: Tunnel ID for the current PDP Context user plane.
+          example: '153329900'
+        teid_control_plane:
+          type: string
+          description: Tunnel ID for the current PDP Context control plane.
+          example: '153329900'
+        gtp_version:
+          type: string
+          description: Version of the used GPRS Tunneling Protocol (GTP).
+          example: '1'
+        nsapi:
+          type: string
+          description: ID of the used Network Service Access Point Identifier (NSAPI).
+          example: '5'
+        sgsn_control_plane_ip_address:
+          type: string
+          description: IP address of the Serving GPRS Support Node (SGSN) for the control plane.
+          example: x.x.x.x
+        sgsn_data_plane_ip_address:
+          type: string
+          description: IP address of the Serving GPRS Support Node (SGSN) for the user data plane.
+          example: x.x.x.x
+        ggsn_control_plane_ip_address:
+          type: string
+          description: IP address of the Gateway GPRS Support Node (GGSN) for the control plane.
+          example: x.x.x.x
+        ggsn_data_plane_ip_address:
+          type: string
+          description: IP address of the Gateway GPRS Support Node (GGSN) for the user data plane.
+          example: x.x.x.x
+        created:
+          type: string
+          description: Timestamp when the PDP Context was created.
+          format: date-time
+        mcc:
+          type: string
+          description: Mobile Country Code (MCC).
+          example: '262'
+        mnc:
+          type: string
+          description: Mobile Network Code (MNC).
+          example: '1'
+        operator_id:
+          type: string
+          description: ID of the used SIM endpoint.
+          example: '38701'
+        lac:
+          type: string
+          description: Location paramter of the PDP Context.
+          example: '10458000'
+        ci:
+          type: string
+          description: Cell Identity (CI).
+          example: '5559'
+        ue_ip_address:
+          type: string
+          description: IP address of the device using the SIM.
+          example: x.x.x.x
+        imeisv:
+          type: string
+          description: IMEISV of the device with the SIM.
+          example: '8635760478500000'
+        duration:
+          type: string
+          description: Current duration of the PDP Context.
+          example: 02:39:10
+        rat_type:
+          title: Radio Access Technolog (RAT) Type
+          type: object
+          properties:
+            rat_type_id:
+              type: string
+              description: ID of the used RAT.
+              example: '2'
+            description:
+              type: string
+              description: String description of the used RAT.
+              example: 2G
+              enum:
+              - 2G
+              - 3G
+              - 4G
+              - 5G
+              - NB-IoT
+          description: Describes the Radio Access Technology used in the PDP Context.
+      description: Information about the current PDP Context of the SIM.
+    SimsDataTrafficLimitState:
+      type: object
+      description: Data traffic limit state of the SIM
+      required:
+      - description
+      properties:
+        description:
+          type: string
+          example: NOT_REACHED
+          enum:
+          - REACHED
+          - NOT_REACHED
+    Connectivity:
+      title: Connectivity
+      type: object
+      properties:
+        status:
+          type: string
+          description: The current connectivity status of a SIM.
+          example: OFFLINE
+          enum:
+          - OFFLINE
+          - ONLINE
+          - ATTACHED
+        location:
+          $ref: '#/components/schemas/Location'
+        pdp_context:
+          $ref: '#/components/schemas/PdpContext'
+        services:
+          type: array
+          description: List of services currently avaliable.
+          items:
+            type: string
+            description: Currently used service.
+            example: GPRS
+      description: Information about the current SIM connectivity status, location and PDP Context of a SIM.
+    Conflict:
+      description: Conflict HTTP Status 409
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: Conflict
+        message:
+          type: string
+          example: Conflicting request
+          description: Error Message with more details goes here
+    SimsLocation:
+      type: object
+      required:
+      - iccid
+      - imsi
+      properties:
+        iccid:
+          type: string
+          description: ICCID of a specific 1NCE SIM.
+          example: '8988303010000000000'
+        imsi:
+          type: string
+          description: IMSI of the SIM that triggered the event.
+          example: '901439999999999'
+        last_updated:
+          type: string
+          description: Timestamp from the last location update.
+          example: '2023-08-06 09:59:05'
+        sgsn_number:
+          type: string
+          description: Serving GPRS Support Node (SGSN) identifier for the SGSN where the SIM is attached.
+          example: 120631.mmecd7.mmegi8002.mme.epc.mnc260.mcc310.3gppnetwork.org
+        vlr_number:
+          type: string
+          description: Visitor Location Register (VLR) identifier.
+          example: '15622751137'
+        operator_id:
+          type: string
+          description: Identifier for the current operator the SIM is connected to.
+          example: '826'
+        msc:
+          type: string
+          description: Mobile-services Switching Centre (MSC) identifier number.
+          example: '491770940000'
+        sgsn_ip_address:
+          type: string
+          description: IP address of the used Serving GPRS Support Node (SGSN).
+          example: 12.23.107.88
+        mme_name:
+          type: string
+          example: mmeName
+        mme_realm:
+          type: string
+          example: mmeRealm
+        sgsn_name:
+          type: string
+          example: sgsnName
+        sgsn_realm:
+          type: string
+          example: sgsnRealm
+        operator:
+          type: object
+          required:
+          - id
+          - name
+          - country
+          - mnc
+          properties:
+            id:
+              type: integer
+              minimum: 1
+              example: 2
+              description: Identifier for the operator.
+            name:
+              type: string
+              example: T-Mobile
+              description: String name of the operator where the SIM is currently attached to.
+            mnc:
+              type: string
+              example: '01'
+              description: Represents Mobile Network code
+            country:
+              type: object
+              required:
+              - id
+              - name
+              - iso_code
+              properties:
+                id:
+                  type: integer
+                  minimum: 0
+                  example: 74
+                  description: The Country's id. 0 represents the "ANY"-country.
+                name:
+                  type: string
+                  example: Germany
+                  description: String name of the country of the operator where the SIM is currently attached.
+                iso_code:
+                  type: string
+                  description: ISO code for the country.
+                  example: de
+        country:
+          type: object
+          description: Represents a Country.
+          required:
+          - country_id
+          - name
+          - country_code
+          - mcc
+          - iso_code
+          properties:
+            country_id:
+              type: string
+              example: '74'
+              description: The Country's id. 0 represents the "ANY"-country.
+            name:
+              type: string
+              example: Germany
+              description: String name of the country where the SIM device is currently located.
+            country_code:
+              example: '49'
+              type: string
+              description: The international phone number prefix. “49” is the one for Germany, “381” is the one for Serbia.
+            mcc:
+              type: string
+              example: '262'
+              description: An MCC (Mobile Country Code) is used in combination with an MNC (a combination known as an "MCC/MNC tuple") to uniquely identify a mobile network operator (carrier) using the GSM (including GSM-R), UMTS, LTE, and 5G public land mobile networks.
+            iso_code:
+              type: string
+              example: de
+              description: The ISO 3166 code.
+    SimsSimUpdateReq:
+      type: object
+      title: SIM Update Request
+      description: Information about a SIM card based on a SIM update procedure.
+      properties:
+        iccid:
+          type: string
+          description: ICCID of the queried SIM.
+          example: '8988280666000000000'
+        label:
+          type: string
+          description: Label of the SIM set by the customer in the 1NCE Portal.
+          example: DX-137-B12
+        imei_lock:
+          type: boolean
+          description: Flag that indicates if SIM is locked to the current device IMEI.
+          example: false
+        status:
+          type: string
+          description: Status of the SIM. A SIM can be enabled (active) or disabled (deactivated).
+          example: Enabled
+          enum:
+          - Enabled
+          - Disabled
+    Location:
+      title: Location
+      type: object
+      properties:
+        iccid:
+          type: string
+          description: ICCID of a specific 1NCE SIM.
+          example: '8988280666000000000'
+        imsi:
+          type: string
+          description: IMSI of the SIM that triggered the event.
+          example: '901405100000018'
+        last_updated:
+          type: string
+          description: Timestamp from the last location update.
+          format: date-time
+        last_updated_gprs:
+          type: string
+          description: Timestamp from the last GPRS location update.
+          format: date-time
+        sgsn_number:
+          type: string
+          description: Serving GPRS Support Node (SGSN) identifier for the SGSN where the SIM is attached.
+          example: '491600300000'
+        vlr_number:
+          type: string
+          description: Visitor Location Register (VLR) identifier.
+          example: '491710000000'
+        vlr_number_np:
+          type: string
+          description: Visitor Location Register (VLR) Number NP.
+          example: '1'
+        msc_number_np:
+          type: string
+          description: Mobile-services Switching Centre (MSC) Number NP.
+          example: '1'
+        sgsn_number_np:
+          type: string
+          description: Serving GPRS Support Node (SGSN) Number NP.
+          example: '1'
+        operator_id:
+          type: string
+          description: Identifier for the current operator the SIM is connected to.
+          example: '2'
+        msc:
+          type: string
+          description: Mobile-services Switching Centre (MSC) identifier number.
+          example: '491710300000'
+        sgsn_ip_address:
+          type: string
+          description: IP address of the used Serving GPRS Support Node (SGSN).
+          example: x.x.x.x
+        operator:
+          title: Operator
+          type: object
+          properties:
+            id:
+              type: string
+              description: Identifier for the operator.
+              example: '2'
+            name:
+              type: string
+              description: String name of the operator where the SIM is currently attached to.
+              example: T-Mobile
+            country:
+              title: Country
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Identifier of the country.
+                  example: '74'
+                name:
+                  type: string
+                  description: String name of the country of the operator where the SIM is currently attached.
+                  example: Germany
+                iso-code:
+                  type: string
+                  description: ISO code for the country.
+                  example: de
+              description: Information about the country of the mobile operator.
+          description: Information about the operator.
+        country:
+          title: Country
+          type: object
+          properties:
+            country_id:
+              type: string
+              description: Identifier of the country.
+              example: '74'
+            name:
+              type: string
+              description: String name of the country where the SIM device is currently located.
+              example: Germany
+            country_code:
+              type: string
+              description: International country code.
+              example: '49'
+            mcc:
+              type: string
+              description: Mobile Country Code (MCC) of the SIM device location country.
+              example: '262'
+            iso-code:
+              type: string
+              description: ISO code for the country.
+              example: de
+            latitude:
+              type: string
+              description: Reference latitude of the location country.
+              example: '51'
+            longitude:
+              type: string
+              description: Reference longitude of the location country.
+              example: '9'
+          description: Information about the location country.
+      description: Location information of the SIM device.
+    SimsSim:
+      type: object
+      title: SIM Card
+      description: Detailed information about a SIM card.
+      properties:
+        iccid:
+          type: string
+          description: ICCID identifier of the SIM.
+          example: '8988303000123456789'
+        iccid_with_luhn:
+          type: string
+          description: ICCID identifier of the SIM with Luhn check number.
+          example: '89883030001234567890'
+        imsi:
+          type: string
+          description: First IMSI of the SIM, used for normal 1NCE network.
+          example: '901405100000018'
+        imsi_2:
+          type: string
+          description: Second IMSI of the SIM, used for China+ network.
+          example: '901405100000018'
+        current_imsi:
+          type: string
+          description: Currently active IMSI, dependent on the region where the SIM is used.
+          example: '901405100000018'
+        msisdn:
+          type: string
+          description: MSISDN of the SIM.
+          example: '882285100000018'
+        imei:
+          type: string
+          description: IMEI of the device in which the SIM is inserted.
+          example: 0000000000000018
+        imei_lock:
+          type: boolean
+          description: Indicates if SIM is locked to the current device IMEI.
+          example: true
+        status:
+          type: string
+          description: The current status of the SIM card.
+          example: Disabled
+          enum:
+          - Enabled
+          - Disabled
+        activation_date:
+          type: string
+          description: The date when the SIM card was activated.
+          example: 2018-03-09T07:59:09.000+0000
+        ip_address:
+          type: string
+          description: The fixed IP address of the SIM card.
+          example: 100.100.100.18
+        current_quota:
+          type: number
+          description: The overall set data quota for the SIM in MB.
+          example: 500
+        quota_status:
+          $ref: '#/components/schemas/SimsSimQuotaStatus'
+        current_quota_SMS:
+          type: number
+          description: Current SMS Quota for the SIM.
+          example: 250
+        quota_status_SMS:
+          $ref: '#/components/schemas/SimsSimQuotaStatus'
+        label:
+          type: string
+          description: Label set by the customer in the 1NCE Portal for the SIM.
+          example: DX-137-B12
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerError'
+    NotFound:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
+    Conflict:
+      description: Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Conflict'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequest'
+    NoContent:
+      description: No Content
+  securitySchemes:
+    BasicAuthentication:
+      type: http
+      scheme: basic
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

@@ -1,0 +1,184 @@
+openapi: 3.0.1
+info:
+  title: Authorization Administration Logs Volume Limits API
+  description: Documentation of the authentication used for the 1NCE APIs.
+  contact:
+    name: 1NCE GmbH
+    url: https://1nce.com
+    email: info@1nce.com
+  version: v2.1.1
+servers:
+- url: https://api.1nce.com/management-api
+tags:
+- name: Volume Limits
+  description: Limit Management
+paths:
+  /v1/sims/limits:
+    get:
+      tags:
+      - Volume Limits
+      summary: Get Global Limits
+      description: Get currently configured self-set monthly limits (Data, MT-SMS, MO-SMS) for all SIMs.
+      operationId: getLimitsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Values_for_Limits'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+    post:
+      tags:
+      - Volume Limits
+      summary: Create Global Limits
+      description: Configure self-set monthly limits for all SIMs (Data, MT-SMS, MO-SMS).
+      operationId: setLimitsUsingPOST
+      requestBody:
+        description: Monthly limits to be set
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLimitsRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+      x-codegen-request-body-name: request
+  /v1/sims/{service}/limits:
+    get:
+      tags:
+      - Volume Limits
+      summary: Get SIM Limits
+      description: Get a list of slectable limits for a given service.
+      operationId: getSelectableLimitsUsingGET
+      parameters:
+      - name: service
+        in: path
+        description: The service name (data, smsMO, smsMT) for which to list the avaliable limit options.
+        required: true
+        schema:
+          type: string
+          enum:
+          - data
+          - smsMO
+          - smsMT
+          default: data
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Values_for_Limits'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+components:
+  schemas:
+    SetLimitsRequest:
+      title: Set Limits Request
+      type: object
+      properties:
+        dataLimitId:
+          type: integer
+          description: Data Limit ID (from /sims/data/limits list) to be set for the self-set data limit.
+        smsMtLimitId:
+          type: integer
+          description: SMS MT Limit ID (from /sims/smsMT/limits list) to be set for self-set MT-SMS limit.
+        smsMoLimitId:
+          type: integer
+          description: SMS MO Limit ID (from /sims/smsMO/limits list) to be set for self-set MO-SMS limit.
+      description: Configure the self-set limits (data, MT-SMS, MO-SMS) of all SIMs. Use /sims/{service}/limits to get a list of IDs for setting the limits.
+    Values_for_Limits:
+      title: Self-Set Limits
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CurrentLimitData'
+        smsMt:
+          $ref: '#/components/schemas/CurrentLimitSMS'
+        smsMo:
+          $ref: '#/components/schemas/CurrentLimitSMS'
+      description: Information about the self-set limits.
+    CurrentLimitSMS:
+      title: Current SMS Limit
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identifer for the currently configured limit.
+          example: 1
+        limit:
+          type: string
+          description: Value of the self-set limit.
+          example: '10'
+        unit:
+          type: string
+          description: Unit of the set limit.
+          example: SMS
+      description: Currently self-set gloabl SMS limit for the given service (MT-SMS, MO-SMS).
+    CurrentLimitData:
+      title: Current Data Limit
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identifer for the currently configured limit.
+          example: 1
+        limit:
+          type: string
+          description: Value of the self-set limit.
+          example: '16'
+        unit:
+          type: string
+          description: Unit of the set limit.
+          example: MB
+      description: Currently self-set gloabl data volume limit.
+  securitySchemes:
+    BasicAuthentication:
+      type: http
+      scheme: basic
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

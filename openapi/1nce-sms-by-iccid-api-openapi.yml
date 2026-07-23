@@ -1,0 +1,138 @@
+openapi: 3.0.1
+info:
+  title: Authorization Administration Logs SMS by ICCID API
+  description: Documentation of the authentication used for the 1NCE APIs.
+  contact:
+    name: 1NCE GmbH
+    url: https://1nce.com
+    email: info@1nce.com
+  version: v2.1.1
+servers:
+- url: https://api.1nce.com/management-api
+tags:
+- name: SMS by ICCID
+paths:
+  /v2/sims/{iccid}/sms/{id}:
+    delete:
+      tags:
+      - SMS by ICCID
+      summary: Cancel SMS
+      description: Cancel a SMS message that is buffered to be delivered to the device with the SIM card but was not yet delivered.
+      operationId: cancelSmsOfSimUsingDELETE
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM for MT-SMS or MO-SMS.
+        required: true
+        schema:
+          type: string
+        example: '8988280666000000000'
+      - name: id
+        in: path
+        description: The ID of the SMS message to be cancelled.
+        required: true
+        schema:
+          type: number
+        example: 123
+      responses:
+        '200':
+          $ref: '#/components/responses/ResourceDeleted'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+components:
+  schemas:
+    NotFound:
+      description: Not found Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: Element not found
+          description: Error Message with more details goes here
+    DeleteItemResponse:
+      type: object
+      properties:
+        id:
+          type: string
+    InternalServerError:
+      description: Internal Server Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: InternalServerError
+        message:
+          type: string
+          example: Internal Server Error
+          description: Error Message with more details goes here
+    BadRequest:
+      description: Validation Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
+          description: Error Message with more details goes here
+  responses:
+    NotFound:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
+    ResourceDeleted:
+      description: Resource Deleted
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteItemResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequest'
+  securitySchemes:
+    BasicAuthentication:
+      type: http
+      scheme: basic
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

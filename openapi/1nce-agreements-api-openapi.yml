@@ -1,0 +1,102 @@
+openapi: 3.0.1
+info:
+  title: Authorization Administration Logs Agreements API
+  description: Documentation of the authentication used for the 1NCE APIs.
+  contact:
+    name: 1NCE GmbH
+    url: https://1nce.com
+    email: info@1nce.com
+  version: v2.1.1
+servers:
+- url: https://api.1nce.com/management-api
+tags:
+- description: 1NCE OS Agreements
+  name: Agreements
+paths:
+  /v1/agreements/1nceos:
+    post:
+      description: Post request to accept the 1NCE OS Terms of Use and Data Processing agreements. Please note that with this request the agreements can only be accepted.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postAgreementsRequestschema'
+        description: The Body of the agreements post contains the accept flag as JSON.
+      responses:
+        '201':
+          description: Created
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Accept 1NCE OS Agreements
+      tags:
+      - Agreements
+components:
+  schemas:
+    serverErrorResponse:
+      description: An API error response in case of a Server Side Error.
+      properties:
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unknown Error
+          - Server Error
+          type: string
+        errors:
+          description: List of errors encountered while calling the API.
+          items:
+            type: object
+          type: array
+      title: Server Error
+      type: object
+    postAgreementsRequestschema:
+      description: The agreements acceptance request model.
+      properties:
+        accepted:
+          default: true
+          description: Flag indicating that the Terms of Use and Data Processing agreeements are accepted. Please note that only true is accepted.
+          type: boolean
+      required:
+      - accepted
+      title: Post Agreements Accepted
+      type: object
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
+      type: object
+  responses:
+    InternalServerError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/serverErrorResponse'
+      description: Internal Server Error
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/badRequestResponse'
+      description: Bad Request
+  securitySchemes:
+    BasicAuthentication:
+      type: http
+      scheme: basic
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

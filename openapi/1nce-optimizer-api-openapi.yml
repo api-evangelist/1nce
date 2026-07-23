@@ -1,0 +1,679 @@
+openapi: 3.0.1
+info:
+  title: Authorization Administration Logs Optimizer API
+  description: Documentation of the authentication used for the 1NCE APIs.
+  contact:
+    name: 1NCE GmbH
+    url: https://1nce.com
+    email: info@1nce.com
+  version: v2.1.1
+servers:
+- url: https://api.1nce.com/management-api
+tags:
+- description: Optimize energy consumption
+  name: Optimizer
+paths:
+  /v1/optimize/messages/test:
+    post:
+      description: Test a template with a sample input message.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postschema_4'
+        description: The Body of the template tester post request.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postResponseschema_1'
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Test template
+      tags:
+      - Optimizer
+  /v1/optimize/savings:
+    get:
+      description: Get statistics about the savings by using the optimizer.
+      parameters:
+      - description: Specify the range in days to receive data about.
+        explode: true
+        in: query
+        name: range
+        required: false
+        schema:
+          default: '1'
+          enum:
+          - '1'
+          - '7'
+          - '30'
+          example: '1'
+          type: string
+        style: form
+      - description: 'Filter out by specific protocols: <ul><li>UDP</li><li>COAP</li></ul>'
+        explode: true
+        in: query
+        name: protocol
+        required: false
+        schema:
+          enum:
+          - UDP
+          - COAP
+          example: COAP
+          type: string
+        style: form
+      - description: ICCID of a SIM device, used to identifiy each 1NCE SIM.
+        explode: true
+        in: query
+        name: iccid
+        required: false
+        schema:
+          example: '8988280666000000000'
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getResponseschema_3'
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get savings
+      tags:
+      - Optimizer
+  /v1/optimize/templates:
+    get:
+      description: Get all Translation Service Templates for the current organization.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getTranslationTemplatesResponseschema'
+          description: OK
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get Optimizer Templates
+      tags:
+      - Optimizer
+    post:
+      description: Create a new Translation Service Template.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createTranslationTemplateRequestschema'
+        description: The Body for the creation of a new Optimizer Template needs to contain the name, template in JSON format and protocol filter.
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postPatchTranslationTemplatesResponseschema'
+          description: Created
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '409':
+          $ref: '#/components/responses/ConflictError'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntityError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Create Optimizer Template
+      tags:
+      - Optimizer
+  /v1/optimize/templates/{templateId}:
+    delete:
+      description: Delete a specific Optimizer Template.
+      parameters:
+      - description: Unique Id of the Optimizer Template which should be deleted.
+        explode: false
+        in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '204':
+          description: No Content
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Delete Optimizer Template
+      tags:
+      - Optimizer
+    patch:
+      description: Update a specific Optimizer Template.
+      parameters:
+      - description: Unique Id of the Optimizer Template for which the update should be applied.
+        explode: false
+        in: path
+        name: templateId
+        required: true
+        schema:
+          example: <template_id>
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patchTranslationTemplateRequestschema'
+        description: The Body of the update contains the name, template in JSON format and the protocol filter parameter.
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postPatchTranslationTemplatesResponseschema'
+          description: OK
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '409':
+          $ref: '#/components/responses/ConflictError'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntityError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Update Optimizer Template
+      tags:
+      - Optimizer
+components:
+  responses:
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unauthorizedRequestResponse'
+      description: Unauthorized
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/notFoundResponse'
+      description: Not Found Error
+    InternalServerError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/serverErrorResponse'
+      description: Internal Server Error
+    ForbiddenError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/forbiddenResponse'
+      description: Forbidden
+    ConflictError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/conflictResponse'
+      description: Conflict
+    UnprocessableEntityError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unprocessableEntityResponse'
+      description: Unprocessable Entity
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/badRequestResponse'
+      description: Bad Request
+  schemas:
+    getResponseschema_3_messagesTranslated:
+      additionalProperties: false
+      description: Statistics about the number of messages translated.
+      properties:
+        value:
+          description: The number of messages translated.
+          example: 1
+          type: number
+        delta:
+          description: The difference to the number of messages translated in the previous timeframe.
+          example: 1
+          type: number
+      required:
+      - delta
+      - value
+      type: object
+    createTranslationTemplateRequestschema:
+      additionalProperties: false
+      description: Post new Translation Template model.
+      properties:
+        name:
+          description: Name of the new template.
+          example: <template_name>
+          maxLength: 64
+          minLength: 1
+          type: string
+        template:
+          description: A stringified JSON template.
+          example: <template_json>
+          minLength: 1
+          type: string
+        protocolFilter:
+          default: COAP
+          description: Protocol filter that applies to this template.
+          example: COAP
+          items:
+            enum:
+            - COAP
+            - UDP
+            type: string
+          minItems: 1
+          type: array
+        status:
+          description: The current status of the template.
+          enum:
+          - ACTIVE
+          - INACTIVE
+          example: ACTIVE
+          type: string
+      required:
+      - name
+      - protocolFilter
+      - template
+      title: Templates request
+      type: object
+    unauthorizedRequestResponse:
+      description: An API error response in case of an HTTP Unauthorized Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 401
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unauthorized
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Unauthorized Request
+      type: object
+    notFoundResponse:
+      description: An API error response when a resource is Not Found.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 404
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Not Found
+          type: string
+        errors:
+          description: Detailed error information
+          items:
+            type: object
+          type: array
+      title: Not Found
+      type: object
+    getTranslationTemplatesResponseschema_inner:
+      properties:
+        name:
+          description: Name of the specific template.
+          example: <template_name>
+          maxLength: 64
+          minLength: 1
+          type: string
+        template:
+          description: A stringified JSON template.
+          example: <template_json>
+          minLength: 1
+          type: string
+        status:
+          description: The current status of the template.
+          example: <template_status>
+          type: string
+        id:
+          description: The unique ID of the template.
+          example: <template_id>
+          type: string
+        protocolFilter:
+          default: COAP
+          description: Protocol filter that applies to this template. Only the listed protocols will be processed by the template.
+          example: COAP
+          items:
+            enum:
+            - COAP
+            - UDP
+            type: string
+          minItems: 1
+          type: array
+      required:
+      - id
+      - name
+      - protocolFilter
+      - status
+      - template
+      type: object
+    patchTranslationTemplateRequestschema:
+      additionalProperties: false
+      anyOf:
+      - required:
+        - name
+        type: object
+      - required:
+        - template
+        type: object
+      - required:
+        - protocolFilter
+        type: object
+      - required:
+        - status
+        type: object
+      description: Update a Translation Template.
+      properties:
+        name:
+          description: New name of the template.
+          example: <template_name>
+          maxLength: 64
+          minLength: 1
+          type: string
+        template:
+          description: A new stringified JSON template.
+          example: <template_json>
+          minLength: 1
+          type: string
+        protocolFilter:
+          default: COAP
+          description: Protocol filter that applies to this template.
+          example: COAP
+          items:
+            enum:
+            - COAP
+            - UDP
+            type: string
+          minItems: 1
+          type: array
+        status:
+          description: The current status of the template.
+          enum:
+          - ACTIVE
+          - INACTIVE
+          example: ACTIVE
+          type: string
+      title: Templates request
+      type: object
+    postschema_4:
+      additionalProperties: false
+      description: Test a translation template with a sample input message request.
+      properties:
+        template:
+          description: A stringified JSON template.
+          example: <template_json>
+          minLength: 1
+          type: string
+        payload:
+          description: Sample input used to test the template (base64).
+          example: <sample_input_base64>
+          minLength: 1
+          type: string
+      required:
+      - payload
+      - template
+      title: Test translation template request
+      type: object
+    postResponseschema_1:
+      additionalProperties: false
+      description: Response to the test a translation template with a sample input message request.
+      properties:
+        translatedPayload:
+          description: A stringified JSON message (result from applying template to the sample input).
+          example: <message_json>
+          type: string
+        reducedBytes:
+          description: The number of bytes that the device didn't have to send over the network by using the translation template.
+          example: 1
+          type: number
+        energyUsageReduction:
+          description: The energy saved on data transfer using provided template in percent.
+          example: 10.0
+          type: number
+      required:
+      - energyUsageReduction
+      - reducedBytes
+      - translatedPayload
+      title: Test translation template response
+      type: object
+    conflictResponse:
+      description: An API error response when a conflict is found.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 409
+          type: integer
+        statusText:
+          description: Http Status Text
+          enum:
+          - Conflict
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Conflict
+      type: object
+    getResponseschema_3_bytesSaved:
+      additionalProperties: false
+      description: Statistics about the bytes reduced by using the translation templates.
+      properties:
+        value:
+          description: The amount of bytes reduced by using the translation templates.
+          example: 1
+          type: number
+        delta:
+          description: The difference to the amount of bytes reduced in the previous timeframe.
+          example: 1
+          type: number
+      required:
+      - delta
+      - value
+      type: object
+    getResponseschema_3_averageBytesReducedPerMessage:
+      additionalProperties: false
+      description: Statistics about the average amount of bytes reduced per translated message.
+      properties:
+        value:
+          description: The average amount of bytes reduced per translated message.
+          example: 1
+          type: number
+        delta:
+          description: The difference to the average amount of bytes reduced in the previous timeframe.
+          example: 1
+          type: number
+      required:
+      - delta
+      - value
+      type: object
+    getTranslationTemplatesResponseschema:
+      description: Response to the get Translation Template request.
+      items:
+        $ref: '#/components/schemas/getTranslationTemplatesResponseschema_inner'
+      title: Get Translation Template Response
+      type: array
+    postPatchTranslationTemplatesResponseschema:
+      description: Response to the post or the patch Translation Template request.
+      properties:
+        name:
+          description: Name of the specific template.
+          example: <template_name>
+          maxLength: 64
+          minLength: 1
+          type: string
+        template:
+          description: A stringified JSON template.
+          example: <template_json>
+          minLength: 1
+          type: string
+        status:
+          description: The current status of the template.
+          enum:
+          - ACTIVE
+          - INACTIVE
+          example: ACTIVE
+          type: string
+        id:
+          description: The unique ID of the template.
+          example: <template_id>
+          type: string
+        protocolFilter:
+          default: COAP
+          description: Protocol filter that applies to this template. Only the listed protocols will be processed by the template.
+          example: COAP
+          items:
+            enum:
+            - COAP
+            - UDP
+            type: string
+          minItems: 1
+          type: array
+      required:
+      - id
+      - name
+      - protocolFilter
+      - status
+      - template
+      title: Post/Patch Translation Template Response
+      type: object
+    getResponseschema_3:
+      additionalProperties: false
+      description: Response to the get optimizer savings request.
+      properties:
+        messagesTranslated:
+          $ref: '#/components/schemas/getResponseschema_3_messagesTranslated'
+        averageBytesReducedPerMessage:
+          $ref: '#/components/schemas/getResponseschema_3_averageBytesReducedPerMessage'
+        bytesSaved:
+          $ref: '#/components/schemas/getResponseschema_3_bytesSaved'
+      required:
+      - averageBytesReducedPerMessage
+      - bytesSaved
+      - messagesTranslated
+      title: Get optimizer savings response
+      type: object
+    serverErrorResponse:
+      description: An API error response in case of a Server Side Error.
+      properties:
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unknown Error
+          - Server Error
+          type: string
+        errors:
+          description: List of errors encountered while calling the API.
+          items:
+            type: object
+          type: array
+      title: Server Error
+      type: object
+    unprocessableEntityResponse:
+      description: An API error response when the request is valid but cannot be processed.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 422
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unprocessable Entity
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Unprocessable Entity
+      type: object
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
+      type: object
+    forbiddenResponse:
+      description: An API error response in case of an HTTP Forbidden Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 403
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Forbidden
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Forbidden Request
+      type: object
+  securitySchemes:
+    BasicAuthentication:
+      type: http
+      scheme: basic
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

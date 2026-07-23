@@ -1,0 +1,909 @@
+openapi: 3.0.1
+info:
+  title: Authorization Administration Logs Device Inspector API
+  description: Documentation of the authentication used for the 1NCE APIs.
+  contact:
+    name: 1NCE GmbH
+    url: https://1nce.com
+    email: info@1nce.com
+  version: v2.1.1
+servers:
+- url: https://api.1nce.com/management-api
+tags:
+- description: Inspect details of the devices
+  name: Device Inspector
+paths:
+  /v1/inspect/devices:
+    get:
+      description: Get a list of all the Customer SIMs/Devices for the current organisation in the 1NCE OS.
+      parameters:
+      - description: Number of the requested devices page. Use this parameter to iterate through all devices on the different pages. The total amount of pages is listed in the response body (pageAmount).
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          example: 1
+          maximum: 50
+          minimum: 1
+          type: integer
+        style: form
+      - description: Parameter for specifying the queried items per page.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 10
+          example: 10
+          maximum: 50
+          minimum: 1
+          type: integer
+        style: form
+      - description: Sort values based on keys that are listed as a comma seperated list, prepend "-" for descending order.
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          example: iccid,-ip
+          type: string
+        style: form
+      - description: 'Filter parameter in <i>{filter}:{value}</i> format. Comma separated list of filtering criteria out of the following fields: <ul><li>iccid</li></ul><p><b>Example:</b> "iccid:8988280666000000000"</p>'
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          example: iccid:8988280666000000000
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAllResponseschema_2'
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get All Devices
+      tags:
+      - Device Inspector
+  /v1/inspect/devices/{deviceId}:
+    get:
+      description: Get detailed metadata from one specific Device.
+      parameters:
+      - description: The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          example: <device_id>
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getResponseschema_4'
+          description: OK
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get Single Device
+      tags:
+      - Device Inspector
+  /v1/inspect/devices/{deviceId}/telemetry:
+    get:
+      description: Get the current/last repored Shadow State (telemetry) Data for a specific Device.
+      parameters:
+      - description: The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          example: <device_id>
+          type: string
+        style: simple
+      - description: 'Filter out shadow state data for specific protocol: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>'
+        explode: true
+        in: query
+        name: protocol
+        required: false
+        schema:
+          example: COAP
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getResponseschema_5'
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get Device Telemetry
+      tags:
+      - Device Inspector
+  /v1/inspect/devices/{deviceId}/history:
+    get:
+      description: Get historic message data for a specific SIM device.
+      parameters:
+      - description: The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          example: <device_id>
+          type: string
+        style: simple
+      - description: Timestamp from where onwards the historic data messages should be queried.
+        explode: true
+        in: query
+        name: startDateTime
+        required: false
+        schema:
+          example: '2022-03-07T08:51:29.015Z'
+          type: string
+        style: form
+      - description: Timestamp until when the historic data messages should be queried.
+        explode: true
+        in: query
+        name: endDateTime
+        required: false
+        schema:
+          example: '2022-03-07T09:51:29.015Z'
+          type: string
+        style: form
+      - description: Parameter for specifying the queried items per page.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 10
+          example: 10
+          minimum: 1
+          type: integer
+        style: form
+      - description: 'Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>'
+        explode: true
+        in: query
+        name: protocol
+        required: false
+        schema:
+          example: COAP
+          type: string
+        style: form
+      - description: This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page.
+        explode: true
+        in: query
+        name: nextToken
+        required: false
+        schema:
+          example: <next_token>
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getResponseschema_6'
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get Device Historian Messages
+      tags:
+      - Device Inspector
+  /v1/inspect/devices/history:
+    get:
+      description: Get a list of historic messages for devices based on the optional filter parameters.
+      parameters:
+      - description: The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.
+        explode: true
+        in: query
+        name: deviceId
+        required: false
+        schema:
+          example: <device_id>
+          type: string
+        style: form
+      - description: ICCID of a SIM device, used to identifiy each 1NCE SIM.
+        explode: true
+        in: query
+        name: iccid
+        required: false
+        schema:
+          example: '8988280666000000000'
+          type: string
+        style: form
+      - description: Timestamp from where onwards the historic data messages should be queried.
+        explode: true
+        in: query
+        name: startDateTime
+        required: false
+        schema:
+          example: '2022-03-07T08:51:29.015Z'
+          type: string
+        style: form
+      - description: Timestamp until when the historic data messages should be queried.
+        explode: true
+        in: query
+        name: endDateTime
+        required: false
+        schema:
+          example: '2022-03-07T09:51:29.015Z'
+          type: string
+        style: form
+      - description: Parameter for specifying the queried items per page.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 10
+          example: 10
+          minimum: 1
+          type: integer
+        style: form
+      - description: 'Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>'
+        explode: true
+        in: query
+        name: protocol
+        required: false
+        schema:
+          example: COAP
+          type: string
+        style: form
+      - description: This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page.
+        explode: true
+        in: query
+        name: nextToken
+        required: false
+        schema:
+          example: <next_token>
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAllResponseschema_3'
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get Historian Messages
+      tags:
+      - Device Inspector
+  /v1/inspect/devices/{deviceId}/history/insights:
+    get:
+      description: Get insights of a unique SIM device for the Historian.
+      parameters:
+      - description: The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          example: <device_id>
+          type: string
+        style: simple
+      - description: Timestamp from where onwards the historic data messages should be queried.
+        explode: true
+        in: query
+        name: startDateTime
+        required: false
+        schema:
+          example: '2022-03-07T08:51:29.015Z'
+          type: string
+        style: form
+      - description: Timestamp until when the historic data messages should be queried.
+        explode: true
+        in: query
+        name: endDateTime
+        required: false
+        schema:
+          example: '2022-03-07T09:51:29.015Z'
+          type: string
+        style: form
+      - description: 'Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>'
+        explode: true
+        in: query
+        name: protocol
+        required: false
+        schema:
+          example: COAP
+          type: string
+        style: form
+      - description: The interval for which grouping of statistics should occur.
+        explode: true
+        in: query
+        name: interval
+        required: false
+        schema:
+          example: 1d
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getResponseschema_7'
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get Device Historian Insights
+      tags:
+      - Device Inspector
+  /v1/inspect/devices/history/insights:
+    get:
+      description: Get insights for all devices from the Historian based on the optional filters.
+      parameters:
+      - description: The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.
+        explode: true
+        in: query
+        name: deviceId
+        required: false
+        schema:
+          example: <device_id>
+          type: string
+        style: form
+      - description: ICCID of a SIM device, used to identifiy each 1NCE SIM.
+        explode: true
+        in: query
+        name: iccid
+        required: false
+        schema:
+          example: '8988280666000000000'
+          type: string
+        style: form
+      - description: Timestamp from where onwards the historic data messages should be queried.
+        explode: true
+        in: query
+        name: startDateTime
+        required: false
+        schema:
+          example: '2022-03-07T08:51:29.015Z'
+          type: string
+        style: form
+      - description: Timestamp until when the historic data messages should be queried.
+        explode: true
+        in: query
+        name: endDateTime
+        required: false
+        schema:
+          example: '2022-03-07T09:51:29.015Z'
+          type: string
+        style: form
+      - description: 'Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>'
+        explode: true
+        in: query
+        name: protocol
+        required: false
+        schema:
+          example: COAP
+          type: string
+        style: form
+      - description: The interval for which grouping of statistics should occur.
+        explode: true
+        in: query
+        name: interval
+        required: false
+        schema:
+          example: 1d
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAllResponseschema_4'
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get Historian Insights
+      tags:
+      - Device Inspector
+components:
+  responses:
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unauthorizedRequestResponse'
+      description: Unauthorized
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/notFoundResponse'
+      description: Not Found Error
+    InternalServerError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/serverErrorResponse'
+      description: Internal Server Error
+    ForbiddenError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/forbiddenResponse'
+      description: Forbidden
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/badRequestResponse'
+      description: Bad Request
+  schemas:
+    getResponseschema_7_items_inner:
+      additionalProperties: false
+      properties:
+        time:
+          description: Date of the device statistics.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        protocol:
+          description: Protocol of the message.
+          enum:
+          - UDP
+          - COAP
+          - LWM2M
+          example: COAP
+          type: string
+        amount:
+          description: Amount of messages.
+          example: 8
+          type: number
+      required:
+      - amount
+      - protocol
+      - time
+      type: object
+    getResponseschema_6:
+      additionalProperties: false
+      description: Get all device messages from the historian.
+      properties:
+        items:
+          description: List of messages.
+          items:
+            $ref: '#/components/schemas/getResponseschema_6_items_inner'
+          type: array
+        nextToken:
+          description: This API query uses token-based pagination. A queried page will include a nextToken for accessing the next page for pagination if a further page is available. Please use the returned token in the nextToken query parameters to obtain the next page.
+          example: <next_token>
+          type: string
+        firstToken:
+          description: When no nextToken is passed as part of the query parameters, the firstToken is provided as reference to the first page of the queried pages.
+          example: <first_token>
+          type: string
+      required:
+      - items
+      title: Device History Response
+      type: object
+    getAllResponseschema_2_items_inner:
+      properties:
+        id:
+          description: Id of the device.
+          example: <device_id>
+          minLength: 1
+          type: string
+        iccid:
+          description: Iccid of the device.
+          example: '8988280666000000000'
+          pattern: ^[0-9]{19}$
+          type: string
+        imsi1:
+          description: IMSI1 of the device.
+          example: '901405100000018'
+          pattern: ^[0-9]{15}$
+          type: string
+        ip:
+          description: Ip of the device.
+          example: x.x.x.x
+          format: ipv4
+          type: string
+      required:
+      - iccid
+      - id
+      - imsi1
+      - ip
+      type: object
+    getAllResponseschema_3_items_inner:
+      additionalProperties: false
+      properties:
+        iccid:
+          description: Iccid of the device.
+          example: '8988280666000000000'
+          pattern: ^[0-9]{19}$
+          type: string
+        time:
+          description: Time when message was received.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        payload:
+          description: Stringified JSON object or base64 encoded string.
+          example: <custom_payload>
+          type: string
+        protocol:
+          description: The protocol used to communicate.
+          enum:
+          - UDP
+          - COAP
+          - LWM2M
+          example: COAP
+          type: string
+        deviceId:
+          description: The unique ID of the device.
+          example: <device_id>
+          type: string
+      required:
+      - deviceId
+      - iccid
+      - payload
+      - protocol
+      - time
+      type: object
+    unauthorizedRequestResponse:
+      description: An API error response in case of an HTTP Unauthorized Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 401
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unauthorized
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Unauthorized Request
+      type: object
+    notFoundResponse:
+      description: An API error response when a resource is Not Found.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 404
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Not Found
+          type: string
+        errors:
+          description: Detailed error information
+          items:
+            type: object
+          type: array
+      title: Not Found
+      type: object
+    getResponseschema_7:
+      additionalProperties: false
+      description: Get the devices history insights for a specific time range.
+      properties:
+        items:
+          description: List of messages.
+          items:
+            $ref: '#/components/schemas/getResponseschema_7_items_inner'
+          type: array
+        interval:
+          description: Interval of the message statistics, like 1h.
+          example: 1d
+          type: string
+      required:
+      - interval
+      - items
+      title: Device History Insights Response
+      type: object
+    getResponseschema_5:
+      description: Get a device shadow state (telemetry data).
+      properties:
+        id:
+          description: Id of the device.
+          example: <device_id>
+          minLength: 19
+          type: string
+        state:
+          description: The current IoT Core Device State.
+          type: object
+      required:
+      - id
+      - state
+      title: Device Telemetry
+      type: object
+    getAllResponseschema_4:
+      additionalProperties: false
+      description: Get the history insights for a specific time range.
+      properties:
+        items:
+          description: List of messages.
+          items:
+            $ref: '#/components/schemas/getAllResponseschema_4_items_inner'
+          type: array
+        interval:
+          description: Interval of the message statistics, like 1h.
+          example: 1d
+          type: string
+      required:
+      - interval
+      - items
+      title: Device History Insights Response
+      type: object
+    getAllResponseschema_4_items_inner:
+      additionalProperties: false
+      properties:
+        time:
+          description: Date of the statistics.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        protocol:
+          description: Protocol of the message.
+          enum:
+          - UDP
+          - COAP
+          - LWM2M
+          example: COAP
+          type: string
+        amount:
+          description: Amount of messages.
+          example: 8
+          type: number
+      required:
+      - amount
+      - protocol
+      - time
+      type: object
+    serverErrorResponse:
+      description: An API error response in case of a Server Side Error.
+      properties:
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unknown Error
+          - Server Error
+          type: string
+        errors:
+          description: List of errors encountered while calling the API.
+          items:
+            type: object
+          type: array
+      title: Server Error
+      type: object
+    getAllResponseschema_2:
+      description: Get all devices as a list.
+      properties:
+        items:
+          description: List of devices.
+          items:
+            $ref: '#/components/schemas/getAllResponseschema_2_items_inner'
+          type: array
+        page:
+          description: Current page number.
+          example: 1
+          minimum: 1
+          type: number
+        pageAmount:
+          description: Total number of pages.
+          example: 2
+          minimum: 1
+          type: number
+      required:
+      - items
+      - page
+      - pageAmount
+      title: All Devices Request
+      type: object
+    getResponseschema_4:
+      description: Get a single device metadata.
+      properties:
+        name:
+          description: Name of the device.
+          example: <device_name>
+          minLength: 1
+          type: string
+        id:
+          description: Id of the device.
+          example: <device_id>
+          minLength: 19
+          type: string
+        iccid:
+          description: Iccid of the device.
+          example: '8988280666000000000'
+          pattern: ^[0-9]{19}$
+          type: string
+        imsi1:
+          description: IMSI1 of the device.
+          example: '901405100000018'
+          pattern: ^[0-9]{15}$
+          type: string
+        ip:
+          description: Ip of the device.
+          example: x.x.x.x
+          format: ipv4
+          type: string
+      required:
+      - iccid
+      - id
+      - imsi1
+      - ip
+      title: Single Devices Request
+      type: object
+    getResponseschema_6_items_inner:
+      additionalProperties: false
+      properties:
+        iccid:
+          description: Iccid of the device.
+          example: '8988280666000000000'
+          pattern: ^[0-9]{19}$
+          type: string
+        time:
+          description: Time when message was received.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        payload:
+          description: Stringified JSON object or base64 encoded string.
+          example: <custom_payload>
+          type: string
+        protocol:
+          description: The protocol used to communicate.
+          enum:
+          - UDP
+          - COAP
+          - LWM2M
+          example: COAP
+          type: string
+        deviceId:
+          description: The unique ID of the device.
+          example: <device_id>
+          type: string
+        topic:
+          description: The MQTT topic that was passed with the CoAP message (not present if no topic was set).
+          example: topic
+          type: string
+      required:
+      - deviceId
+      - iccid
+      - payload
+      - protocol
+      - time
+      type: object
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
+      type: object
+    forbiddenResponse:
+      description: An API error response in case of an HTTP Forbidden Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 403
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Forbidden
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Forbidden Request
+      type: object
+    getAllResponseschema_3:
+      additionalProperties: false
+      description: Get all messages from the historian.
+      properties:
+        items:
+          description: List of messages.
+          items:
+            $ref: '#/components/schemas/getAllResponseschema_3_items_inner'
+          type: array
+        nextToken:
+          description: This API query uses token-based pagination. A queried page will include a nextToken for accessing the next page for pagination if a further page is available. Please use the returned token in the nextToken query parameters to obtain the next page.
+          example: <next_token>
+          type: string
+        firstToken:
+          description: When no nextToken is passed as part of the query parameters, the firstToken is provided as reference to the first page of the queried pages.
+          example: <first_token>
+          type: string
+      required:
+      - items
+      title: History Response
+      type: object
+  securitySchemes:
+    BasicAuthentication:
+      type: http
+      scheme: basic
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

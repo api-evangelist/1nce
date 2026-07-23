@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Authorization
+  title: Authorization Administration Logs Bearer Authorization API
   description: Documentation of the authentication used for the 1NCE APIs.
   contact:
     name: 1NCE GmbH
@@ -18,8 +18,7 @@ paths:
       tags:
       - Bearer Authorization
       summary: Obtain Access Token
-      description: Obtain a token for accessing other 1NCE API resources by using a POST request with a valid username and
-        password combination for a 1NCE user account that has the permission to use the API.
+      description: Obtain a token for accessing other 1NCE API resources by using a POST request with a valid username and password combination for a 1NCE user account that has the permission to use the API.
       operationId: postAccessTokenPOST
       requestBody:
         content:
@@ -94,14 +93,35 @@ paths:
       - BasicAuthentication: []
 components:
   schemas:
+    Bearer_Token_400:
+      title: Bearer Token 400 Response
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: HTTP status code 400 (Bad Request) indicating that there was an issue with the request towards the 1NCE API. Please double check the executed API request.
+          default: 400
+        errorCode:
+          type: string
+          description: String error code indicating the reference error.
+          enum:
+          - BadCredentials
+          - AuthValidationError
+          - BodyValidationError
+          - UnsupportedContentTypeError
+          example: AuthValidationError
+        message:
+          type: string
+          description: String explanation of the error that occurred.
+          example: 'Auth header validation error: Missing attributes ''password'''
+      description: Response of querying the access token for the 1NCE API.
     Bearer_Token_200:
       title: Bearer Token 200 Response
       type: object
       properties:
         status_code:
           type: integer
-          description: Response HTTP status code for the executed request towards the 1NCE API. Status 200 indicates a successful
-            request and response.
+          description: Response HTTP status code for the executed request towards the 1NCE API. Status 200 indicates a successful request and response.
           enum:
           - 200
           default: 200
@@ -126,32 +146,8 @@ components:
           description: Scope access level of the returned token.
           default: all
       description: Response of querying the access token for the 1NCE API.
-    Bearer_Token_400:
-      title: Bearer Token 400 Response
-      type: object
-      properties:
-        statusCode:
-          type: integer
-          description: HTTP status code 400 (Bad Request) indicating that there was an issue with the request towards the
-            1NCE API. Please double check the executed API request.
-          default: 400
-        errorCode:
-          type: string
-          description: String error code indicating the reference error.
-          enum:
-          - BadCredentials
-          - AuthValidationError
-          - BodyValidationError
-          - UnsupportedContentTypeError
-          example: AuthValidationError
-        message:
-          type: string
-          description: String explanation of the error that occurred.
-          example: 'Auth header validation error: Missing attributes ''password'''
-      description: Response of querying the access token for the 1NCE API.
   securitySchemes:
     BasicAuthentication:
       type: http
       scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used
-        to make any further API calls towards the 1NCE API.
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

@@ -1,0 +1,309 @@
+openapi: 3.0.1
+info:
+  title: Authorization Administration Logs Connectivity API
+  description: Documentation of the authentication used for the 1NCE APIs.
+  contact:
+    name: 1NCE GmbH
+    url: https://1nce.com
+    email: info@1nce.com
+  version: v2.1.1
+servers:
+- url: https://api.1nce.com/management-api
+tags:
+- name: Connectivity
+  description: Connectivty Management
+paths:
+  /v1/sims/{iccid}/connectivity_info:
+    get:
+      tags:
+      - Connectivity
+      summary: Get SIM Connectivity
+      description: Retrieve connectivity information and cell tower of a device with a given SIM. The API call returns valid information when the 1NCE SIM is attached to a 2G/3G network only.
+      operationId: getConnectivityInfoForSimUsingGET
+      parameters:
+      - name: iccid
+        in: path
+        description: The iccid of the SIM in question.
+        required: true
+        schema:
+          type: string
+        example: 8988280666000000000
+      - name: subscriber
+        in: query
+        description: Flag indicating if the subscriber information should be retrieved. Default value is true.
+        allowEmptyValue: false
+        schema:
+          type: boolean
+          default: true
+        example: true
+      - name: ussd
+        in: query
+        description: Flag for retrieving the USSD connectivity info. Default value is false.
+        allowEmptyValue: false
+        schema:
+          type: boolean
+          default: false
+        example: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectivityInfo'
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ConnectivityInfo'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+  /v1/sims/{iccid}/reset:
+    post:
+      tags:
+      - Connectivity
+      summary: Create Connectivity Reset
+      description: Trigger a connectivity reset for a given SIM. The actual reset will be done asynchronously. A positive-response only means that the connectivity-reset has been successfully placed into the queue.
+      operationId: resetConnectivityUsingPOST
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be reset.
+        required: true
+        schema:
+          type: string
+        example: 8988280666000000000
+      responses:
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+  /v2/sims/{iccid}/reset:
+    post:
+      tags:
+      - Connectivity
+      summary: Create Connectivity Reset
+      description: Trigger a connectivity reset for a given SIM. The actual reset will be done asynchronously. A positive-response only means that the connectivity-reset has been successfully placed into the queue.
+      operationId: resetConnectivityUsingPOST
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be reset.
+        required: true
+        schema:
+          type: string
+        example: '8988280666000000000'
+      responses:
+        '201':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+components:
+  schemas:
+    Conflict:
+      description: Conflict HTTP Status 409
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: Conflict
+        message:
+          type: string
+          example: Conflicting request
+          description: Error Message with more details goes here
+    NotFound:
+      description: Not found Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: Element not found
+          description: Error Message with more details goes here
+    ConnectivityInfo:
+      title: Connectivity Info
+      type: object
+      properties:
+        ussd_info:
+          $ref: '#/components/schemas/UssdInfo'
+        subscriber_info:
+          $ref: '#/components/schemas/SubscriberInfo'
+        request_timestamp:
+          type: string
+          description: Time in UTC the request was received.
+          example: 2018-11-07T17:21:46.121+0000
+        reply_timestamp:
+          type: string
+          description: Time in UTC the response was sent.
+          example: 2018-11-07T17:21:46.263+0000
+      description: Contains connectivity and cell tower information for a given SIM request.
+    SubscriberInfo:
+      title: Subscriber Information
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Boolean flag indicating the success of the subscriber info request.
+          example: true
+        state:
+          type: string
+          description: State of the subscriber information.
+          example: not_provided_from_vlr
+        location:
+          type: object
+          description: Location information of the SIM device.
+          properties:
+            current_location_retrieved:
+              type: boolean
+              description: Boolean flag indicating if the retrieved location is current.
+              example: false
+            age_of_location:
+              type: integer
+              description: Age of the location information in minutes.
+              example: 2
+            cell_global_id:
+              $ref: '#/components/schemas/CellGlobalId'
+      description: The optional subscriber info returned when the 'subscriber' parameter is true and contains information about the current SIM device location based on the mobile network.
+    CellGlobalId:
+      title: Cell Global IDs
+      type: object
+      properties:
+        cid:
+          type: integer
+        lac:
+          type: integer
+        mcc:
+          type: string
+        mnc:
+          type: string
+      description: Mobile network parameter used to identify the cell tower of a SIM device.
+    BadRequest:
+      description: Validation Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
+          description: Error Message with more details goes here
+    InternalServerError:
+      description: Internal Server Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: InternalServerError
+        message:
+          type: string
+          example: Internal Server Error
+          description: Error Message with more details goes here
+    UssdInfo:
+      title: Ussd Information
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Boolean flag indicating the success of the USSD request.
+          example: false
+        error:
+          type: string
+          description: Optional information if some error occurred.
+          example: Request Timeout Error
+      description: Optional ussd information, only set if the parameter 'ussd' is set to true.
+  responses:
+    NotFound:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
+    NoContent:
+      description: No Content
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerError'
+    Conflict:
+      description: Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Conflict'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequest'
+  securitySchemes:
+    BasicAuthentication:
+      type: http
+      scheme: basic
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

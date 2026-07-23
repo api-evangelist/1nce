@@ -1,0 +1,84 @@
+openapi: 3.0.1
+info:
+  title: Authorization Administration Logs SIM Extension API
+  description: Documentation of the authentication used for the 1NCE APIs.
+  contact:
+    name: 1NCE GmbH
+    url: https://1nce.com
+    email: info@1nce.com
+  version: v2.1.1
+servers:
+- url: https://api.1nce.com/management-api
+tags:
+- name: SIM Extension
+  description: SIM Extension Management
+paths:
+  /v1/sims/extension:
+    post:
+      tags:
+      - SIM Extension
+      summary: Create SIM Extension
+      description: Trigger the SIM extension for one or more SIM cards to extend their activation period and renew their quota (data and SMS). An invoice is automatically triggered depending on the chosen payment method.
+      operationId: extendSimsUsingPOST
+      parameters:
+      - name: payment_method
+        in: query
+        description: Optional payment method selection between creditcard, banktransfer, monthly invoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the SIM extension process. To use creditcard please save your credit card details in the customer portal via "account".
+        required: false
+        schema:
+          type: string
+          enum:
+          - banktransfer
+          - creditcard
+          - monthlyinvoice
+          - boleto
+          default: banktransfer
+          example: banktransfer
+      requestBody:
+        description: The body shall include a list of atleast one ICCIDs and optionally a product id.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SIMExtensionRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content: {}
+        '400':
+          description: Bad Request
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+      x-codegen-request-body-name: request
+components:
+  schemas:
+    SIMExtensionRequest:
+      title: SIM Extension Request
+      type: object
+      properties:
+        iccids:
+          type: array
+          description: A list of ICCIDs of SIMs which should be extended.
+          items:
+            type: string
+            example: '8988280666000000000'
+        productId:
+          type: integer
+          description: Optional product id (see /v1/products) for changing the product during the process of the SIM extension. If left out, the current SIM product will be used for extension.
+      description: Request for extending the lifetime of SIMs product.
+  securitySchemes:
+    BasicAuthentication:
+      type: http
+      scheme: basic
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

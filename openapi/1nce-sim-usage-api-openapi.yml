@@ -1,0 +1,325 @@
+openapi: 3.0.1
+info:
+  title: Authorization Administration Logs SIM Usage API
+  description: Documentation of the authentication used for the 1NCE APIs.
+  contact:
+    name: 1NCE GmbH
+    url: https://1nce.com
+    email: info@1nce.com
+  version: v2.1.1
+servers:
+- url: https://api.1nce.com/management-api
+tags:
+- name: SIM Usage
+  description: Usage Management
+paths:
+  /v1/sims/{iccid}/usage:
+    get:
+      tags:
+      - SIM Usage
+      summary: Get SIM Usage
+      description: Query the SIM data and SMS usage over a given period of time. The output is limited to the last 6 months.
+      operationId: getUsageForSimUsingGET
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be queried.
+        required: true
+        schema:
+          type: string
+        example: 8988280666000000000
+      - name: start_dt
+        in: query
+        description: 'Start date used for the query, format: YYYY-MM-DD'
+        allowEmptyValue: false
+        schema:
+          type: string
+        example: '2022-07-22'
+      - name: end_dt
+        in: query
+        description: 'End date used for the usage query, format: YYYY-MM-DD'
+        allowEmptyValue: false
+        schema:
+          type: string
+        example: '2022-07-22'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyUsage'
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/DailyUsage'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+  /v1/sims/{iccid}/quota/data:
+    get:
+      tags:
+      - SIM Usage
+      summary: Get SIM Data Quota
+      description: Get the current data quota of a particular SIM.
+      operationId: getDataQuotaForSimUsingGET
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be queried.
+        required: true
+        schema:
+          type: string
+        example: 8988280666000000000
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quota'
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Quota'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+  /v1/sims/{iccid}/quota/sms:
+    get:
+      tags:
+      - SIM Usage
+      summary: Get SIM SMS Quota
+      description: Get the current SMS quota of a particular SIM.
+      operationId: getSmsQuotaForSimUsingGET
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be queried.
+        required: true
+        schema:
+          type: string
+        example: 8988280666000000000
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quota'
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Quota'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+components:
+  schemas:
+    TrafficTypeData:
+      title: Traffic Type Data
+      type: object
+      properties:
+        description:
+          type: string
+          description: Defines the type of traffic listed.
+          example: Data
+        id:
+          type: integer
+          description: ID of the traffic type.
+          example: 1
+        unit:
+          type: string
+          description: Lists the unit used for the traffic type.
+          example: MB
+      description: Details about the data traffic type.
+    TrafficTypeSMS:
+      title: Traffic Type SMS
+      type: object
+      properties:
+        description:
+          type: string
+          description: Defines the type of traffic listed.
+          example: SMS
+        id:
+          type: integer
+          description: ID of the traffic type.
+          example: 1
+        unit:
+          type: string
+          description: Lists the unit used for the traffic type.
+          example: SMS
+      description: Details about the SMS traffic type.
+    DailyUsage:
+      title: Usage Record
+      type: object
+      properties:
+        stats:
+          type: array
+          description: List of queried usage statistics for the given SIM.
+          items:
+            $ref: '#/components/schemas/Daily'
+      description: Information about SIM data and SMS usage.
+    SmsUsage:
+      title: SMS Usage Record
+      type: object
+      properties:
+        cost:
+          type: string
+          description: The cost shown here match 1:1 the used SMS. There is no real cost value behind this number.
+          example: '4'
+        currency:
+          title: Currency
+          type: object
+          properties:
+            id:
+              type: integer
+              description: Id of the currency.
+              example: 1
+            symbol:
+              type: string
+              description: ASCII symbol of the currency.
+              example: €
+            code:
+              type: string
+              description: Standardized currency code.
+              example: EUR
+          description: Description of the currency.
+        traffic_type:
+          $ref: '#/components/schemas/TrafficTypeSMS'
+        volume:
+          type: string
+          description: The summed MO- and MT-SMS messages count.
+          example: '3'
+        volume_rx:
+          type: string
+          description: The used MO-SMS message count.
+          example: '2'
+        volume_tx:
+          type: string
+          description: The used MT-SMS message count.
+          example: '1'
+      description: A usage record for the SMS used by a SIM.
+    Quota:
+      title: Quota
+      type: object
+      properties:
+        volume:
+          type: number
+          description: Remaning volume of the selected SIM. Dependent on the query, the volume is either the number of SMS reamaining or the avaliable data volume in MB.
+          example: 435.787951
+        total_volume:
+          type: number
+          description: The total data volume in MB or SMS number this SIM has available over its lifetime.
+          example: 500
+        expiry_date:
+          type: string
+          description: The date when this current quota will expire.
+          example: '2029-01-01T00:00:00.000Z'
+        peak_throughput:
+          type: integer
+          description: The optional throughput in bit/s (only for data quotas).
+          example: 1000000
+        last_volume_added:
+          type: number
+          description: Amount of SMS or data volume which was last purchased for this SIM.
+          example: 500
+        last_status_change_date:
+          type: string
+          description: Timestamp of the last change to the quota.
+          example: '2018-10-01T11:59:44.000Z'
+        threshold_percentage:
+          type: integer
+          description: Threshold in percentage for which a volume notification will be send.
+          example: 20
+    Daily:
+      title: Daily Usage Record
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        date:
+          type: string
+          description: Date of the shown usage record.
+          example: '2021-06-30T00:00:00.000Z'
+        sms:
+          $ref: '#/components/schemas/SmsUsage'
+      description: A daily usage record with summarized data about the SMS and data usage.
+    Data:
+      title: Data Usage Record
+      type: object
+      properties:
+        cost:
+          type: string
+          description: The cost shown here match 1:1 the used SMS. There is no real cost value behind this number.
+          example: '0.002803'
+        currency:
+          title: Currency
+          type: object
+          properties:
+            id:
+              type: integer
+              description: Id of the currency.
+              example: 1
+            symbol:
+              type: string
+              description: ASCII symbol of the currency.
+              example: €
+            code:
+              type: string
+              description: Standardized currency code.
+              example: EUR
+          description: Description of the currency.
+        traffic_type:
+          $ref: '#/components/schemas/TrafficTypeData'
+        volume:
+          type: string
+          description: The summed RX and TX data volume in MB.
+          example: '0.002803'
+        volume_rx:
+          type: string
+          description: The used RX (downstream, received by SIM) data volume in MB.
+          example: '0.001482'
+        volume_tx:
+          type: string
+          description: The used TX (upstream, send by SIM) data volume in MB.
+          example: '0.001321'
+      description: A usage record for the data used by a SIM.
+  securitySchemes:
+    BasicAuthentication:
+      type: http
+      scheme: basic
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

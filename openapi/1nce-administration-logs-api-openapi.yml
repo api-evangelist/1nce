@@ -1,0 +1,383 @@
+openapi: 3.0.1
+info:
+  title: Authorization Administration Logs API
+  description: Documentation of the authentication used for the 1NCE APIs.
+  contact:
+    name: 1NCE GmbH
+    url: https://1nce.com
+    email: info@1nce.com
+  version: v2.1.1
+servers:
+- url: https://api.1nce.com/management-api
+tags:
+- description: 1NCE OS Administration Logs
+  name: Administration Logs
+paths:
+  /v1/administrationLogs:
+    get:
+      description: Get a list of the administration logs regarding the organization.
+      parameters:
+      - description: Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          maximum: 50
+          minimum: 1
+          type: integer
+        style: form
+      - description: Parameter for specifying the queried items per page.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 10
+          example: 10
+          minimum: 1
+          type: integer
+        style: form
+      - description: 'Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>geofenceId</li><li>category</li><li>iccid</li><li>type</li><li>startDateTime (UTC)</li><li>endDateTime (UTC)</li></ul><p><b>Example:</b> "type:device,iccid:ICCID,startDateTime:2022-11-14T16:04:38.000Z"</p>'
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          example: type:device,iccid:<iccid>;startDateTime:<utc_date>
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAdministrationLogsResponseschema'
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get Administration Logs
+      tags:
+      - Administration Logs
+  /v1/administrationLogs/stats:
+    get:
+      description: Get the administration logs statistics for the current organization.
+      parameters:
+      - description: Specify the needed timezone as string parameter (e.g., Europe/Amsterdam) for the resulting query output.
+        explode: true
+        in: query
+        name: timezone
+        required: true
+        schema:
+          default: Europe/Amsterdam
+          example: Europe/Amsterdam
+          type: string
+        style: form
+      - description: Specify the category as string parameter for the resulting query output.
+        explode: true
+        in: query
+        name: category
+        required: false
+        schema:
+          enum:
+          - info
+          - error
+          example: info
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAdministrationLogsStatisticsResponseschema'
+          description: OK
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get Administration Logs Statistics
+      tags:
+      - Administration Logs
+  /v1/administrationLogs/{adminLogId}/payload:
+    get:
+      description: Get a URL pointing to a single administration log payload. The received URL will trigger a download.
+      parameters:
+      - description: Unique Id of the administration log for which the payload should be queried.
+        explode: false
+        in: path
+        name: adminLogId
+        required: true
+        schema:
+          example: <admin_log_id>
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            text/x-uri:
+              schema:
+                description: URL to the payload of the requested administration log.
+                example: <admin_log_url>
+                type: string
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get Administration Log Payload
+      tags:
+      - Administration Logs
+components:
+  schemas:
+    getAdministrationLogsResponseschema_items_inner:
+      properties:
+        imsi:
+          description: IMSI of the device.
+          example: '901405100000018'
+          pattern: ^[0-9]{15}$
+          type: string
+        payloadReference:
+          description: A reference to the payload of the administration log.
+          example: <payload_reference>
+          type: string
+        ip:
+          description: The IP address of the device.
+          example: x.x.x.x
+          type: string
+        iccid:
+          description: The ICCID of the SIM the administration log was caused by.
+          example: '8988280666000000000'
+          pattern: ^[0-9]{19}$
+          type: string
+        customerId:
+          description: The ID of the customer organization.
+          example: <customer_id>
+          type: string
+        id:
+          description: The ID of the administration log.
+          example: <admin_log_id>
+          type: string
+        timestamp:
+          description: The timestamp at which the administration log was received by 1NCE.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        category:
+          description: The category of the administration log.
+          enum:
+          - info
+          - error
+          type: string
+        type:
+          description: The type of the administration log.
+          enum:
+          - INTEGRATION
+          - DEVICE
+          - GENERAL
+          - LOCATION
+          - LIFECYCLE
+          type: string
+        description:
+          description: A description of the administration log.
+          example: <admin_log_description>
+          type: string
+        message:
+          description: The message provided by the administration log.
+          example: <admin_log_message>
+          type: string
+        traceId:
+          description: TraceId of the administration log.
+          example: <admin_log_trace_id>
+          type: string
+        geofenceId:
+          description: ID of the geofence.
+          example: <admin_log_geofence_id>
+          type: string
+        integrationId:
+          description: ID of the Integration.
+          example: <admin_log_integration_id>
+          type: string
+      required:
+      - customerId
+      - id
+      - message
+      - timestamp
+      - type
+      type: object
+    serverErrorResponse:
+      description: An API error response in case of a Server Side Error.
+      properties:
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unknown Error
+          - Server Error
+          type: string
+        errors:
+          description: List of errors encountered while calling the API.
+          items:
+            type: object
+          type: array
+      title: Server Error
+      type: object
+    unauthorizedRequestResponse:
+      description: An API error response in case of an HTTP Unauthorized Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 401
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unauthorized
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Unauthorized Request
+      type: object
+    getAdministrationLogsStatisticsResponseschema:
+      additionalProperties: false
+      description: Response to the get administration logs statistics request.
+      properties:
+        totalUniqueDevices:
+          description: The amount of unique devices that caused an administration log.
+          example: 2
+          type: integer
+        administrationLogs:
+          description: An array of administration logs stats.
+          items:
+            $ref: '#/components/schemas/getAdministrationLogsStatisticsResponseschema_administrationLogs_inner'
+          type: array
+      required:
+      - administrationLogs
+      - totalUniqueDevices
+      title: Get Administration Logs Statistics
+      type: object
+    getAdministrationLogsResponseschema:
+      additionalProperties: false
+      description: Response to the get administration logs request.
+      properties:
+        page:
+          description: The current page number of the administration logs.
+          example: 1
+          type: number
+        pageAmount:
+          description: The total amount of pages needed to show all administration logs.
+          example: 10
+          type: number
+        items:
+          description: An array of administration logs items.
+          items:
+            $ref: '#/components/schemas/getAdministrationLogsResponseschema_items_inner'
+          type: array
+      required:
+      - items
+      title: Get Administration Logs Response
+      type: object
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
+      type: object
+    forbiddenResponse:
+      description: An API error response in case of an HTTP Forbidden Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 403
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Forbidden
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Forbidden Request
+      type: object
+    getAdministrationLogsStatisticsResponseschema_administrationLogs_inner:
+      properties:
+        day:
+          description: The timestamp value of the day of the administration log.
+          example: '2022-03-07'
+          format: date
+          type: string
+        amount:
+          description: The amount of administration logs received on the specified day.
+          example: 2
+          type: integer
+      required:
+      - amount
+      - day
+      type: object
+  responses:
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unauthorizedRequestResponse'
+      description: Unauthorized
+    InternalServerError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/serverErrorResponse'
+      description: Internal Server Error
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/badRequestResponse'
+      description: Bad Request
+    ForbiddenError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/forbiddenResponse'
+      description: Forbidden
+  securitySchemes:
+    BasicAuthentication:
+      type: http
+      scheme: basic
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

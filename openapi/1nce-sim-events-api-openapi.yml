@@ -1,0 +1,822 @@
+openapi: 3.0.1
+info:
+  title: Authorization Administration Logs SIM Events API
+  description: Documentation of the authentication used for the 1NCE APIs.
+  contact:
+    name: 1NCE GmbH
+    url: https://1nce.com
+    email: info@1nce.com
+  version: v2.1.1
+servers:
+- url: https://api.1nce.com/management-api
+tags:
+- name: SIM Events
+  description: Event Management
+paths:
+  /v1/sims/{iccid}/events:
+    get:
+      tags:
+      - SIM Events
+      summary: Get SIM Events
+      description: Get diagnostic/event information for a SIM card.
+      operationId: getEventsForSimUsingGET
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be queried.
+        required: true
+        schema:
+          type: string
+        example: 8988280666000000000
+      - name: page
+        in: query
+        description: Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.
+        allowEmptyValue: false
+        schema:
+          minimum: 1
+          exclusiveMinimum: false
+          type: integer
+          default: 1
+      - name: pageSize
+        in: query
+        description: The number of events per page, maximum allowed value is 1000.
+        allowEmptyValue: false
+        schema:
+          maximum: 1000
+          exclusiveMaximum: false
+          minimum: 1
+          exclusiveMinimum: false
+          type: integer
+          default: 10
+      - name: sort
+        in: query
+        description: Sort values based on keys that are listed as a comma seperated list, prepend "-" for descending order.
+        allowEmptyValue: false
+        schema:
+          type: string
+        example: -timestamp,id
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Count-Per-Page:
+              description: Number of results per page.
+              schema:
+                type: integer
+                format: int32
+            X-Current-Page:
+              description: Number of the current page.
+              schema:
+                type: integer
+                format: int32
+            X-Total-Count:
+              description: Total number of results available.
+              schema:
+                type: integer
+                format: int32
+            X-Total-Pages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCollection'
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/EventCollection'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+        '422':
+          description: The following SIMs are expired and cannot be modified via API. Only extensions are permitted
+          content: {}
+      deprecated: false
+      security:
+      - BearerAuthentication: []
+  /v2/sims/{iccid}/events:
+    get:
+      tags:
+      - SIM Events
+      parameters:
+      - name: iccid
+        in: path
+        description: The ICCID of the SIM to be queried.
+        required: true
+        schema:
+          type: string
+        example: '8988280666000000000'
+      - name: page
+        in: query
+        description: Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.
+        allowEmptyValue: false
+        schema:
+          minimum: 1
+          exclusiveMinimum: false
+          type: integer
+          default: 1
+      - name: pageSize
+        in: query
+        description: The number of events per page, maximum allowed value is 1000.
+        allowEmptyValue: false
+        schema:
+          maximum: 1000
+          exclusiveMaximum: false
+          minimum: 1
+          exclusiveMinimum: false
+          type: integer
+          default: 10
+      summary: Get SIM Events
+      description: Get diagnostic/event information for a SIM card.
+      operationId: getEventsForSimUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+            application/json;charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+components:
+  schemas:
+    EndpointQuotaStatus:
+      type: object
+      description: '- 0 - "EXHAUSTED"
+
+        - 1 - "ACTIVE"
+
+        - 2 - "EXPIRED"
+
+        '
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 0
+          enum:
+          - 0
+          - 1
+          - 2
+        description:
+          type: string
+          example: EXHAUSTED
+          enum:
+          - EXHAUSTED
+          - ACTIVE
+          - EXPIRED
+      example:
+        id: 0
+        description: EXHAUSTED
+    NotFound:
+      description: Not found Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: Element not found
+          description: Error Message with more details goes here
+    EventQuotaDetail:
+      type: object
+      required:
+      - quota
+      properties:
+        quota:
+          oneOf:
+          - $ref: '#/components/schemas/QuotaDetail'
+          - $ref: '#/components/schemas/EndpointQuota'
+        regional_pool:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+            name:
+              type: string
+    Country:
+      type: object
+      description: Represents a Country.
+      properties:
+        id:
+          type: integer
+          minimum: 0
+          example: 74
+          description: The Country's id. The id is the same as in the legacy system. 0 represents the "ANY"-country.
+        name:
+          type: string
+          example: Germany
+          description: The name of the Country.
+        country_code:
+          example: '49'
+          type: string
+          description: The international phone number prefix. “49” is the one for Germany, “381” is the one for Serbia.
+        mcc:
+          type: string
+          example: '262'
+          description: An MCC (Mobile Country Code) is used in combination with an MNC (a combination known as an "MCC/MNC tuple") to uniquely identify a mobile network operator (carrier) using the GSM (including GSM-R), UMTS, LTE, and 5G public land mobile networks.
+        iso_code:
+          type: string
+          example: de
+          description: The ISO 3166 code.
+    PdpContextDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        country:
+          $ref: '#/components/schemas/Country'
+        volume:
+          type: object
+          properties:
+            tx:
+              type: number
+              format: double
+            rx:
+              type: number
+              format: double
+            total:
+              type: number
+              format: double
+        data_service_failure_cause:
+          type: string
+          enum:
+          - IMSI_NOT_FOUND
+          - APN_NOT_AUTHORIZED
+          - PDN_NOT_SUPPORTED
+          - IMEI_LOCK_BREACHED
+          - NO_QUOTA_FOUND
+          - QUOTA_EXPIRED
+          - QUOTA_EXHAUSTED
+          - MONTHLY_USAGE_LIMIT_EXCEEDED
+          - DATA_SERVICE_BARRED
+          - IMEI_LOCK_ENFORCED
+          - INACTIVITY_TIMER_EXPIRED
+        pdp_context:
+          type: object
+          properties:
+            tariff_id:
+              type: string
+            operator_id:
+              type: string
+            ratezone_id:
+              type: string
+            nsapi:
+              type: integer
+              format: int64
+            sgsn_control_plane_ip_address:
+              type: string
+            rac:
+              type: integer
+              format: int64
+              nullable: true
+            sgsn_data_plane_ip_address:
+              type: string
+            ci:
+              type: integer
+              format: int64
+              nullable: true
+            lac:
+              type: integer
+              format: int64
+              nullable: true
+            ue_ip_address:
+              type: string
+            mnc:
+              type: string
+            rat_type:
+              type: integer
+              format: int64
+            tx_teid_data_plane:
+              type: integer
+              format: int64
+            rx_teid:
+              type: integer
+              format: int64
+            ggsn_data_plane_ip_address:
+              type: string
+            mcc:
+              type: string
+            tx_teid_control_plane:
+              type: integer
+              format: int64
+            ggsn_control_plane_ip_address:
+              type: string
+            sac:
+              type: integer
+              format: int64
+              nullable: true
+            gtp_version:
+              type: integer
+              format: int64
+            apn:
+              type: string
+              nullable: true
+            imeisv:
+              type: string
+            imsi:
+              type: string
+            breakout_ip:
+              type: string
+              nullable: true
+            pdp_context_id:
+              type: integer
+              format: int64
+            tunnel_created:
+              type: string
+            region:
+              type: string
+            ipcan_session_id:
+              type: string
+              nullable: true
+            gtp_v1_uli:
+              type: object
+              properties:
+                lac:
+                  type: integer
+                  format: int64
+                ci:
+                  type: integer
+                  format: int64
+                sac:
+                  type: integer
+                  format: int64
+                rac:
+                  type: integer
+                  format: int64
+            gtp_v2_uli:
+              type: object
+              properties:
+                cgi:
+                  type: object
+                  properties:
+                    lac:
+                      type: integer
+                      format: int64
+                    ci:
+                      type: integer
+                      format: int64
+                sai:
+                  type: object
+                  properties:
+                    lac:
+                      type: integer
+                      format: int64
+                    sac:
+                      type: integer
+                      format: int64
+                rai:
+                  type: object
+                  properties:
+                    lac:
+                      type: integer
+                      format: int64
+                    rac:
+                      type: integer
+                      format: int64
+                tac:
+                  type: integer
+                  format: int64
+                eci:
+                  type: integer
+                  format: int64
+                lac:
+                  type: integer
+                  format: int64
+                menbi:
+                  type: integer
+                  format: int64
+                emenbi:
+                  type: integer
+                  format: int64
+    SIM_Event:
+      title: SIM Event
+      type: object
+      properties:
+        timestamp:
+          type: string
+          description: Timestamp of the event.
+          example: 2018-05-07T14:08:05.000+0000
+        event_type:
+          type: string
+          description: A text description of the event type.
+          example: Status of SIM changed from 'Issued' to 'Activated'
+        iccid:
+          type: string
+          description: ICCID of the SIM that triggered the event.
+          example: '8988280666000000000'
+        imei:
+          type: string
+          description: IMEI of the device that triggered the event.
+          example: 0000000000000018
+        imsi:
+          type: string
+          description: IMSI of the SIM that triggered the event.
+          example: '901405100000018'
+        country:
+          type: string
+          description: Mobile operator country where the event device is currently located.
+          example: Germany
+        operator:
+          type: string
+          description: Operator name of the network the device is currently attached to.
+          example: T-Mobile
+        mcc:
+          type: string
+          description: Mobile Country Code (MCC) of the operator network.
+          example: '262'
+        mnc:
+          type: string
+          description: Mobile Network Code (MNC) of the network the device is currently attached to.
+          example: '01'
+        alert:
+          type: boolean
+          description: Boolean flag determining if this event is treated as an alert.
+          example: false
+        event_severity:
+          type: string
+          description: Textual representation of the severity of the event.
+          example: Info
+      description: Information about a Event. Besides the timestamp and the event_type all other values are optional and might not be included in the actual responses.
+    LocationDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        country:
+          $ref: '#/components/schemas/Country'
+        tapcode:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              tapcode:
+                type: string
+        mnc:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              mnc:
+                type: string
+        update_location_failure_reason:
+          type: string
+          example: RAT_NOT_ALLOWED
+    InternalServerError:
+      description: Internal Server Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: InternalServerError
+        message:
+          type: string
+          example: Internal Server Error
+          description: Error Message with more details goes here
+    EventCollection:
+      title: Event Collection
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SIM_Event'
+        totalEvents:
+          type: integer
+          example: 10
+        totalPages:
+          type: integer
+          example: 5
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        event_type:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int32
+            description:
+              type: string
+          example:
+            id: 4
+            description: Delete PDP Context
+        timestamp:
+          type: string
+          format: date-time
+          example: '2023-03-01T12:07:09.000Z'
+        alert:
+          type: boolean
+          example: true
+        user:
+          type: string
+          example: user
+          nullable: true
+        description:
+          type: string
+          example: PDP Context deleted.
+        event_source:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int32
+            description:
+              type: string
+          example:
+            id: 0
+            description: Network
+        event_severity:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int32
+            description:
+              type: string
+          example:
+            id: 0
+            description: INFO
+        organisation:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int32
+            name:
+              type: string
+          example:
+            id: 2
+            name: Organisation_Name
+        endpoint:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int32
+            name:
+              type: string
+            ip_address:
+              type: string
+            imei:
+              type: string
+          example:
+            id: 1
+            name: Monitoring201
+            ip_address: 10.199.6.39
+            imei: '869951030000000'
+        sim:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int32
+            iccid:
+              type: string
+            msisdn:
+              type: string
+          example:
+            id: 110
+            iccid: '8988317000000000000'
+            msisdn: '456831700000000'
+        imsi:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int32
+            imsi:
+              type: string
+          example:
+            id: 110
+            imsi: '901430000000114'
+        detail:
+          description: Notification Details
+          oneOf:
+          - $ref: '#/components/schemas/LocationDetail'
+          - $ref: '#/components/schemas/PdpContextDetail'
+          - $ref: '#/components/schemas/EventQuotaDetail'
+          - $ref: '#/components/schemas/VpnDetail'
+    VpnDetail:
+      type: object
+      properties:
+        vpn_id:
+          type: integer
+          format: int64
+          description: OSS VPN ID
+        region:
+          type: string
+          description: AWS region code
+        client:
+          type: object
+          properties:
+            version:
+              type: string
+              description: OpenVPN Client version
+            private_ip:
+              type: string
+              description: Private IP address
+            public_ip:
+              type: string
+              description: Public IP address
+    EndpointQuota:
+      type: object
+      required:
+      - id
+      - status
+      - volume
+      - total_volume
+      - last_volume_added
+      - service
+      - threshold_percentage
+      - threshold_volume
+      - expiry_date
+      - created_at
+      - accumulated_total_volume
+      properties:
+        id:
+          type: integer
+          format: int64
+          minimum: 1
+        status:
+          $ref: '#/components/schemas/EndpointQuotaStatus'
+        volume:
+          type: number
+          format: double
+          description: 'Amount left i.e. still available for use:
+
+            - for SMS: the quantity/number of short messages
+
+            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
+
+            - can be negative
+
+            '
+        total_volume:
+          type: number
+          format: double
+          description: 'Initially provisioned volume or (in case the quota was topped up) the remaining volume at that time plus the
+
+            volume of the topup.
+
+            - for SMS: the quantity/number of short messages
+
+            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
+
+            '
+        accumulated_total_volume:
+          type: number
+          format: double
+          description: 'Sum of initially provisioned volume and all topup volumes.
+
+            '
+        last_volume_added:
+          type: number
+          format: double
+          description: 'Last volume amount added:
+
+            - for SMS: the quantity/number of short messages
+
+            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
+
+            '
+        service:
+          type: string
+          enum:
+          - sms
+          - data
+        threshold_percentage:
+          type: integer
+          format: int64
+          minimum: 0
+          maximum: 100
+          description: Percentage of the [total_volume] for triggering a threshold event.  The threshold event is triggered when the remaining volume reaches or falls below this percentage.
+        threshold_volume:
+          type: number
+          format: double
+          description: 'Calculated upon quota creation and upon quota topup as [total_volume] * [threshold_percentage]:
+
+            - for SMS: the quantity/number of short messages
+
+            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
+
+            '
+        expiry_date:
+          type: string
+          format: date-time
+          description: ISO8601 DateTime
+        created_at:
+          type: string
+          format: date-time
+          description: ISO8601 DateTime
+      example:
+        id: 1
+        status:
+          id: 0
+          description: EXHAUSTED
+        volume: 95.5
+        total_volume: 100
+        accumulated_total_volume: 100
+        last_volume_added: 0
+        service: data
+        threshold_percentage: 20
+        threshold_volume: 20
+        expiry_date: '2027-07-26T13:13:21Z'
+        created_at: '2024-08-24T13:13:21Z'
+    QuotaDetail:
+      type: object
+      properties:
+        volume:
+          type: number
+          format: float
+        threshold_volume:
+          type: number
+          format: float
+          deprecated: true
+        threshold_percentage:
+          type: integer
+          format: int32
+          deprecated: true
+        threshold:
+          type: object
+          properties:
+            percentage:
+              type: integer
+              format: int32
+            volume:
+              type: number
+              format: float
+        id:
+          type: integer
+          format: int64
+        expiry_date:
+          type: string
+          format: date-time
+        total_volume:
+          type: number
+          format: float
+  responses:
+    NotFound:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerError'
+  securitySchemes:
+    BasicAuthentication:
+      type: http
+      scheme: basic
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

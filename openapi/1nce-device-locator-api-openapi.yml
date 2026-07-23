@@ -1,0 +1,1209 @@
+openapi: 3.0.1
+info:
+  title: Authorization Administration Logs Device Locator API
+  description: Documentation of the authentication used for the 1NCE APIs.
+  contact:
+    name: 1NCE GmbH
+    url: https://1nce.com
+    email: info@1nce.com
+  version: v2.1.1
+servers:
+- url: https://api.1nce.com/management-api
+tags:
+- description: Get device positions and manage geofences
+  name: Device Locator
+paths:
+  /v1/locate/devices/{deviceId}/positions:
+    get:
+      description: 'Get positions of a specific device (maximum of last 7 days).
+
+        ![Creative Commons License](https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-sa.svg) [OpenCelliD Project](https://opencellid.org/) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)
+
+        '
+      parameters:
+      - description: The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          example: <device_id>
+          type: string
+        style: simple
+      - description: Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          maximum: 50
+          minimum: 1
+          type: integer
+        style: form
+      - description: Comma seperated list of device property keys in order. Prefix key with `-` to sort descending.
+        explode: false
+        in: query
+        name: sort
+        required: false
+        schema:
+          items:
+            default: -sampleTime
+            type: string
+          type: array
+        style: form
+      - description: Source of the position.
+        explode: true
+        in: query
+        name: source
+        required: false
+        schema:
+          enum:
+          - GPS
+          - CellTower
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: startDateTime
+        required: false
+        schema:
+          example: '2022-01-01T01:01:01.000Z'
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: endDateTime
+        required: false
+        schema:
+          example: '2022-01-01T01:01:02Z'
+          type: string
+        style: form
+      - description: Parameter for specifying the queried items per page.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 100
+          example: 10
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Use ALL for a paginated list of all positions and SUMMARY to get the first, last and some positions inbetween.
+        explode: true
+        in: query
+        name: mode
+        required: false
+        schema:
+          default: ALL
+          enum:
+          - ALL
+          - SUMMARY
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getResponseschema_8'
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get Device Positions
+      tags:
+      - Device Locator
+  /v1/locate/positions/latest:
+    get:
+      description: 'Get latest positions of customer devices (maximum of last 7 days). Only one latest position is possible for a single device independent of source: either Celltower or GPS. This means that `source` query parameter selection can lead to no latest position returned for some devices.
+
+        ![Creative Commons License](https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-sa.svg) [OpenCelliD Project](https://opencellid.org/) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)
+
+        '
+      parameters:
+      - description: The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.
+        explode: true
+        in: query
+        name: deviceId
+        required: false
+        schema:
+          example: <device_id>
+          type: string
+        style: form
+      - description: Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          maximum: 50
+          minimum: 1
+          type: integer
+        style: form
+      - description: Comma seperated list of device property keys in order. Prefix key with `-` to sort descending.
+        explode: false
+        in: query
+        name: sort
+        required: false
+        schema:
+          items:
+            default: -sampleTime
+            type: string
+          type: array
+        style: form
+      - description: Source of the position.
+        explode: true
+        in: query
+        name: source
+        required: false
+        schema:
+          enum:
+          - GPS
+          - CellTower
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: startDateTime
+        required: false
+        schema:
+          example: '2022-01-01T01:01:01.000Z'
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: endDateTime
+        required: false
+        schema:
+          example: '2022-01-01T01:01:02Z'
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: longitudeFrom
+        required: false
+        schema:
+          example: -10
+          maximum: 180
+          minimum: -180
+          type: number
+        style: form
+      - explode: true
+        in: query
+        name: longitudeTo
+        required: false
+        schema:
+          example: 10
+          maximum: 180
+          minimum: -180
+          type: number
+        style: form
+      - explode: true
+        in: query
+        name: latitudeFrom
+        required: false
+        schema:
+          example: -10
+          maximum: 90
+          minimum: -90
+          type: number
+        style: form
+      - explode: true
+        in: query
+        name: latitudeTo
+        required: false
+        schema:
+          example: 10
+          maximum: 90
+          minimum: -90
+          type: number
+        style: form
+      - description: Parameter for specifying the queried items per page.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 100
+          example: 10
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getLatestResponseschema'
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get Latest Devices Positions
+      tags:
+      - Device Locator
+  /v1/locate/devices/{deviceId}/activity:
+    get:
+      description: 'Get Cell location resolutions for one device (maximum of last 7 days).
+
+        ![Creative Commons License](https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-sa.svg) [OpenCelliD Project](https://opencellid.org/) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)
+
+        '
+      parameters:
+      - description: The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          example: <device_id>
+          type: string
+        style: simple
+      - description: Timestamp from where onwards the historic data should be queried. If not provided while "endDateTime" is provided defaults to 1 day before "endDateTime" timestamp, otherwise defaults to 1 day from now
+        explode: true
+        in: query
+        name: startDateTime
+        required: false
+        schema:
+          example: '2022-01-01T01:01:01.000Z'
+          type: string
+        style: form
+      - description: Timestamp up to where the historic data should be queried. If not provided while "startDateTime" is provided defaults to 1 day after "startDateTime" timestamp, otherwise defaults to now
+        explode: true
+        in: query
+        name: endDateTime
+        required: false
+        schema:
+          example: '2022-01-01T01:01:02.000Z'
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getResponseschema_9'
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get Device Celltower location resolutions
+      tags:
+      - Device Locator
+  /v1/locate/geofences:
+    get:
+      description: 'Get an overview of all geofences.
+
+        Rate limits apply for this endpoint. See [Rate Limit Policy](https://help.1nce.com/api/api-rate-limits/).
+
+        '
+      parameters:
+      - description: Parameter for specifying the queried items per page.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 10
+          example: 10
+          minimum: 1
+          type: integer
+        style: form
+      - description: Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          maximum: 50
+          minimum: 1
+          type: integer
+        style: form
+      - description: Name or Prefix of Geofence
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.
+        explode: true
+        in: query
+        name: deviceId
+        required: false
+        schema:
+          example: <device_id>
+          type: string
+        style: form
+      - description: scope of geofences
+        explode: true
+        in: query
+        name: scope
+        required: false
+        schema:
+          enum:
+          - global
+          - device
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAllGeofenceResponseschema'
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get all geofences
+      tags:
+      - Device Locator
+    post:
+      description: Create a new geofence.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postschema_5'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postGeofenceResponseschema'
+          description: Created
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Create geofence
+      tags:
+      - Device Locator
+  /v1/locate/geofences/{geofenceId}:
+    delete:
+      description: Delete a geofence.
+      parameters:
+      - description: unique geofence ID
+        explode: false
+        in: path
+        name: geofenceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Delete geofence
+      tags:
+      - Device Locator
+    get:
+      description: Get details of a geofence.
+      parameters:
+      - description: unique geofence ID
+        explode: false
+        in: path
+        name: geofenceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getGeofenceResponseschema'
+          description: OK
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Get a geofence
+      tags:
+      - Device Locator
+    patch:
+      description: Update an existing geofence
+      parameters:
+      - description: unique geofence ID
+        explode: false
+        in: path
+        name: geofenceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patchschema_1'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/patchGeofenceResponseschema'
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - BearerAuthentication: []
+      summary: Patch a geofence
+      tags:
+      - Device Locator
+components:
+  schemas:
+    EventTypes:
+      description: The event types to register to. Defaults to [ENTER, EXIT]
+      items:
+        enum:
+        - ENTER
+        - EXIT
+        type: string
+      maxItems: 2
+      minItems: 1
+      type: array
+      uniqueItems: true
+    Radius:
+      description: Circle geofence radius in meters
+      maximum: 30000
+      minimum: 50
+      type: number
+    getGeofenceResponseschema:
+      description: Response to get geofence request.
+      oneOf:
+      - $ref: '#/components/schemas/PolygonGeofenceData'
+      - $ref: '#/components/schemas/CircleGeofenceData'
+      title: Get Geofence Response
+    postGeofenceResponseschema:
+      description: Response to post geofence request.
+      oneOf:
+      - $ref: '#/components/schemas/postGeofenceResponseschema_oneOf'
+      - $ref: '#/components/schemas/postGeofenceResponseschema_oneOf_1'
+      title: Post Geofence Response
+    patchGeofenceResponseschema:
+      description: Patch request geofence response.
+      oneOf:
+      - $ref: '#/components/schemas/patchGeofenceResponseschema_oneOf'
+      - $ref: '#/components/schemas/patchGeofenceResponseschema_oneOf_1'
+      title: Patch Geofence Response
+    DeviceId:
+      description: The device for which this Geofence is bound to
+    getResponseschema_8_coordinates_inner:
+      additionalProperties: false
+      properties:
+        coordinate:
+          description: Coordinates of the specific position, in the following format [long, lat]
+          items:
+            type: number
+          maxItems: 2
+          minItems: 2
+          type: array
+        sampleTime:
+          description: Sample time of the position
+          format: date-time
+          type: string
+        source:
+          description: Source of the Position
+          enum:
+          - GPS
+          - CellTower
+          type: string
+        metadata:
+          description: Metadata of the Position
+          type: object
+      required:
+      - coordinate
+      - sampleTime
+      - source
+      type: object
+    postschema_5:
+      description: Request to create a geofence.
+      oneOf:
+      - $ref: '#/components/schemas/CreatePolygonGeofence'
+      - $ref: '#/components/schemas/CreateCircleGeofence'
+      title: Post Geofence Request
+      type: object
+    Coordinates:
+      description: The polygon geofence coordinates
+      items:
+        items:
+          description: Coordinates (long, lat)
+          items:
+            type: number
+          maxItems: 2
+          minItems: 2
+          type: array
+        minItems: 4
+        type: array
+      minItems: 1
+      type: array
+    patchschema_1:
+      additionalProperties: false
+      description: Request to update a geofence.
+      properties:
+        name:
+          $ref: '#/components/schemas/Name'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+      title: Patch Geofence Request
+      type: object
+    GenericGeofenceData:
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          $ref: '#/components/schemas/Name'
+        created:
+          $ref: '#/components/schemas/Created'
+        updated:
+          $ref: '#/components/schemas/Updated'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+        type:
+          $ref: '#/components/schemas/Type'
+      required:
+      - created
+      - deviceId
+      - id
+      - name
+      - type
+      - updated
+      type: object
+    CreateCircleGeofence:
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/Name'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+        type:
+          description: The type of geofence
+          type: string
+        radius:
+          $ref: '#/components/schemas/Radius'
+        center:
+          $ref: '#/components/schemas/Center'
+      required:
+      - name
+      - radius
+      - type
+      type: object
+    getResponseschema_8:
+      description: Get positions of a specific device.
+      properties:
+        page:
+          description: The current page number of the positions.
+          example: 1
+          type: number
+        pageAmount:
+          description: The total amount of pages needed to show all positions.
+          example: 10
+          type: number
+        coordinates:
+          description: Positions of the device
+          items:
+            $ref: '#/components/schemas/getResponseschema_8_coordinates_inner'
+          type: array
+      required:
+      - coordinates
+      - page
+      - pageAmount
+      title: Device Positions response
+      type: object
+    patchGeofenceResponseschema_oneOf:
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          $ref: '#/components/schemas/Name'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+        type:
+          description: The type of geofence
+          type: string
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+        created:
+          $ref: '#/components/schemas/Created'
+        updated:
+          $ref: '#/components/schemas/Updated'
+      required:
+      - coordinates
+      - created
+      - deviceId
+      - eventSources
+      - eventTypes
+      - id
+      - name
+      - updated
+      type: object
+    CircleGeofenceData:
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          $ref: '#/components/schemas/Name'
+        created:
+          $ref: '#/components/schemas/Created'
+        updated:
+          $ref: '#/components/schemas/Updated'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+        type:
+          description: The type of geofence
+          type: string
+        radius:
+          $ref: '#/components/schemas/Radius'
+        center:
+          $ref: '#/components/schemas/Center'
+      required:
+      - center
+      - created
+      - deviceId
+      - eventSources
+      - eventTypes
+      - id
+      - name
+      - radius
+      - type
+      - updated
+      type: object
+    getResponseschema_9_items_inner_towerLocation:
+      description: Coordinates of the specific celltower
+      properties:
+        longitude:
+          type: number
+        latitude:
+          type: number
+      type: object
+    unauthorizedRequestResponse:
+      description: An API error response in case of an HTTP Unauthorized Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 401
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unauthorized
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Unauthorized Request
+      type: object
+    notFoundResponse:
+      description: An API error response when a resource is Not Found.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 404
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Not Found
+          type: string
+        errors:
+          description: Detailed error information
+          items:
+            type: object
+          type: array
+      title: Not Found
+      type: object
+    getLatestResponseschema:
+      description: Get latest positions of customer devices.
+      properties:
+        page:
+          description: The current page number of the positions.
+          example: 1
+          type: number
+        pageAmount:
+          description: The total amount of pages needed to show all positions.
+          example: 10
+          type: number
+        coordinates:
+          description: Latest positions of each customer device
+          items:
+            $ref: '#/components/schemas/getLatestResponseschema_coordinates_inner'
+          type: array
+      required:
+      - coordinates
+      - page
+      - pageAmount
+      title: Latest Devices Positions response
+      type: object
+    getAllGeofenceResponseschema:
+      description: Response to get all geofences request.
+      properties:
+        items:
+          description: List of geofences
+          items:
+            $ref: '#/components/schemas/GenericGeofenceData'
+          type: array
+        page:
+          description: Current page number
+          minimum: 1
+          type: number
+        pageAmount:
+          description: Total number of pages
+          minimum: 1
+          type: number
+      required:
+      - items
+      - page
+      - pageAmount
+      title: Get All Geofences Response
+      type: object
+    EventSources:
+      description: The sources of coordinates to evaluate towards geofence. Defaults to [GPS, CellTower]
+      items:
+        enum:
+        - CellTower
+        - GPS
+        type: string
+      maxItems: 2
+      minItems: 1
+      type: array
+      uniqueItems: true
+    CreatePolygonGeofence:
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/Name'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+        type:
+          description: The type of geofence
+          type: string
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+      required:
+      - coordinates
+      - name
+      - type
+      type: object
+    getResponseschema_9:
+      description: Get Cell location resolutions for one device (maximum of last 7 days).
+      properties:
+        items:
+          description: Location resolutions of the device
+          items:
+            $ref: '#/components/schemas/getResponseschema_9_items_inner'
+          type: array
+      required:
+      - items
+      title: Device Celltower Location Resolutions response
+      type: object
+    getResponseschema_9_items_inner:
+      additionalProperties: false
+      properties:
+        iccid:
+          description: Device identifier
+          type: string
+        towerLocation:
+          $ref: '#/components/schemas/getResponseschema_9_items_inner_towerLocation'
+        towerMetadata:
+          $ref: '#/components/schemas/getResponseschema_9_items_inner_towerMetadata'
+        sampleTime:
+          description: Sample time of the location record
+          format: date-time
+          type: string
+        resolutionMetadata:
+          description: Metadata of the location resolution
+          type: object
+        radioAccessType:
+          description: Radio access type
+          enum:
+          - 3G
+          - 2G
+          - 3.5G
+          - 4G
+          - NB-IoT
+          - LTE-M
+          type: string
+        resolutionMode:
+          description: Location resolver used to resolve location
+          enum:
+          - BASIC
+          - ADVANCED
+          type: string
+        locationResolutionStatus:
+          description: Status of location resolution attempt
+          enum:
+          - SUCCEEDED
+          - FAILED
+          type: string
+      required:
+      - iccid
+      - locationResolutionStatus
+      - radioAccessType
+      - resolutionMode
+      - sampleTime
+      type: object
+    Updated:
+      description: When the Geofence was last updated
+      format: date-time
+      type: string
+    PolygonGeofenceData:
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          $ref: '#/components/schemas/Name'
+        created:
+          $ref: '#/components/schemas/Created'
+        updated:
+          $ref: '#/components/schemas/Updated'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+        type:
+          description: The type of geofence
+          type: string
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+      required:
+      - coordinates
+      - created
+      - deviceId
+      - eventSources
+      - eventTypes
+      - id
+      - name
+      - type
+      - updated
+      type: object
+    Type:
+      description: The type of Geofence
+      enum:
+      - polygon
+      - circle
+      type: string
+    getResponseschema_9_items_inner_towerMetadata:
+      description: Identifier attributes of the tower
+      properties:
+        MCC:
+          type: string
+        MNC:
+          type: string
+        LAC:
+          type: string
+        CellID:
+          type: string
+      type: object
+    patchGeofenceResponseschema_oneOf_1:
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          $ref: '#/components/schemas/Name'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+        type:
+          description: The type of geofence
+          type: string
+        radius:
+          $ref: '#/components/schemas/Radius'
+        center:
+          $ref: '#/components/schemas/Center'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+        created:
+          $ref: '#/components/schemas/Created'
+        updated:
+          $ref: '#/components/schemas/Updated'
+      required:
+      - center
+      - created
+      - deviceId
+      - eventSources
+      - eventTypes
+      - id
+      - name
+      - radius
+      - updated
+      type: object
+    Name:
+      description: The name of the geofence
+      maxLength: 50
+      type: string
+    serverErrorResponse:
+      description: An API error response in case of a Server Side Error.
+      properties:
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unknown Error
+          - Server Error
+          type: string
+        errors:
+          description: List of errors encountered while calling the API.
+          items:
+            type: object
+          type: array
+      title: Server Error
+      type: object
+    getLatestResponseschema_coordinates_inner:
+      additionalProperties: false
+      properties:
+        deviceId:
+          description: The unique ID of the device.
+          example: <device_id>
+          type: string
+        coordinate:
+          description: Coordinates of the specific position, in the following format [long, lat]
+          items:
+            type: number
+          maxItems: 2
+          minItems: 2
+          type: array
+        sampleTime:
+          description: Sample time of the position
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        source:
+          description: Source of the Position
+          enum:
+          - GPS
+          - CellTower
+          type: string
+        metadata:
+          description: Metadata of the Position
+          type: object
+      required:
+      - coordinate
+      - deviceId
+      - sampleTime
+      - source
+      type: object
+    Id:
+      description: Identifier of the geofence
+      type: string
+    postGeofenceResponseschema_oneOf:
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          $ref: '#/components/schemas/Name'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+        type:
+          description: The type of geofence
+          type: string
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+      required:
+      - coordinates
+      - deviceId
+      - eventSources
+      - eventTypes
+      - id
+      - name
+      - type
+      type: object
+    Created:
+      description: When the Geofence was created
+      format: date-time
+      type: string
+    postGeofenceResponseschema_oneOf_1:
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          $ref: '#/components/schemas/Name'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+        type:
+          description: The type of geofence
+          type: string
+        radius:
+          $ref: '#/components/schemas/Radius'
+        center:
+          $ref: '#/components/schemas/Center'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+      required:
+      - center
+      - deviceId
+      - eventSources
+      - eventTypes
+      - id
+      - name
+      - radius
+      - type
+      type: object
+    Center:
+      description: The coordinates of the center of the geofence (long, lat)
+      items:
+        type: number
+      maxItems: 2
+      minItems: 2
+      type: array
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
+      type: object
+    forbiddenResponse:
+      description: An API error response in case of an HTTP Forbidden Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 403
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Forbidden
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Forbidden Request
+      type: object
+  responses:
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unauthorizedRequestResponse'
+      description: Unauthorized
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/notFoundResponse'
+      description: Not Found Error
+    InternalServerError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/serverErrorResponse'
+      description: Internal Server Error
+    ForbiddenError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/forbiddenResponse'
+      description: Forbidden
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/badRequestResponse'
+      description: Bad Request
+  securitySchemes:
+    BasicAuthentication:
+      type: http
+      scheme: basic
+      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.
