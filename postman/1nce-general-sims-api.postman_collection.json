@@ -1,0 +1,3105 @@
+{
+  "info": {
+    "_postman_id": "b21b1534-699d-4e6d-af23-40cc37e3a9d0",
+    "name": "Authorization Administration Logs General SIMs API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:04.000Z",
+    "updatedAt": "2026-07-28T00:27:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b21b1534-699d-4e6d-af23-40cc37e3a9d0"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "sims",
+          "item": [
+            {
+              "name": "{iccid}",
+              "item": [
+                {
+                  "name": "status",
+                  "item": [
+                    {
+                      "name": "Get SIM Status",
+                      "id": "dfb6808a-1b9b-4589-87f4-ebc30f5669d2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c06e5ced-02c4-4268-8bfb-797737a3a0e0",
+                              "key": "iccid",
+                              "value": "<string>",
+                              "description": "(Required) The ICCID of the SIM to be queried."
+                            }
+                          ]
+                        },
+                        "description": "Query the current status of a specific SIM card."
+                      },
+                      "response": [
+                        {
+                          "id": "1885966e-e7a2-4a00-af9f-094e0283d992",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"ATTACHED\",\n  \"location\": {\n    \"iccid\": \"<string>\",\n    \"imsi\": \"<string>\",\n    \"last_updated\": \"<dateTime>\",\n    \"last_updated_gprs\": \"<dateTime>\",\n    \"sgsn_number\": \"<string>\",\n    \"vlr_number\": \"<string>\",\n    \"vlr_number_np\": \"<string>\",\n    \"msc_number_np\": \"<string>\",\n    \"sgsn_number_np\": \"<string>\",\n    \"operator_id\": \"<string>\",\n    \"msc\": \"<string>\",\n    \"sgsn_ip_address\": \"<string>\",\n    \"operator\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"country\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"iso-code\": \"<string>\"\n      }\n    },\n    \"country\": {\n      \"country_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"country_code\": \"<string>\",\n      \"mcc\": \"<string>\",\n      \"iso-code\": \"<string>\",\n      \"latitude\": \"<string>\",\n      \"longitude\": \"<string>\"\n    }\n  },\n  \"pdp_context\": {\n    \"pdp_context_id\": \"<string>\",\n    \"endpoint_id\": \"<string>\",\n    \"tariff_profile_id\": \"<string>\",\n    \"tariff_id\": \"<string>\",\n    \"ratezone_id\": \"<string>\",\n    \"organisation_id\": \"<string>\",\n    \"imsi_id\": \"<string>\",\n    \"imsi\": \"<string>\",\n    \"sim_id\": \"<string>\",\n    \"teid_data_plane\": \"<string>\",\n    \"teid_control_plane\": \"<string>\",\n    \"gtp_version\": \"<string>\",\n    \"nsapi\": \"<string>\",\n    \"sgsn_control_plane_ip_address\": \"<string>\",\n    \"sgsn_data_plane_ip_address\": \"<string>\",\n    \"ggsn_control_plane_ip_address\": \"<string>\",\n    \"ggsn_data_plane_ip_address\": \"<string>\",\n    \"created\": \"<dateTime>\",\n    \"mcc\": \"<string>\",\n    \"mnc\": \"<string>\",\n    \"operator_id\": \"<string>\",\n    \"lac\": \"<string>\",\n    \"ci\": \"<string>\",\n    \"ue_ip_address\": \"<string>\",\n    \"imeisv\": \"<string>\",\n    \"duration\": \"<string>\",\n    \"rat_type\": {\n      \"rat_type_id\": \"<string>\",\n      \"description\": \"4G\"\n    }\n  },\n  \"services\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-07-28T00:27:05.000Z",
+                          "updatedAt": "2026-07-28T00:27:05.000Z",
+                          "uid": "35240-1885966e-e7a2-4a00-af9f-094e0283d992"
+                        },
+                        {
+                          "id": "10953c79-a16e-42f6-b842-87137b9a32b7",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:05.000Z",
+                          "updatedAt": "2026-07-28T00:27:05.000Z",
+                          "uid": "35240-10953c79-a16e-42f6-b842-87137b9a32b7"
+                        },
+                        {
+                          "id": "ba8faecb-9586-4177-a733-1f3457d20e44",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:05.000Z",
+                          "updatedAt": "2026-07-28T00:27:05.000Z",
+                          "uid": "35240-ba8faecb-9586-4177-a733-1f3457d20e44"
+                        },
+                        {
+                          "id": "48c0e771-1861-4399-a630-abaa2e51e179",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:05.000Z",
+                          "updatedAt": "2026-07-28T00:27:05.000Z",
+                          "uid": "35240-48c0e771-1861-4399-a630-abaa2e51e179"
+                        },
+                        {
+                          "id": "360f46f1-9d3d-4e74-88d3-777f9cf24f81",
+                          "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:05.000Z",
+                          "updatedAt": "2026-07-28T00:27:05.000Z",
+                          "uid": "35240-360f46f1-9d3d-4e74-88d3-777f9cf24f81"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-dfb6808a-1b9b-4589-87f4-ebc30f5669d2"
+                    }
+                  ],
+                  "id": "32030dc9-6cef-4c29-81a5-f5b557baca54",
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-32030dc9-6cef-4c29-81a5-f5b557baca54"
+                },
+                {
+                  "name": "Get Single SIM",
+                  "id": "98eebca4-03a3-465d-be3f-6ebd7f3b3f73",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims/:iccid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims",
+                        ":iccid"
+                      ],
+                      "variable": [
+                        {
+                          "id": "cadf70a1-bb01-454c-b729-bd065fb3b968",
+                          "key": "iccid",
+                          "value": "<string>",
+                          "description": "(Required) The ICCID of the SIM to be queried."
+                        }
+                      ]
+                    },
+                    "description": "Get detail information (status, label, MSISDN, IMSI, ICCID, Lifetime, etc.) for a singe SIM based on the ICCID."
+                  },
+                  "response": [
+                    {
+                      "id": "d277d7f2-f30e-4d62-b87a-a4f409cd424d",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"iccid\": \"<string>\",\n  \"iccid_with_luhn\": \"<string>\",\n  \"imsi\": \"<string>\",\n  \"imsi_2\": \"<string>\",\n  \"current_imsi\": \"<string>\",\n  \"msisdn\": \"<string>\",\n  \"imei\": \"<string>\",\n  \"imei_lock\": \"<boolean>\",\n  \"status\": \"Disabled\",\n  \"activation_date\": \"<string>\",\n  \"ip_address\": \"<string>\",\n  \"current_quota\": \"<number>\",\n  \"quota_status\": {\n    \"id\": \"<number>\",\n    \"description\": \"<string>\",\n    \"threshold_reached_date\": \"<dateTime>\",\n    \"quota_exceeded_date\": \"<dateTime>\"\n  },\n  \"current_quota_SMS\": \"<number>\",\n  \"quota_status_SMS\": {\n    \"id\": \"<number>\",\n    \"description\": \"<string>\",\n    \"threshold_reached_date\": \"<dateTime>\",\n    \"quota_exceeded_date\": \"<dateTime>\"\n  },\n  \"label\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-d277d7f2-f30e-4d62-b87a-a4f409cd424d"
+                    },
+                    {
+                      "id": "247562b6-c4fa-4547-ba5c-d2c2fba81549",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-247562b6-c4fa-4547-ba5c-d2c2fba81549"
+                    },
+                    {
+                      "id": "06cf1a73-19c6-46dc-b67c-8ab8348a68fb",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-06cf1a73-19c6-46dc-b67c-8ab8348a68fb"
+                    },
+                    {
+                      "id": "25f87fdc-edca-4ffc-ac04-5942ede0b0cb",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-25f87fdc-edca-4ffc-ac04-5942ede0b0cb"
+                    },
+                    {
+                      "id": "812d7ef1-8097-42ca-a82d-2aa92c9ed87d",
+                      "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-812d7ef1-8097-42ca-a82d-2aa92c9ed87d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-98eebca4-03a3-465d-be3f-6ebd7f3b3f73"
+                },
+                {
+                  "name": "Create Single SIM Configuration",
+                  "id": "c664b800-0ea8-4747-9154-ce383380bdfb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"iccid\": \"<string>\",\n  \"status\": \"Enabled\",\n  \"label\": \"<string>\",\n  \"imei_lock\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims/:iccid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims",
+                        ":iccid"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4eea7189-f646-4704-b2c4-5ff6524e7d28",
+                          "key": "iccid",
+                          "value": "<string>",
+                          "description": "(Required) The ICCID of the SIM to be changed."
+                        }
+                      ]
+                    },
+                    "description": "Modification of a SIM card to activate, deactivate, change label, change IMEI lock, etc."
+                  },
+                  "response": [
+                    {
+                      "id": "598a9679-bac1-44e6-b177-bb5e6f2724f6",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccid\": \"<string>\",\n  \"status\": \"Enabled\",\n  \"label\": \"<string>\",\n  \"imei_lock\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-598a9679-bac1-44e6-b177-bb5e6f2724f6"
+                    },
+                    {
+                      "id": "54f29f43-05da-43aa-9bd4-06c7b30b7dca",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccid\": \"<string>\",\n  \"status\": \"Enabled\",\n  \"label\": \"<string>\",\n  \"imei_lock\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-54f29f43-05da-43aa-9bd4-06c7b30b7dca"
+                    },
+                    {
+                      "id": "318f1ae3-fdbe-4c67-84fe-8432e0c2e12f",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccid\": \"<string>\",\n  \"status\": \"Enabled\",\n  \"label\": \"<string>\",\n  \"imei_lock\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-318f1ae3-fdbe-4c67-84fe-8432e0c2e12f"
+                    },
+                    {
+                      "id": "af8395fd-d473-4c83-85a1-dca8c58b159f",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccid\": \"<string>\",\n  \"status\": \"Enabled\",\n  \"label\": \"<string>\",\n  \"imei_lock\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-af8395fd-d473-4c83-85a1-dca8c58b159f"
+                    },
+                    {
+                      "id": "405c0e6e-5a09-4ecd-afac-cbfbd9c9765a",
+                      "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccid\": \"<string>\",\n  \"status\": \"Enabled\",\n  \"label\": \"<string>\",\n  \"imei_lock\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-405c0e6e-5a09-4ecd-afac-cbfbd9c9765a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-c664b800-0ea8-4747-9154-ce383380bdfb"
+                }
+              ],
+              "id": "0fe68087-0403-4a61-add7-5add3af2db73",
+              "createdAt": "2026-07-28T00:27:05.000Z",
+              "updatedAt": "2026-07-28T00:27:05.000Z",
+              "uid": "35240-0fe68087-0403-4a61-add7-5add3af2db73"
+            },
+            {
+              "name": "simTransfer",
+              "item": [
+                {
+                  "name": "Create SIM Transfer",
+                  "id": "09536a88-a821-41d5-ad16-086572531491",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"target_organisation\": \"<integer>\",\n  \"iccid_ranges\": [\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    },\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    }\n  ],\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims/simTransfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims",
+                        "simTransfer"
+                      ]
+                    },
+                    "description": "Trigger a SIM transfer workflow - if possible - for moving SIMs from one customer to another."
+                  },
+                  "response": [
+                    {
+                      "id": "d1f65a3f-c4e2-4475-9119-fa47fcedc6c7",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"target_organisation\": \"<integer>\",\n  \"iccid_ranges\": [\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    },\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    }\n  ],\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/simTransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "simTransfer"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-d1f65a3f-c4e2-4475-9119-fa47fcedc6c7"
+                    },
+                    {
+                      "id": "2cd41581-8acf-44f1-a74d-d7c8800a7e38",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"target_organisation\": \"<integer>\",\n  \"iccid_ranges\": [\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    },\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    }\n  ],\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/simTransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "simTransfer"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-2cd41581-8acf-44f1-a74d-d7c8800a7e38"
+                    },
+                    {
+                      "id": "5b81fcce-71d6-419d-99bf-2eb698f3393d",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"target_organisation\": \"<integer>\",\n  \"iccid_ranges\": [\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    },\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    }\n  ],\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/simTransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "simTransfer"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-5b81fcce-71d6-419d-99bf-2eb698f3393d"
+                    },
+                    {
+                      "id": "8b116d4e-c7aa-4097-9d33-5132f495669b",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"target_organisation\": \"<integer>\",\n  \"iccid_ranges\": [\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    },\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    }\n  ],\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/simTransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "simTransfer"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-8b116d4e-c7aa-4097-9d33-5132f495669b"
+                    },
+                    {
+                      "id": "1776d741-ae8a-4a8a-921e-163c4fc898ce",
+                      "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"target_organisation\": \"<integer>\",\n  \"iccid_ranges\": [\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    },\n    {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\"\n    }\n  ],\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/simTransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "simTransfer"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-1776d741-ae8a-4a8a-921e-163c4fc898ce"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-09536a88-a821-41d5-ad16-086572531491"
+                }
+              ],
+              "id": "60ebaa2a-2682-4e4e-ab42-ea85170ecaf4",
+              "createdAt": "2026-07-28T00:27:05.000Z",
+              "updatedAt": "2026-07-28T00:27:05.000Z",
+              "uid": "35240-60ebaa2a-2682-4e4e-ab42-ea85170ecaf4"
+            },
+            {
+              "name": "Get All SIMs",
+              "id": "488597f2-89a8-41dc-81a8-d78762c2826f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/sims?page=1&pageSize=10&q=<string>&sort=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "sims"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100.",
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> \"ip_address:127.0.0.1,imei:4711\"</p>",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort values in a comma seperated list. Prepend \"-\" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>\"ip_address,-imei\"</p>",
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Get a List of SIMs for the current account."
+              },
+              "response": [
+                {
+                  "id": "7d3c7985-a716-41fb-938b-e1d1aad10914",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims?page=1&pageSize=10&q=<string>&sort=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> \"ip_address:127.0.0.1,imei:4711\"</p>",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort values in a comma seperated list. Prepend \"-\" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>\"ip_address,-imei\"</p>",
+                          "key": "sort",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of results per page.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Count-Per-Page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of the current page.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Current-Page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Total number of results available.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Total-Count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Total number of pages available.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Total-Pages",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"iccid\": \"<string>\",\n    \"iccid_with_luhn\": \"<string>\",\n    \"imsi\": \"<string>\",\n    \"imsi_2\": \"<string>\",\n    \"current_imsi\": \"<string>\",\n    \"msisdn\": \"<string>\",\n    \"imei\": \"<string>\",\n    \"imei_lock\": \"<boolean>\",\n    \"status\": \"Enabled\",\n    \"activation_date\": \"<string>\",\n    \"ip_address\": \"<string>\",\n    \"current_quota\": \"<number>\",\n    \"quota_status\": {\n      \"id\": \"<number>\",\n      \"description\": \"<string>\",\n      \"threshold_reached_date\": \"<dateTime>\",\n      \"quota_exceeded_date\": \"<dateTime>\"\n    },\n    \"current_quota_SMS\": \"<number>\",\n    \"quota_status_SMS\": {\n      \"id\": \"<number>\",\n      \"description\": \"<string>\",\n      \"threshold_reached_date\": \"<dateTime>\",\n      \"quota_exceeded_date\": \"<dateTime>\"\n    },\n    \"label\": \"<string>\"\n  },\n  {\n    \"iccid\": \"<string>\",\n    \"iccid_with_luhn\": \"<string>\",\n    \"imsi\": \"<string>\",\n    \"imsi_2\": \"<string>\",\n    \"current_imsi\": \"<string>\",\n    \"msisdn\": \"<string>\",\n    \"imei\": \"<string>\",\n    \"imei_lock\": \"<boolean>\",\n    \"status\": \"Disabled\",\n    \"activation_date\": \"<string>\",\n    \"ip_address\": \"<string>\",\n    \"current_quota\": \"<number>\",\n    \"quota_status\": {\n      \"id\": \"<number>\",\n      \"description\": \"<string>\",\n      \"threshold_reached_date\": \"<dateTime>\",\n      \"quota_exceeded_date\": \"<dateTime>\"\n    },\n    \"current_quota_SMS\": \"<number>\",\n    \"quota_status_SMS\": {\n      \"id\": \"<number>\",\n      \"description\": \"<string>\",\n      \"threshold_reached_date\": \"<dateTime>\",\n      \"quota_exceeded_date\": \"<dateTime>\"\n    },\n    \"label\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-7d3c7985-a716-41fb-938b-e1d1aad10914"
+                },
+                {
+                  "id": "95e43b35-cde5-420c-9fa6-cc1bbc32398b",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims?page=1&pageSize=10&q=<string>&sort=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> \"ip_address:127.0.0.1,imei:4711\"</p>",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort values in a comma seperated list. Prepend \"-\" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>\"ip_address,-imei\"</p>",
+                          "key": "sort",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-95e43b35-cde5-420c-9fa6-cc1bbc32398b"
+                },
+                {
+                  "id": "0b351842-91c1-4070-bcc7-05a4cab29d0c",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims?page=1&pageSize=10&q=<string>&sort=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> \"ip_address:127.0.0.1,imei:4711\"</p>",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort values in a comma seperated list. Prepend \"-\" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>\"ip_address,-imei\"</p>",
+                          "key": "sort",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-0b351842-91c1-4070-bcc7-05a4cab29d0c"
+                },
+                {
+                  "id": "984e746e-8947-4b02-a4c4-aea412fe6537",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims?page=1&pageSize=10&q=<string>&sort=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> \"ip_address:127.0.0.1,imei:4711\"</p>",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort values in a comma seperated list. Prepend \"-\" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>\"ip_address,-imei\"</p>",
+                          "key": "sort",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-984e746e-8947-4b02-a4c4-aea412fe6537"
+                },
+                {
+                  "id": "ac958808-61e4-4984-8c5a-ef30349d5a50",
+                  "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims?page=1&pageSize=10&q=<string>&sort=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> \"ip_address:127.0.0.1,imei:4711\"</p>",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort values in a comma seperated list. Prepend \"-\" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>\"ip_address,-imei\"</p>",
+                          "key": "sort",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-ac958808-61e4-4984-8c5a-ef30349d5a50"
+                }
+              ],
+              "createdAt": "2026-07-28T00:27:05.000Z",
+              "updatedAt": "2026-07-28T00:27:05.000Z",
+              "uid": "35240-488597f2-89a8-41dc-81a8-d78762c2826f"
+            },
+            {
+              "name": "Create Multiple SIM Configuration",
+              "id": "a9539c34-7f0d-4764-9b75-dcf8b5be4ac7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"iccid\": \"<string>\",\n    \"status\": \"Enabled\",\n    \"label\": \"<string>\",\n    \"imei_lock\": false\n  },\n  {\n    \"iccid\": \"<string>\",\n    \"status\": \"Enabled\",\n    \"label\": \"<string>\",\n    \"imei_lock\": false\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/sims",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "sims"
+                  ]
+                },
+                "description": "Change a list of SIMS for activate, deactivate, label, IMEI lock, etc. The actual change will be done asynchronously. A positive-response only means that the SIM changes has been successfully placed into the queue."
+              },
+              "response": [
+                {
+                  "id": "2b019cc4-12ce-46aa-b3ca-85bcc78f2354",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"iccid\": \"<string>\",\n    \"status\": \"Enabled\",\n    \"label\": \"<string>\",\n    \"imei_lock\": false\n  },\n  {\n    \"iccid\": \"<string>\",\n    \"status\": \"Enabled\",\n    \"label\": \"<string>\",\n    \"imei_lock\": false\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-2b019cc4-12ce-46aa-b3ca-85bcc78f2354"
+                },
+                {
+                  "id": "24c4dcc3-36c6-43e1-b128-30730da7f271",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"iccid\": \"<string>\",\n    \"status\": \"Enabled\",\n    \"label\": \"<string>\",\n    \"imei_lock\": false\n  },\n  {\n    \"iccid\": \"<string>\",\n    \"status\": \"Enabled\",\n    \"label\": \"<string>\",\n    \"imei_lock\": false\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-24c4dcc3-36c6-43e1-b128-30730da7f271"
+                },
+                {
+                  "id": "cb5912c8-f102-4925-b450-9034e561fe63",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"iccid\": \"<string>\",\n    \"status\": \"Enabled\",\n    \"label\": \"<string>\",\n    \"imei_lock\": false\n  },\n  {\n    \"iccid\": \"<string>\",\n    \"status\": \"Enabled\",\n    \"label\": \"<string>\",\n    \"imei_lock\": false\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-cb5912c8-f102-4925-b450-9034e561fe63"
+                },
+                {
+                  "id": "6391109b-8b94-4433-8a2e-21201ada8b7d",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"iccid\": \"<string>\",\n    \"status\": \"Enabled\",\n    \"label\": \"<string>\",\n    \"imei_lock\": false\n  },\n  {\n    \"iccid\": \"<string>\",\n    \"status\": \"Enabled\",\n    \"label\": \"<string>\",\n    \"imei_lock\": false\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-6391109b-8b94-4433-8a2e-21201ada8b7d"
+                },
+                {
+                  "id": "7207e269-349c-4395-88d9-f072cf97fb9c",
+                  "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"iccid\": \"<string>\",\n    \"status\": \"Enabled\",\n    \"label\": \"<string>\",\n    \"imei_lock\": false\n  },\n  {\n    \"iccid\": \"<string>\",\n    \"status\": \"Enabled\",\n    \"label\": \"<string>\",\n    \"imei_lock\": false\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-7207e269-349c-4395-88d9-f072cf97fb9c"
+                }
+              ],
+              "createdAt": "2026-07-28T00:27:05.000Z",
+              "updatedAt": "2026-07-28T00:27:05.000Z",
+              "uid": "35240-a9539c34-7f0d-4764-9b75-dcf8b5be4ac7"
+            }
+          ],
+          "id": "55ce8d6f-6e86-468f-97f5-b6d588aea6b5",
+          "createdAt": "2026-07-28T00:27:05.000Z",
+          "updatedAt": "2026-07-28T00:27:05.000Z",
+          "uid": "35240-55ce8d6f-6e86-468f-97f5-b6d588aea6b5"
+        }
+      ],
+      "id": "78fad4c1-e1ba-4be1-b336-ce134360d5a9",
+      "createdAt": "2026-07-28T00:27:05.000Z",
+      "updatedAt": "2026-07-28T00:27:05.000Z",
+      "uid": "35240-78fad4c1-e1ba-4be1-b336-ce134360d5a9"
+    },
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "sims",
+          "item": [
+            {
+              "name": "{iccid}",
+              "item": [
+                {
+                  "name": "quota",
+                  "item": [
+                    {
+                      "name": "data",
+                      "item": [
+                        {
+                          "name": "Get SIM Data Quota",
+                          "id": "12ef4747-00e3-48c6-82e4-c3d4b328f5a8",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/quota/data",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "quota",
+                                "data"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f067f882-738a-46ce-9436-1c494c29da13",
+                                  "key": "iccid",
+                                  "value": "<string>",
+                                  "description": "(Required) The ICCID of the SIM to be queried."
+                                }
+                              ]
+                            },
+                            "description": "Get the current data quota of a particular SIM."
+                          },
+                          "response": [
+                            {
+                              "id": "a724c0f6-b286-4e56-bcf9-6a1134a6ef4d",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/sims/:iccid/quota/data",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "sims",
+                                    ":iccid",
+                                    "quota",
+                                    "data"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "iccid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<long>\",\n  \"status\": {\n    \"id\": 2,\n    \"description\": \"EXHAUSTED\"\n  },\n  \"volume\": \"<double>\",\n  \"total_volume\": \"<double>\",\n  \"accumulated_total_volume\": \"<double>\",\n  \"last_volume_added\": \"<double>\",\n  \"service\": \"sms\",\n  \"threshold_percentage\": \"<long>\",\n  \"threshold_volume\": \"<double>\",\n  \"expiry_date\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T00:27:05.000Z",
+                              "updatedAt": "2026-07-28T00:27:05.000Z",
+                              "uid": "35240-a724c0f6-b286-4e56-bcf9-6a1134a6ef4d"
+                            },
+                            {
+                              "id": "390a500d-ce5c-4984-89e6-d2394a7685bf",
+                              "name": "Not found error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/sims/:iccid/quota/data",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "sims",
+                                    ":iccid",
+                                    "quota",
+                                    "data"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "iccid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T00:27:05.000Z",
+                              "updatedAt": "2026-07-28T00:27:05.000Z",
+                              "uid": "35240-390a500d-ce5c-4984-89e6-d2394a7685bf"
+                            },
+                            {
+                              "id": "7447ca90-e4c6-4296-9dce-d8bb7a63f89a",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/sims/:iccid/quota/data",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "sims",
+                                    ":iccid",
+                                    "quota",
+                                    "data"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "iccid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T00:27:05.000Z",
+                              "updatedAt": "2026-07-28T00:27:05.000Z",
+                              "uid": "35240-7447ca90-e4c6-4296-9dce-d8bb7a63f89a"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T00:27:05.000Z",
+                          "updatedAt": "2026-07-28T00:27:05.000Z",
+                          "uid": "35240-12ef4747-00e3-48c6-82e4-c3d4b328f5a8"
+                        }
+                      ],
+                      "id": "c3df8380-16c5-474c-a42c-970bf616746a",
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-c3df8380-16c5-474c-a42c-970bf616746a"
+                    },
+                    {
+                      "name": "sms",
+                      "item": [
+                        {
+                          "name": "Get SIM SMS Quota",
+                          "id": "001a068d-69cf-4926-a324-c56504928a36",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/quota/sms",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "quota",
+                                "sms"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "82bc920b-c1e1-494f-8d34-52b1966fdf35",
+                                  "key": "iccid",
+                                  "value": "<string>",
+                                  "description": "(Required) The ICCID of the SIM to be queried."
+                                }
+                              ]
+                            },
+                            "description": "Get the current SMS quota of a particular SIM."
+                          },
+                          "response": [
+                            {
+                              "id": "440b30e2-7218-46f8-b2f7-9e78337f8ad9",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/sims/:iccid/quota/sms",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "sims",
+                                    ":iccid",
+                                    "quota",
+                                    "sms"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "iccid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<long>\",\n  \"status\": {\n    \"id\": 2,\n    \"description\": \"EXHAUSTED\"\n  },\n  \"volume\": \"<double>\",\n  \"total_volume\": \"<double>\",\n  \"accumulated_total_volume\": \"<double>\",\n  \"last_volume_added\": \"<double>\",\n  \"service\": \"sms\",\n  \"threshold_percentage\": \"<long>\",\n  \"threshold_volume\": \"<double>\",\n  \"expiry_date\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T00:27:05.000Z",
+                              "updatedAt": "2026-07-28T00:27:05.000Z",
+                              "uid": "35240-440b30e2-7218-46f8-b2f7-9e78337f8ad9"
+                            },
+                            {
+                              "id": "f869d398-64ce-4376-86b6-e5dcfc41dced",
+                              "name": "Not found error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/sims/:iccid/quota/sms",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "sims",
+                                    ":iccid",
+                                    "quota",
+                                    "sms"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "iccid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T00:27:05.000Z",
+                              "updatedAt": "2026-07-28T00:27:05.000Z",
+                              "uid": "35240-f869d398-64ce-4376-86b6-e5dcfc41dced"
+                            },
+                            {
+                              "id": "4aaaaaf5-5a9f-4be2-a9b2-5e952471665b",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/sims/:iccid/quota/sms",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "sims",
+                                    ":iccid",
+                                    "quota",
+                                    "sms"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "iccid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T00:27:05.000Z",
+                              "updatedAt": "2026-07-28T00:27:05.000Z",
+                              "uid": "35240-4aaaaaf5-5a9f-4be2-a9b2-5e952471665b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T00:27:05.000Z",
+                          "updatedAt": "2026-07-28T00:27:05.000Z",
+                          "uid": "35240-001a068d-69cf-4926-a324-c56504928a36"
+                        }
+                      ],
+                      "id": "8c81a6f9-3c2b-4912-bde5-77d8a9c1f647",
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-8c81a6f9-3c2b-4912-bde5-77d8a9c1f647"
+                    }
+                  ],
+                  "id": "a55e27ad-df2d-4046-bcee-3df61b5808e7",
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-a55e27ad-df2d-4046-bcee-3df61b5808e7"
+                },
+                {
+                  "name": "status",
+                  "item": [
+                    {
+                      "name": "Get SIM Status",
+                      "id": "2b6be62b-1f7e-4831-9790-d1ee435c31b7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/sims/:iccid/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "sims",
+                            ":iccid",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "id": "84c3f799-34c2-43e9-9aee-6f1290879ee0",
+                              "key": "iccid",
+                              "value": "<string>",
+                              "description": "(Required) The ICCID of the SIM to be queried."
+                            }
+                          ]
+                        },
+                        "description": "Query the current status of a specific SIM card.\n\nThis API retrieves connectivity details of a SIM. The following is a list of possible statuses: \n* `ATTACHED`:\n    The Endpoint has successfully attached to the Home Core network in the past.\n    The device will be shown as `ATTACHED` until the visited network has signaled that the device is inactive/offline.\n    Usually the visited network informs the Core Network within 1-2 days after a device went offline.\n\n* `ONLINE`:\n    The Endpoint has an active data connection\n\n* `OFFLINE`:\n    The Endpoint has not attached to the core network yet or the device was previously attached but the visited network signaled that the device had no activity for the last 1-2 days.\n    Note: The device is not reachable for external services (e.g. SMS, MSRN lookup).\n\n* `BLOCKED`:\n    The Endpoint is blocked\n"
+                      },
+                      "response": [
+                        {
+                          "id": "b66ac7f4-fa92-401c-8247-b36d0f929bdb",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": {\n    \"description\": \"ONLINE\"\n  },\n  \"services\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"data_traffic_limit_state\": {\n    \"description\": \"NOT_REACHED\"\n  },\n  \"location\": {\n    \"iccid\": \"<string>\",\n    \"imsi\": \"<string>\",\n    \"last_updated\": \"<string>\",\n    \"sgsn_number\": \"<string>\",\n    \"vlr_number\": \"<string>\",\n    \"operator_id\": \"<string>\",\n    \"msc\": \"<string>\",\n    \"sgsn_ip_address\": \"<string>\",\n    \"mme_name\": \"<string>\",\n    \"mme_realm\": \"<string>\",\n    \"sgsn_name\": \"<string>\",\n    \"sgsn_realm\": \"<string>\",\n    \"operator\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"country\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"iso_code\": \"<string>\"\n      },\n      \"mnc\": \"<string>\"\n    },\n    \"country\": {\n      \"country_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"country_code\": \"<string>\",\n      \"mcc\": \"<string>\",\n      \"iso_code\": \"<string>\"\n    }\n  },\n  \"pdp_contexts\": [\n    {\n      \"pdp_context_id\": \"<string>\",\n      \"endpoint_id\": \"<string>\",\n      \"tariff_id\": \"<string>\",\n      \"ratezone_id\": \"<string>\",\n      \"organisation_id\": \"<string>\",\n      \"tx_teid_data_plane\": \"<string>\",\n      \"tx_teid_control_plane\": \"<string>\",\n      \"rx_teid\": \"<string>\",\n      \"rx_teid_data_plane\": \"<string>\",\n      \"rx_teid_control_plane\": \"<string>\",\n      \"gtp_version\": \"<string>\",\n      \"nsapi\": \"<string>\",\n      \"sgsn_control_plane_ip_address\": \"<string>\",\n      \"sgsn_data_plane_ip_address\": \"<string>\",\n      \"ggsn_control_plane_ip_address\": \"<string>\",\n      \"ggsn_data_plane_ip_address\": \"<string>\",\n      \"created\": \"<string>\",\n      \"mcc\": \"<string>\",\n      \"mnc\": \"<string>\",\n      \"lac\": \"<string>\",\n      \"ci\": \"<string>\",\n      \"sac\": \"<string>\",\n      \"rac\": \"<string>\",\n      \"ue_ip_address\": \"<string>\",\n      \"imeisv\": \"<string>\",\n      \"rat_type\": {\n        \"rat_type_id\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"region\": \"<string>\",\n      \"apn\": \"<string>\",\n      \"sim_id\": \"<string>\",\n      \"imsi_id\": \"<string>\",\n      \"imsi\": \"<string>\",\n      \"operator_id\": \"<string>\",\n      \"gtp_v1_uli\": {\n        \"lac\": \"<string>\",\n        \"ci\": \"<string>\",\n        \"sac\": \"<string>\",\n        \"rac\": \"<string>\"\n      },\n      \"gtp_v2_uli\": {\n        \"cgi\": {\n          \"lac\": \"<string>\",\n          \"ci\": \"<string>\"\n        },\n        \"sai\": {\n          \"lac\": \"<string>\",\n          \"sac\": \"<string>\"\n        },\n        \"rai\": {\n          \"lac\": \"<string>\",\n          \"rac\": \"<string>\"\n        },\n        \"tac\": \"<string>\",\n        \"eci\": \"<string>\",\n        \"lac\": \"<string>\",\n        \"menbi\": \"<string>\",\n        \"emenbi\": \"<string>\"\n      },\n      \"ipcan_session_id\": \"<string>\"\n    },\n    {\n      \"pdp_context_id\": \"<string>\",\n      \"endpoint_id\": \"<string>\",\n      \"tariff_id\": \"<string>\",\n      \"ratezone_id\": \"<string>\",\n      \"organisation_id\": \"<string>\",\n      \"tx_teid_data_plane\": \"<string>\",\n      \"tx_teid_control_plane\": \"<string>\",\n      \"rx_teid\": \"<string>\",\n      \"rx_teid_data_plane\": \"<string>\",\n      \"rx_teid_control_plane\": \"<string>\",\n      \"gtp_version\": \"<string>\",\n      \"nsapi\": \"<string>\",\n      \"sgsn_control_plane_ip_address\": \"<string>\",\n      \"sgsn_data_plane_ip_address\": \"<string>\",\n      \"ggsn_control_plane_ip_address\": \"<string>\",\n      \"ggsn_data_plane_ip_address\": \"<string>\",\n      \"created\": \"<string>\",\n      \"mcc\": \"<string>\",\n      \"mnc\": \"<string>\",\n      \"lac\": \"<string>\",\n      \"ci\": \"<string>\",\n      \"sac\": \"<string>\",\n      \"rac\": \"<string>\",\n      \"ue_ip_address\": \"<string>\",\n      \"imeisv\": \"<string>\",\n      \"rat_type\": {\n        \"rat_type_id\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"region\": \"<string>\",\n      \"apn\": \"<string>\",\n      \"sim_id\": \"<string>\",\n      \"imsi_id\": \"<string>\",\n      \"imsi\": \"<string>\",\n      \"operator_id\": \"<string>\",\n      \"gtp_v1_uli\": {\n        \"lac\": \"<string>\",\n        \"ci\": \"<string>\",\n        \"sac\": \"<string>\",\n        \"rac\": \"<string>\"\n      },\n      \"gtp_v2_uli\": {\n        \"cgi\": {\n          \"lac\": \"<string>\",\n          \"ci\": \"<string>\"\n        },\n        \"sai\": {\n          \"lac\": \"<string>\",\n          \"sac\": \"<string>\"\n        },\n        \"rai\": {\n          \"lac\": \"<string>\",\n          \"rac\": \"<string>\"\n        },\n        \"tac\": \"<string>\",\n        \"eci\": \"<string>\",\n        \"lac\": \"<string>\",\n        \"menbi\": \"<string>\",\n        \"emenbi\": \"<string>\"\n      },\n      \"ipcan_session_id\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T00:27:05.000Z",
+                          "updatedAt": "2026-07-28T00:27:05.000Z",
+                          "uid": "35240-b66ac7f4-fa92-401c-8247-b36d0f929bdb"
+                        },
+                        {
+                          "id": "8c40a652-eab6-4f64-9bf7-732fef6d22fd",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:05.000Z",
+                          "updatedAt": "2026-07-28T00:27:05.000Z",
+                          "uid": "35240-8c40a652-eab6-4f64-9bf7-732fef6d22fd"
+                        },
+                        {
+                          "id": "2a839e26-5801-4c4b-b4cf-f6f5cb9cc5e8",
+                          "name": "Not found error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:05.000Z",
+                          "updatedAt": "2026-07-28T00:27:05.000Z",
+                          "uid": "35240-2a839e26-5801-4c4b-b4cf-f6f5cb9cc5e8"
+                        },
+                        {
+                          "id": "f9630f8b-f963-48ac-870e-c40cffcab1bc",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:05.000Z",
+                          "updatedAt": "2026-07-28T00:27:05.000Z",
+                          "uid": "35240-f9630f8b-f963-48ac-870e-c40cffcab1bc"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-2b6be62b-1f7e-4831-9790-d1ee435c31b7"
+                    }
+                  ],
+                  "id": "d63e25cf-78ba-4988-b8ed-7f74785aabf9",
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-d63e25cf-78ba-4988-b8ed-7f74785aabf9"
+                },
+                {
+                  "name": "Get Single SIM",
+                  "id": "170acee0-7fd3-42ac-ac59-2b7f270cfb71",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/sims/:iccid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "sims",
+                        ":iccid"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2a9be73a-3e20-4672-aafa-393ff8a20ee3",
+                          "key": "iccid",
+                          "value": "<string>",
+                          "description": "(Required) The ICCID of the SIM to be queried."
+                        }
+                      ]
+                    },
+                    "description": "Get detail information (status, label, MSISDN, IMSI, ICCID, Lifetime, etc.) for a singe SIM based on the ICCID."
+                  },
+                  "response": [
+                    {
+                      "id": "f6f11288-5b66-43ab-bc05-edeb16ebdc84",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"iccid\": \"<string>\",\n  \"iccid_with_luhn\": \"<string>\",\n  \"imsi\": \"<string>\",\n  \"imsi_2\": \"<string>\",\n  \"current_imsi\": \"<string>\",\n  \"msisdn\": \"<string>\",\n  \"imei\": \"<string>\",\n  \"imei_lock\": \"<boolean>\",\n  \"status\": \"Disabled\",\n  \"activation_date\": \"<string>\",\n  \"ip_address\": \"<string>\",\n  \"current_quota\": \"<number>\",\n  \"quota_status\": {\n    \"id\": \"<number>\",\n    \"description\": \"<string>\",\n    \"threshold_reached_date\": \"<dateTime>\",\n    \"quota_exceeded_date\": \"<dateTime>\"\n  },\n  \"current_quota_SMS\": \"<number>\",\n  \"quota_status_SMS\": {\n    \"id\": \"<number>\",\n    \"description\": \"<string>\",\n    \"threshold_reached_date\": \"<dateTime>\",\n    \"quota_exceeded_date\": \"<dateTime>\"\n  },\n  \"label\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-f6f11288-5b66-43ab-bc05-edeb16ebdc84"
+                    },
+                    {
+                      "id": "dcd1e4a1-1247-4ed6-97b8-9358b3e1082e",
+                      "name": "Not found error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-dcd1e4a1-1247-4ed6-97b8-9358b3e1082e"
+                    },
+                    {
+                      "id": "ed6fb265-27c6-4207-a528-f8df68bc4eda",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-ed6fb265-27c6-4207-a528-f8df68bc4eda"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-170acee0-7fd3-42ac-ac59-2b7f270cfb71"
+                },
+                {
+                  "name": "Modify SIM card",
+                  "id": "e8945cbc-ce7b-401b-9a06-e3f426a9f8e2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"iccid\": \"<string>\",\n  \"label\": \"<string>\",\n  \"imei_lock\": \"<boolean>\",\n  \"status\": \"Enabled\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/sims/:iccid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "sims",
+                        ":iccid"
+                      ],
+                      "variable": [
+                        {
+                          "id": "205dfb71-f7d5-4205-9359-be922284067f",
+                          "key": "iccid",
+                          "value": "<string>",
+                          "description": "(Required) The ICCID of the SIM to be changed."
+                        }
+                      ]
+                    },
+                    "description": "Modification of a SIM card to activate, deactivate, change label, change IMEI lock, etc."
+                  },
+                  "response": [
+                    {
+                      "id": "e3c4697c-d43c-449a-b4b1-b1c1527f439e",
+                      "name": "No Content",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccid\": \"<string>\",\n  \"label\": \"<string>\",\n  \"imei_lock\": \"<boolean>\",\n  \"status\": \"Enabled\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-e3c4697c-d43c-449a-b4b1-b1c1527f439e"
+                    },
+                    {
+                      "id": "ff8a94a2-369a-4b57-893b-6cc2f280d8ad",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccid\": \"<string>\",\n  \"label\": \"<string>\",\n  \"imei_lock\": \"<boolean>\",\n  \"status\": \"Enabled\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-ff8a94a2-369a-4b57-893b-6cc2f280d8ad"
+                    },
+                    {
+                      "id": "685b5056-617f-4861-abd7-b2c197dd08b2",
+                      "name": "Not found error",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccid\": \"<string>\",\n  \"label\": \"<string>\",\n  \"imei_lock\": \"<boolean>\",\n  \"status\": \"Enabled\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-685b5056-617f-4861-abd7-b2c197dd08b2"
+                    },
+                    {
+                      "id": "94a1b32e-58f8-4a0d-ad46-b2110b177720",
+                      "name": "Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccid\": \"<string>\",\n  \"label\": \"<string>\",\n  \"imei_lock\": \"<boolean>\",\n  \"status\": \"Enabled\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-94a1b32e-58f8-4a0d-ad46-b2110b177720"
+                    },
+                    {
+                      "id": "0399d003-87dd-41a6-aa8e-7139c4fb3ada",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccid\": \"<string>\",\n  \"label\": \"<string>\",\n  \"imei_lock\": \"<boolean>\",\n  \"status\": \"Enabled\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/sims/:iccid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "sims",
+                            ":iccid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "iccid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:27:05.000Z",
+                      "updatedAt": "2026-07-28T00:27:05.000Z",
+                      "uid": "35240-0399d003-87dd-41a6-aa8e-7139c4fb3ada"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-e8945cbc-ce7b-401b-9a06-e3f426a9f8e2"
+                }
+              ],
+              "id": "d5019ccd-12b7-46da-b2c4-04e9c4f96433",
+              "createdAt": "2026-07-28T00:27:05.000Z",
+              "updatedAt": "2026-07-28T00:27:05.000Z",
+              "uid": "35240-d5019ccd-12b7-46da-b2c4-04e9c4f96433"
+            },
+            {
+              "name": "Get All SIMs",
+              "id": "bf146c5f-9fc4-4695-8e39-74738374ecbb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/sims?page=1&pageSize=10&q=<string>&sort=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "sims"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100.",
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> \"ip_address:127.0.0.1,imei:4711\"</p>",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort values in a comma seperated list. Prepend \"-\" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>\"ip_address,-imei\"</p>",
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Get a List of SIMs for the current account."
+              },
+              "response": [
+                {
+                  "id": "99720ea4-7025-447a-abc2-ef3284c1a0ae",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/sims?page=1&pageSize=10&q=<string>&sort=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "sims"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> \"ip_address:127.0.0.1,imei:4711\"</p>",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort values in a comma seperated list. Prepend \"-\" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>\"ip_address,-imei\"</p>",
+                          "key": "sort",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of results per page.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Count-Per-Page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of the current page.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Current-Page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Total number of results available.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Total-Count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Total number of pages available.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Total-Pages",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"iccid\": \"<string>\",\n    \"iccid_with_luhn\": \"<string>\",\n    \"imsi\": \"<string>\",\n    \"imsi_2\": \"<string>\",\n    \"current_imsi\": \"<string>\",\n    \"msisdn\": \"<string>\",\n    \"imei\": \"<string>\",\n    \"imei_lock\": \"<boolean>\",\n    \"status\": \"Disabled\",\n    \"activation_date\": \"<string>\",\n    \"ip_address\": \"<string>\",\n    \"current_quota\": \"<number>\",\n    \"quota_status\": {\n      \"id\": \"<number>\",\n      \"description\": \"<string>\",\n      \"threshold_reached_date\": \"<dateTime>\",\n      \"quota_exceeded_date\": \"<dateTime>\"\n    },\n    \"current_quota_SMS\": \"<number>\",\n    \"quota_status_SMS\": {\n      \"id\": \"<number>\",\n      \"description\": \"<string>\",\n      \"threshold_reached_date\": \"<dateTime>\",\n      \"quota_exceeded_date\": \"<dateTime>\"\n    },\n    \"label\": \"<string>\"\n  },\n  {\n    \"iccid\": \"<string>\",\n    \"iccid_with_luhn\": \"<string>\",\n    \"imsi\": \"<string>\",\n    \"imsi_2\": \"<string>\",\n    \"current_imsi\": \"<string>\",\n    \"msisdn\": \"<string>\",\n    \"imei\": \"<string>\",\n    \"imei_lock\": \"<boolean>\",\n    \"status\": \"Enabled\",\n    \"activation_date\": \"<string>\",\n    \"ip_address\": \"<string>\",\n    \"current_quota\": \"<number>\",\n    \"quota_status\": {\n      \"id\": \"<number>\",\n      \"description\": \"<string>\",\n      \"threshold_reached_date\": \"<dateTime>\",\n      \"quota_exceeded_date\": \"<dateTime>\"\n    },\n    \"current_quota_SMS\": \"<number>\",\n    \"quota_status_SMS\": {\n      \"id\": \"<number>\",\n      \"description\": \"<string>\",\n      \"threshold_reached_date\": \"<dateTime>\",\n      \"quota_exceeded_date\": \"<dateTime>\"\n    },\n    \"label\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-99720ea4-7025-447a-abc2-ef3284c1a0ae"
+                },
+                {
+                  "id": "cc5d9699-b473-45bb-bc13-83b22e50a2d9",
+                  "name": "Not found error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/sims?page=1&pageSize=10&q=<string>&sort=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "sims"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> \"ip_address:127.0.0.1,imei:4711\"</p>",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort values in a comma seperated list. Prepend \"-\" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>\"ip_address,-imei\"</p>",
+                          "key": "sort",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-cc5d9699-b473-45bb-bc13-83b22e50a2d9"
+                },
+                {
+                  "id": "d0b556db-646f-4941-96d1-722cfc31e466",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/sims?page=1&pageSize=10&q=<string>&sort=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "sims"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> \"ip_address:127.0.0.1,imei:4711\"</p>",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort values in a comma seperated list. Prepend \"-\" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>\"ip_address,-imei\"</p>",
+                          "key": "sort",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T00:27:05.000Z",
+                  "updatedAt": "2026-07-28T00:27:05.000Z",
+                  "uid": "35240-d0b556db-646f-4941-96d1-722cfc31e466"
+                }
+              ],
+              "createdAt": "2026-07-28T00:27:05.000Z",
+              "updatedAt": "2026-07-28T00:27:05.000Z",
+              "uid": "35240-bf146c5f-9fc4-4695-8e39-74738374ecbb"
+            }
+          ],
+          "id": "ff9c0cc3-e6c9-4656-927e-cb019c68649d",
+          "createdAt": "2026-07-28T00:27:05.000Z",
+          "updatedAt": "2026-07-28T00:27:05.000Z",
+          "uid": "35240-ff9c0cc3-e6c9-4656-927e-cb019c68649d"
+        }
+      ],
+      "id": "4570b7eb-66c9-4b07-881d-9b7f974bb0d0",
+      "createdAt": "2026-07-28T00:27:05.000Z",
+      "updatedAt": "2026-07-28T00:27:05.000Z",
+      "uid": "35240-4570b7eb-66c9-4b07-881d-9b7f974bb0d0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

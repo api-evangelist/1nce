@@ -1,0 +1,905 @@
+{
+  "info": {
+    "_postman_id": "e068bc15-ad53-4c4a-a76a-1a17ac3c767a",
+    "name": "Authorization Administration Logs API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:26:56.000Z",
+    "updatedAt": "2026-07-28T00:26:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e068bc15-ad53-4c4a-a76a-1a17ac3c767a"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "administrationLogs",
+          "item": [
+            {
+              "name": "stats",
+              "item": [
+                {
+                  "name": "Get Administration Logs Statistics",
+                  "id": "dd6ed52e-9037-4b57-97dd-898a547a6464",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/administrationLogs/stats?timezone=Europe/Amsterdam&category=info",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "administrationLogs",
+                        "stats"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Specify the needed timezone as string parameter (e.g., Europe/Amsterdam) for the resulting query output.",
+                          "key": "timezone",
+                          "value": "Europe/Amsterdam"
+                        },
+                        {
+                          "description": "Specify the category as string parameter for the resulting query output.",
+                          "key": "category",
+                          "value": "info"
+                        }
+                      ]
+                    },
+                    "description": "Get the administration logs statistics for the current organization."
+                  },
+                  "response": [
+                    {
+                      "id": "59f12fd1-c86b-4647-8318-6a9f6e596bc9",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/administrationLogs/stats?timezone=Europe/Amsterdam&category=info",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "administrationLogs",
+                            "stats"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Specify the needed timezone as string parameter (e.g., Europe/Amsterdam) for the resulting query output.",
+                              "key": "timezone",
+                              "value": "Europe/Amsterdam"
+                            },
+                            {
+                              "description": "Specify the category as string parameter for the resulting query output.",
+                              "key": "category",
+                              "value": "info"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"administrationLogs\": [\n    {\n      \"amount\": \"<integer>\",\n      \"day\": \"<date>\"\n    },\n    {\n      \"amount\": \"<integer>\",\n      \"day\": \"<date>\"\n    }\n  ],\n  \"totalUniqueDevices\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T00:26:57.000Z",
+                      "updatedAt": "2026-07-28T00:26:57.000Z",
+                      "uid": "35240-59f12fd1-c86b-4647-8318-6a9f6e596bc9"
+                    },
+                    {
+                      "id": "992ad82b-2376-4b0a-9e6f-3cece8372fcc",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/administrationLogs/stats?timezone=Europe/Amsterdam&category=info",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "administrationLogs",
+                            "stats"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Specify the needed timezone as string parameter (e.g., Europe/Amsterdam) for the resulting query output.",
+                              "key": "timezone",
+                              "value": "Europe/Amsterdam"
+                            },
+                            {
+                              "description": "Specify the category as string parameter for the resulting query output.",
+                              "key": "category",
+                              "value": "info"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                      "createdAt": "2026-07-28T00:26:57.000Z",
+                      "updatedAt": "2026-07-28T00:26:57.000Z",
+                      "uid": "35240-992ad82b-2376-4b0a-9e6f-3cece8372fcc"
+                    },
+                    {
+                      "id": "98a40ff0-f187-42b8-9061-111e8f38d2fa",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/administrationLogs/stats?timezone=Europe/Amsterdam&category=info",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "administrationLogs",
+                            "stats"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Specify the needed timezone as string parameter (e.g., Europe/Amsterdam) for the resulting query output.",
+                              "key": "timezone",
+                              "value": "Europe/Amsterdam"
+                            },
+                            {
+                              "description": "Specify the category as string parameter for the resulting query output.",
+                              "key": "category",
+                              "value": "info"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                      "createdAt": "2026-07-28T00:26:57.000Z",
+                      "updatedAt": "2026-07-28T00:26:57.000Z",
+                      "uid": "35240-98a40ff0-f187-42b8-9061-111e8f38d2fa"
+                    },
+                    {
+                      "id": "b001ae65-f40c-4b8d-a4ab-87f7fc575ad4",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/administrationLogs/stats?timezone=Europe/Amsterdam&category=info",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "administrationLogs",
+                            "stats"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Specify the needed timezone as string parameter (e.g., Europe/Amsterdam) for the resulting query output.",
+                              "key": "timezone",
+                              "value": "Europe/Amsterdam"
+                            },
+                            {
+                              "description": "Specify the category as string parameter for the resulting query output.",
+                              "key": "category",
+                              "value": "info"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusText\": \"Server Error\"\n}",
+                      "createdAt": "2026-07-28T00:26:57.000Z",
+                      "updatedAt": "2026-07-28T00:26:57.000Z",
+                      "uid": "35240-b001ae65-f40c-4b8d-a4ab-87f7fc575ad4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:26:57.000Z",
+                  "updatedAt": "2026-07-28T00:26:57.000Z",
+                  "uid": "35240-dd6ed52e-9037-4b57-97dd-898a547a6464"
+                }
+              ],
+              "id": "09cb873a-be76-4c17-8e85-f62a86f2a4b1",
+              "createdAt": "2026-07-28T00:26:57.000Z",
+              "updatedAt": "2026-07-28T00:26:57.000Z",
+              "uid": "35240-09cb873a-be76-4c17-8e85-f62a86f2a4b1"
+            },
+            {
+              "name": "{adminLogId}",
+              "item": [
+                {
+                  "name": "payload",
+                  "item": [
+                    {
+                      "name": "Get Administration Log Payload",
+                      "id": "1311c1f5-3325-4b3e-b89f-15cec0675398",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/x-uri"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/administrationLogs/:adminLogId/payload",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "administrationLogs",
+                            ":adminLogId",
+                            "payload"
+                          ],
+                          "variable": [
+                            {
+                              "id": "270ba523-7421-4c60-9acc-0583e3c2ba20",
+                              "key": "adminLogId",
+                              "value": "<string>",
+                              "description": "(Required) Unique Id of the administration log for which the payload should be queried."
+                            }
+                          ]
+                        },
+                        "description": "Get a URL pointing to a single administration log payload. The received URL will trigger a download."
+                      },
+                      "response": [
+                        {
+                          "id": "e00989da-3a5d-40d9-ab19-f8d3da9dc21a",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/x-uri"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/administrationLogs/:adminLogId/payload",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "administrationLogs",
+                                ":adminLogId",
+                                "payload"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "adminLogId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/x-uri"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-07-28T00:26:57.000Z",
+                          "updatedAt": "2026-07-28T00:26:57.000Z",
+                          "uid": "35240-e00989da-3a5d-40d9-ab19-f8d3da9dc21a"
+                        },
+                        {
+                          "id": "b7700c84-efa7-423a-93c5-6460db098602",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/administrationLogs/:adminLogId/payload",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "administrationLogs",
+                                ":adminLogId",
+                                "payload"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "adminLogId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                          "createdAt": "2026-07-28T00:26:57.000Z",
+                          "updatedAt": "2026-07-28T00:26:57.000Z",
+                          "uid": "35240-b7700c84-efa7-423a-93c5-6460db098602"
+                        },
+                        {
+                          "id": "e6866326-0c17-42ab-a86b-8d236a606f4b",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/administrationLogs/:adminLogId/payload",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "administrationLogs",
+                                ":adminLogId",
+                                "payload"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "adminLogId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                          "createdAt": "2026-07-28T00:26:57.000Z",
+                          "updatedAt": "2026-07-28T00:26:57.000Z",
+                          "uid": "35240-e6866326-0c17-42ab-a86b-8d236a606f4b"
+                        },
+                        {
+                          "id": "86e8ece9-9b21-4007-8faa-df5c4c3293fa",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/administrationLogs/:adminLogId/payload",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "administrationLogs",
+                                ":adminLogId",
+                                "payload"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "adminLogId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                          "createdAt": "2026-07-28T00:26:57.000Z",
+                          "updatedAt": "2026-07-28T00:26:57.000Z",
+                          "uid": "35240-86e8ece9-9b21-4007-8faa-df5c4c3293fa"
+                        },
+                        {
+                          "id": "1f258d01-a9f1-46d2-aefe-4f824e882384",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/administrationLogs/:adminLogId/payload",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "administrationLogs",
+                                ":adminLogId",
+                                "payload"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "adminLogId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusText\": \"Server Error\"\n}",
+                          "createdAt": "2026-07-28T00:26:57.000Z",
+                          "updatedAt": "2026-07-28T00:26:57.000Z",
+                          "uid": "35240-1f258d01-a9f1-46d2-aefe-4f824e882384"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:26:57.000Z",
+                      "updatedAt": "2026-07-28T00:26:57.000Z",
+                      "uid": "35240-1311c1f5-3325-4b3e-b89f-15cec0675398"
+                    }
+                  ],
+                  "id": "37f109d1-af8e-4c3b-b8eb-b196cafa87ba",
+                  "createdAt": "2026-07-28T00:26:57.000Z",
+                  "updatedAt": "2026-07-28T00:26:57.000Z",
+                  "uid": "35240-37f109d1-af8e-4c3b-b8eb-b196cafa87ba"
+                }
+              ],
+              "id": "1467f72a-b630-499d-9aab-08ae248aa588",
+              "createdAt": "2026-07-28T00:26:57.000Z",
+              "updatedAt": "2026-07-28T00:26:57.000Z",
+              "uid": "35240-1467f72a-b630-499d-9aab-08ae248aa588"
+            },
+            {
+              "name": "Get Administration Logs",
+              "id": "5c35e03a-c52e-4a19-888b-02b6f51d86de",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/administrationLogs?page=1&pageSize=10&q=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "administrationLogs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Parameter for specifying the queried items per page.",
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>geofenceId</li><li>category</li><li>iccid</li><li>type</li><li>startDateTime (UTC)</li><li>endDateTime (UTC)</li></ul><p><b>Example:</b> \"type:device,iccid:ICCID,startDateTime:2022-11-14T16:04:38.000Z\"</p>",
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Get a list of the administration logs regarding the organization."
+              },
+              "response": [
+                {
+                  "id": "9f6acdac-bf27-459f-afea-7c324e3efd1e",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/administrationLogs?page=1&pageSize=10&q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "administrationLogs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Parameter for specifying the queried items per page.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>geofenceId</li><li>category</li><li>iccid</li><li>type</li><li>startDateTime (UTC)</li><li>endDateTime (UTC)</li></ul><p><b>Example:</b> \"type:device,iccid:ICCID,startDateTime:2022-11-14T16:04:38.000Z\"</p>",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"customerId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"message\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"type\": \"LOCATION\",\n      \"imsi\": \"115797056554375\",\n      \"payloadReference\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"iccid\": \"2947286941022499951\",\n      \"category\": \"error\",\n      \"description\": \"<string>\",\n      \"traceId\": \"<string>\",\n      \"geofenceId\": \"<string>\",\n      \"integrationId\": \"<string>\"\n    },\n    {\n      \"customerId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"message\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"type\": \"DEVICE\",\n      \"imsi\": \"601696316682557\",\n      \"payloadReference\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"iccid\": \"0606236258300986833\",\n      \"category\": \"error\",\n      \"description\": \"<string>\",\n      \"traceId\": \"<string>\",\n      \"geofenceId\": \"<string>\",\n      \"integrationId\": \"<string>\"\n    }\n  ],\n  \"page\": \"<number>\",\n  \"pageAmount\": \"<number>\"\n}",
+                  "createdAt": "2026-07-28T00:26:57.000Z",
+                  "updatedAt": "2026-07-28T00:26:57.000Z",
+                  "uid": "35240-9f6acdac-bf27-459f-afea-7c324e3efd1e"
+                },
+                {
+                  "id": "673d58af-026b-4421-8b89-9a323063bdc1",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/administrationLogs?page=1&pageSize=10&q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "administrationLogs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Parameter for specifying the queried items per page.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>geofenceId</li><li>category</li><li>iccid</li><li>type</li><li>startDateTime (UTC)</li><li>endDateTime (UTC)</li></ul><p><b>Example:</b> \"type:device,iccid:ICCID,startDateTime:2022-11-14T16:04:38.000Z\"</p>",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                  "createdAt": "2026-07-28T00:26:57.000Z",
+                  "updatedAt": "2026-07-28T00:26:57.000Z",
+                  "uid": "35240-673d58af-026b-4421-8b89-9a323063bdc1"
+                },
+                {
+                  "id": "86fd4d7d-b0a6-4d47-959a-be437fb2529c",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/administrationLogs?page=1&pageSize=10&q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "administrationLogs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Parameter for specifying the queried items per page.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>geofenceId</li><li>category</li><li>iccid</li><li>type</li><li>startDateTime (UTC)</li><li>endDateTime (UTC)</li></ul><p><b>Example:</b> \"type:device,iccid:ICCID,startDateTime:2022-11-14T16:04:38.000Z\"</p>",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                  "createdAt": "2026-07-28T00:26:57.000Z",
+                  "updatedAt": "2026-07-28T00:26:57.000Z",
+                  "uid": "35240-86fd4d7d-b0a6-4d47-959a-be437fb2529c"
+                },
+                {
+                  "id": "08265ed4-a5f1-465b-826f-f83e0b092ccf",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/administrationLogs?page=1&pageSize=10&q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "administrationLogs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Parameter for specifying the queried items per page.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>geofenceId</li><li>category</li><li>iccid</li><li>type</li><li>startDateTime (UTC)</li><li>endDateTime (UTC)</li></ul><p><b>Example:</b> \"type:device,iccid:ICCID,startDateTime:2022-11-14T16:04:38.000Z\"</p>",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                  "createdAt": "2026-07-28T00:26:57.000Z",
+                  "updatedAt": "2026-07-28T00:26:57.000Z",
+                  "uid": "35240-08265ed4-a5f1-465b-826f-f83e0b092ccf"
+                },
+                {
+                  "id": "98c050bf-a0c7-4b10-b0c8-b2629594d90c",
+                  "name": "Internal Server Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/administrationLogs?page=1&pageSize=10&q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "administrationLogs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Parameter for specifying the queried items per page.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>geofenceId</li><li>category</li><li>iccid</li><li>type</li><li>startDateTime (UTC)</li><li>endDateTime (UTC)</li></ul><p><b>Example:</b> \"type:device,iccid:ICCID,startDateTime:2022-11-14T16:04:38.000Z\"</p>",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusText\": \"Server Error\"\n}",
+                  "createdAt": "2026-07-28T00:26:57.000Z",
+                  "updatedAt": "2026-07-28T00:26:57.000Z",
+                  "uid": "35240-98c050bf-a0c7-4b10-b0c8-b2629594d90c"
+                }
+              ],
+              "createdAt": "2026-07-28T00:26:57.000Z",
+              "updatedAt": "2026-07-28T00:26:57.000Z",
+              "uid": "35240-5c35e03a-c52e-4a19-888b-02b6f51d86de"
+            }
+          ],
+          "id": "ee19ee0b-a902-4b68-8bb5-b9b2e88bff19",
+          "createdAt": "2026-07-28T00:26:57.000Z",
+          "updatedAt": "2026-07-28T00:26:57.000Z",
+          "uid": "35240-ee19ee0b-a902-4b68-8bb5-b9b2e88bff19"
+        }
+      ],
+      "id": "87ca1934-2585-4c3b-a450-0b3ac2624c21",
+      "createdAt": "2026-07-28T00:26:57.000Z",
+      "updatedAt": "2026-07-28T00:26:57.000Z",
+      "uid": "35240-87ca1934-2585-4c3b-a450-0b3ac2624c21"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

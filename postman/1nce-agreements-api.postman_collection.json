@@ -1,0 +1,244 @@
+{
+  "info": {
+    "_postman_id": "68af8915-91e0-412d-a388-4249e1c81158",
+    "name": "Authorization Administration Logs Agreements API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:26:57.000Z",
+    "updatedAt": "2026-07-28T00:26:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-68af8915-91e0-412d-a388-4249e1c81158"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "agreements",
+          "item": [
+            {
+              "name": "1nceos",
+              "item": [
+                {
+                  "name": "Accept 1NCE OS Agreements",
+                  "id": "1959fbba-f9bc-4a6f-82f7-36bd724359da",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"accepted\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/agreements/1nceos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "agreements",
+                        "1nceos"
+                      ]
+                    },
+                    "description": "Post request to accept the 1NCE OS Terms of Use and Data Processing agreements. Please note that with this request the agreements can only be accepted."
+                  },
+                  "response": [
+                    {
+                      "id": "0bfeb1d5-8bac-4bfb-b517-cc87c0c191b6",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"accepted\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/agreements/1nceos",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "agreements",
+                            "1nceos"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:26:58.000Z",
+                      "updatedAt": "2026-07-28T00:26:58.000Z",
+                      "uid": "35240-0bfeb1d5-8bac-4bfb-b517-cc87c0c191b6"
+                    },
+                    {
+                      "id": "75014f80-cd2b-4ff7-a2d5-2e0b98243b13",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"accepted\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/agreements/1nceos",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "agreements",
+                            "1nceos"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                      "createdAt": "2026-07-28T00:26:58.000Z",
+                      "updatedAt": "2026-07-28T00:26:58.000Z",
+                      "uid": "35240-75014f80-cd2b-4ff7-a2d5-2e0b98243b13"
+                    },
+                    {
+                      "id": "fac987e2-19b0-4a04-8ace-fac39f4e598b",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"accepted\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/agreements/1nceos",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "agreements",
+                            "1nceos"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusText\": \"Server Error\"\n}",
+                      "createdAt": "2026-07-28T00:26:58.000Z",
+                      "updatedAt": "2026-07-28T00:26:58.000Z",
+                      "uid": "35240-fac987e2-19b0-4a04-8ace-fac39f4e598b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:26:58.000Z",
+                  "updatedAt": "2026-07-28T00:26:58.000Z",
+                  "uid": "35240-1959fbba-f9bc-4a6f-82f7-36bd724359da"
+                }
+              ],
+              "id": "d301a4db-57bb-432c-a3d1-56e7c7ed9181",
+              "createdAt": "2026-07-28T00:26:58.000Z",
+              "updatedAt": "2026-07-28T00:26:58.000Z",
+              "uid": "35240-d301a4db-57bb-432c-a3d1-56e7c7ed9181"
+            }
+          ],
+          "id": "b7ab63a4-914f-4b6c-aea8-ad71b33fe8d8",
+          "createdAt": "2026-07-28T00:26:58.000Z",
+          "updatedAt": "2026-07-28T00:26:58.000Z",
+          "uid": "35240-b7ab63a4-914f-4b6c-aea8-ad71b33fe8d8"
+        }
+      ],
+      "id": "c88aa7e0-72d7-4dc7-ad45-7e0640990f0e",
+      "createdAt": "2026-07-28T00:26:58.000Z",
+      "updatedAt": "2026-07-28T00:26:58.000Z",
+      "uid": "35240-c88aa7e0-72d7-4dc7-ad45-7e0640990f0e"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

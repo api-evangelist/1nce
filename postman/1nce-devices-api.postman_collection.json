@@ -1,0 +1,723 @@
+{
+  "info": {
+    "_postman_id": "38db0630-2cc9-4a67-89c4-866950d6212b",
+    "name": "Authorization Administration Logs Devices API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:03.000Z",
+    "updatedAt": "2026-07-28T00:27:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-38db0630-2cc9-4a67-89c4-866950d6212b"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "devices",
+          "item": [
+            {
+              "name": "{deviceId}",
+              "item": [
+                {
+                  "name": "actions",
+                  "item": [
+                    {
+                      "name": "Create Action Request On Specific LwM2M Device.",
+                      "id": "cfd37ea2-36ad-49db-bd24-d4b967263c2f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"action\": \"read\",\n  \"resourceAddress\": \"<string>\",\n  \"data\": \"<string>\",\n  \"requestMode\": \"SEND_NOW\",\n  \"sendAttempts\": 1\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/devices/:deviceId/actions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "devices",
+                            ":deviceId",
+                            "actions"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0a904278-e80a-453c-a816-8f4230e849f8",
+                              "key": "deviceId",
+                              "value": "<string>",
+                              "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                            }
+                          ]
+                        },
+                        "description": "Initiate LwM2M action like read, write, execute on specific device. It has to be connected to 1NCE LwM2M endpoint to invoke this event."
+                      },
+                      "response": [
+                        {
+                          "id": "326e1856-b906-4516-8e9c-8b49257623ee",
+                          "name": "Message describing the result of operation",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"read\",\n  \"resourceAddress\": \"<string>\",\n  \"data\": \"<string>\",\n  \"requestMode\": \"SEND_NOW\",\n  \"sendAttempts\": 1\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/devices/:deviceId/actions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "devices",
+                                ":deviceId",
+                                "actions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:04.000Z",
+                          "updatedAt": "2026-07-28T00:27:04.000Z",
+                          "uid": "35240-326e1856-b906-4516-8e9c-8b49257623ee"
+                        },
+                        {
+                          "id": "71364b4d-56f9-4298-b1dc-67d4ea4ed3d6",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"read\",\n  \"resourceAddress\": \"<string>\",\n  \"data\": \"<string>\",\n  \"requestMode\": \"SEND_NOW\",\n  \"sendAttempts\": 1\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/devices/:deviceId/actions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "devices",
+                                ":deviceId",
+                                "actions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                          "createdAt": "2026-07-28T00:27:04.000Z",
+                          "updatedAt": "2026-07-28T00:27:04.000Z",
+                          "uid": "35240-71364b4d-56f9-4298-b1dc-67d4ea4ed3d6"
+                        },
+                        {
+                          "id": "225a470f-f099-4b75-9297-3cd038522407",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"read\",\n  \"resourceAddress\": \"<string>\",\n  \"data\": \"<string>\",\n  \"requestMode\": \"SEND_NOW\",\n  \"sendAttempts\": 1\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/devices/:deviceId/actions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "devices",
+                                ":deviceId",
+                                "actions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                          "createdAt": "2026-07-28T00:27:04.000Z",
+                          "updatedAt": "2026-07-28T00:27:04.000Z",
+                          "uid": "35240-225a470f-f099-4b75-9297-3cd038522407"
+                        },
+                        {
+                          "id": "b368ac8c-2c31-43a9-a675-fbf93042cf8d",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"read\",\n  \"resourceAddress\": \"<string>\",\n  \"data\": \"<string>\",\n  \"requestMode\": \"SEND_NOW\",\n  \"sendAttempts\": 1\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/devices/:deviceId/actions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "devices",
+                                ":deviceId",
+                                "actions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                          "createdAt": "2026-07-28T00:27:04.000Z",
+                          "updatedAt": "2026-07-28T00:27:04.000Z",
+                          "uid": "35240-b368ac8c-2c31-43a9-a675-fbf93042cf8d"
+                        },
+                        {
+                          "id": "e06b9697-0133-439a-bf07-4f9b6849e98b",
+                          "name": "Not Found Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"read\",\n  \"resourceAddress\": \"<string>\",\n  \"data\": \"<string>\",\n  \"requestMode\": \"SEND_NOW\",\n  \"sendAttempts\": 1\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/devices/:deviceId/actions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "devices",
+                                ":deviceId",
+                                "actions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Not Found\"\n}",
+                          "createdAt": "2026-07-28T00:27:04.000Z",
+                          "updatedAt": "2026-07-28T00:27:04.000Z",
+                          "uid": "35240-e06b9697-0133-439a-bf07-4f9b6849e98b"
+                        },
+                        {
+                          "id": "c87b79e4-b057-4c3e-9f55-2ad1f60b6916",
+                          "name": "Conflict",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"read\",\n  \"resourceAddress\": \"<string>\",\n  \"data\": \"<string>\",\n  \"requestMode\": \"SEND_NOW\",\n  \"sendAttempts\": 1\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/devices/:deviceId/actions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "devices",
+                                ":deviceId",
+                                "actions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Conflict\"\n}",
+                          "createdAt": "2026-07-28T00:27:04.000Z",
+                          "updatedAt": "2026-07-28T00:27:04.000Z",
+                          "uid": "35240-c87b79e4-b057-4c3e-9f55-2ad1f60b6916"
+                        },
+                        {
+                          "id": "6f18ddaa-7f0e-4dee-a65f-7c328e41727f",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"read\",\n  \"resourceAddress\": \"<string>\",\n  \"data\": \"<string>\",\n  \"requestMode\": \"SEND_NOW\",\n  \"sendAttempts\": 1\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/devices/:deviceId/actions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "devices",
+                                ":deviceId",
+                                "actions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusText\": \"Server Error\"\n}",
+                          "createdAt": "2026-07-28T00:27:04.000Z",
+                          "updatedAt": "2026-07-28T00:27:04.000Z",
+                          "uid": "35240-6f18ddaa-7f0e-4dee-a65f-7c328e41727f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:04.000Z",
+                      "updatedAt": "2026-07-28T00:27:04.000Z",
+                      "uid": "35240-cfd37ea2-36ad-49db-bd24-d4b967263c2f"
+                    }
+                  ],
+                  "id": "48c69dd1-5a7b-455d-aeb6-955f9eebe602",
+                  "createdAt": "2026-07-28T00:27:04.000Z",
+                  "updatedAt": "2026-07-28T00:27:04.000Z",
+                  "uid": "35240-48c69dd1-5a7b-455d-aeb6-955f9eebe602"
+                }
+              ],
+              "id": "80e96ec3-d0f8-4ac3-bf79-ad35ea8e74fc",
+              "createdAt": "2026-07-28T00:27:04.000Z",
+              "updatedAt": "2026-07-28T00:27:04.000Z",
+              "uid": "35240-80e96ec3-d0f8-4ac3-bf79-ad35ea8e74fc"
+            },
+            {
+              "name": "stats",
+              "item": [
+                {
+                  "name": "Get Devices Statistics",
+                  "id": "95e48794-ef56-4eec-befa-d2ac2442ab38",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/devices/stats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "devices",
+                        "stats"
+                      ]
+                    },
+                    "description": "Get general statistics related to customer devices"
+                  },
+                  "response": [
+                    {
+                      "id": "6b80e86c-89f7-46c9-9856-0f1711455fbd",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/devices/stats",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "devices",
+                            "stats"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"activatedDevices\": \"<integer>\",\n  \"totalDevices\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T00:27:04.000Z",
+                      "updatedAt": "2026-07-28T00:27:04.000Z",
+                      "uid": "35240-6b80e86c-89f7-46c9-9856-0f1711455fbd"
+                    },
+                    {
+                      "id": "1c3e068e-6360-4146-9e9b-00cbaba2d7c4",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/devices/stats",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "devices",
+                            "stats"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                      "createdAt": "2026-07-28T00:27:04.000Z",
+                      "updatedAt": "2026-07-28T00:27:04.000Z",
+                      "uid": "35240-1c3e068e-6360-4146-9e9b-00cbaba2d7c4"
+                    },
+                    {
+                      "id": "8614e6c3-5dee-4b02-b0e9-5714d2c6fa8a",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/devices/stats",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "devices",
+                            "stats"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                      "createdAt": "2026-07-28T00:27:04.000Z",
+                      "updatedAt": "2026-07-28T00:27:04.000Z",
+                      "uid": "35240-8614e6c3-5dee-4b02-b0e9-5714d2c6fa8a"
+                    },
+                    {
+                      "id": "02f15316-ece6-4dc3-9674-bc3e52e6a64a",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/devices/stats",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "devices",
+                            "stats"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusText\": \"Server Error\"\n}",
+                      "createdAt": "2026-07-28T00:27:04.000Z",
+                      "updatedAt": "2026-07-28T00:27:04.000Z",
+                      "uid": "35240-02f15316-ece6-4dc3-9674-bc3e52e6a64a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:04.000Z",
+                  "updatedAt": "2026-07-28T00:27:04.000Z",
+                  "uid": "35240-95e48794-ef56-4eec-befa-d2ac2442ab38"
+                }
+              ],
+              "id": "236d426b-4676-4d34-b4a8-e09bb4909f86",
+              "createdAt": "2026-07-28T00:27:04.000Z",
+              "updatedAt": "2026-07-28T00:27:04.000Z",
+              "uid": "35240-236d426b-4676-4d34-b4a8-e09bb4909f86"
+            }
+          ],
+          "id": "98e48a51-d615-4bcd-8833-dbbd4ebf6300",
+          "createdAt": "2026-07-28T00:27:04.000Z",
+          "updatedAt": "2026-07-28T00:27:04.000Z",
+          "uid": "35240-98e48a51-d615-4bcd-8833-dbbd4ebf6300"
+        }
+      ],
+      "id": "84b4b7e8-26b3-4eed-9fce-5a68c284b8ae",
+      "createdAt": "2026-07-28T00:27:04.000Z",
+      "updatedAt": "2026-07-28T00:27:04.000Z",
+      "uid": "35240-84b4b7e8-26b3-4eed-9fce-5a68c284b8ae"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

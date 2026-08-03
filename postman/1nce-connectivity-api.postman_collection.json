@@ -1,0 +1,869 @@
+{
+  "info": {
+    "_postman_id": "7daa5b06-d7a7-4fd9-96e8-20ae27c030b7",
+    "name": "Authorization Administration Logs Connectivity API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:26:59.000Z",
+    "updatedAt": "2026-07-28T00:27:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7daa5b06-d7a7-4fd9-96e8-20ae27c030b7"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "sims",
+          "item": [
+            {
+              "name": "{iccid}",
+              "item": [
+                {
+                  "name": "connectivity_info",
+                  "item": [
+                    {
+                      "name": "Get SIM Connectivity",
+                      "id": "3aa7206e-f426-4c21-a947-54d48fb43a0d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid/connectivity_info?subscriber=true&ussd=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid",
+                            "connectivity_info"
+                          ],
+                          "query": [
+                            {
+                              "description": "Flag indicating if the subscriber information should be retrieved. Default value is true.",
+                              "key": "subscriber",
+                              "value": "true"
+                            },
+                            {
+                              "description": "Flag for retrieving the USSD connectivity info. Default value is false.",
+                              "key": "ussd",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "f493b6e8-ecb5-4dc6-91a9-f382caf85014",
+                              "key": "iccid",
+                              "value": "<string>",
+                              "description": "(Required) The iccid of the SIM in question."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve connectivity information and cell tower of a device with a given SIM. The API call returns valid information when the 1NCE SIM is attached to a 2G/3G network only."
+                      },
+                      "response": [
+                        {
+                          "id": "3391aad3-6d34-406e-8914-2707a643aecb",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/connectivity_info?subscriber=true&ussd=false",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "connectivity_info"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Flag indicating if the subscriber information should be retrieved. Default value is true.",
+                                  "key": "subscriber",
+                                  "value": "true"
+                                },
+                                {
+                                  "description": "Flag for retrieving the USSD connectivity info. Default value is false.",
+                                  "key": "ussd",
+                                  "value": "false"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"ussd_info\": {\n    \"success\": \"<boolean>\",\n    \"error\": \"<string>\"\n  },\n  \"subscriber_info\": {\n    \"success\": \"<boolean>\",\n    \"state\": \"<string>\",\n    \"location\": {\n      \"current_location_retrieved\": \"<boolean>\",\n      \"age_of_location\": \"<integer>\",\n      \"cell_global_id\": {\n        \"cid\": \"<integer>\",\n        \"lac\": \"<integer>\",\n        \"mcc\": \"<string>\",\n        \"mnc\": \"<string>\"\n      }\n    }\n  },\n  \"request_timestamp\": \"<string>\",\n  \"reply_timestamp\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-3391aad3-6d34-406e-8914-2707a643aecb"
+                        },
+                        {
+                          "id": "0dc8111f-a9c6-4737-bd35-337656907d69",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/connectivity_info?subscriber=true&ussd=false",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "connectivity_info"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Flag indicating if the subscriber information should be retrieved. Default value is true.",
+                                  "key": "subscriber",
+                                  "value": "true"
+                                },
+                                {
+                                  "description": "Flag for retrieving the USSD connectivity info. Default value is false.",
+                                  "key": "ussd",
+                                  "value": "false"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-0dc8111f-a9c6-4737-bd35-337656907d69"
+                        },
+                        {
+                          "id": "1525a80d-3873-4e61-b3eb-e5c86f64581b",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/connectivity_info?subscriber=true&ussd=false",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "connectivity_info"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Flag indicating if the subscriber information should be retrieved. Default value is true.",
+                                  "key": "subscriber",
+                                  "value": "true"
+                                },
+                                {
+                                  "description": "Flag for retrieving the USSD connectivity info. Default value is false.",
+                                  "key": "ussd",
+                                  "value": "false"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-1525a80d-3873-4e61-b3eb-e5c86f64581b"
+                        },
+                        {
+                          "id": "22e4af0e-8665-4ad1-82ae-71b3b54d2e8b",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/connectivity_info?subscriber=true&ussd=false",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "connectivity_info"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Flag indicating if the subscriber information should be retrieved. Default value is true.",
+                                  "key": "subscriber",
+                                  "value": "true"
+                                },
+                                {
+                                  "description": "Flag for retrieving the USSD connectivity info. Default value is false.",
+                                  "key": "ussd",
+                                  "value": "false"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-22e4af0e-8665-4ad1-82ae-71b3b54d2e8b"
+                        },
+                        {
+                          "id": "a12ee012-2ce8-460e-858e-4adb0e2450e4",
+                          "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/connectivity_info?subscriber=true&ussd=false",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "connectivity_info"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Flag indicating if the subscriber information should be retrieved. Default value is true.",
+                                  "key": "subscriber",
+                                  "value": "true"
+                                },
+                                {
+                                  "description": "Flag for retrieving the USSD connectivity info. Default value is false.",
+                                  "key": "ussd",
+                                  "value": "false"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-a12ee012-2ce8-460e-858e-4adb0e2450e4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:00.000Z",
+                      "updatedAt": "2026-07-28T00:27:00.000Z",
+                      "uid": "35240-3aa7206e-f426-4c21-a947-54d48fb43a0d"
+                    }
+                  ],
+                  "id": "0071d119-3fb0-4949-9969-309c7b1c33bb",
+                  "createdAt": "2026-07-28T00:27:00.000Z",
+                  "updatedAt": "2026-07-28T00:27:00.000Z",
+                  "uid": "35240-0071d119-3fb0-4949-9969-309c7b1c33bb"
+                },
+                {
+                  "name": "reset",
+                  "item": [
+                    {
+                      "name": "Create Connectivity Reset",
+                      "id": "2b4427c5-021d-4e23-b55e-5ad97cd42b6d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid/reset",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid",
+                            "reset"
+                          ],
+                          "variable": [
+                            {
+                              "id": "185dd1e1-32d6-48c3-84f7-bf88f9fa37a0",
+                              "key": "iccid",
+                              "value": "<string>",
+                              "description": "(Required) The ICCID of the SIM to be reset."
+                            }
+                          ]
+                        },
+                        "description": "Trigger a connectivity reset for a given SIM. The actual reset will be done asynchronously. A positive-response only means that the connectivity-reset has been successfully placed into the queue."
+                      },
+                      "response": [
+                        {
+                          "id": "3455f9b4-1ca5-4a1f-9c47-0edc55a93b23",
+                          "name": "Created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/reset",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "reset"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-3455f9b4-1ca5-4a1f-9c47-0edc55a93b23"
+                        },
+                        {
+                          "id": "f44a3d37-0475-4aa2-a7a8-4b9b034cb6e9",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/reset",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "reset"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-f44a3d37-0475-4aa2-a7a8-4b9b034cb6e9"
+                        },
+                        {
+                          "id": "98e900f2-f7a3-440a-a887-d3f8d41034f1",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/reset",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "reset"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-98e900f2-f7a3-440a-a887-d3f8d41034f1"
+                        },
+                        {
+                          "id": "c87bba17-cbb8-4869-adf8-4bd19f50677b",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/reset",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "reset"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-c87bba17-cbb8-4869-adf8-4bd19f50677b"
+                        },
+                        {
+                          "id": "8dd6d73f-9462-4490-8ae4-68abe117f8c6",
+                          "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/reset",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "reset"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-8dd6d73f-9462-4490-8ae4-68abe117f8c6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:00.000Z",
+                      "updatedAt": "2026-07-28T00:27:00.000Z",
+                      "uid": "35240-2b4427c5-021d-4e23-b55e-5ad97cd42b6d"
+                    }
+                  ],
+                  "id": "f1685d33-eb18-4f75-95ee-78577c35134b",
+                  "createdAt": "2026-07-28T00:27:00.000Z",
+                  "updatedAt": "2026-07-28T00:27:00.000Z",
+                  "uid": "35240-f1685d33-eb18-4f75-95ee-78577c35134b"
+                }
+              ],
+              "id": "6430e29e-24ea-43e1-8de0-0a6f31781500",
+              "createdAt": "2026-07-28T00:27:00.000Z",
+              "updatedAt": "2026-07-28T00:27:00.000Z",
+              "uid": "35240-6430e29e-24ea-43e1-8de0-0a6f31781500"
+            }
+          ],
+          "id": "859734a9-a120-48b4-affa-0d827cef1251",
+          "createdAt": "2026-07-28T00:27:00.000Z",
+          "updatedAt": "2026-07-28T00:27:00.000Z",
+          "uid": "35240-859734a9-a120-48b4-affa-0d827cef1251"
+        }
+      ],
+      "id": "68d201bd-41e1-4899-9a5e-fa99ae000cec",
+      "createdAt": "2026-07-28T00:27:00.000Z",
+      "updatedAt": "2026-07-28T00:27:00.000Z",
+      "uid": "35240-68d201bd-41e1-4899-9a5e-fa99ae000cec"
+    },
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "sims",
+          "item": [
+            {
+              "name": "{iccid}",
+              "item": [
+                {
+                  "name": "reset",
+                  "item": [
+                    {
+                      "name": "Create Connectivity Reset",
+                      "id": "ebefe183-73d3-41cc-8105-bc42e71ace71",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/sims/:iccid/reset",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "sims",
+                            ":iccid",
+                            "reset"
+                          ],
+                          "variable": [
+                            {
+                              "id": "bba1c537-12e7-4ed3-b49d-7aeff16faca4",
+                              "key": "iccid",
+                              "value": "<string>",
+                              "description": "(Required) The ICCID of the SIM to be reset."
+                            }
+                          ]
+                        },
+                        "description": "Trigger a connectivity reset for a given SIM. The actual reset will be done asynchronously. A positive-response only means that the connectivity-reset has been successfully placed into the queue."
+                      },
+                      "response": [
+                        {
+                          "id": "a006d82f-16a8-4b19-a9c5-8a47239b89cb",
+                          "name": "No Content",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/reset",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "reset"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-a006d82f-16a8-4b19-a9c5-8a47239b89cb"
+                        },
+                        {
+                          "id": "37e62995-71b2-474b-9f9e-6692204b0ba1",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/reset",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "reset"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-37e62995-71b2-474b-9f9e-6692204b0ba1"
+                        },
+                        {
+                          "id": "ad47deb6-1caf-4413-83d5-55701e0a8030",
+                          "name": "Not found error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/reset",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "reset"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-ad47deb6-1caf-4413-83d5-55701e0a8030"
+                        },
+                        {
+                          "id": "897c185e-5004-49cc-8400-b7f5beab102f",
+                          "name": "Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/reset",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "reset"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-897c185e-5004-49cc-8400-b7f5beab102f"
+                        },
+                        {
+                          "id": "25c38fa0-44e2-4bbc-8c4f-7f2bee8db376",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/reset",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "reset"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:00.000Z",
+                          "updatedAt": "2026-07-28T00:27:00.000Z",
+                          "uid": "35240-25c38fa0-44e2-4bbc-8c4f-7f2bee8db376"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:00.000Z",
+                      "updatedAt": "2026-07-28T00:27:00.000Z",
+                      "uid": "35240-ebefe183-73d3-41cc-8105-bc42e71ace71"
+                    }
+                  ],
+                  "id": "e0fe3b2a-4832-4f5b-b494-7fdbc3ff1ad9",
+                  "createdAt": "2026-07-28T00:27:00.000Z",
+                  "updatedAt": "2026-07-28T00:27:00.000Z",
+                  "uid": "35240-e0fe3b2a-4832-4f5b-b494-7fdbc3ff1ad9"
+                }
+              ],
+              "id": "610ef617-8601-4a10-afc7-9ebbb974545a",
+              "createdAt": "2026-07-28T00:27:00.000Z",
+              "updatedAt": "2026-07-28T00:27:00.000Z",
+              "uid": "35240-610ef617-8601-4a10-afc7-9ebbb974545a"
+            }
+          ],
+          "id": "95775497-a76f-4758-a723-9c86ab6610d3",
+          "createdAt": "2026-07-28T00:27:00.000Z",
+          "updatedAt": "2026-07-28T00:27:00.000Z",
+          "uid": "35240-95775497-a76f-4758-a723-9c86ab6610d3"
+        }
+      ],
+      "id": "a3b99162-f111-4395-a05a-bbee4bd94c50",
+      "createdAt": "2026-07-28T00:27:00.000Z",
+      "updatedAt": "2026-07-28T00:27:00.000Z",
+      "uid": "35240-a3b99162-f111-4395-a05a-bbee4bd94c50"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

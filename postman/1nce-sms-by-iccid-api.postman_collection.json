@@ -1,0 +1,310 @@
+{
+  "info": {
+    "_postman_id": "34f55772-e87a-4165-8af3-f2535efcaaee",
+    "name": "Authorization Administration Logs SMS by ICCID API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:38.000Z",
+    "updatedAt": "2026-07-28T00:27:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-34f55772-e87a-4165-8af3-f2535efcaaee"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "sims",
+          "item": [
+            {
+              "name": "{iccid}",
+              "item": [
+                {
+                  "name": "sms",
+                  "item": [
+                    {
+                      "name": "{id}",
+                      "item": [
+                        {
+                          "name": "Cancel SMS",
+                          "id": "c912fe4e-57d0-4d17-b8b6-c298758bc14c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/sms/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "sms",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a18fbb80-b175-4c99-9058-76f276fe5d5a",
+                                  "key": "iccid",
+                                  "value": "<string>",
+                                  "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                                },
+                                {
+                                  "id": "83b56919-183d-4c49-8486-55378e59b871",
+                                  "key": "id",
+                                  "value": "<number>",
+                                  "description": "(Required) The ID of the SMS message to be cancelled."
+                                }
+                              ]
+                            },
+                            "description": "Cancel a SMS message that is buffered to be delivered to the device with the SIM card but was not yet delivered."
+                          },
+                          "response": [
+                            {
+                              "id": "fa79ee49-ed33-40a0-904a-766fc50ce58d",
+                              "name": "Resource Deleted",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/sims/:iccid/sms/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "sims",
+                                    ":iccid",
+                                    "sms",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "iccid"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T00:27:38.000Z",
+                              "updatedAt": "2026-07-28T00:27:38.000Z",
+                              "uid": "35240-fa79ee49-ed33-40a0-904a-766fc50ce58d"
+                            },
+                            {
+                              "id": "384ff529-0a38-4ea7-ae27-696ea4a8224f",
+                              "name": "Bad request",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/sims/:iccid/sms/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "sims",
+                                    ":iccid",
+                                    "sms",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "iccid"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T00:27:38.000Z",
+                              "updatedAt": "2026-07-28T00:27:38.000Z",
+                              "uid": "35240-384ff529-0a38-4ea7-ae27-696ea4a8224f"
+                            },
+                            {
+                              "id": "e489934c-4a8a-4671-8752-60ffe5ada618",
+                              "name": "Not found error",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/sims/:iccid/sms/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "sims",
+                                    ":iccid",
+                                    "sms",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "iccid"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T00:27:38.000Z",
+                              "updatedAt": "2026-07-28T00:27:38.000Z",
+                              "uid": "35240-e489934c-4a8a-4671-8752-60ffe5ada618"
+                            },
+                            {
+                              "id": "dee4ac5b-0560-499d-8ab3-5ce4d4493eea",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/sims/:iccid/sms/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "sims",
+                                    ":iccid",
+                                    "sms",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "iccid"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T00:27:38.000Z",
+                              "updatedAt": "2026-07-28T00:27:38.000Z",
+                              "uid": "35240-dee4ac5b-0560-499d-8ab3-5ce4d4493eea"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T00:27:38.000Z",
+                          "updatedAt": "2026-07-28T00:27:38.000Z",
+                          "uid": "35240-c912fe4e-57d0-4d17-b8b6-c298758bc14c"
+                        }
+                      ],
+                      "id": "9b582dd2-f5ab-4d57-bb86-219661c0cb37",
+                      "createdAt": "2026-07-28T00:27:38.000Z",
+                      "updatedAt": "2026-07-28T00:27:38.000Z",
+                      "uid": "35240-9b582dd2-f5ab-4d57-bb86-219661c0cb37"
+                    }
+                  ],
+                  "id": "bd3aed6b-ac67-4b3b-b5ef-206f9b89a621",
+                  "createdAt": "2026-07-28T00:27:38.000Z",
+                  "updatedAt": "2026-07-28T00:27:38.000Z",
+                  "uid": "35240-bd3aed6b-ac67-4b3b-b5ef-206f9b89a621"
+                }
+              ],
+              "id": "b260d5a5-7767-41be-a667-6e2f2de10080",
+              "createdAt": "2026-07-28T00:27:38.000Z",
+              "updatedAt": "2026-07-28T00:27:38.000Z",
+              "uid": "35240-b260d5a5-7767-41be-a667-6e2f2de10080"
+            }
+          ],
+          "id": "557b8f9d-5a64-45d7-8b48-98e4f6e79490",
+          "createdAt": "2026-07-28T00:27:38.000Z",
+          "updatedAt": "2026-07-28T00:27:38.000Z",
+          "uid": "35240-557b8f9d-5a64-45d7-8b48-98e4f6e79490"
+        }
+      ],
+      "id": "c567dbd9-ab00-4389-935e-e2973a147f8e",
+      "createdAt": "2026-07-28T00:27:38.000Z",
+      "updatedAt": "2026-07-28T00:27:38.000Z",
+      "uid": "35240-c567dbd9-ab00-4389-935e-e2973a147f8e"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

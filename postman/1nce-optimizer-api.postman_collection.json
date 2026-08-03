@@ -1,0 +1,1815 @@
+{
+  "info": {
+    "_postman_id": "76e7bbee-ba47-4ac5-a120-a58a9aeb3892",
+    "name": "Authorization Administration Logs Optimizer API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:24.000Z",
+    "updatedAt": "2026-07-28T00:27:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-76e7bbee-ba47-4ac5-a120-a58a9aeb3892"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "optimize",
+          "item": [
+            {
+              "name": "messages",
+              "item": [
+                {
+                  "name": "test",
+                  "item": [
+                    {
+                      "name": "Test template",
+                      "id": "79522e30-76e0-4bd8-93c0-eb0e4f1f3e76",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"payload\": \"<string>\",\n  \"template\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/messages/test",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "messages",
+                            "test"
+                          ]
+                        },
+                        "description": "Test a template with a sample input message."
+                      },
+                      "response": [
+                        {
+                          "id": "17c65db5-e2b3-4b55-ba9f-8e788645120d",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"payload\": \"<string>\",\n  \"template\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/messages/test",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "messages",
+                                "test"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"energyUsageReduction\": \"<number>\",\n  \"reducedBytes\": \"<number>\",\n  \"translatedPayload\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-17c65db5-e2b3-4b55-ba9f-8e788645120d"
+                        },
+                        {
+                          "id": "a55c12e3-2504-42fe-9caa-32f70523d8d8",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"payload\": \"<string>\",\n  \"template\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/messages/test",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "messages",
+                                "test"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-a55c12e3-2504-42fe-9caa-32f70523d8d8"
+                        },
+                        {
+                          "id": "77f8ce09-629b-4c9a-b748-0bd93225e6b3",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"payload\": \"<string>\",\n  \"template\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/messages/test",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "messages",
+                                "test"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-77f8ce09-629b-4c9a-b748-0bd93225e6b3"
+                        },
+                        {
+                          "id": "b2deda46-7db1-4afa-9c59-3e194e9b344a",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"payload\": \"<string>\",\n  \"template\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/messages/test",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "messages",
+                                "test"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-b2deda46-7db1-4afa-9c59-3e194e9b344a"
+                        },
+                        {
+                          "id": "b5a91cfa-d3fe-4a3f-bad0-480b93752aad",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"payload\": \"<string>\",\n  \"template\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/messages/test",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "messages",
+                                "test"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-b5a91cfa-d3fe-4a3f-bad0-480b93752aad"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-79522e30-76e0-4bd8-93c0-eb0e4f1f3e76"
+                    }
+                  ],
+                  "id": "b671e51d-0886-4a45-b10e-a73a1df7ecf8",
+                  "createdAt": "2026-07-28T00:27:25.000Z",
+                  "updatedAt": "2026-07-28T00:27:25.000Z",
+                  "uid": "35240-b671e51d-0886-4a45-b10e-a73a1df7ecf8"
+                }
+              ],
+              "id": "14f9fd9c-92e1-41eb-9c37-3d016181c4ce",
+              "createdAt": "2026-07-28T00:27:25.000Z",
+              "updatedAt": "2026-07-28T00:27:25.000Z",
+              "uid": "35240-14f9fd9c-92e1-41eb-9c37-3d016181c4ce"
+            },
+            {
+              "name": "savings",
+              "item": [
+                {
+                  "name": "Get savings",
+                  "id": "da04f844-26e5-4431-8a81-3de76a26ed89",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/optimize/savings?range=1&protocol=UDP&iccid=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "optimize",
+                        "savings"
+                      ],
+                      "query": [
+                        {
+                          "description": "Specify the range in days to receive data about.",
+                          "key": "range",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Filter out by specific protocols: <ul><li>UDP</li><li>COAP</li></ul>",
+                          "key": "protocol",
+                          "value": "UDP"
+                        },
+                        {
+                          "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                          "key": "iccid",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Get statistics about the savings by using the optimizer."
+                  },
+                  "response": [
+                    {
+                      "id": "dc272fe3-bcdc-4dfa-9f12-a8f320dacf65",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/savings?range=1&protocol=UDP&iccid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "savings"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the range in days to receive data about.",
+                              "key": "range",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Filter out by specific protocols: <ul><li>UDP</li><li>COAP</li></ul>",
+                              "key": "protocol",
+                              "value": "UDP"
+                            },
+                            {
+                              "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                              "key": "iccid",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"averageBytesReducedPerMessage\": {\n    \"delta\": \"<number>\",\n    \"value\": \"<number>\"\n  },\n  \"bytesSaved\": {\n    \"delta\": \"<number>\",\n    \"value\": \"<number>\"\n  },\n  \"messagesTranslated\": {\n    \"delta\": \"<number>\",\n    \"value\": \"<number>\"\n  }\n}",
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-dc272fe3-bcdc-4dfa-9f12-a8f320dacf65"
+                    },
+                    {
+                      "id": "4a0c9a94-fa90-4746-9094-e15b2de273d6",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/savings?range=1&protocol=UDP&iccid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "savings"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the range in days to receive data about.",
+                              "key": "range",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Filter out by specific protocols: <ul><li>UDP</li><li>COAP</li></ul>",
+                              "key": "protocol",
+                              "value": "UDP"
+                            },
+                            {
+                              "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                              "key": "iccid",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-4a0c9a94-fa90-4746-9094-e15b2de273d6"
+                    },
+                    {
+                      "id": "58315748-b29e-493b-af47-1ce7ccbd03bf",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/savings?range=1&protocol=UDP&iccid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "savings"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the range in days to receive data about.",
+                              "key": "range",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Filter out by specific protocols: <ul><li>UDP</li><li>COAP</li></ul>",
+                              "key": "protocol",
+                              "value": "UDP"
+                            },
+                            {
+                              "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                              "key": "iccid",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-58315748-b29e-493b-af47-1ce7ccbd03bf"
+                    },
+                    {
+                      "id": "a463c8bd-72f3-4541-aac2-ebb0ec6d23c8",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/savings?range=1&protocol=UDP&iccid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "savings"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the range in days to receive data about.",
+                              "key": "range",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Filter out by specific protocols: <ul><li>UDP</li><li>COAP</li></ul>",
+                              "key": "protocol",
+                              "value": "UDP"
+                            },
+                            {
+                              "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                              "key": "iccid",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-a463c8bd-72f3-4541-aac2-ebb0ec6d23c8"
+                    },
+                    {
+                      "id": "16b1cfd2-e128-40f9-b5d1-49ca5c5e7a1b",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/savings?range=1&protocol=UDP&iccid=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "savings"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the range in days to receive data about.",
+                              "key": "range",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Filter out by specific protocols: <ul><li>UDP</li><li>COAP</li></ul>",
+                              "key": "protocol",
+                              "value": "UDP"
+                            },
+                            {
+                              "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                              "key": "iccid",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-16b1cfd2-e128-40f9-b5d1-49ca5c5e7a1b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:25.000Z",
+                  "updatedAt": "2026-07-28T00:27:25.000Z",
+                  "uid": "35240-da04f844-26e5-4431-8a81-3de76a26ed89"
+                }
+              ],
+              "id": "89215fb6-2138-4cf8-ac75-1b14e5ecc32b",
+              "createdAt": "2026-07-28T00:27:25.000Z",
+              "updatedAt": "2026-07-28T00:27:25.000Z",
+              "uid": "35240-89215fb6-2138-4cf8-ac75-1b14e5ecc32b"
+            },
+            {
+              "name": "templates",
+              "item": [
+                {
+                  "name": "{templateId}",
+                  "item": [
+                    {
+                      "name": "Delete Optimizer Template",
+                      "id": "737f32a5-9e09-4cdc-b7ea-ebeb5524a8d2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/templates/:templateId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "templates",
+                            ":templateId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f5e54f12-9eaf-49ba-9517-4e0aa64fe2af",
+                              "key": "templateId",
+                              "value": "<string>",
+                              "description": "(Required) Unique Id of the Optimizer Template which should be deleted."
+                            }
+                          ]
+                        },
+                        "description": "Delete a specific Optimizer Template."
+                      },
+                      "response": [
+                        {
+                          "id": "23303297-8865-42f5-acfe-d24e2f6f8e7b",
+                          "name": "No Content",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/templates/:templateId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "templates",
+                                ":templateId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "templateId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-23303297-8865-42f5-acfe-d24e2f6f8e7b"
+                        },
+                        {
+                          "id": "b808dd81-fda4-4eac-9af8-93ad4ac261da",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/templates/:templateId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "templates",
+                                ":templateId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "templateId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-b808dd81-fda4-4eac-9af8-93ad4ac261da"
+                        },
+                        {
+                          "id": "3fb2ad36-82e8-4775-9913-e7242d010d57",
+                          "name": "Not Found Error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/templates/:templateId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "templates",
+                                ":templateId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "templateId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Not Found\"\n}",
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-3fb2ad36-82e8-4775-9913-e7242d010d57"
+                        },
+                        {
+                          "id": "a935af21-069d-4e77-845d-ade4e98c6cf9",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/templates/:templateId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "templates",
+                                ":templateId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "templateId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-a935af21-069d-4e77-845d-ade4e98c6cf9"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-737f32a5-9e09-4cdc-b7ea-ebeb5524a8d2"
+                    },
+                    {
+                      "name": "Update Optimizer Template",
+                      "id": "1a64263b-e9b0-443a-b823-2a105d9fc60f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ut non c\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/templates/:templateId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "templates",
+                            ":templateId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1750f77c-6aa4-4660-8c73-d4a30f08ee8a",
+                              "key": "templateId",
+                              "value": "<string>",
+                              "description": "(Required) Unique Id of the Optimizer Template for which the update should be applied."
+                            }
+                          ]
+                        },
+                        "description": "Update a specific Optimizer Template."
+                      },
+                      "response": [
+                        {
+                          "id": "d5c15535-f8b6-4287-9c9d-0631f9b5ff3c",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"ut non c\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/templates/:templateId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "templates",
+                                ":templateId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "templateId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"protocolFilter\": \"COAP\",\n  \"status\": \"ACTIVE\",\n  \"template\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-d5c15535-f8b6-4287-9c9d-0631f9b5ff3c"
+                        },
+                        {
+                          "id": "216839a8-cb31-4f83-8140-31afbd9f221e",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"ut non c\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/templates/:templateId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "templates",
+                                ":templateId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "templateId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-216839a8-cb31-4f83-8140-31afbd9f221e"
+                        },
+                        {
+                          "id": "7796993f-592d-426b-a64a-0500de546745",
+                          "name": "Not Found Error",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"ut non c\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/templates/:templateId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "templates",
+                                ":templateId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "templateId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Not Found\"\n}",
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-7796993f-592d-426b-a64a-0500de546745"
+                        },
+                        {
+                          "id": "73410d77-1fd1-4d4a-bf3a-e14890c18e87",
+                          "name": "Conflict",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"ut non c\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/templates/:templateId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "templates",
+                                ":templateId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "templateId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Conflict\"\n}",
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-73410d77-1fd1-4d4a-bf3a-e14890c18e87"
+                        },
+                        {
+                          "id": "f12ce9e6-d5de-4328-bb0c-174753ce4571",
+                          "name": "Unprocessable Entity",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"ut non c\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/templates/:templateId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "templates",
+                                ":templateId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "templateId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unprocessable Entity\"\n}",
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-f12ce9e6-d5de-4328-bb0c-174753ce4571"
+                        },
+                        {
+                          "id": "52e4d6a8-7da2-4417-a4a0-e3ea76337d56",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"ut non c\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/optimize/templates/:templateId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "optimize",
+                                "templates",
+                                ":templateId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "templateId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                          "createdAt": "2026-07-28T00:27:25.000Z",
+                          "updatedAt": "2026-07-28T00:27:25.000Z",
+                          "uid": "35240-52e4d6a8-7da2-4417-a4a0-e3ea76337d56"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-1a64263b-e9b0-443a-b823-2a105d9fc60f"
+                    }
+                  ],
+                  "id": "dea654cc-d9e3-4a9e-979d-3952efd99b9c",
+                  "createdAt": "2026-07-28T00:27:25.000Z",
+                  "updatedAt": "2026-07-28T00:27:25.000Z",
+                  "uid": "35240-dea654cc-d9e3-4a9e-979d-3952efd99b9c"
+                },
+                {
+                  "name": "Get Optimizer Templates",
+                  "id": "1e7d65b6-02d6-41ee-8477-9d1ff96abf52",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/optimize/templates",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "optimize",
+                        "templates"
+                      ]
+                    },
+                    "description": "Get all Translation Service Templates for the current organization."
+                  },
+                  "response": [
+                    {
+                      "id": "70abe0b8-0317-4075-834a-e7ab0b6cef06",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"protocolFilter\": \"COAP\",\n    \"status\": \"<string>\",\n    \"template\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"protocolFilter\": \"COAP\",\n    \"status\": \"<string>\",\n    \"template\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-70abe0b8-0317-4075-834a-e7ab0b6cef06"
+                    },
+                    {
+                      "id": "a6758645-2198-4ff6-917f-688c4f7c9bbf",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-a6758645-2198-4ff6-917f-688c4f7c9bbf"
+                    },
+                    {
+                      "id": "054bcb69-d24b-4a7e-a111-0a53f48dfb2a",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-054bcb69-d24b-4a7e-a111-0a53f48dfb2a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:25.000Z",
+                  "updatedAt": "2026-07-28T00:27:25.000Z",
+                  "uid": "35240-1e7d65b6-02d6-41ee-8477-9d1ff96abf52"
+                },
+                {
+                  "name": "Create Optimizer Template",
+                  "id": "bd88cc74-1a97-4195-b2f5-593693aa45e4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"protocolFilter\": \"COAP\",\n  \"template\": \"<string>\",\n  \"status\": \"ACTIVE\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/optimize/templates",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "optimize",
+                        "templates"
+                      ]
+                    },
+                    "description": "Create a new Translation Service Template."
+                  },
+                  "response": [
+                    {
+                      "id": "2897388d-9e78-4ce4-9eb1-f9ee848da780",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"protocolFilter\": \"COAP\",\n  \"template\": \"<string>\",\n  \"status\": \"ACTIVE\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"protocolFilter\": \"COAP\",\n  \"status\": \"ACTIVE\",\n  \"template\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-2897388d-9e78-4ce4-9eb1-f9ee848da780"
+                    },
+                    {
+                      "id": "521fb754-1ee3-4ab5-a831-baeed8dcad47",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"protocolFilter\": \"COAP\",\n  \"template\": \"<string>\",\n  \"status\": \"ACTIVE\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-521fb754-1ee3-4ab5-a831-baeed8dcad47"
+                    },
+                    {
+                      "id": "d69bcc5a-6660-49c6-aff9-2ebde5b9f121",
+                      "name": "Conflict",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"protocolFilter\": \"COAP\",\n  \"template\": \"<string>\",\n  \"status\": \"ACTIVE\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Conflict\"\n}",
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-d69bcc5a-6660-49c6-aff9-2ebde5b9f121"
+                    },
+                    {
+                      "id": "d20d1994-53af-433e-952a-cedd6fa92227",
+                      "name": "Unprocessable Entity",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"protocolFilter\": \"COAP\",\n  \"template\": \"<string>\",\n  \"status\": \"ACTIVE\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unprocessable Entity\"\n}",
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-d20d1994-53af-433e-952a-cedd6fa92227"
+                    },
+                    {
+                      "id": "8c8206e4-62f0-4a85-8fed-92f85b335a68",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"protocolFilter\": \"COAP\",\n  \"template\": \"<string>\",\n  \"status\": \"ACTIVE\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/optimize/templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "optimize",
+                            "templates"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                      "createdAt": "2026-07-28T00:27:25.000Z",
+                      "updatedAt": "2026-07-28T00:27:25.000Z",
+                      "uid": "35240-8c8206e4-62f0-4a85-8fed-92f85b335a68"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:25.000Z",
+                  "updatedAt": "2026-07-28T00:27:25.000Z",
+                  "uid": "35240-bd88cc74-1a97-4195-b2f5-593693aa45e4"
+                }
+              ],
+              "id": "422ba64e-7e78-44d5-b4e5-06b2d23896b1",
+              "createdAt": "2026-07-28T00:27:25.000Z",
+              "updatedAt": "2026-07-28T00:27:25.000Z",
+              "uid": "35240-422ba64e-7e78-44d5-b4e5-06b2d23896b1"
+            }
+          ],
+          "id": "960d2875-c97d-48fc-9030-87110a20d7b9",
+          "createdAt": "2026-07-28T00:27:25.000Z",
+          "updatedAt": "2026-07-28T00:27:25.000Z",
+          "uid": "35240-960d2875-c97d-48fc-9030-87110a20d7b9"
+        }
+      ],
+      "id": "a5a6d7d9-d533-4cc9-808e-f2624bf1e4f4",
+      "createdAt": "2026-07-28T00:27:25.000Z",
+      "updatedAt": "2026-07-28T00:27:25.000Z",
+      "uid": "35240-a5a6d7d9-d533-4cc9-808e-f2624bf1e4f4"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

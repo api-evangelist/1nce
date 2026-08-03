@@ -1,0 +1,682 @@
+{
+  "info": {
+    "_postman_id": "0c01a56b-b220-48dd-87eb-29df429c22fe",
+    "name": "Authorization Administration Logs SIM Events API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:32.000Z",
+    "updatedAt": "2026-07-28T00:27:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0c01a56b-b220-48dd-87eb-29df429c22fe"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "sims",
+          "item": [
+            {
+              "name": "{iccid}",
+              "item": [
+                {
+                  "name": "events",
+                  "item": [
+                    {
+                      "name": "Get SIM Events",
+                      "id": "475e56a7-0992-4840-8cce-2c0719936ead",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid/events?page=1&pageSize=10&sort=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid",
+                            "events"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of events per page, maximum allowed value is 1000.",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order.",
+                              "key": "sort",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "1c52c527-5e9e-4325-a092-323c70552dc3",
+                              "key": "iccid",
+                              "value": "<string>",
+                              "description": "(Required) The ICCID of the SIM to be queried."
+                            }
+                          ]
+                        },
+                        "description": "Get diagnostic/event information for a SIM card."
+                      },
+                      "response": [
+                        {
+                          "id": "7c6db238-04fe-4cc0-968a-2a8651c9f03b",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/events?page=1&pageSize=10&sort=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "events"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of events per page, maximum allowed value is 1000.",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order.",
+                                  "key": "sort",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of results per page.",
+                                "type": "text/plain"
+                              },
+                              "key": "X-Count-Per-Page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of the current page.",
+                                "type": "text/plain"
+                              },
+                              "key": "X-Current-Page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Total number of results available.",
+                                "type": "text/plain"
+                              },
+                              "key": "X-Total-Count",
+                              "value": "<integer>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Total number of pages available.",
+                                "type": "text/plain"
+                              },
+                              "key": "X-Total-Pages",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"events\": [\n    {\n      \"timestamp\": \"<string>\",\n      \"event_type\": \"<string>\",\n      \"iccid\": \"<string>\",\n      \"imei\": \"<string>\",\n      \"imsi\": \"<string>\",\n      \"country\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"mcc\": \"<string>\",\n      \"mnc\": \"<string>\",\n      \"alert\": \"<boolean>\",\n      \"event_severity\": \"<string>\"\n    },\n    {\n      \"timestamp\": \"<string>\",\n      \"event_type\": \"<string>\",\n      \"iccid\": \"<string>\",\n      \"imei\": \"<string>\",\n      \"imsi\": \"<string>\",\n      \"country\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"mcc\": \"<string>\",\n      \"mnc\": \"<string>\",\n      \"alert\": \"<boolean>\",\n      \"event_severity\": \"<string>\"\n    }\n  ],\n  \"totalEvents\": \"<integer>\",\n  \"totalPages\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T00:27:32.000Z",
+                          "updatedAt": "2026-07-28T00:27:32.000Z",
+                          "uid": "35240-7c6db238-04fe-4cc0-968a-2a8651c9f03b"
+                        },
+                        {
+                          "id": "16010863-b81f-41cf-af27-aec61fa74bf1",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/events?page=1&pageSize=10&sort=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "events"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of events per page, maximum allowed value is 1000.",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order.",
+                                  "key": "sort",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:32.000Z",
+                          "updatedAt": "2026-07-28T00:27:32.000Z",
+                          "uid": "35240-16010863-b81f-41cf-af27-aec61fa74bf1"
+                        },
+                        {
+                          "id": "930152b8-d6c1-4051-9990-eb45e63e652e",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/events?page=1&pageSize=10&sort=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "events"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of events per page, maximum allowed value is 1000.",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order.",
+                                  "key": "sort",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:32.000Z",
+                          "updatedAt": "2026-07-28T00:27:32.000Z",
+                          "uid": "35240-930152b8-d6c1-4051-9990-eb45e63e652e"
+                        },
+                        {
+                          "id": "8f9d3c7c-e2cf-4ee2-9f38-1be65d714151",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/events?page=1&pageSize=10&sort=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "events"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of events per page, maximum allowed value is 1000.",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order.",
+                                  "key": "sort",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:32.000Z",
+                          "updatedAt": "2026-07-28T00:27:32.000Z",
+                          "uid": "35240-8f9d3c7c-e2cf-4ee2-9f38-1be65d714151"
+                        },
+                        {
+                          "id": "fff2481a-a83e-47fc-a811-b889b2dde393",
+                          "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/events?page=1&pageSize=10&sort=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "events"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of events per page, maximum allowed value is 1000.",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order.",
+                                  "key": "sort",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:32.000Z",
+                          "updatedAt": "2026-07-28T00:27:32.000Z",
+                          "uid": "35240-fff2481a-a83e-47fc-a811-b889b2dde393"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:32.000Z",
+                      "updatedAt": "2026-07-28T00:27:32.000Z",
+                      "uid": "35240-475e56a7-0992-4840-8cce-2c0719936ead"
+                    }
+                  ],
+                  "id": "05e60fe8-95e8-4337-bbb6-11fce55fa68e",
+                  "createdAt": "2026-07-28T00:27:32.000Z",
+                  "updatedAt": "2026-07-28T00:27:32.000Z",
+                  "uid": "35240-05e60fe8-95e8-4337-bbb6-11fce55fa68e"
+                }
+              ],
+              "id": "8bb3cc18-cac4-42f8-aee4-8d41c2655ae6",
+              "createdAt": "2026-07-28T00:27:32.000Z",
+              "updatedAt": "2026-07-28T00:27:32.000Z",
+              "uid": "35240-8bb3cc18-cac4-42f8-aee4-8d41c2655ae6"
+            }
+          ],
+          "id": "bf0eee85-caca-44d6-a672-ca8f14311e13",
+          "createdAt": "2026-07-28T00:27:32.000Z",
+          "updatedAt": "2026-07-28T00:27:32.000Z",
+          "uid": "35240-bf0eee85-caca-44d6-a672-ca8f14311e13"
+        }
+      ],
+      "id": "b5fc4bdb-5951-4f1e-8f30-99929ad94e4f",
+      "createdAt": "2026-07-28T00:27:32.000Z",
+      "updatedAt": "2026-07-28T00:27:32.000Z",
+      "uid": "35240-b5fc4bdb-5951-4f1e-8f30-99929ad94e4f"
+    },
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "sims",
+          "item": [
+            {
+              "name": "{iccid}",
+              "item": [
+                {
+                  "name": "events",
+                  "item": [
+                    {
+                      "name": "Get SIM Events",
+                      "id": "5724587c-5e12-41da-b05c-01ef54c109f1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/sims/:iccid/events?page=1&pageSize=10",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "sims",
+                            ":iccid",
+                            "events"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of events per page, maximum allowed value is 1000.",
+                              "key": "pageSize",
+                              "value": "10"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "9896b27c-c551-4b00-8cef-ceef4ece90a3",
+                              "key": "iccid",
+                              "value": "<string>",
+                              "description": "(Required) The ICCID of the SIM to be queried."
+                            }
+                          ]
+                        },
+                        "description": "Get diagnostic/event information for a SIM card."
+                      },
+                      "response": [
+                        {
+                          "id": "80afa18b-1c3d-4b34-8b26-3e4f94f05cdf",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/events?page=1&pageSize=10",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "events"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of events per page, maximum allowed value is 1000.",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"<long>\",\n    \"event_type\": {\n      \"id\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    \"timestamp\": \"<dateTime>\",\n    \"alert\": \"<boolean>\",\n    \"user\": \"<string>\",\n    \"description\": \"<string>\",\n    \"event_source\": {\n      \"id\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    \"event_severity\": {\n      \"id\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    \"organisation\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"endpoint\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"ip_address\": \"<string>\",\n      \"imei\": \"<string>\"\n    },\n    \"sim\": {\n      \"id\": \"<integer>\",\n      \"iccid\": \"<string>\",\n      \"msisdn\": \"<string>\"\n    },\n    \"imsi\": {\n      \"id\": \"<integer>\",\n      \"imsi\": \"<string>\"\n    },\n    \"detail\": {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"country\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"mcc\": \"<string>\",\n        \"iso_code\": \"<string>\"\n      },\n      \"tapcode\": [\n        {\n          \"id\": \"<integer>\",\n          \"tapcode\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"tapcode\": \"<string>\"\n        }\n      ],\n      \"mnc\": [\n        {\n          \"id\": \"<integer>\",\n          \"mnc\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"mnc\": \"<string>\"\n        }\n      ],\n      \"update_location_failure_reason\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<long>\",\n    \"event_type\": {\n      \"id\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    \"timestamp\": \"<dateTime>\",\n    \"alert\": \"<boolean>\",\n    \"user\": \"<string>\",\n    \"description\": \"<string>\",\n    \"event_source\": {\n      \"id\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    \"event_severity\": {\n      \"id\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    \"organisation\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"endpoint\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"ip_address\": \"<string>\",\n      \"imei\": \"<string>\"\n    },\n    \"sim\": {\n      \"id\": \"<integer>\",\n      \"iccid\": \"<string>\",\n      \"msisdn\": \"<string>\"\n    },\n    \"imsi\": {\n      \"id\": \"<integer>\",\n      \"imsi\": \"<string>\"\n    },\n    \"detail\": {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"country\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"mcc\": \"<string>\",\n        \"iso_code\": \"<string>\"\n      },\n      \"tapcode\": [\n        {\n          \"id\": \"<integer>\",\n          \"tapcode\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"tapcode\": \"<string>\"\n        }\n      ],\n      \"mnc\": [\n        {\n          \"id\": \"<integer>\",\n          \"mnc\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"mnc\": \"<string>\"\n        }\n      ],\n      \"update_location_failure_reason\": \"<string>\"\n    }\n  }\n]",
+                          "createdAt": "2026-07-28T00:27:32.000Z",
+                          "updatedAt": "2026-07-28T00:27:32.000Z",
+                          "uid": "35240-80afa18b-1c3d-4b34-8b26-3e4f94f05cdf"
+                        },
+                        {
+                          "id": "08b88dcd-dd00-4737-82ae-f79eac9455a8",
+                          "name": "Not found error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/events?page=1&pageSize=10",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "events"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of events per page, maximum allowed value is 1000.",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:32.000Z",
+                          "updatedAt": "2026-07-28T00:27:32.000Z",
+                          "uid": "35240-08b88dcd-dd00-4737-82ae-f79eac9455a8"
+                        },
+                        {
+                          "id": "854613b4-9d7e-4634-bbf6-91543cd939e2",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/events?page=1&pageSize=10",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "events"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of events per page, maximum allowed value is 1000.",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<number>\",\n  \"error_token\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:32.000Z",
+                          "updatedAt": "2026-07-28T00:27:32.000Z",
+                          "uid": "35240-854613b4-9d7e-4634-bbf6-91543cd939e2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:32.000Z",
+                      "updatedAt": "2026-07-28T00:27:32.000Z",
+                      "uid": "35240-5724587c-5e12-41da-b05c-01ef54c109f1"
+                    }
+                  ],
+                  "id": "c09bb1a4-9e21-4bf3-854e-5eba6ecacab5",
+                  "createdAt": "2026-07-28T00:27:32.000Z",
+                  "updatedAt": "2026-07-28T00:27:32.000Z",
+                  "uid": "35240-c09bb1a4-9e21-4bf3-854e-5eba6ecacab5"
+                }
+              ],
+              "id": "5f1cad18-23b7-4594-ab59-c61db50d57c8",
+              "createdAt": "2026-07-28T00:27:32.000Z",
+              "updatedAt": "2026-07-28T00:27:32.000Z",
+              "uid": "35240-5f1cad18-23b7-4594-ab59-c61db50d57c8"
+            }
+          ],
+          "id": "906b3f6a-f138-43da-b839-ea9d1a683b0a",
+          "createdAt": "2026-07-28T00:27:32.000Z",
+          "updatedAt": "2026-07-28T00:27:32.000Z",
+          "uid": "35240-906b3f6a-f138-43da-b839-ea9d1a683b0a"
+        }
+      ],
+      "id": "56d9f596-3120-41d6-9d9d-cd4d201a755b",
+      "createdAt": "2026-07-28T00:27:32.000Z",
+      "updatedAt": "2026-07-28T00:27:32.000Z",
+      "uid": "35240-56d9f596-3120-41d6-9d9d-cd4d201a755b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

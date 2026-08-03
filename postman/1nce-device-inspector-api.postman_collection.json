@@ -1,0 +1,2777 @@
+{
+  "info": {
+    "_postman_id": "52cbaf6f-ade7-4659-9b4e-9775d74fa878",
+    "name": "Authorization Administration Logs Device Inspector API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:00.000Z",
+    "updatedAt": "2026-07-28T00:27:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-52cbaf6f-ade7-4659-9b4e-9775d74fa878"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "inspect",
+          "item": [
+            {
+              "name": "devices",
+              "item": [
+                {
+                  "name": "{deviceId}",
+                  "item": [
+                    {
+                      "name": "telemetry",
+                      "item": [
+                        {
+                          "name": "Get Device Telemetry",
+                          "id": "4c7022ff-1cbc-474d-ae11-241f38e7bab5",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/telemetry?protocol=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "inspect",
+                                "devices",
+                                ":deviceId",
+                                "telemetry"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter out shadow state data for specific protocol: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                  "key": "protocol",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "fb748f66-7a72-474a-b882-b246b0f04c80",
+                                  "key": "deviceId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                                }
+                              ]
+                            },
+                            "description": "Get the current/last repored Shadow State (telemetry) Data for a specific Device."
+                          },
+                          "response": [
+                            {
+                              "id": "ad83ebd2-6278-4d6a-97ff-0b894c45731e",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/telemetry?protocol=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    ":deviceId",
+                                    "telemetry"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter out shadow state data for specific protocol: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "deviceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"state\": {}\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-ad83ebd2-6278-4d6a-97ff-0b894c45731e"
+                            },
+                            {
+                              "id": "642941c4-dd8b-4478-9b23-ed257f1eeee9",
+                              "name": "Bad Request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/telemetry?protocol=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    ":deviceId",
+                                    "telemetry"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter out shadow state data for specific protocol: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "deviceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-642941c4-dd8b-4478-9b23-ed257f1eeee9"
+                            },
+                            {
+                              "id": "1e99b59d-caa6-42ac-8f16-e35682d7a201",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/telemetry?protocol=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    ":deviceId",
+                                    "telemetry"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter out shadow state data for specific protocol: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "deviceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-1e99b59d-caa6-42ac-8f16-e35682d7a201"
+                            },
+                            {
+                              "id": "170262a9-c462-4b9d-ad05-31e3179778fa",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/telemetry?protocol=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    ":deviceId",
+                                    "telemetry"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter out shadow state data for specific protocol: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "deviceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-170262a9-c462-4b9d-ad05-31e3179778fa"
+                            },
+                            {
+                              "id": "3db7f5ab-6197-4782-b985-6d63809bc075",
+                              "name": "Internal Server Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/telemetry?protocol=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    ":deviceId",
+                                    "telemetry"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter out shadow state data for specific protocol: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "deviceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-3db7f5ab-6197-4782-b985-6d63809bc075"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T00:27:01.000Z",
+                          "updatedAt": "2026-07-28T00:27:01.000Z",
+                          "uid": "35240-4c7022ff-1cbc-474d-ae11-241f38e7bab5"
+                        }
+                      ],
+                      "id": "7fb0ae84-1c28-45e0-be6d-f26d327e671f",
+                      "createdAt": "2026-07-28T00:27:01.000Z",
+                      "updatedAt": "2026-07-28T00:27:01.000Z",
+                      "uid": "35240-7fb0ae84-1c28-45e0-be6d-f26d327e671f"
+                    },
+                    {
+                      "name": "history",
+                      "item": [
+                        {
+                          "name": "insights",
+                          "item": [
+                            {
+                              "name": "Get Device Historian Insights",
+                              "id": "387a3462-1873-41f8-bdd7-e263d4c1b34c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/history/insights?startDateTime=<string>&endDateTime=<string>&protocol=<string>&interval=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    ":deviceId",
+                                    "history",
+                                    "insights"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                      "key": "startDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp until when the historic data messages should be queried.",
+                                      "key": "endDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The interval for which grouping of statistics should occur.",
+                                      "key": "interval",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "1e36f89d-74be-4ea1-8b30-a8c516a3e9e0",
+                                      "key": "deviceId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                                    }
+                                  ]
+                                },
+                                "description": "Get insights of a unique SIM device for the Historian."
+                              },
+                              "response": [
+                                {
+                                  "id": "28bbf9a4-e38d-4a0b-8480-6145f7a40bfa",
+                                  "name": "OK",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/history/insights?startDateTime=<string>&endDateTime=<string>&protocol=<string>&interval=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "inspect",
+                                        "devices",
+                                        ":deviceId",
+                                        "history",
+                                        "insights"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                          "key": "startDateTime",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Timestamp until when the historic data messages should be queried.",
+                                          "key": "endDateTime",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                          "key": "protocol",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The interval for which grouping of statistics should occur.",
+                                          "key": "interval",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deviceId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"interval\": \"<string>\",\n  \"items\": [\n    {\n      \"amount\": \"<number>\",\n      \"protocol\": \"UDP\",\n      \"time\": \"<dateTime>\"\n    },\n    {\n      \"amount\": \"<number>\",\n      \"protocol\": \"COAP\",\n      \"time\": \"<dateTime>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T00:27:01.000Z",
+                                  "updatedAt": "2026-07-28T00:27:01.000Z",
+                                  "uid": "35240-28bbf9a4-e38d-4a0b-8480-6145f7a40bfa"
+                                },
+                                {
+                                  "id": "83914e5d-9ca7-4251-bbb7-34649da65087",
+                                  "name": "Bad Request",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/history/insights?startDateTime=<string>&endDateTime=<string>&protocol=<string>&interval=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "inspect",
+                                        "devices",
+                                        ":deviceId",
+                                        "history",
+                                        "insights"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                          "key": "startDateTime",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Timestamp until when the historic data messages should be queried.",
+                                          "key": "endDateTime",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                          "key": "protocol",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The interval for which grouping of statistics should occur.",
+                                          "key": "interval",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deviceId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                                  "createdAt": "2026-07-28T00:27:01.000Z",
+                                  "updatedAt": "2026-07-28T00:27:01.000Z",
+                                  "uid": "35240-83914e5d-9ca7-4251-bbb7-34649da65087"
+                                },
+                                {
+                                  "id": "ec1c67a3-5c0e-4b2d-98e0-cc229bcc3757",
+                                  "name": "Unauthorized",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/history/insights?startDateTime=<string>&endDateTime=<string>&protocol=<string>&interval=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "inspect",
+                                        "devices",
+                                        ":deviceId",
+                                        "history",
+                                        "insights"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                          "key": "startDateTime",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Timestamp until when the historic data messages should be queried.",
+                                          "key": "endDateTime",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                          "key": "protocol",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The interval for which grouping of statistics should occur.",
+                                          "key": "interval",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deviceId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                                  "createdAt": "2026-07-28T00:27:01.000Z",
+                                  "updatedAt": "2026-07-28T00:27:01.000Z",
+                                  "uid": "35240-ec1c67a3-5c0e-4b2d-98e0-cc229bcc3757"
+                                },
+                                {
+                                  "id": "f652560f-2b45-48bb-82d4-b3af8bea079e",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/history/insights?startDateTime=<string>&endDateTime=<string>&protocol=<string>&interval=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "inspect",
+                                        "devices",
+                                        ":deviceId",
+                                        "history",
+                                        "insights"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                          "key": "startDateTime",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Timestamp until when the historic data messages should be queried.",
+                                          "key": "endDateTime",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                          "key": "protocol",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The interval for which grouping of statistics should occur.",
+                                          "key": "interval",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deviceId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                                  "createdAt": "2026-07-28T00:27:01.000Z",
+                                  "updatedAt": "2026-07-28T00:27:01.000Z",
+                                  "uid": "35240-f652560f-2b45-48bb-82d4-b3af8bea079e"
+                                },
+                                {
+                                  "id": "d7c52f2c-40fd-496e-83cc-217b40699ec2",
+                                  "name": "Internal Server Error",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/history/insights?startDateTime=<string>&endDateTime=<string>&protocol=<string>&interval=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "inspect",
+                                        "devices",
+                                        ":deviceId",
+                                        "history",
+                                        "insights"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                          "key": "startDateTime",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Timestamp until when the historic data messages should be queried.",
+                                          "key": "endDateTime",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                          "key": "protocol",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "The interval for which grouping of statistics should occur.",
+                                          "key": "interval",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deviceId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                                  "createdAt": "2026-07-28T00:27:01.000Z",
+                                  "updatedAt": "2026-07-28T00:27:01.000Z",
+                                  "uid": "35240-d7c52f2c-40fd-496e-83cc-217b40699ec2"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-387a3462-1873-41f8-bdd7-e263d4c1b34c"
+                            }
+                          ],
+                          "id": "80712ff7-5346-4b9b-a932-622f96777c0a",
+                          "createdAt": "2026-07-28T00:27:01.000Z",
+                          "updatedAt": "2026-07-28T00:27:01.000Z",
+                          "uid": "35240-80712ff7-5346-4b9b-a932-622f96777c0a"
+                        },
+                        {
+                          "name": "Get Device Historian Messages",
+                          "id": "fdd7a309-bb8a-4170-b1ff-e05bccbf717b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/history?startDateTime=<string>&endDateTime=<string>&pageSize=10&protocol=<string>&nextToken=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "inspect",
+                                "devices",
+                                ":deviceId",
+                                "history"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                  "key": "startDateTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Timestamp until when the historic data messages should be queried.",
+                                  "key": "endDateTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Parameter for specifying the queried items per page.",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                  "key": "protocol",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page.",
+                                  "key": "nextToken",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7675c553-0458-4e19-ae21-3d17721bbd20",
+                                  "key": "deviceId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                                }
+                              ]
+                            },
+                            "description": "Get historic message data for a specific SIM device."
+                          },
+                          "response": [
+                            {
+                              "id": "d495a731-7b97-4e59-9110-2791203683fa",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/history?startDateTime=<string>&endDateTime=<string>&pageSize=10&protocol=<string>&nextToken=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    ":deviceId",
+                                    "history"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                      "key": "startDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp until when the historic data messages should be queried.",
+                                      "key": "endDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Parameter for specifying the queried items per page.",
+                                      "key": "pageSize",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page.",
+                                      "key": "nextToken",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "deviceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"deviceId\": \"<string>\",\n      \"iccid\": \"4957799576493468147\",\n      \"payload\": \"<string>\",\n      \"protocol\": \"UDP\",\n      \"time\": \"<dateTime>\",\n      \"topic\": \"<string>\"\n    },\n    {\n      \"deviceId\": \"<string>\",\n      \"iccid\": \"3911794567623716209\",\n      \"payload\": \"<string>\",\n      \"protocol\": \"LWM2M\",\n      \"time\": \"<dateTime>\",\n      \"topic\": \"<string>\"\n    }\n  ],\n  \"nextToken\": \"<string>\",\n  \"firstToken\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-d495a731-7b97-4e59-9110-2791203683fa"
+                            },
+                            {
+                              "id": "50a08aa1-d22b-49f0-ba79-c4a841ae9564",
+                              "name": "Bad Request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/history?startDateTime=<string>&endDateTime=<string>&pageSize=10&protocol=<string>&nextToken=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    ":deviceId",
+                                    "history"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                      "key": "startDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp until when the historic data messages should be queried.",
+                                      "key": "endDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Parameter for specifying the queried items per page.",
+                                      "key": "pageSize",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page.",
+                                      "key": "nextToken",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "deviceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-50a08aa1-d22b-49f0-ba79-c4a841ae9564"
+                            },
+                            {
+                              "id": "91b53f28-9342-4c95-b45c-908f38371cc9",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/history?startDateTime=<string>&endDateTime=<string>&pageSize=10&protocol=<string>&nextToken=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    ":deviceId",
+                                    "history"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                      "key": "startDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp until when the historic data messages should be queried.",
+                                      "key": "endDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Parameter for specifying the queried items per page.",
+                                      "key": "pageSize",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page.",
+                                      "key": "nextToken",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "deviceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-91b53f28-9342-4c95-b45c-908f38371cc9"
+                            },
+                            {
+                              "id": "bb03dfb9-d012-4ef6-83a9-e2a5805a62d6",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/history?startDateTime=<string>&endDateTime=<string>&pageSize=10&protocol=<string>&nextToken=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    ":deviceId",
+                                    "history"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                      "key": "startDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp until when the historic data messages should be queried.",
+                                      "key": "endDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Parameter for specifying the queried items per page.",
+                                      "key": "pageSize",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page.",
+                                      "key": "nextToken",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "deviceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-bb03dfb9-d012-4ef6-83a9-e2a5805a62d6"
+                            },
+                            {
+                              "id": "ab2e8e45-caa5-4188-84f8-17aa7214e32f",
+                              "name": "Internal Server Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId/history?startDateTime=<string>&endDateTime=<string>&pageSize=10&protocol=<string>&nextToken=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    ":deviceId",
+                                    "history"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                      "key": "startDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp until when the historic data messages should be queried.",
+                                      "key": "endDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Parameter for specifying the queried items per page.",
+                                      "key": "pageSize",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page.",
+                                      "key": "nextToken",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "deviceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-ab2e8e45-caa5-4188-84f8-17aa7214e32f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T00:27:01.000Z",
+                          "updatedAt": "2026-07-28T00:27:01.000Z",
+                          "uid": "35240-fdd7a309-bb8a-4170-b1ff-e05bccbf717b"
+                        }
+                      ],
+                      "id": "78597deb-75ed-4e1b-b9f5-0710ee6d29a5",
+                      "createdAt": "2026-07-28T00:27:01.000Z",
+                      "updatedAt": "2026-07-28T00:27:01.000Z",
+                      "uid": "35240-78597deb-75ed-4e1b-b9f5-0710ee6d29a5"
+                    },
+                    {
+                      "name": "Get Single Device",
+                      "id": "1b40b7e0-a3d8-45fb-a213-dc2fceb28442",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "inspect",
+                            "devices",
+                            ":deviceId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "661c3dc7-fad1-4aea-ab91-ef2d19585d4c",
+                              "key": "deviceId",
+                              "value": "<string>",
+                              "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                            }
+                          ]
+                        },
+                        "description": "Get detailed metadata from one specific Device."
+                      },
+                      "response": [
+                        {
+                          "id": "56f62138-3158-4f16-8f66-b6fe98512869",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "inspect",
+                                "devices",
+                                ":deviceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"iccid\": \"5604750480939714267\",\n  \"id\": \"<string>\",\n  \"imsi1\": \"240856839097651\",\n  \"ip\": \"<ipv4>\",\n  \"name\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:01.000Z",
+                          "updatedAt": "2026-07-28T00:27:01.000Z",
+                          "uid": "35240-56f62138-3158-4f16-8f66-b6fe98512869"
+                        },
+                        {
+                          "id": "d46611a7-ee80-4f42-92f5-61500059ff1e",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "inspect",
+                                "devices",
+                                ":deviceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                          "createdAt": "2026-07-28T00:27:01.000Z",
+                          "updatedAt": "2026-07-28T00:27:01.000Z",
+                          "uid": "35240-d46611a7-ee80-4f42-92f5-61500059ff1e"
+                        },
+                        {
+                          "id": "05a3b871-72e1-4ff8-8869-1cfe7287fa71",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "inspect",
+                                "devices",
+                                ":deviceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                          "createdAt": "2026-07-28T00:27:01.000Z",
+                          "updatedAt": "2026-07-28T00:27:01.000Z",
+                          "uid": "35240-05a3b871-72e1-4ff8-8869-1cfe7287fa71"
+                        },
+                        {
+                          "id": "b031ed01-bccf-410c-9256-0bde65e287eb",
+                          "name": "Not Found Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "inspect",
+                                "devices",
+                                ":deviceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Not Found\"\n}",
+                          "createdAt": "2026-07-28T00:27:01.000Z",
+                          "updatedAt": "2026-07-28T00:27:01.000Z",
+                          "uid": "35240-b031ed01-bccf-410c-9256-0bde65e287eb"
+                        },
+                        {
+                          "id": "328b1e75-1c87-4d54-a95d-2b5595807022",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/inspect/devices/:deviceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "inspect",
+                                "devices",
+                                ":deviceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                          "createdAt": "2026-07-28T00:27:01.000Z",
+                          "updatedAt": "2026-07-28T00:27:01.000Z",
+                          "uid": "35240-328b1e75-1c87-4d54-a95d-2b5595807022"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:01.000Z",
+                      "updatedAt": "2026-07-28T00:27:01.000Z",
+                      "uid": "35240-1b40b7e0-a3d8-45fb-a213-dc2fceb28442"
+                    }
+                  ],
+                  "id": "597c1d42-a84d-4e05-bdfa-6f5daf261728",
+                  "createdAt": "2026-07-28T00:27:01.000Z",
+                  "updatedAt": "2026-07-28T00:27:01.000Z",
+                  "uid": "35240-597c1d42-a84d-4e05-bdfa-6f5daf261728"
+                },
+                {
+                  "name": "history",
+                  "item": [
+                    {
+                      "name": "insights",
+                      "item": [
+                        {
+                          "name": "Get Historian Insights",
+                          "id": "26948fa7-935c-4e84-a1f9-834977b7a99c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/inspect/devices/history/insights?deviceId=<string>&iccid=<string>&startDateTime=<string>&endDateTime=<string>&protocol=<string>&interval=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "inspect",
+                                "devices",
+                                "history",
+                                "insights"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.",
+                                  "key": "deviceId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                                  "key": "iccid",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                  "key": "startDateTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Timestamp until when the historic data messages should be queried.",
+                                  "key": "endDateTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                  "key": "protocol",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The interval for which grouping of statistics should occur.",
+                                  "key": "interval",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "description": "Get insights for all devices from the Historian based on the optional filters."
+                          },
+                          "response": [
+                            {
+                              "id": "42f50910-c22e-465a-831a-87027b9845b0",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/history/insights?deviceId=<string>&iccid=<string>&startDateTime=<string>&endDateTime=<string>&protocol=<string>&interval=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    "history",
+                                    "insights"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.",
+                                      "key": "deviceId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                                      "key": "iccid",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                      "key": "startDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp until when the historic data messages should be queried.",
+                                      "key": "endDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The interval for which grouping of statistics should occur.",
+                                      "key": "interval",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"interval\": \"<string>\",\n  \"items\": [\n    {\n      \"amount\": \"<number>\",\n      \"protocol\": \"COAP\",\n      \"time\": \"<dateTime>\"\n    },\n    {\n      \"amount\": \"<number>\",\n      \"protocol\": \"LWM2M\",\n      \"time\": \"<dateTime>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-42f50910-c22e-465a-831a-87027b9845b0"
+                            },
+                            {
+                              "id": "1e4c126b-35e5-4f11-9b82-247569c0c01f",
+                              "name": "Bad Request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/history/insights?deviceId=<string>&iccid=<string>&startDateTime=<string>&endDateTime=<string>&protocol=<string>&interval=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    "history",
+                                    "insights"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.",
+                                      "key": "deviceId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                                      "key": "iccid",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                      "key": "startDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp until when the historic data messages should be queried.",
+                                      "key": "endDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The interval for which grouping of statistics should occur.",
+                                      "key": "interval",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-1e4c126b-35e5-4f11-9b82-247569c0c01f"
+                            },
+                            {
+                              "id": "ad5add25-599a-4afa-b2e9-c37d97d5257c",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/history/insights?deviceId=<string>&iccid=<string>&startDateTime=<string>&endDateTime=<string>&protocol=<string>&interval=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    "history",
+                                    "insights"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.",
+                                      "key": "deviceId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                                      "key": "iccid",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                      "key": "startDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp until when the historic data messages should be queried.",
+                                      "key": "endDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The interval for which grouping of statistics should occur.",
+                                      "key": "interval",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-ad5add25-599a-4afa-b2e9-c37d97d5257c"
+                            },
+                            {
+                              "id": "a5edd33c-4544-494c-b772-d57e7a35e5d9",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/history/insights?deviceId=<string>&iccid=<string>&startDateTime=<string>&endDateTime=<string>&protocol=<string>&interval=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    "history",
+                                    "insights"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.",
+                                      "key": "deviceId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                                      "key": "iccid",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                      "key": "startDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp until when the historic data messages should be queried.",
+                                      "key": "endDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The interval for which grouping of statistics should occur.",
+                                      "key": "interval",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-a5edd33c-4544-494c-b772-d57e7a35e5d9"
+                            },
+                            {
+                              "id": "66d0e0fc-b0f7-4aa0-b97e-25e62f6b0d4f",
+                              "name": "Internal Server Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/inspect/devices/history/insights?deviceId=<string>&iccid=<string>&startDateTime=<string>&endDateTime=<string>&protocol=<string>&interval=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "inspect",
+                                    "devices",
+                                    "history",
+                                    "insights"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.",
+                                      "key": "deviceId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                                      "key": "iccid",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                      "key": "startDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Timestamp until when the historic data messages should be queried.",
+                                      "key": "endDateTime",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                      "key": "protocol",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The interval for which grouping of statistics should occur.",
+                                      "key": "interval",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                              "createdAt": "2026-07-28T00:27:01.000Z",
+                              "updatedAt": "2026-07-28T00:27:01.000Z",
+                              "uid": "35240-66d0e0fc-b0f7-4aa0-b97e-25e62f6b0d4f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T00:27:01.000Z",
+                          "updatedAt": "2026-07-28T00:27:01.000Z",
+                          "uid": "35240-26948fa7-935c-4e84-a1f9-834977b7a99c"
+                        }
+                      ],
+                      "id": "21a4b71d-fe4b-4cf1-b231-51db5752f9ad",
+                      "createdAt": "2026-07-28T00:27:01.000Z",
+                      "updatedAt": "2026-07-28T00:27:01.000Z",
+                      "uid": "35240-21a4b71d-fe4b-4cf1-b231-51db5752f9ad"
+                    },
+                    {
+                      "name": "Get Historian Messages",
+                      "id": "b2973881-4c8a-43d5-945e-a080990b1557",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/inspect/devices/history?deviceId=<string>&iccid=<string>&startDateTime=<string>&endDateTime=<string>&pageSize=10&protocol=<string>&nextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "inspect",
+                            "devices",
+                            "history"
+                          ],
+                          "query": [
+                            {
+                              "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.",
+                              "key": "deviceId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                              "key": "iccid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Timestamp from where onwards the historic data messages should be queried.",
+                              "key": "startDateTime",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Timestamp until when the historic data messages should be queried.",
+                              "key": "endDateTime",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Parameter for specifying the queried items per page.",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                              "key": "protocol",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page.",
+                              "key": "nextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Get a list of historic messages for devices based on the optional filter parameters."
+                      },
+                      "response": [
+                        {
+                          "id": "a0a138a3-adb4-427b-b0cc-d21c2c032c64",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/inspect/devices/history?deviceId=<string>&iccid=<string>&startDateTime=<string>&endDateTime=<string>&pageSize=10&protocol=<string>&nextToken=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "inspect",
+                                "devices",
+                                "history"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.",
+                                  "key": "deviceId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                                  "key": "iccid",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                  "key": "startDateTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Timestamp until when the historic data messages should be queried.",
+                                  "key": "endDateTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Parameter for specifying the queried items per page.",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                  "key": "protocol",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page.",
+                                  "key": "nextToken",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"deviceId\": \"<string>\",\n      \"iccid\": \"7449076026459479998\",\n      \"payload\": \"<string>\",\n      \"protocol\": \"LWM2M\",\n      \"time\": \"<dateTime>\"\n    },\n    {\n      \"deviceId\": \"<string>\",\n      \"iccid\": \"1782014475616914773\",\n      \"payload\": \"<string>\",\n      \"protocol\": \"LWM2M\",\n      \"time\": \"<dateTime>\"\n    }\n  ],\n  \"nextToken\": \"<string>\",\n  \"firstToken\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:01.000Z",
+                          "updatedAt": "2026-07-28T00:27:01.000Z",
+                          "uid": "35240-a0a138a3-adb4-427b-b0cc-d21c2c032c64"
+                        },
+                        {
+                          "id": "534b355b-ff6b-4c8c-8c81-2fda5ed59370",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/inspect/devices/history?deviceId=<string>&iccid=<string>&startDateTime=<string>&endDateTime=<string>&pageSize=10&protocol=<string>&nextToken=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "inspect",
+                                "devices",
+                                "history"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.",
+                                  "key": "deviceId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                                  "key": "iccid",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                  "key": "startDateTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Timestamp until when the historic data messages should be queried.",
+                                  "key": "endDateTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Parameter for specifying the queried items per page.",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                  "key": "protocol",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page.",
+                                  "key": "nextToken",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                          "createdAt": "2026-07-28T00:27:01.000Z",
+                          "updatedAt": "2026-07-28T00:27:01.000Z",
+                          "uid": "35240-534b355b-ff6b-4c8c-8c81-2fda5ed59370"
+                        },
+                        {
+                          "id": "4512d5d2-9988-4e26-a0d1-21a41f537c50",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/inspect/devices/history?deviceId=<string>&iccid=<string>&startDateTime=<string>&endDateTime=<string>&pageSize=10&protocol=<string>&nextToken=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "inspect",
+                                "devices",
+                                "history"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.",
+                                  "key": "deviceId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                                  "key": "iccid",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                  "key": "startDateTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Timestamp until when the historic data messages should be queried.",
+                                  "key": "endDateTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Parameter for specifying the queried items per page.",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                  "key": "protocol",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page.",
+                                  "key": "nextToken",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                          "createdAt": "2026-07-28T00:27:01.000Z",
+                          "updatedAt": "2026-07-28T00:27:01.000Z",
+                          "uid": "35240-4512d5d2-9988-4e26-a0d1-21a41f537c50"
+                        },
+                        {
+                          "id": "eecd26c4-1cc6-407a-82b8-49a7bcdec6f7",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/inspect/devices/history?deviceId=<string>&iccid=<string>&startDateTime=<string>&endDateTime=<string>&pageSize=10&protocol=<string>&nextToken=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "inspect",
+                                "devices",
+                                "history"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.",
+                                  "key": "deviceId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                                  "key": "iccid",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                  "key": "startDateTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Timestamp until when the historic data messages should be queried.",
+                                  "key": "endDateTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Parameter for specifying the queried items per page.",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                  "key": "protocol",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page.",
+                                  "key": "nextToken",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                          "createdAt": "2026-07-28T00:27:01.000Z",
+                          "updatedAt": "2026-07-28T00:27:01.000Z",
+                          "uid": "35240-eecd26c4-1cc6-407a-82b8-49a7bcdec6f7"
+                        },
+                        {
+                          "id": "0301a699-8640-4374-9d3e-d042f39aea82",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/inspect/devices/history?deviceId=<string>&iccid=<string>&startDateTime=<string>&endDateTime=<string>&pageSize=10&protocol=<string>&nextToken=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "inspect",
+                                "devices",
+                                "history"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid.",
+                                  "key": "deviceId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM.",
+                                  "key": "iccid",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Timestamp from where onwards the historic data messages should be queried.",
+                                  "key": "startDateTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Timestamp until when the historic data messages should be queried.",
+                                  "key": "endDateTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Parameter for specifying the queried items per page.",
+                                  "key": "pageSize",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>",
+                                  "key": "protocol",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page.",
+                                  "key": "nextToken",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                          "createdAt": "2026-07-28T00:27:01.000Z",
+                          "updatedAt": "2026-07-28T00:27:01.000Z",
+                          "uid": "35240-0301a699-8640-4374-9d3e-d042f39aea82"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:01.000Z",
+                      "updatedAt": "2026-07-28T00:27:01.000Z",
+                      "uid": "35240-b2973881-4c8a-43d5-945e-a080990b1557"
+                    }
+                  ],
+                  "id": "c3594420-0c1d-4a34-86b2-e59d857ae9bc",
+                  "createdAt": "2026-07-28T00:27:01.000Z",
+                  "updatedAt": "2026-07-28T00:27:01.000Z",
+                  "uid": "35240-c3594420-0c1d-4a34-86b2-e59d857ae9bc"
+                },
+                {
+                  "name": "Get All Devices",
+                  "id": "ba6963b4-7919-41cf-9623-9c41e66990df",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/inspect/devices?page=1&pageSize=10&sort=<string>&q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "inspect",
+                        "devices"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of the requested devices page. Use this parameter to iterate through all devices on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Parameter for specifying the queried items per page.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter parameter in <i>{filter}:{value}</i> format. Comma separated list of filtering criteria out of the following fields: <ul><li>iccid</li></ul><p><b>Example:</b> \"iccid:8988280666000000000\"</p>",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Get a list of all the Customer SIMs/Devices for the current organisation in the 1NCE OS."
+                  },
+                  "response": [
+                    {
+                      "id": "ff5aa79a-bea3-47f9-a727-cf463f4d83e4",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/inspect/devices?page=1&pageSize=10&sort=<string>&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "inspect",
+                            "devices"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of the requested devices page. Use this parameter to iterate through all devices on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Parameter for specifying the queried items per page.",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter parameter in <i>{filter}:{value}</i> format. Comma separated list of filtering criteria out of the following fields: <ul><li>iccid</li></ul><p><b>Example:</b> \"iccid:8988280666000000000\"</p>",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"iccid\": \"2226525992426073404\",\n      \"id\": \"<string>\",\n      \"imsi1\": \"486818067933599\",\n      \"ip\": \"<ipv4>\"\n    },\n    {\n      \"iccid\": \"0006954783259497764\",\n      \"id\": \"<string>\",\n      \"imsi1\": \"265755305284636\",\n      \"ip\": \"<ipv4>\"\n    }\n  ],\n  \"page\": \"<number>\",\n  \"pageAmount\": \"<number>\"\n}",
+                      "createdAt": "2026-07-28T00:27:01.000Z",
+                      "updatedAt": "2026-07-28T00:27:01.000Z",
+                      "uid": "35240-ff5aa79a-bea3-47f9-a727-cf463f4d83e4"
+                    },
+                    {
+                      "id": "085952fe-4661-4470-b1f1-bb5ac9256dff",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/inspect/devices?page=1&pageSize=10&sort=<string>&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "inspect",
+                            "devices"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of the requested devices page. Use this parameter to iterate through all devices on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Parameter for specifying the queried items per page.",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter parameter in <i>{filter}:{value}</i> format. Comma separated list of filtering criteria out of the following fields: <ul><li>iccid</li></ul><p><b>Example:</b> \"iccid:8988280666000000000\"</p>",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                      "createdAt": "2026-07-28T00:27:01.000Z",
+                      "updatedAt": "2026-07-28T00:27:01.000Z",
+                      "uid": "35240-085952fe-4661-4470-b1f1-bb5ac9256dff"
+                    },
+                    {
+                      "id": "4e9aec12-5294-4662-9b91-174cabaf98bb",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/inspect/devices?page=1&pageSize=10&sort=<string>&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "inspect",
+                            "devices"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of the requested devices page. Use this parameter to iterate through all devices on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Parameter for specifying the queried items per page.",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter parameter in <i>{filter}:{value}</i> format. Comma separated list of filtering criteria out of the following fields: <ul><li>iccid</li></ul><p><b>Example:</b> \"iccid:8988280666000000000\"</p>",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                      "createdAt": "2026-07-28T00:27:01.000Z",
+                      "updatedAt": "2026-07-28T00:27:01.000Z",
+                      "uid": "35240-4e9aec12-5294-4662-9b91-174cabaf98bb"
+                    },
+                    {
+                      "id": "a8250eca-88b6-4ffd-90df-e63ead6eff18",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/inspect/devices?page=1&pageSize=10&sort=<string>&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "inspect",
+                            "devices"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of the requested devices page. Use this parameter to iterate through all devices on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Parameter for specifying the queried items per page.",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter parameter in <i>{filter}:{value}</i> format. Comma separated list of filtering criteria out of the following fields: <ul><li>iccid</li></ul><p><b>Example:</b> \"iccid:8988280666000000000\"</p>",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                      "createdAt": "2026-07-28T00:27:01.000Z",
+                      "updatedAt": "2026-07-28T00:27:01.000Z",
+                      "uid": "35240-a8250eca-88b6-4ffd-90df-e63ead6eff18"
+                    },
+                    {
+                      "id": "0d56f729-7ecd-46f0-bf82-a7ea10fc3e10",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/inspect/devices?page=1&pageSize=10&sort=<string>&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "inspect",
+                            "devices"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of the requested devices page. Use this parameter to iterate through all devices on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Parameter for specifying the queried items per page.",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter parameter in <i>{filter}:{value}</i> format. Comma separated list of filtering criteria out of the following fields: <ul><li>iccid</li></ul><p><b>Example:</b> \"iccid:8988280666000000000\"</p>",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                      "createdAt": "2026-07-28T00:27:01.000Z",
+                      "updatedAt": "2026-07-28T00:27:01.000Z",
+                      "uid": "35240-0d56f729-7ecd-46f0-bf82-a7ea10fc3e10"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:01.000Z",
+                  "updatedAt": "2026-07-28T00:27:01.000Z",
+                  "uid": "35240-ba6963b4-7919-41cf-9623-9c41e66990df"
+                }
+              ],
+              "id": "d17fa273-4e09-4e82-bbc9-3972fcd9490d",
+              "createdAt": "2026-07-28T00:27:01.000Z",
+              "updatedAt": "2026-07-28T00:27:01.000Z",
+              "uid": "35240-d17fa273-4e09-4e82-bbc9-3972fcd9490d"
+            }
+          ],
+          "id": "0a1d9deb-4e2b-49a5-a948-6bb9e2df67d1",
+          "createdAt": "2026-07-28T00:27:01.000Z",
+          "updatedAt": "2026-07-28T00:27:01.000Z",
+          "uid": "35240-0a1d9deb-4e2b-49a5-a948-6bb9e2df67d1"
+        }
+      ],
+      "id": "0489b948-5d87-40eb-ae2c-5f6d2770d29e",
+      "createdAt": "2026-07-28T00:27:01.000Z",
+      "updatedAt": "2026-07-28T00:27:01.000Z",
+      "uid": "35240-0489b948-5d87-40eb-ae2c-5f6d2770d29e"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

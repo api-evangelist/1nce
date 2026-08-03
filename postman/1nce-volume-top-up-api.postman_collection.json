@@ -1,0 +1,1352 @@
+{
+  "info": {
+    "_postman_id": "76763c6b-2c36-47db-a008-d4ba3ff8da9e",
+    "name": "Authorization Administration Logs Volume Top Up API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:41.000Z",
+    "updatedAt": "2026-07-28T00:27:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-76763c6b-2c36-47db-a008-d4ba3ff8da9e"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "sims",
+          "item": [
+            {
+              "name": "{iccid}",
+              "item": [
+                {
+                  "name": "topup",
+                  "item": [
+                    {
+                      "name": "Create Single Top Up",
+                      "id": "dfbc5f3b-6895-41f5-8d76-7b57c047357f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:iccid/topup?payment_method=banktransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":iccid",
+                            "topup"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                              "key": "payment_method",
+                              "value": "banktransfer"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "cb556a4e-5cb6-4426-84b1-46dbe4406c36",
+                              "key": "iccid",
+                              "value": "<string>",
+                              "description": "(Required) The ICCID of the SIM to be topped up."
+                            }
+                          ]
+                        },
+                        "description": "Top up the data/SMS volume of one specific SIM."
+                      },
+                      "response": [
+                        {
+                          "id": "051023cc-e1db-4d39-a52f-1f374aa05410",
+                          "name": "Order created successfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/topup?payment_method=banktransfer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "topup"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                                  "key": "payment_method",
+                                  "value": "banktransfer"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "The path to the newly created order.",
+                                "type": "text/plain"
+                              },
+                              "key": "Location",
+                              "value": "<string>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:41.000Z",
+                          "updatedAt": "2026-07-28T00:27:41.000Z",
+                          "uid": "35240-051023cc-e1db-4d39-a52f-1f374aa05410"
+                        },
+                        {
+                          "id": "74cbf4f0-4a8e-4a35-8a37-4cba8df37f35",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/topup?payment_method=banktransfer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "topup"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                                  "key": "payment_method",
+                                  "value": "banktransfer"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:41.000Z",
+                          "updatedAt": "2026-07-28T00:27:41.000Z",
+                          "uid": "35240-74cbf4f0-4a8e-4a35-8a37-4cba8df37f35"
+                        },
+                        {
+                          "id": "d01bcf7e-4cd3-4f44-9227-d4e11a3bb921",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/topup?payment_method=banktransfer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "topup"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                                  "key": "payment_method",
+                                  "value": "banktransfer"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:41.000Z",
+                          "updatedAt": "2026-07-28T00:27:41.000Z",
+                          "uid": "35240-d01bcf7e-4cd3-4f44-9227-d4e11a3bb921"
+                        },
+                        {
+                          "id": "7e2e9efe-7a81-4fca-a53e-1a931ed4436e",
+                          "name": "SIM does not belong to user.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/topup?payment_method=banktransfer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "topup"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                                  "key": "payment_method",
+                                  "value": "banktransfer"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:41.000Z",
+                          "updatedAt": "2026-07-28T00:27:41.000Z",
+                          "uid": "35240-7e2e9efe-7a81-4fca-a53e-1a931ed4436e"
+                        },
+                        {
+                          "id": "96b107d8-ee18-41f2-92bf-6b2c05efad99",
+                          "name": "SIM not found.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/topup?payment_method=banktransfer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "topup"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                                  "key": "payment_method",
+                                  "value": "banktransfer"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:41.000Z",
+                          "updatedAt": "2026-07-28T00:27:41.000Z",
+                          "uid": "35240-96b107d8-ee18-41f2-92bf-6b2c05efad99"
+                        },
+                        {
+                          "id": "00a9c2ca-4c9a-4909-bc53-3a18b8a05341",
+                          "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:iccid/topup?payment_method=banktransfer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":iccid",
+                                "topup"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                                  "key": "payment_method",
+                                  "value": "banktransfer"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:41.000Z",
+                          "updatedAt": "2026-07-28T00:27:41.000Z",
+                          "uid": "35240-00a9c2ca-4c9a-4909-bc53-3a18b8a05341"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:41.000Z",
+                      "updatedAt": "2026-07-28T00:27:41.000Z",
+                      "uid": "35240-dfbc5f3b-6895-41f5-8d76-7b57c047357f"
+                    }
+                  ],
+                  "id": "e9e15253-9f9e-4236-bd57-d43dbbf4ffdf",
+                  "createdAt": "2026-07-28T00:27:41.000Z",
+                  "updatedAt": "2026-07-28T00:27:41.000Z",
+                  "uid": "35240-e9e15253-9f9e-4236-bd57-d43dbbf4ffdf"
+                }
+              ],
+              "id": "1260684e-217f-458a-8fcc-383876fd41e7",
+              "createdAt": "2026-07-28T00:27:41.000Z",
+              "updatedAt": "2026-07-28T00:27:41.000Z",
+              "uid": "35240-1260684e-217f-458a-8fcc-383876fd41e7"
+            },
+            {
+              "name": "topup",
+              "item": [
+                {
+                  "name": "Create Multiple Top Up",
+                  "id": "0bff77f0-18ac-4e27-9753-6898428b8c89",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims/topup?payment_method=banktransfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims",
+                        "topup"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                          "key": "payment_method",
+                          "value": "banktransfer"
+                        }
+                      ]
+                    },
+                    "description": "Top up the data/SMS volume of a list of SIM."
+                  },
+                  "response": [
+                    {
+                      "id": "ba153e5f-9013-4c54-80f8-6e5fe7f26efd",
+                      "name": "Top Up order initiated successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/topup?payment_method=banktransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "topup"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                              "key": "payment_method",
+                              "value": "banktransfer"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "The path to the newly created order.",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": "<string>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:41.000Z",
+                      "updatedAt": "2026-07-28T00:27:41.000Z",
+                      "uid": "35240-ba153e5f-9013-4c54-80f8-6e5fe7f26efd"
+                    },
+                    {
+                      "id": "057ac177-e770-4251-922d-1f7848c8f1f1",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/topup?payment_method=banktransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "topup"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                              "key": "payment_method",
+                              "value": "banktransfer"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:27:41.000Z",
+                      "updatedAt": "2026-07-28T00:27:41.000Z",
+                      "uid": "35240-057ac177-e770-4251-922d-1f7848c8f1f1"
+                    },
+                    {
+                      "id": "16f6423f-ff1a-4943-8c4b-35035fe89462",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/topup?payment_method=banktransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "topup"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                              "key": "payment_method",
+                              "value": "banktransfer"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:41.000Z",
+                      "updatedAt": "2026-07-28T00:27:41.000Z",
+                      "uid": "35240-16f6423f-ff1a-4943-8c4b-35035fe89462"
+                    },
+                    {
+                      "id": "1d27c189-852a-49c5-ba7e-5d7172e3416c",
+                      "name": "SIM does not belong to user.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/topup?payment_method=banktransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "topup"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                              "key": "payment_method",
+                              "value": "banktransfer"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:41.000Z",
+                      "updatedAt": "2026-07-28T00:27:41.000Z",
+                      "uid": "35240-1d27c189-852a-49c5-ba7e-5d7172e3416c"
+                    },
+                    {
+                      "id": "59e5d94e-7e3a-40f7-96ef-916bf78105c4",
+                      "name": "SIM not found.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/topup?payment_method=banktransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "topup"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                              "key": "payment_method",
+                              "value": "banktransfer"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:41.000Z",
+                      "updatedAt": "2026-07-28T00:27:41.000Z",
+                      "uid": "35240-59e5d94e-7e3a-40f7-96ef-916bf78105c4"
+                    },
+                    {
+                      "id": "b4e57fc5-16ff-42f3-b53c-f1588a03498f",
+                      "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/topup?payment_method=banktransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "topup"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                              "key": "payment_method",
+                              "value": "banktransfer"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:41.000Z",
+                      "updatedAt": "2026-07-28T00:27:41.000Z",
+                      "uid": "35240-b4e57fc5-16ff-42f3-b53c-f1588a03498f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:41.000Z",
+                  "updatedAt": "2026-07-28T00:27:41.000Z",
+                  "uid": "35240-0bff77f0-18ac-4e27-9753-6898428b8c89"
+                }
+              ],
+              "id": "dae699eb-3e37-44bf-ae19-4a4e5c593fb8",
+              "createdAt": "2026-07-28T00:27:41.000Z",
+              "updatedAt": "2026-07-28T00:27:41.000Z",
+              "uid": "35240-dae699eb-3e37-44bf-ae19-4a4e5c593fb8"
+            },
+            {
+              "name": "autoTopup",
+              "item": [
+                {
+                  "name": "Enable Auto Top Up",
+                  "id": "51759eb8-da15-42fa-a450-b1c494b60f5e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims/autoTopup",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims",
+                        "autoTopup"
+                      ]
+                    },
+                    "description": "Trigger an auto top up configuration update for the given SIMs."
+                  },
+                  "response": [
+                    {
+                      "id": "e0788cc1-db87-4cdc-b81f-9575c029a0fe",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/autoTopup",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "autoTopup"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:41.000Z",
+                      "updatedAt": "2026-07-28T00:27:41.000Z",
+                      "uid": "35240-e0788cc1-db87-4cdc-b81f-9575c029a0fe"
+                    },
+                    {
+                      "id": "b4f3d2b5-ada9-4d97-9e57-716b65dda2ce",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/autoTopup",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "autoTopup"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:41.000Z",
+                      "updatedAt": "2026-07-28T00:27:41.000Z",
+                      "uid": "35240-b4f3d2b5-ada9-4d97-9e57-716b65dda2ce"
+                    },
+                    {
+                      "id": "3dae896f-20be-40ad-8197-dbde63f9650c",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/autoTopup",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "autoTopup"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:41.000Z",
+                      "updatedAt": "2026-07-28T00:27:41.000Z",
+                      "uid": "35240-3dae896f-20be-40ad-8197-dbde63f9650c"
+                    },
+                    {
+                      "id": "bd3de516-f901-42a7-9e58-b3d4b5b43f7a",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/autoTopup",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "autoTopup"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:41.000Z",
+                      "updatedAt": "2026-07-28T00:27:41.000Z",
+                      "uid": "35240-bd3de516-f901-42a7-9e58-b3d4b5b43f7a"
+                    },
+                    {
+                      "id": "8e24cd2b-b116-49b8-bbc9-cafa52a376d6",
+                      "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/autoTopup",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "autoTopup"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:41.000Z",
+                      "updatedAt": "2026-07-28T00:27:41.000Z",
+                      "uid": "35240-8e24cd2b-b116-49b8-bbc9-cafa52a376d6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:41.000Z",
+                  "updatedAt": "2026-07-28T00:27:41.000Z",
+                  "uid": "35240-51759eb8-da15-42fa-a450-b1c494b60f5e"
+                }
+              ],
+              "id": "fded92cf-22cf-4ec7-a4d8-b60572227b0a",
+              "createdAt": "2026-07-28T00:27:41.000Z",
+              "updatedAt": "2026-07-28T00:27:41.000Z",
+              "uid": "35240-fded92cf-22cf-4ec7-a4d8-b60572227b0a"
+            }
+          ],
+          "id": "28222e9d-245b-4dcf-83ec-3a4b58c26842",
+          "createdAt": "2026-07-28T00:27:41.000Z",
+          "updatedAt": "2026-07-28T00:27:41.000Z",
+          "uid": "35240-28222e9d-245b-4dcf-83ec-3a4b58c26842"
+        }
+      ],
+      "id": "587629c8-70f5-4d41-aba8-90d6b4b7e77c",
+      "createdAt": "2026-07-28T00:27:41.000Z",
+      "updatedAt": "2026-07-28T00:27:41.000Z",
+      "uid": "35240-587629c8-70f5-4d41-aba8-90d6b4b7e77c"
+    },
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "sims",
+          "item": [
+            {
+              "name": "{iccid}",
+              "item": [
+                {
+                  "name": "topup",
+                  "item": [
+                    {
+                      "name": "Create Single Top Up",
+                      "id": "253b32f0-854b-4a53-b622-e65c2a620302",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/sims/:iccid/topup?payment_method=banktransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "sims",
+                            ":iccid",
+                            "topup"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                              "key": "payment_method",
+                              "value": "banktransfer"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "b9408bd1-9cf8-4f1f-a984-7b0c34fe55c7",
+                              "key": "iccid",
+                              "value": "<string>",
+                              "description": "(Required) The ICCID of the SIM to be topped up."
+                            }
+                          ]
+                        },
+                        "description": "Top up the data/SMS volume of one specific SIM."
+                      },
+                      "response": [
+                        {
+                          "id": "fa277ea9-0dfe-411f-8e53-833e7b1dd63f",
+                          "name": "Order created successfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/topup?payment_method=banktransfer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "topup"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                                  "key": "payment_method",
+                                  "value": "banktransfer"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "The path to the newly created order.",
+                                "type": "text/plain"
+                              },
+                              "key": "Location",
+                              "value": "<string>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:41.000Z",
+                          "updatedAt": "2026-07-28T00:27:41.000Z",
+                          "uid": "35240-fa277ea9-0dfe-411f-8e53-833e7b1dd63f"
+                        },
+                        {
+                          "id": "bf564596-ca38-4840-9a04-6c5b851e9b70",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/topup?payment_method=banktransfer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "topup"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                                  "key": "payment_method",
+                                  "value": "banktransfer"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:41.000Z",
+                          "updatedAt": "2026-07-28T00:27:41.000Z",
+                          "uid": "35240-bf564596-ca38-4840-9a04-6c5b851e9b70"
+                        },
+                        {
+                          "id": "2e79e7d7-f239-4f64-a42c-c153aa244625",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/topup?payment_method=banktransfer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "topup"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                                  "key": "payment_method",
+                                  "value": "banktransfer"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:41.000Z",
+                          "updatedAt": "2026-07-28T00:27:41.000Z",
+                          "uid": "35240-2e79e7d7-f239-4f64-a42c-c153aa244625"
+                        },
+                        {
+                          "id": "79b7877b-9471-43b5-aa21-e49cf3c24a1a",
+                          "name": "SIM does not belong to user.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/topup?payment_method=banktransfer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "topup"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                                  "key": "payment_method",
+                                  "value": "banktransfer"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:41.000Z",
+                          "updatedAt": "2026-07-28T00:27:41.000Z",
+                          "uid": "35240-79b7877b-9471-43b5-aa21-e49cf3c24a1a"
+                        },
+                        {
+                          "id": "53ff8542-10e1-42c5-a25c-f456ae38a223",
+                          "name": "SIM not found.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/sims/:iccid/topup?payment_method=banktransfer",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "sims",
+                                ":iccid",
+                                "topup"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process.",
+                                  "key": "payment_method",
+                                  "value": "banktransfer"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "iccid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:41.000Z",
+                          "updatedAt": "2026-07-28T00:27:41.000Z",
+                          "uid": "35240-53ff8542-10e1-42c5-a25c-f456ae38a223"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:41.000Z",
+                      "updatedAt": "2026-07-28T00:27:41.000Z",
+                      "uid": "35240-253b32f0-854b-4a53-b622-e65c2a620302"
+                    }
+                  ],
+                  "id": "d5a26049-59b2-4337-aacc-793732a1501f",
+                  "createdAt": "2026-07-28T00:27:41.000Z",
+                  "updatedAt": "2026-07-28T00:27:41.000Z",
+                  "uid": "35240-d5a26049-59b2-4337-aacc-793732a1501f"
+                }
+              ],
+              "id": "f607492e-f76d-4daf-bd96-6f417487bd27",
+              "createdAt": "2026-07-28T00:27:41.000Z",
+              "updatedAt": "2026-07-28T00:27:41.000Z",
+              "uid": "35240-f607492e-f76d-4daf-bd96-6f417487bd27"
+            }
+          ],
+          "id": "4b9b0272-82ec-4b29-b6c7-d4cd1a3cb03d",
+          "createdAt": "2026-07-28T00:27:41.000Z",
+          "updatedAt": "2026-07-28T00:27:41.000Z",
+          "uid": "35240-4b9b0272-82ec-4b29-b6c7-d4cd1a3cb03d"
+        }
+      ],
+      "id": "53ca4d73-ba01-4944-a192-e40ce78649eb",
+      "createdAt": "2026-07-28T00:27:41.000Z",
+      "updatedAt": "2026-07-28T00:27:41.000Z",
+      "uid": "35240-53ca4d73-ba01-4944-a192-e40ce78649eb"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

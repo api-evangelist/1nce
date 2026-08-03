@@ -1,0 +1,678 @@
+{
+  "info": {
+    "_postman_id": "5c083d15-8a50-46a3-a9da-ca033a28779a",
+    "name": "Authorization Administration Logs Settings API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:31.000Z",
+    "updatedAt": "2026-07-28T00:27:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5c083d15-8a50-46a3-a9da-ca033a28779a"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "settings",
+          "item": [
+            {
+              "name": "1nceos",
+              "item": [
+                {
+                  "name": "{name}",
+                  "item": [
+                    {
+                      "name": "Patch Settings",
+                      "id": "35610a9a-3b86-4b1a-920e-6b63bde549d2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"ENABLED\",\n  \"readAndAcceptedDisclaimer\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/settings/1nceos/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "settings",
+                            "1nceos",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ad62f926-6bc0-4f4f-acff-13c568c288c0",
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) Key name parameter of the setting to update."
+                            }
+                          ]
+                        },
+                        "description": "Enables or disables different settings for the 1NCE OS integration of a customer.\n\nDisclaimer: I acknowledge that activating the location feature involves processing nearby Cell Tower data by 1NCE. 1NCE processing of data is done anonymously. I understand that if the use of the service by me makes it linkable to individuals, additional data related responsibilities may apply. As per 1NCE General Terms and Conditions (GTC), I am solely responsible for complying with Data Protection laws and regulations and obtaining necessary consents.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "2f4fbf97-b462-4c79-a21a-1f5a189cd15c",
+                          "name": "An object describing a setting",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"state\": \"ENABLED\",\n  \"readAndAcceptedDisclaimer\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/settings/1nceos/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "settings",
+                                "1nceos",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"customerId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"state\": \"DISABLED\"\n}",
+                          "createdAt": "2026-07-28T00:27:31.000Z",
+                          "updatedAt": "2026-07-28T00:27:31.000Z",
+                          "uid": "35240-2f4fbf97-b462-4c79-a21a-1f5a189cd15c"
+                        },
+                        {
+                          "id": "36d6eec1-3895-4edf-9701-49ac26c6a0ed",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"state\": \"ENABLED\",\n  \"readAndAcceptedDisclaimer\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/settings/1nceos/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "settings",
+                                "1nceos",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                          "createdAt": "2026-07-28T00:27:31.000Z",
+                          "updatedAt": "2026-07-28T00:27:31.000Z",
+                          "uid": "35240-36d6eec1-3895-4edf-9701-49ac26c6a0ed"
+                        },
+                        {
+                          "id": "e830bf85-f218-4126-996a-72af20fb3cf2",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"state\": \"ENABLED\",\n  \"readAndAcceptedDisclaimer\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/settings/1nceos/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "settings",
+                                "1nceos",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                          "createdAt": "2026-07-28T00:27:31.000Z",
+                          "updatedAt": "2026-07-28T00:27:31.000Z",
+                          "uid": "35240-e830bf85-f218-4126-996a-72af20fb3cf2"
+                        },
+                        {
+                          "id": "7096b55f-5a5d-494b-bbc6-c88ee1b2459f",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"state\": \"ENABLED\",\n  \"readAndAcceptedDisclaimer\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/settings/1nceos/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "settings",
+                                "1nceos",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusText\": \"Server Error\"\n}",
+                          "createdAt": "2026-07-28T00:27:31.000Z",
+                          "updatedAt": "2026-07-28T00:27:31.000Z",
+                          "uid": "35240-7096b55f-5a5d-494b-bbc6-c88ee1b2459f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:31.000Z",
+                      "updatedAt": "2026-07-28T00:27:31.000Z",
+                      "uid": "35240-35610a9a-3b86-4b1a-920e-6b63bde549d2"
+                    }
+                  ],
+                  "id": "660fc7ba-a532-4347-ac7c-fc3baccf4be4",
+                  "createdAt": "2026-07-28T00:27:31.000Z",
+                  "updatedAt": "2026-07-28T00:27:31.000Z",
+                  "uid": "35240-660fc7ba-a532-4347-ac7c-fc3baccf4be4"
+                },
+                {
+                  "name": "Get customer settings",
+                  "id": "9945d5a9-d3be-4a75-b5a3-ac2ae0bc23a3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/settings/1nceos?pageSize=10&page=1&language=de",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "settings",
+                        "1nceos"
+                      ],
+                      "query": [
+                        {
+                          "description": "Parameter for specifying the queried items per page.",
+                          "key": "pageSize",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Identifies in what language the description should be returned.",
+                          "key": "language",
+                          "value": "de"
+                        }
+                      ]
+                    },
+                    "description": "Gets customer settings related to 1NCE OS."
+                  },
+                  "response": [
+                    {
+                      "id": "efe6d405-083a-4b34-885d-d2ea5749e2ae",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/settings/1nceos?pageSize=10&page=1&language=de",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "settings",
+                            "1nceos"
+                          ],
+                          "query": [
+                            {
+                              "description": "Parameter for specifying the queried items per page.",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Identifies in what language the description should be returned.",
+                              "key": "language",
+                              "value": "de"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"description\": \"<string>\",\n      \"name\": \"<string>\",\n      \"state\": \"ENABLED\",\n      \"details\": {\n        \"credits\": \"<number>\",\n        \"expiryDate\": {}\n      }\n    },\n    {\n      \"description\": \"<string>\",\n      \"name\": \"<string>\",\n      \"state\": \"ENABLED\",\n      \"details\": {\n        \"credits\": \"<number>\",\n        \"expiryDate\": {}\n      }\n    }\n  ],\n  \"page\": \"<number>\",\n  \"pageAmount\": \"<number>\"\n}",
+                      "createdAt": "2026-07-28T00:27:31.000Z",
+                      "updatedAt": "2026-07-28T00:27:31.000Z",
+                      "uid": "35240-efe6d405-083a-4b34-885d-d2ea5749e2ae"
+                    },
+                    {
+                      "id": "06d27223-d692-4c26-be0a-46c1cd69aae6",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/settings/1nceos?pageSize=10&page=1&language=de",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "settings",
+                            "1nceos"
+                          ],
+                          "query": [
+                            {
+                              "description": "Parameter for specifying the queried items per page.",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Identifies in what language the description should be returned.",
+                              "key": "language",
+                              "value": "de"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                      "createdAt": "2026-07-28T00:27:31.000Z",
+                      "updatedAt": "2026-07-28T00:27:31.000Z",
+                      "uid": "35240-06d27223-d692-4c26-be0a-46c1cd69aae6"
+                    },
+                    {
+                      "id": "755ad6bc-0203-44a8-8509-cbde17711ed1",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/settings/1nceos?pageSize=10&page=1&language=de",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "settings",
+                            "1nceos"
+                          ],
+                          "query": [
+                            {
+                              "description": "Parameter for specifying the queried items per page.",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Identifies in what language the description should be returned.",
+                              "key": "language",
+                              "value": "de"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                      "createdAt": "2026-07-28T00:27:31.000Z",
+                      "updatedAt": "2026-07-28T00:27:31.000Z",
+                      "uid": "35240-755ad6bc-0203-44a8-8509-cbde17711ed1"
+                    },
+                    {
+                      "id": "a18bd5be-eb64-488a-b89a-0ad51f8212d9",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/settings/1nceos?pageSize=10&page=1&language=de",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "settings",
+                            "1nceos"
+                          ],
+                          "query": [
+                            {
+                              "description": "Parameter for specifying the queried items per page.",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Identifies in what language the description should be returned.",
+                              "key": "language",
+                              "value": "de"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                      "createdAt": "2026-07-28T00:27:31.000Z",
+                      "updatedAt": "2026-07-28T00:27:31.000Z",
+                      "uid": "35240-a18bd5be-eb64-488a-b89a-0ad51f8212d9"
+                    },
+                    {
+                      "id": "eae0e41e-3428-42a3-a99f-fc47da80a699",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/settings/1nceos?pageSize=10&page=1&language=de",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "settings",
+                            "1nceos"
+                          ],
+                          "query": [
+                            {
+                              "description": "Parameter for specifying the queried items per page.",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount).",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Identifies in what language the description should be returned.",
+                              "key": "language",
+                              "value": "de"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusText\": \"Server Error\"\n}",
+                      "createdAt": "2026-07-28T00:27:31.000Z",
+                      "updatedAt": "2026-07-28T00:27:31.000Z",
+                      "uid": "35240-eae0e41e-3428-42a3-a99f-fc47da80a699"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:31.000Z",
+                  "updatedAt": "2026-07-28T00:27:31.000Z",
+                  "uid": "35240-9945d5a9-d3be-4a75-b5a3-ac2ae0bc23a3"
+                }
+              ],
+              "id": "e184b407-44b0-4cf3-8728-9c6e6ab95333",
+              "createdAt": "2026-07-28T00:27:31.000Z",
+              "updatedAt": "2026-07-28T00:27:31.000Z",
+              "uid": "35240-e184b407-44b0-4cf3-8728-9c6e6ab95333"
+            }
+          ],
+          "id": "7ad2f747-87f6-4499-8957-381e33ad034d",
+          "createdAt": "2026-07-28T00:27:31.000Z",
+          "updatedAt": "2026-07-28T00:27:31.000Z",
+          "uid": "35240-7ad2f747-87f6-4499-8957-381e33ad034d"
+        }
+      ],
+      "id": "63f4e06c-969a-4081-b282-375b5b800685",
+      "createdAt": "2026-07-28T00:27:31.000Z",
+      "updatedAt": "2026-07-28T00:27:31.000Z",
+      "uid": "35240-63f4e06c-969a-4081-b282-375b5b800685"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

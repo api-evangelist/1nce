@@ -1,0 +1,743 @@
+{
+  "info": {
+    "_postman_id": "8447a736-84af-471b-9e24-8724187eb685",
+    "name": "Authorization Administration Logs Volume Limits API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:39.000Z",
+    "updatedAt": "2026-07-28T00:27:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8447a736-84af-471b-9e24-8724187eb685"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "sims",
+          "item": [
+            {
+              "name": "limits",
+              "item": [
+                {
+                  "name": "Get Global Limits",
+                  "id": "089dff2d-b08e-44a3-af47-4cf8f13575e9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims/limits",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims",
+                        "limits"
+                      ]
+                    },
+                    "description": "Get currently configured self-set monthly limits (Data, MT-SMS, MO-SMS) for all SIMs."
+                  },
+                  "response": [
+                    {
+                      "id": "c10b4a93-a35c-42da-aa00-7c04ef4ad9b0",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/limits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "limits"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"limit\": \"<string>\",\n    \"unit\": \"<string>\"\n  },\n  \"smsMt\": {\n    \"id\": \"<integer>\",\n    \"limit\": \"<string>\",\n    \"unit\": \"<string>\"\n  },\n  \"smsMo\": {\n    \"id\": \"<integer>\",\n    \"limit\": \"<string>\",\n    \"unit\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T00:27:39.000Z",
+                      "updatedAt": "2026-07-28T00:27:39.000Z",
+                      "uid": "35240-c10b4a93-a35c-42da-aa00-7c04ef4ad9b0"
+                    },
+                    {
+                      "id": "a9900f1d-b142-48da-aad4-95eeff846fad",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/limits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "limits"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:39.000Z",
+                      "updatedAt": "2026-07-28T00:27:39.000Z",
+                      "uid": "35240-a9900f1d-b142-48da-aad4-95eeff846fad"
+                    },
+                    {
+                      "id": "38505c31-13e0-4708-ad5a-8999f847d32d",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/limits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "limits"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:39.000Z",
+                      "updatedAt": "2026-07-28T00:27:39.000Z",
+                      "uid": "35240-38505c31-13e0-4708-ad5a-8999f847d32d"
+                    },
+                    {
+                      "id": "790b0148-ab76-4b50-bdef-9a84371a3c20",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/limits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "limits"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:39.000Z",
+                      "updatedAt": "2026-07-28T00:27:39.000Z",
+                      "uid": "35240-790b0148-ab76-4b50-bdef-9a84371a3c20"
+                    },
+                    {
+                      "id": "e0eea50e-00a5-4db9-b492-de13d46255d8",
+                      "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/limits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "limits"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:39.000Z",
+                      "updatedAt": "2026-07-28T00:27:39.000Z",
+                      "uid": "35240-e0eea50e-00a5-4db9-b492-de13d46255d8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:39.000Z",
+                  "updatedAt": "2026-07-28T00:27:39.000Z",
+                  "uid": "35240-089dff2d-b08e-44a3-af47-4cf8f13575e9"
+                },
+                {
+                  "name": "Create Global Limits",
+                  "id": "5c485ec3-204e-47e4-b1cc-40df017f47b1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"dataLimitId\": \"<integer>\",\n  \"smsMtLimitId\": \"<integer>\",\n  \"smsMoLimitId\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims/limits",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims",
+                        "limits"
+                      ]
+                    },
+                    "description": "Configure self-set monthly limits for all SIMs (Data, MT-SMS, MO-SMS)."
+                  },
+                  "response": [
+                    {
+                      "id": "354c5607-f66a-428c-ab5b-2c88ec78a3c2",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"dataLimitId\": \"<integer>\",\n  \"smsMtLimitId\": \"<integer>\",\n  \"smsMoLimitId\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/limits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "limits"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:39.000Z",
+                      "updatedAt": "2026-07-28T00:27:39.000Z",
+                      "uid": "35240-354c5607-f66a-428c-ab5b-2c88ec78a3c2"
+                    },
+                    {
+                      "id": "e2f2eaca-1cde-44c1-a19c-41321ae138e1",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"dataLimitId\": \"<integer>\",\n  \"smsMtLimitId\": \"<integer>\",\n  \"smsMoLimitId\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/limits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "limits"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:39.000Z",
+                      "updatedAt": "2026-07-28T00:27:39.000Z",
+                      "uid": "35240-e2f2eaca-1cde-44c1-a19c-41321ae138e1"
+                    },
+                    {
+                      "id": "dafd0a4f-7fcb-430e-ad20-ad64620b8f39",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"dataLimitId\": \"<integer>\",\n  \"smsMtLimitId\": \"<integer>\",\n  \"smsMoLimitId\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/limits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "limits"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:39.000Z",
+                      "updatedAt": "2026-07-28T00:27:39.000Z",
+                      "uid": "35240-dafd0a4f-7fcb-430e-ad20-ad64620b8f39"
+                    },
+                    {
+                      "id": "09102d7e-d1bf-4cd8-a8a7-f9ceaf653ba9",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"dataLimitId\": \"<integer>\",\n  \"smsMtLimitId\": \"<integer>\",\n  \"smsMoLimitId\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/limits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "limits"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:39.000Z",
+                      "updatedAt": "2026-07-28T00:27:39.000Z",
+                      "uid": "35240-09102d7e-d1bf-4cd8-a8a7-f9ceaf653ba9"
+                    },
+                    {
+                      "id": "30f80580-8e00-4cae-a3b7-832f4f1cbcb3",
+                      "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"dataLimitId\": \"<integer>\",\n  \"smsMtLimitId\": \"<integer>\",\n  \"smsMoLimitId\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/limits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "limits"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:39.000Z",
+                      "updatedAt": "2026-07-28T00:27:39.000Z",
+                      "uid": "35240-30f80580-8e00-4cae-a3b7-832f4f1cbcb3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:39.000Z",
+                  "updatedAt": "2026-07-28T00:27:39.000Z",
+                  "uid": "35240-5c485ec3-204e-47e4-b1cc-40df017f47b1"
+                }
+              ],
+              "id": "c4cb798f-c6b4-471e-bb66-878bd9ae5b01",
+              "createdAt": "2026-07-28T00:27:39.000Z",
+              "updatedAt": "2026-07-28T00:27:39.000Z",
+              "uid": "35240-c4cb798f-c6b4-471e-bb66-878bd9ae5b01"
+            },
+            {
+              "name": "{service}",
+              "item": [
+                {
+                  "name": "limits",
+                  "item": [
+                    {
+                      "name": "Get SIM Limits",
+                      "id": "4475ad51-872c-4cb5-bfb5-71aecdfcaec9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/:service/limits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            ":service",
+                            "limits"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1deca135-4ae7-4136-8c32-c9031867cd93",
+                              "key": "service",
+                              "value": "data",
+                              "description": "(Required) The service name (data, smsMO, smsMT) for which to list the avaliable limit options."
+                            }
+                          ]
+                        },
+                        "description": "Get a list of slectable limits for a given service."
+                      },
+                      "response": [
+                        {
+                          "id": "076053f1-4e48-4be9-9a15-e59a4c0a4942",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:service/limits",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":service",
+                                "limits"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "service"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "*/*"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"limit\": \"<string>\",\n    \"unit\": \"<string>\"\n  },\n  \"smsMt\": {\n    \"id\": \"<integer>\",\n    \"limit\": \"<string>\",\n    \"unit\": \"<string>\"\n  },\n  \"smsMo\": {\n    \"id\": \"<integer>\",\n    \"limit\": \"<string>\",\n    \"unit\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T00:27:39.000Z",
+                          "updatedAt": "2026-07-28T00:27:39.000Z",
+                          "uid": "35240-076053f1-4e48-4be9-9a15-e59a4c0a4942"
+                        },
+                        {
+                          "id": "8e29cd72-5985-4891-801e-8025e3853340",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:service/limits",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":service",
+                                "limits"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "service"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:39.000Z",
+                          "updatedAt": "2026-07-28T00:27:39.000Z",
+                          "uid": "35240-8e29cd72-5985-4891-801e-8025e3853340"
+                        },
+                        {
+                          "id": "302019c0-24cb-4f72-86f2-2203330d8a52",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:service/limits",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":service",
+                                "limits"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "service"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:39.000Z",
+                          "updatedAt": "2026-07-28T00:27:39.000Z",
+                          "uid": "35240-302019c0-24cb-4f72-86f2-2203330d8a52"
+                        },
+                        {
+                          "id": "d050494d-9e2b-480d-9e2b-80549c269314",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:service/limits",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":service",
+                                "limits"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "service"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:39.000Z",
+                          "updatedAt": "2026-07-28T00:27:39.000Z",
+                          "uid": "35240-d050494d-9e2b-480d-9e2b-80549c269314"
+                        },
+                        {
+                          "id": "059b7d30-0137-4fef-9969-849bf09f7c7f",
+                          "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sims/:service/limits",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sims",
+                                ":service",
+                                "limits"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "service"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:39.000Z",
+                          "updatedAt": "2026-07-28T00:27:39.000Z",
+                          "uid": "35240-059b7d30-0137-4fef-9969-849bf09f7c7f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:39.000Z",
+                      "updatedAt": "2026-07-28T00:27:39.000Z",
+                      "uid": "35240-4475ad51-872c-4cb5-bfb5-71aecdfcaec9"
+                    }
+                  ],
+                  "id": "a9aa20e1-14d0-4d8e-be0e-af911d596a7d",
+                  "createdAt": "2026-07-28T00:27:39.000Z",
+                  "updatedAt": "2026-07-28T00:27:39.000Z",
+                  "uid": "35240-a9aa20e1-14d0-4d8e-be0e-af911d596a7d"
+                }
+              ],
+              "id": "ed558366-bde8-4f68-b7fe-aa8a756676d4",
+              "createdAt": "2026-07-28T00:27:39.000Z",
+              "updatedAt": "2026-07-28T00:27:39.000Z",
+              "uid": "35240-ed558366-bde8-4f68-b7fe-aa8a756676d4"
+            }
+          ],
+          "id": "554f2e3d-83bb-41a1-9d4b-05fd40008552",
+          "createdAt": "2026-07-28T00:27:39.000Z",
+          "updatedAt": "2026-07-28T00:27:39.000Z",
+          "uid": "35240-554f2e3d-83bb-41a1-9d4b-05fd40008552"
+        }
+      ],
+      "id": "c21a71de-d715-4e48-ba9c-bf455417dd4a",
+      "createdAt": "2026-07-28T00:27:39.000Z",
+      "updatedAt": "2026-07-28T00:27:39.000Z",
+      "uid": "35240-c21a71de-d715-4e48-ba9c-bf455417dd4a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

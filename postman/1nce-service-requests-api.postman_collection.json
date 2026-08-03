@@ -1,0 +1,509 @@
+{
+  "info": {
+    "_postman_id": "501118df-89ce-4d16-b14d-0139f99464e3",
+    "name": "Authorization Administration Logs Service Requests API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:30.000Z",
+    "updatedAt": "2026-07-28T00:27:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-501118df-89ce-4d16-b14d-0139f99464e3"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "support",
+          "item": [
+            {
+              "name": "Get Service Requests",
+              "id": "e158d8ab-b0dc-47d9-b61f-e1e6abc5b1b1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/support?page=1&pageSize=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "support"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number index of the requested service request page. Use this parameter to iterate through all service requests on the different pages. The total amount of pages is listed in the response header.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "The number of service requests per page, maximum allowed value is 100.",
+                      "key": "pageSize",
+                      "value": "1"
+                    }
+                  ]
+                },
+                "description": "Get a list of all customer service requests."
+              },
+              "response": [
+                {
+                  "id": "4c490d92-ed5c-49fb-93dd-c0286d9ed2da",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/support?page=1&pageSize=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "support"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number index of the requested service request page. Use this parameter to iterate through all service requests on the different pages. The total amount of pages is listed in the response header.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The number of service requests per page, maximum allowed value is 100.",
+                          "key": "pageSize",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"caseId\": \"<string>\",\n    \"communications\": [\n      {\n        \"communicationDate\": \"<dateTime>\",\n        \"direction\": \"OUT\",\n        \"id\": \"<string>\",\n        \"originator\": \"<string>\",\n        \"subject\": \"<string>\",\n        \"text\": \"<string>\",\n        \"type\": \"PORTAL\"\n      },\n      {\n        \"communicationDate\": \"<dateTime>\",\n        \"direction\": \"OUT\",\n        \"id\": \"<string>\",\n        \"originator\": \"<string>\",\n        \"subject\": \"<string>\",\n        \"text\": \"<string>\",\n        \"type\": \"MAIL_OUT\"\n      }\n    ],\n    \"createDate\": \"<dateTime>\",\n    \"solvedDate\": \"<dateTime>\",\n    \"status\": \"CLOSED\",\n    \"subject\": \"<string>\",\n    \"text\": \"<string>\"\n  },\n  {\n    \"caseId\": \"<string>\",\n    \"communications\": [\n      {\n        \"communicationDate\": \"<dateTime>\",\n        \"direction\": \"OUT\",\n        \"id\": \"<string>\",\n        \"originator\": \"<string>\",\n        \"subject\": \"<string>\",\n        \"text\": \"<string>\",\n        \"type\": \"PHONE_IN\"\n      },\n      {\n        \"communicationDate\": \"<dateTime>\",\n        \"direction\": \"IN\",\n        \"id\": \"<string>\",\n        \"originator\": \"<string>\",\n        \"subject\": \"<string>\",\n        \"text\": \"<string>\",\n        \"type\": \"PORTAL\"\n      }\n    ],\n    \"createDate\": \"<dateTime>\",\n    \"solvedDate\": \"<dateTime>\",\n    \"status\": \"CLOSED\",\n    \"subject\": \"<string>\",\n    \"text\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-07-28T00:27:31.000Z",
+                  "updatedAt": "2026-07-28T00:27:31.000Z",
+                  "uid": "35240-4c490d92-ed5c-49fb-93dd-c0286d9ed2da"
+                },
+                {
+                  "id": "bf6670de-cde5-4073-b904-d77f410417c4",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/support?page=1&pageSize=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "support"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number index of the requested service request page. Use this parameter to iterate through all service requests on the different pages. The total amount of pages is listed in the response header.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The number of service requests per page, maximum allowed value is 100.",
+                          "key": "pageSize",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:31.000Z",
+                  "updatedAt": "2026-07-28T00:27:31.000Z",
+                  "uid": "35240-bf6670de-cde5-4073-b904-d77f410417c4"
+                },
+                {
+                  "id": "7419d278-365b-4728-981e-734c2947f27a",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/support?page=1&pageSize=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "support"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number index of the requested service request page. Use this parameter to iterate through all service requests on the different pages. The total amount of pages is listed in the response header.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The number of service requests per page, maximum allowed value is 100.",
+                          "key": "pageSize",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:31.000Z",
+                  "updatedAt": "2026-07-28T00:27:31.000Z",
+                  "uid": "35240-7419d278-365b-4728-981e-734c2947f27a"
+                },
+                {
+                  "id": "365f3272-ff64-4b7d-ab4c-d190f9901a03",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/support?page=1&pageSize=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "support"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number index of the requested service request page. Use this parameter to iterate through all service requests on the different pages. The total amount of pages is listed in the response header.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The number of service requests per page, maximum allowed value is 100.",
+                          "key": "pageSize",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:31.000Z",
+                  "updatedAt": "2026-07-28T00:27:31.000Z",
+                  "uid": "35240-365f3272-ff64-4b7d-ab4c-d190f9901a03"
+                }
+              ],
+              "createdAt": "2026-07-28T00:27:30.000Z",
+              "updatedAt": "2026-07-28T00:27:30.000Z",
+              "uid": "35240-e158d8ab-b0dc-47d9-b61f-e1e6abc5b1b1"
+            },
+            {
+              "name": "Create Service Request",
+              "id": "0c8fb62f-057e-4eca-8c68-bdb8fbe67a9b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"replyToMail\": \"<string>\",\n  \"senderName\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"text\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/support",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "support"
+                  ]
+                },
+                "description": "Create a new service request towards 1NCE Support."
+              },
+              "response": [
+                {
+                  "id": "f247478b-4d09-46be-863c-a2c2d6f19f6e",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"replyToMail\": \"<string>\",\n  \"senderName\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"text\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/support",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "support"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:31.000Z",
+                  "updatedAt": "2026-07-28T00:27:31.000Z",
+                  "uid": "35240-f247478b-4d09-46be-863c-a2c2d6f19f6e"
+                },
+                {
+                  "id": "a481da44-7694-4f90-b966-9202b7f427ba",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"replyToMail\": \"<string>\",\n  \"senderName\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"text\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/support",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "support"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:31.000Z",
+                  "updatedAt": "2026-07-28T00:27:31.000Z",
+                  "uid": "35240-a481da44-7694-4f90-b966-9202b7f427ba"
+                },
+                {
+                  "id": "6d5d1879-9fa9-4074-a022-19185b5bc3fc",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"replyToMail\": \"<string>\",\n  \"senderName\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"text\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/support",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "support"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:31.000Z",
+                  "updatedAt": "2026-07-28T00:27:31.000Z",
+                  "uid": "35240-6d5d1879-9fa9-4074-a022-19185b5bc3fc"
+                },
+                {
+                  "id": "4c468e26-545f-4aa0-ae32-08628c27cdf7",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"replyToMail\": \"<string>\",\n  \"senderName\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"text\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/support",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "support"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:31.000Z",
+                  "updatedAt": "2026-07-28T00:27:31.000Z",
+                  "uid": "35240-4c468e26-545f-4aa0-ae32-08628c27cdf7"
+                },
+                {
+                  "id": "27927e39-5fa8-47d9-9eb8-ac9d5e90e00c",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"replyToMail\": \"<string>\",\n  \"senderName\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"text\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/support",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "support"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:31.000Z",
+                  "updatedAt": "2026-07-28T00:27:31.000Z",
+                  "uid": "35240-27927e39-5fa8-47d9-9eb8-ac9d5e90e00c"
+                }
+              ],
+              "createdAt": "2026-07-28T00:27:30.000Z",
+              "updatedAt": "2026-07-28T00:27:30.000Z",
+              "uid": "35240-0c8fb62f-057e-4eca-8c68-bdb8fbe67a9b"
+            }
+          ],
+          "id": "cf2a1e1c-a58b-460b-a5b1-29d3e2cea838",
+          "createdAt": "2026-07-28T00:27:30.000Z",
+          "updatedAt": "2026-07-28T00:27:30.000Z",
+          "uid": "35240-cf2a1e1c-a58b-460b-a5b1-29d3e2cea838"
+        }
+      ],
+      "id": "0f9a8a1e-2b02-4e28-8c7f-75df7688daf4",
+      "createdAt": "2026-07-28T00:27:30.000Z",
+      "updatedAt": "2026-07-28T00:27:30.000Z",
+      "uid": "35240-0f9a8a1e-2b02-4e28-8c7f-75df7688daf4"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

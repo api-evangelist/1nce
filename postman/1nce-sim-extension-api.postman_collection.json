@@ -1,0 +1,352 @@
+{
+  "info": {
+    "_postman_id": "66a8ff6c-2347-41d5-9a5a-2fe0df935657",
+    "name": "Authorization Administration Logs SIM Extension API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:34.000Z",
+    "updatedAt": "2026-07-28T00:27:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-66a8ff6c-2347-41d5-9a5a-2fe0df935657"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "sims",
+          "item": [
+            {
+              "name": "extension",
+              "item": [
+                {
+                  "name": "Create SIM Extension",
+                  "id": "f2440f14-adce-41fc-b74a-220e43af227f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"productId\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sims/extension?payment_method=banktransfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sims",
+                        "extension"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional payment method selection between creditcard, banktransfer, monthly invoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the SIM extension process. To use creditcard please save your credit card details in the customer portal via \"account\".",
+                          "key": "payment_method",
+                          "value": "banktransfer"
+                        }
+                      ]
+                    },
+                    "description": "Trigger the SIM extension for one or more SIM cards to extend their activation period and renew their quota (data and SMS). An invoice is automatically triggered depending on the chosen payment method."
+                  },
+                  "response": [
+                    {
+                      "id": "701240d5-4a87-4bf4-8b12-d90ba9df47b7",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"productId\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/extension?payment_method=banktransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "extension"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional payment method selection between creditcard, banktransfer, monthly invoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the SIM extension process. To use creditcard please save your credit card details in the customer portal via \"account\".",
+                              "key": "payment_method",
+                              "value": "banktransfer"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:35.000Z",
+                      "updatedAt": "2026-07-28T00:27:35.000Z",
+                      "uid": "35240-701240d5-4a87-4bf4-8b12-d90ba9df47b7"
+                    },
+                    {
+                      "id": "3a1c3061-e0fb-43d2-a5da-cefa1e0a9fc4",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"productId\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/extension?payment_method=banktransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "extension"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional payment method selection between creditcard, banktransfer, monthly invoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the SIM extension process. To use creditcard please save your credit card details in the customer portal via \"account\".",
+                              "key": "payment_method",
+                              "value": "banktransfer"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:35.000Z",
+                      "updatedAt": "2026-07-28T00:27:35.000Z",
+                      "uid": "35240-3a1c3061-e0fb-43d2-a5da-cefa1e0a9fc4"
+                    },
+                    {
+                      "id": "2ee2d7c7-81cc-465a-8ef9-07001ef1afb9",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"productId\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/extension?payment_method=banktransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "extension"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional payment method selection between creditcard, banktransfer, monthly invoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the SIM extension process. To use creditcard please save your credit card details in the customer portal via \"account\".",
+                              "key": "payment_method",
+                              "value": "banktransfer"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:35.000Z",
+                      "updatedAt": "2026-07-28T00:27:35.000Z",
+                      "uid": "35240-2ee2d7c7-81cc-465a-8ef9-07001ef1afb9"
+                    },
+                    {
+                      "id": "1cba441c-8199-4595-8e2c-ed218727feb5",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"productId\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/extension?payment_method=banktransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "extension"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional payment method selection between creditcard, banktransfer, monthly invoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the SIM extension process. To use creditcard please save your credit card details in the customer portal via \"account\".",
+                              "key": "payment_method",
+                              "value": "banktransfer"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:35.000Z",
+                      "updatedAt": "2026-07-28T00:27:35.000Z",
+                      "uid": "35240-1cba441c-8199-4595-8e2c-ed218727feb5"
+                    },
+                    {
+                      "id": "4d738569-ded3-4d71-849b-922d843faef1",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"iccids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"productId\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sims/extension?payment_method=banktransfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sims",
+                            "extension"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optional payment method selection between creditcard, banktransfer, monthly invoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the SIM extension process. To use creditcard please save your credit card details in the customer portal via \"account\".",
+                              "key": "payment_method",
+                              "value": "banktransfer"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T00:27:35.000Z",
+                      "updatedAt": "2026-07-28T00:27:35.000Z",
+                      "uid": "35240-4d738569-ded3-4d71-849b-922d843faef1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:35.000Z",
+                  "updatedAt": "2026-07-28T00:27:35.000Z",
+                  "uid": "35240-f2440f14-adce-41fc-b74a-220e43af227f"
+                }
+              ],
+              "id": "d74ee6e8-546a-46e6-b0e1-ba3edda0ad36",
+              "createdAt": "2026-07-28T00:27:35.000Z",
+              "updatedAt": "2026-07-28T00:27:35.000Z",
+              "uid": "35240-d74ee6e8-546a-46e6-b0e1-ba3edda0ad36"
+            }
+          ],
+          "id": "f8b5fe04-0e9a-4472-af7d-f3a8339c1285",
+          "createdAt": "2026-07-28T00:27:35.000Z",
+          "updatedAt": "2026-07-28T00:27:35.000Z",
+          "uid": "35240-f8b5fe04-0e9a-4472-af7d-f3a8339c1285"
+        }
+      ],
+      "id": "2f306520-a421-4aee-97ef-c49621e7024f",
+      "createdAt": "2026-07-28T00:27:35.000Z",
+      "updatedAt": "2026-07-28T00:27:35.000Z",
+      "uid": "35240-2f306520-a421-4aee-97ef-c49621e7024f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

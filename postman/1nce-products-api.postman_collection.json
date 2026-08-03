@@ -1,0 +1,192 @@
+{
+  "info": {
+    "_postman_id": "f0a279ab-8678-4070-9c45-dc13eeeb2c0a",
+    "name": "Authorization Administration Logs Products API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:29.000Z",
+    "updatedAt": "2026-07-28T00:27:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f0a279ab-8678-4070-9c45-dc13eeeb2c0a"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "products",
+          "item": [
+            {
+              "name": "Get All Products",
+              "id": "d216a98f-1dee-40ff-a6d3-248c73e6229a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/products",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "products"
+                  ]
+                },
+                "description": "Get a list of all avaliable products."
+              },
+              "response": [
+                {
+                  "id": "59200494-6936-4e62-b37a-cdd40bbd0716",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"product\": \"<string>\",\n    \"material\": \"<string>\",\n    \"package_size\": \"<integer>\",\n    \"minQuantity\": \"<integer>\",\n    \"maxQuantity\": \"<integer>\",\n    \"maxQuantityPerCustomer\": \"<integer>\",\n    \"min_contract_duration\": \"<integer>\",\n    \"one_time_charges\": [\n      {\n        \"name\": \"<string>\",\n        \"amount_net\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"amount_net\": \"<number>\",\n        \"currency\": \"<string>\"\n      }\n    ],\n    \"recurring_charges\": [\n      {\n        \"name\": \"<string>\",\n        \"amount_net\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"amount_net\": \"<number>\",\n        \"currency\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"id\": \"<integer>\",\n    \"product\": \"<string>\",\n    \"material\": \"<string>\",\n    \"package_size\": \"<integer>\",\n    \"minQuantity\": \"<integer>\",\n    \"maxQuantity\": \"<integer>\",\n    \"maxQuantityPerCustomer\": \"<integer>\",\n    \"min_contract_duration\": \"<integer>\",\n    \"one_time_charges\": [\n      {\n        \"name\": \"<string>\",\n        \"amount_net\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"amount_net\": \"<number>\",\n        \"currency\": \"<string>\"\n      }\n    ],\n    \"recurring_charges\": [\n      {\n        \"name\": \"<string>\",\n        \"amount_net\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"amount_net\": \"<number>\",\n        \"currency\": \"<string>\"\n      }\n    ]\n  }\n]",
+                  "createdAt": "2026-07-28T00:27:30.000Z",
+                  "updatedAt": "2026-07-28T00:27:30.000Z",
+                  "uid": "35240-59200494-6936-4e62-b37a-cdd40bbd0716"
+                },
+                {
+                  "id": "52e8958c-0a5c-4531-aad9-4284655888e4",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:30.000Z",
+                  "updatedAt": "2026-07-28T00:27:30.000Z",
+                  "uid": "35240-52e8958c-0a5c-4531-aad9-4284655888e4"
+                },
+                {
+                  "id": "b304c978-d927-4951-bdb8-c267ad795e64",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:30.000Z",
+                  "updatedAt": "2026-07-28T00:27:30.000Z",
+                  "uid": "35240-b304c978-d927-4951-bdb8-c267ad795e64"
+                },
+                {
+                  "id": "42627f63-e68c-4f67-bd9d-9d04b6e99703",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T00:27:30.000Z",
+                  "updatedAt": "2026-07-28T00:27:30.000Z",
+                  "uid": "35240-42627f63-e68c-4f67-bd9d-9d04b6e99703"
+                }
+              ],
+              "createdAt": "2026-07-28T00:27:30.000Z",
+              "updatedAt": "2026-07-28T00:27:30.000Z",
+              "uid": "35240-d216a98f-1dee-40ff-a6d3-248c73e6229a"
+            }
+          ],
+          "id": "dff6a4ee-070f-4871-9e41-36149e3c4d91",
+          "createdAt": "2026-07-28T00:27:30.000Z",
+          "updatedAt": "2026-07-28T00:27:30.000Z",
+          "uid": "35240-dff6a4ee-070f-4871-9e41-36149e3c4d91"
+        }
+      ],
+      "id": "c82321c7-a0e9-41c1-bd14-b3224d2b1776",
+      "createdAt": "2026-07-28T00:27:30.000Z",
+      "updatedAt": "2026-07-28T00:27:30.000Z",
+      "uid": "35240-c82321c7-a0e9-41c1-bd14-b3224d2b1776"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}

@@ -1,0 +1,2657 @@
+{
+  "info": {
+    "_postman_id": "4e09861b-bd55-41dc-9c88-a6b65da92440",
+    "name": "Authorization Administration Logs Plugin system API",
+    "description": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:28.000Z",
+    "updatedAt": "2026-07-28T00:27:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4e09861b-bd55-41dc-9c88-a6b65da92440"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "partners",
+          "item": [
+            {
+              "name": "DATACAKE",
+              "item": [
+                {
+                  "name": "plugins",
+                  "item": [
+                    {
+                      "name": "Install Datacake plugin for 1NCE OS",
+                      "id": "7296e684-b576-4cf9-bda2-2b591397a034",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"workspaceId\": \"i4o\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/partners/DATACAKE/plugins",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "partners",
+                            "DATACAKE",
+                            "plugins"
+                          ]
+                        },
+                        "description": "Allows setting up an integration with Datacake workspace to allow data transfer from 1NCE OS."
+                      },
+                      "response": [
+                        {
+                          "id": "fd86f393-731d-4906-9904-c3501b9addc2",
+                          "name": "Successful Datacake plugin installation response details.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"workspaceId\": \"i4o\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/DATACAKE/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "DATACAKE",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"created\": \"<dateTime>\",\n  \"id\": \"<string>\",\n  \"partner\": \"<string>\",\n  \"status\": \"<string>\",\n  \"updated\": \"<dateTime>\",\n  \"workspaceId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-fd86f393-731d-4906-9904-c3501b9addc2"
+                        },
+                        {
+                          "id": "a57c1e7b-fd23-4497-9936-2bc4dba86fc1",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"workspaceId\": \"i4o\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/DATACAKE/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "DATACAKE",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-a57c1e7b-fd23-4497-9936-2bc4dba86fc1"
+                        },
+                        {
+                          "id": "5834acdf-b324-4afc-9231-6ad90c809f17",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"workspaceId\": \"i4o\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/DATACAKE/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "DATACAKE",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-5834acdf-b324-4afc-9231-6ad90c809f17"
+                        },
+                        {
+                          "id": "b0ef85c4-9b82-4e00-84f7-2abb3b23cbb4",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"workspaceId\": \"i4o\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/DATACAKE/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "DATACAKE",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-b0ef85c4-9b82-4e00-84f7-2abb3b23cbb4"
+                        },
+                        {
+                          "id": "acaa16d5-f3ab-4563-98f2-421bdb4f1fc5",
+                          "name": "Conflict",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"workspaceId\": \"i4o\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/DATACAKE/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "DATACAKE",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Conflict\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-acaa16d5-f3ab-4563-98f2-421bdb4f1fc5"
+                        },
+                        {
+                          "id": "7ad7bc64-c3d7-41cd-a556-26d04a300d2c",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"workspaceId\": \"i4o\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/DATACAKE/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "DATACAKE",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-7ad7bc64-c3d7-41cd-a556-26d04a300d2c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:28.000Z",
+                      "updatedAt": "2026-07-28T00:27:28.000Z",
+                      "uid": "35240-7296e684-b576-4cf9-bda2-2b591397a034"
+                    }
+                  ],
+                  "id": "afceb61b-fccd-4ed6-9d70-246d0ce6b867",
+                  "createdAt": "2026-07-28T00:27:28.000Z",
+                  "updatedAt": "2026-07-28T00:27:28.000Z",
+                  "uid": "35240-afceb61b-fccd-4ed6-9d70-246d0ce6b867"
+                }
+              ],
+              "id": "8fa2aa25-4c5a-413a-8321-e348cfdb1a02",
+              "createdAt": "2026-07-28T00:27:28.000Z",
+              "updatedAt": "2026-07-28T00:27:28.000Z",
+              "uid": "35240-8fa2aa25-4c5a-413a-8321-e348cfdb1a02"
+            },
+            {
+              "name": "MENDER",
+              "item": [
+                {
+                  "name": "plugins",
+                  "item": [
+                    {
+                      "name": "Install Mender plugin for 1NCE OS",
+                      "id": "c55ccc67-23e3-4712-8d88-3bee49c3bdb1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tenantToken\": \"<string>\",\n  \"privateKey\": \"<string>\",\n  \"publicKey\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/partners/MENDER/plugins",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "partners",
+                            "MENDER",
+                            "plugins"
+                          ]
+                        },
+                        "description": "Allows setting up an integration with Mender to allow seamless firmware update management via 1NCE OS CoAP proxy. Public and private keys are optional fields, but if they are used, both must be provided"
+                      },
+                      "response": [
+                        {
+                          "id": "f637711c-e64c-4321-85f3-f92282648d2a",
+                          "name": "Successful Mender plugin installation response details.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"tenantToken\": \"<string>\",\n  \"privateKey\": \"<string>\",\n  \"publicKey\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/MENDER/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "MENDER",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"created\": \"<dateTime>\",\n  \"id\": \"<string>\",\n  \"partner\": \"<string>\",\n  \"privateKey\": \"<string>\",\n  \"publicKey\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tenantToken\": \"<string>\",\n  \"updated\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-f637711c-e64c-4321-85f3-f92282648d2a"
+                        },
+                        {
+                          "id": "09b1e7dc-a26d-4fce-902b-f8477a78e5c4",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"tenantToken\": \"<string>\",\n  \"privateKey\": \"<string>\",\n  \"publicKey\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/MENDER/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "MENDER",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-09b1e7dc-a26d-4fce-902b-f8477a78e5c4"
+                        },
+                        {
+                          "id": "79972ed5-699f-47b0-98ce-ac91b4258d6d",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"tenantToken\": \"<string>\",\n  \"privateKey\": \"<string>\",\n  \"publicKey\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/MENDER/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "MENDER",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-79972ed5-699f-47b0-98ce-ac91b4258d6d"
+                        },
+                        {
+                          "id": "1ee53abc-a1ce-4897-b56a-3ca4c346cf5f",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"tenantToken\": \"<string>\",\n  \"privateKey\": \"<string>\",\n  \"publicKey\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/MENDER/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "MENDER",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-1ee53abc-a1ce-4897-b56a-3ca4c346cf5f"
+                        },
+                        {
+                          "id": "e56c4b6e-6c67-4b88-be7c-7a9bc87a1a6c",
+                          "name": "Conflict",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"tenantToken\": \"<string>\",\n  \"privateKey\": \"<string>\",\n  \"publicKey\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/MENDER/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "MENDER",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Conflict\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-e56c4b6e-6c67-4b88-be7c-7a9bc87a1a6c"
+                        },
+                        {
+                          "id": "14c75bb6-ea94-4542-9e0e-92e9c6f70c5f",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"tenantToken\": \"<string>\",\n  \"privateKey\": \"<string>\",\n  \"publicKey\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/MENDER/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "MENDER",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-14c75bb6-ea94-4542-9e0e-92e9c6f70c5f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:28.000Z",
+                      "updatedAt": "2026-07-28T00:27:28.000Z",
+                      "uid": "35240-c55ccc67-23e3-4712-8d88-3bee49c3bdb1"
+                    }
+                  ],
+                  "id": "1caa0c82-e091-49a9-ad98-6b04469004c4",
+                  "createdAt": "2026-07-28T00:27:28.000Z",
+                  "updatedAt": "2026-07-28T00:27:28.000Z",
+                  "uid": "35240-1caa0c82-e091-49a9-ad98-6b04469004c4"
+                }
+              ],
+              "id": "b75f4abd-333f-4148-ba9b-0bf979c14fd3",
+              "createdAt": "2026-07-28T00:27:28.000Z",
+              "updatedAt": "2026-07-28T00:27:28.000Z",
+              "uid": "35240-b75f4abd-333f-4148-ba9b-0bf979c14fd3"
+            },
+            {
+              "name": "TARTABIT",
+              "item": [
+                {
+                  "name": "plugins",
+                  "item": [
+                    {
+                      "name": "Install Tartabit plugin for 1NCE OS",
+                      "id": "6da53074-41f9-439b-8a93-c5ee54776df1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"serverDomain\": \"ihTe=ioxAqDcm~W:gj~TaySde+4kjujBLII+y9Dl=W%z=qABrSlyW#3lt-bklirq@9BfFMot0fZnJnkGNOzYq+5Rmo3jMLWr5L3#oo.Ybparq4Rf3Jo1NUV-0W.wp2l-iPmL%C1yS9CY4l5uAGV2kAIgB4q%3KMhY2kkQ:-Day7OYv3aWIvzwaYM%e=qko91wR6ht%D@SIF:xVKG.ZYazrXTZ0kNIvu%;TlHTbbzfam:+fyya\",\n  \"webhookKey\": \")RyU0BLlWxmUVQ\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/partners/TARTABIT/plugins",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "partners",
+                            "TARTABIT",
+                            "plugins"
+                          ]
+                        },
+                        "description": "Allows setting up an integration with Tartabit to integrate with Azure, Oracle Cloud Infrastructure, Google Cloud and other cloud services via 1NCE OS."
+                      },
+                      "response": [
+                        {
+                          "id": "beddd0c1-7218-4e4b-b891-540c2dcc43ac",
+                          "name": "Successful Tartabit plugin installation response details.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"serverDomain\": \"ihTe=ioxAqDcm~W:gj~TaySde+4kjujBLII+y9Dl=W%z=qABrSlyW#3lt-bklirq@9BfFMot0fZnJnkGNOzYq+5Rmo3jMLWr5L3#oo.Ybparq4Rf3Jo1NUV-0W.wp2l-iPmL%C1yS9CY4l5uAGV2kAIgB4q%3KMhY2kkQ:-Day7OYv3aWIvzwaYM%e=qko91wR6ht%D@SIF:xVKG.ZYazrXTZ0kNIvu%;TlHTbbzfam:+fyya\",\n  \"webhookKey\": \")RyU0BLlWxmUVQ\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/TARTABIT/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "TARTABIT",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"created\": \"<dateTime>\",\n  \"id\": \"<string>\",\n  \"partner\": \"<string>\",\n  \"serverDomain\": \"<string>\",\n  \"status\": \"<string>\",\n  \"updated\": \"<dateTime>\",\n  \"webhookKey\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-beddd0c1-7218-4e4b-b891-540c2dcc43ac"
+                        },
+                        {
+                          "id": "d577b9b0-1a62-4d0d-9a04-bcbdb9a8c6f0",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"serverDomain\": \"ihTe=ioxAqDcm~W:gj~TaySde+4kjujBLII+y9Dl=W%z=qABrSlyW#3lt-bklirq@9BfFMot0fZnJnkGNOzYq+5Rmo3jMLWr5L3#oo.Ybparq4Rf3Jo1NUV-0W.wp2l-iPmL%C1yS9CY4l5uAGV2kAIgB4q%3KMhY2kkQ:-Day7OYv3aWIvzwaYM%e=qko91wR6ht%D@SIF:xVKG.ZYazrXTZ0kNIvu%;TlHTbbzfam:+fyya\",\n  \"webhookKey\": \")RyU0BLlWxmUVQ\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/TARTABIT/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "TARTABIT",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-d577b9b0-1a62-4d0d-9a04-bcbdb9a8c6f0"
+                        },
+                        {
+                          "id": "15718607-5615-490c-8116-736d01370771",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"serverDomain\": \"ihTe=ioxAqDcm~W:gj~TaySde+4kjujBLII+y9Dl=W%z=qABrSlyW#3lt-bklirq@9BfFMot0fZnJnkGNOzYq+5Rmo3jMLWr5L3#oo.Ybparq4Rf3Jo1NUV-0W.wp2l-iPmL%C1yS9CY4l5uAGV2kAIgB4q%3KMhY2kkQ:-Day7OYv3aWIvzwaYM%e=qko91wR6ht%D@SIF:xVKG.ZYazrXTZ0kNIvu%;TlHTbbzfam:+fyya\",\n  \"webhookKey\": \")RyU0BLlWxmUVQ\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/TARTABIT/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "TARTABIT",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-15718607-5615-490c-8116-736d01370771"
+                        },
+                        {
+                          "id": "1e753cb6-272a-46df-9e5f-ebeb380470cb",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"serverDomain\": \"ihTe=ioxAqDcm~W:gj~TaySde+4kjujBLII+y9Dl=W%z=qABrSlyW#3lt-bklirq@9BfFMot0fZnJnkGNOzYq+5Rmo3jMLWr5L3#oo.Ybparq4Rf3Jo1NUV-0W.wp2l-iPmL%C1yS9CY4l5uAGV2kAIgB4q%3KMhY2kkQ:-Day7OYv3aWIvzwaYM%e=qko91wR6ht%D@SIF:xVKG.ZYazrXTZ0kNIvu%;TlHTbbzfam:+fyya\",\n  \"webhookKey\": \")RyU0BLlWxmUVQ\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/TARTABIT/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "TARTABIT",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-1e753cb6-272a-46df-9e5f-ebeb380470cb"
+                        },
+                        {
+                          "id": "e75b66a0-3cbd-47bf-8c26-c8413698fdc9",
+                          "name": "Conflict",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"serverDomain\": \"ihTe=ioxAqDcm~W:gj~TaySde+4kjujBLII+y9Dl=W%z=qABrSlyW#3lt-bklirq@9BfFMot0fZnJnkGNOzYq+5Rmo3jMLWr5L3#oo.Ybparq4Rf3Jo1NUV-0W.wp2l-iPmL%C1yS9CY4l5uAGV2kAIgB4q%3KMhY2kkQ:-Day7OYv3aWIvzwaYM%e=qko91wR6ht%D@SIF:xVKG.ZYazrXTZ0kNIvu%;TlHTbbzfam:+fyya\",\n  \"webhookKey\": \")RyU0BLlWxmUVQ\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/TARTABIT/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "TARTABIT",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Conflict\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-e75b66a0-3cbd-47bf-8c26-c8413698fdc9"
+                        },
+                        {
+                          "id": "4ce45ed4-eba8-40b4-8154-4aa3634e08ed",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"serverDomain\": \"ihTe=ioxAqDcm~W:gj~TaySde+4kjujBLII+y9Dl=W%z=qABrSlyW#3lt-bklirq@9BfFMot0fZnJnkGNOzYq+5Rmo3jMLWr5L3#oo.Ybparq4Rf3Jo1NUV-0W.wp2l-iPmL%C1yS9CY4l5uAGV2kAIgB4q%3KMhY2kkQ:-Day7OYv3aWIvzwaYM%e=qko91wR6ht%D@SIF:xVKG.ZYazrXTZ0kNIvu%;TlHTbbzfam:+fyya\",\n  \"webhookKey\": \")RyU0BLlWxmUVQ\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/TARTABIT/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "TARTABIT",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-4ce45ed4-eba8-40b4-8154-4aa3634e08ed"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:28.000Z",
+                      "updatedAt": "2026-07-28T00:27:28.000Z",
+                      "uid": "35240-6da53074-41f9-439b-8a93-c5ee54776df1"
+                    }
+                  ],
+                  "id": "2b74320b-74ae-4ec5-a963-29ba783d352a",
+                  "createdAt": "2026-07-28T00:27:28.000Z",
+                  "updatedAt": "2026-07-28T00:27:28.000Z",
+                  "uid": "35240-2b74320b-74ae-4ec5-a963-29ba783d352a"
+                }
+              ],
+              "id": "aa9b45bc-b542-40c0-8fbb-00854487a12a",
+              "createdAt": "2026-07-28T00:27:28.000Z",
+              "updatedAt": "2026-07-28T00:27:28.000Z",
+              "uid": "35240-aa9b45bc-b542-40c0-8fbb-00854487a12a"
+            },
+            {
+              "name": "MEMFAULT",
+              "item": [
+                {
+                  "name": "plugins",
+                  "item": [
+                    {
+                      "name": "Install Memfault plugin for 1NCE OS",
+                      "id": "cbf98ad8-1db2-4c47-86b4-86c35c95cd7f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/partners/MEMFAULT/plugins",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "partners",
+                            "MEMFAULT",
+                            "plugins"
+                          ]
+                        },
+                        "description": "Allows setting up an integration with Memfault to allow seamless device debugging via 1NCE OS CoAP proxy."
+                      },
+                      "response": [
+                        {
+                          "id": "546c90f9-0b13-4db9-93a0-302d41e48715",
+                          "name": "Successful Memfault plugin installation response details.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/MEMFAULT/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "MEMFAULT",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"created\": \"<dateTime>\",\n  \"id\": \"<string>\",\n  \"partner\": \"<string>\",\n  \"status\": \"<string>\",\n  \"updated\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-546c90f9-0b13-4db9-93a0-302d41e48715"
+                        },
+                        {
+                          "id": "888eb19f-e1d1-421e-b3f5-521a5410da8c",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/MEMFAULT/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "MEMFAULT",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Bad Request\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-888eb19f-e1d1-421e-b3f5-521a5410da8c"
+                        },
+                        {
+                          "id": "6bc4b14b-6eee-4713-926a-0208ced4c677",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/MEMFAULT/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "MEMFAULT",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-6bc4b14b-6eee-4713-926a-0208ced4c677"
+                        },
+                        {
+                          "id": "e38e7977-0306-4e9d-8958-a3576c84f514",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/MEMFAULT/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "MEMFAULT",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-e38e7977-0306-4e9d-8958-a3576c84f514"
+                        },
+                        {
+                          "id": "f969ccd1-efa0-457d-9b6a-a6ab0d61a86c",
+                          "name": "Conflict",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/MEMFAULT/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "MEMFAULT",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Conflict\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-f969ccd1-efa0-457d-9b6a-a6ab0d61a86c"
+                        },
+                        {
+                          "id": "ff59d4fb-48b8-43fb-b447-e47352a9189a",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/MEMFAULT/plugins",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "MEMFAULT",
+                                "plugins"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-ff59d4fb-48b8-43fb-b447-e47352a9189a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:28.000Z",
+                      "updatedAt": "2026-07-28T00:27:28.000Z",
+                      "uid": "35240-cbf98ad8-1db2-4c47-86b4-86c35c95cd7f"
+                    }
+                  ],
+                  "id": "1d309053-e6e2-4c45-a536-117c31ffd821",
+                  "createdAt": "2026-07-28T00:27:28.000Z",
+                  "updatedAt": "2026-07-28T00:27:28.000Z",
+                  "uid": "35240-1d309053-e6e2-4c45-a536-117c31ffd821"
+                }
+              ],
+              "id": "103e00bc-c025-429d-8d68-3da8f4c39c9e",
+              "createdAt": "2026-07-28T00:27:28.000Z",
+              "updatedAt": "2026-07-28T00:27:28.000Z",
+              "uid": "35240-103e00bc-c025-429d-8d68-3da8f4c39c9e"
+            },
+            {
+              "name": "plugins",
+              "item": [
+                {
+                  "name": "{pluginId}",
+                  "item": [
+                    {
+                      "name": "restart",
+                      "item": [
+                        {
+                          "name": "Restart a failed plugin by installation ID",
+                          "id": "e81425a9-0ffe-4f42-ad32-b28cfbbb5905",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId/restart",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "plugins",
+                                ":pluginId",
+                                "restart"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ce23be97-768a-4e41-ba86-4c1253e3b901",
+                                  "key": "pluginId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the plugin installation."
+                                }
+                              ]
+                            },
+                            "description": "Attempt to restart a plugin that is in a failed state."
+                          },
+                          "response": [
+                            {
+                              "id": "11e0babc-80f9-419f-af67-8b4da5de9180",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId/restart",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "partners",
+                                    "plugins",
+                                    ":pluginId",
+                                    "restart"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pluginId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"plugin\": {\n    \"created\": \"<dateTime>\",\n    \"id\": \"<string>\",\n    \"partner\": \"<string>\",\n    \"status\": \"<string>\",\n    \"updated\": \"<dateTime>\",\n    \"workspaceId\": \"<string>\"\n  },\n  \"restartStatus\": \"FAILURE\"\n}",
+                              "createdAt": "2026-07-28T00:27:28.000Z",
+                              "updatedAt": "2026-07-28T00:27:28.000Z",
+                              "uid": "35240-11e0babc-80f9-419f-af67-8b4da5de9180"
+                            },
+                            {
+                              "id": "80fff49c-4ab5-4a11-81c0-09978b2e686e",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId/restart",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "partners",
+                                    "plugins",
+                                    ":pluginId",
+                                    "restart"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pluginId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                              "createdAt": "2026-07-28T00:27:28.000Z",
+                              "updatedAt": "2026-07-28T00:27:28.000Z",
+                              "uid": "35240-80fff49c-4ab5-4a11-81c0-09978b2e686e"
+                            },
+                            {
+                              "id": "750ef062-4dd8-44a7-be45-2e7c50cb706f",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId/restart",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "partners",
+                                    "plugins",
+                                    ":pluginId",
+                                    "restart"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pluginId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                              "createdAt": "2026-07-28T00:27:28.000Z",
+                              "updatedAt": "2026-07-28T00:27:28.000Z",
+                              "uid": "35240-750ef062-4dd8-44a7-be45-2e7c50cb706f"
+                            },
+                            {
+                              "id": "09232553-7069-44da-abd9-96a65de9db71",
+                              "name": "Not Found Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId/restart",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "partners",
+                                    "plugins",
+                                    ":pluginId",
+                                    "restart"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pluginId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Not Found\"\n}",
+                              "createdAt": "2026-07-28T00:27:28.000Z",
+                              "updatedAt": "2026-07-28T00:27:28.000Z",
+                              "uid": "35240-09232553-7069-44da-abd9-96a65de9db71"
+                            },
+                            {
+                              "id": "6aae63bd-b64f-497b-85de-5d20382d9098",
+                              "name": "Conflict",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId/restart",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "partners",
+                                    "plugins",
+                                    ":pluginId",
+                                    "restart"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pluginId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Conflict",
+                              "code": 409,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Conflict\"\n}",
+                              "createdAt": "2026-07-28T00:27:28.000Z",
+                              "updatedAt": "2026-07-28T00:27:28.000Z",
+                              "uid": "35240-6aae63bd-b64f-497b-85de-5d20382d9098"
+                            },
+                            {
+                              "id": "4e9232e9-2a6a-4fe4-892b-64701e3fe8db",
+                              "name": "Internal Server Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId/restart",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "partners",
+                                    "plugins",
+                                    ":pluginId",
+                                    "restart"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pluginId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                              "createdAt": "2026-07-28T00:27:28.000Z",
+                              "updatedAt": "2026-07-28T00:27:28.000Z",
+                              "uid": "35240-4e9232e9-2a6a-4fe4-892b-64701e3fe8db"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-e81425a9-0ffe-4f42-ad32-b28cfbbb5905"
+                        }
+                      ],
+                      "id": "91f0933d-2fff-4d38-b7a2-7575fd097ba7",
+                      "createdAt": "2026-07-28T00:27:28.000Z",
+                      "updatedAt": "2026-07-28T00:27:28.000Z",
+                      "uid": "35240-91f0933d-2fff-4d38-b7a2-7575fd097ba7"
+                    },
+                    {
+                      "name": "Uninstall a specific plugin by ID",
+                      "id": "f2925701-cc1e-4360-b1aa-a1be937442dc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "partners",
+                            "plugins",
+                            ":pluginId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5523f252-ce74-4cd4-8fa0-47cedc9547e9",
+                              "key": "pluginId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the plugin installation."
+                            }
+                          ]
+                        },
+                        "description": "Uninstall a specific plugin by ID to remove the functionality provided by the plugin."
+                      },
+                      "response": [
+                        {
+                          "id": "d9256b5e-edba-4423-b997-54e6839efe24",
+                          "name": "NoContent",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "plugins",
+                                ":pluginId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "pluginId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-d9256b5e-edba-4423-b997-54e6839efe24"
+                        },
+                        {
+                          "id": "bb29004d-d692-4a8a-9108-1af6f052f961",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "plugins",
+                                ":pluginId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "pluginId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-bb29004d-d692-4a8a-9108-1af6f052f961"
+                        },
+                        {
+                          "id": "799093b6-5279-4142-afcd-651dcd60e59e",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "plugins",
+                                ":pluginId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "pluginId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-799093b6-5279-4142-afcd-651dcd60e59e"
+                        },
+                        {
+                          "id": "2ab4ad0b-f936-48f2-a2e6-08a8739ca179",
+                          "name": "Not Found Error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "plugins",
+                                ":pluginId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "pluginId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Not Found\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-2ab4ad0b-f936-48f2-a2e6-08a8739ca179"
+                        },
+                        {
+                          "id": "140866e4-453a-4924-8605-ff40824f3798",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "plugins",
+                                ":pluginId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "pluginId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-140866e4-453a-4924-8605-ff40824f3798"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:28.000Z",
+                      "updatedAt": "2026-07-28T00:27:28.000Z",
+                      "uid": "35240-f2925701-cc1e-4360-b1aa-a1be937442dc"
+                    },
+                    {
+                      "name": "Get details about a specific plugin installation",
+                      "id": "6582fb1d-967d-4f4d-9ece-9f9fb5a47d9b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "partners",
+                            "plugins",
+                            ":pluginId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0b7c5a9e-61a9-4758-8cd2-a109d6122633",
+                              "key": "pluginId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the plugin installation."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve details about a specific 1NCE OS plugin by it's installation ID."
+                      },
+                      "response": [
+                        {
+                          "id": "d75f1951-9d71-4bd7-b1c5-2b80ca344627",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "plugins",
+                                ":pluginId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "pluginId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"created\": \"<dateTime>\",\n  \"id\": \"<string>\",\n  \"partner\": \"<string>\",\n  \"status\": \"<string>\",\n  \"updated\": \"<dateTime>\",\n  \"workspaceId\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-d75f1951-9d71-4bd7-b1c5-2b80ca344627"
+                        },
+                        {
+                          "id": "b12885ea-92f7-432f-a720-d5c24332b3be",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "plugins",
+                                ":pluginId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "pluginId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-b12885ea-92f7-432f-a720-d5c24332b3be"
+                        },
+                        {
+                          "id": "067a5c33-5a6b-431a-a111-94913fab6794",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "plugins",
+                                ":pluginId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "pluginId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-067a5c33-5a6b-431a-a111-94913fab6794"
+                        },
+                        {
+                          "id": "5ef2bcfb-7ea3-4d16-8620-cc6aa0f691bb",
+                          "name": "Not Found Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "plugins",
+                                ":pluginId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "pluginId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Not Found\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-5ef2bcfb-7ea3-4d16-8620-cc6aa0f691bb"
+                        },
+                        {
+                          "id": "b8dca657-8be6-4ff5-b623-65abfe8d80ff",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/partners/plugins/:pluginId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "partners",
+                                "plugins",
+                                ":pluginId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "pluginId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                          "createdAt": "2026-07-28T00:27:28.000Z",
+                          "updatedAt": "2026-07-28T00:27:28.000Z",
+                          "uid": "35240-b8dca657-8be6-4ff5-b623-65abfe8d80ff"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T00:27:28.000Z",
+                      "updatedAt": "2026-07-28T00:27:28.000Z",
+                      "uid": "35240-6582fb1d-967d-4f4d-9ece-9f9fb5a47d9b"
+                    }
+                  ],
+                  "id": "f61d1270-75a7-4e4e-9528-32dfdc0c2da7",
+                  "createdAt": "2026-07-28T00:27:28.000Z",
+                  "updatedAt": "2026-07-28T00:27:28.000Z",
+                  "uid": "35240-f61d1270-75a7-4e4e-9528-32dfdc0c2da7"
+                },
+                {
+                  "name": "Get a list of plugin installations",
+                  "id": "2eb12cbf-1f16-4afa-8f9b-fdf07a11559f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/partners/plugins",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "partners",
+                        "plugins"
+                      ]
+                    },
+                    "description": "Retrieve a list of all installed plugins."
+                  },
+                  "response": [
+                    {
+                      "id": "2b1d3e14-560e-4b02-b6d2-96ef8ac10771",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/partners/plugins",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "partners",
+                            "plugins"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"created\": \"<dateTime>\",\n      \"id\": \"<string>\",\n      \"partner\": \"<string>\",\n      \"status\": \"<string>\",\n      \"updated\": \"<dateTime>\"\n    },\n    {\n      \"created\": \"<dateTime>\",\n      \"id\": \"<string>\",\n      \"partner\": \"<string>\",\n      \"status\": \"<string>\",\n      \"updated\": \"<dateTime>\"\n    }\n  ],\n  \"page\": \"<number>\",\n  \"pageAmount\": \"<number>\"\n}",
+                      "createdAt": "2026-07-28T00:27:28.000Z",
+                      "updatedAt": "2026-07-28T00:27:28.000Z",
+                      "uid": "35240-2b1d3e14-560e-4b02-b6d2-96ef8ac10771"
+                    },
+                    {
+                      "id": "6767d4f9-76d0-4d6a-a9d0-6534fbac901b",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/partners/plugins",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "partners",
+                            "plugins"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Unauthorized\"\n}",
+                      "createdAt": "2026-07-28T00:27:28.000Z",
+                      "updatedAt": "2026-07-28T00:27:28.000Z",
+                      "uid": "35240-6767d4f9-76d0-4d6a-a9d0-6534fbac901b"
+                    },
+                    {
+                      "id": "90e782f4-55ce-4eb7-980e-591eb35ec301",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/partners/plugins",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "partners",
+                            "plugins"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"statusText\": \"Forbidden\"\n}",
+                      "createdAt": "2026-07-28T00:27:28.000Z",
+                      "updatedAt": "2026-07-28T00:27:28.000Z",
+                      "uid": "35240-90e782f4-55ce-4eb7-980e-591eb35ec301"
+                    },
+                    {
+                      "id": "ac159435-90ad-4bbd-bbe4-8cd56e2df926",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/partners/plugins",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "partners",
+                            "plugins"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+                      "createdAt": "2026-07-28T00:27:28.000Z",
+                      "updatedAt": "2026-07-28T00:27:28.000Z",
+                      "uid": "35240-ac159435-90ad-4bbd-bbe4-8cd56e2df926"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:27:28.000Z",
+                  "updatedAt": "2026-07-28T00:27:28.000Z",
+                  "uid": "35240-2eb12cbf-1f16-4afa-8f9b-fdf07a11559f"
+                }
+              ],
+              "id": "fd97a981-649d-43d5-ae2d-942a624de7b4",
+              "createdAt": "2026-07-28T00:27:28.000Z",
+              "updatedAt": "2026-07-28T00:27:28.000Z",
+              "uid": "35240-fd97a981-649d-43d5-ae2d-942a624de7b4"
+            }
+          ],
+          "id": "6e22b9a2-9461-4af9-95da-409c714f610a",
+          "createdAt": "2026-07-28T00:27:28.000Z",
+          "updatedAt": "2026-07-28T00:27:28.000Z",
+          "uid": "35240-6e22b9a2-9461-4af9-95da-409c714f610a"
+        }
+      ],
+      "id": "3cd88717-4ff4-4850-8958-c6264f73695a",
+      "createdAt": "2026-07-28T00:27:28.000Z",
+      "updatedAt": "2026-07-28T00:27:28.000Z",
+      "uid": "35240-3cd88717-4ff4-4850-8958-c6264f73695a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.1nce.com/management-api"
+    }
+  ]
+}
