@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs Agreements API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agreements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Accept 1NCE OS Agreements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/agreements/1nceos",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post request to accept the 1NCE OS Terms of Use and Data Processing agreements. Please note that with this request the agreements can only be accepted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

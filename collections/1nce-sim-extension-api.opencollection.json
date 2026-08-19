@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs SIM Extension API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SIM Extension",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create SIM Extension",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/sims/extension",
+            "params": [
+              {
+                "name": "payment_method",
+                "value": "",
+                "type": "query",
+                "description": "Optional payment method selection between creditcard, banktransfer, monthly invoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the SIM extension process. To use creditcard please save your credit card details in the customer portal via \"account\"."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger the SIM extension for one or more SIM cards to extend their activation period and renew their quota (data and SMS). An invoice is automatically triggered depending on the chosen payment method."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

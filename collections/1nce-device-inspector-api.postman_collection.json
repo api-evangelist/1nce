@@ -1,0 +1,2575 @@
+{
+  "item": [
+    {
+      "id": "b3d44c9d-ac42-4100-ac36-8479003b60f7",
+      "name": "Device Inspector",
+      "description": {
+        "content": "Inspect details of the devices",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1a199155-87a4-4e1e-bd12-034a7068a1a9",
+          "name": "Get All Devices",
+          "request": {
+            "name": "Get All Devices",
+            "description": {
+              "content": "Get a list of all the Customer SIMs/Devices for the current organisation in the 1NCE OS.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "inspect",
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Number of the requested devices page. Use this parameter to iterate through all devices on the different pages. The total amount of pages is listed in the response body (pageAmount)."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10",
+                  "description": "Parameter for specifying the queried items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order."
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Filter parameter in <i>{filter}:{value}</i> format. Comma separated list of filtering criteria out of the following fields: <ul><li>iccid</li></ul><p><b>Example:</b> \"iccid:8988280666000000000\"</p>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "71fde577-b9a7-433e-9988-f4dbf98555ee",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "iccid,-ip"
+                    },
+                    {
+                      "key": "q",
+                      "value": "iccid:8988280666000000000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"iccid\": \"8988280666000000000\",\n      \"id\": \"<device_id>\",\n      \"imsi1\": \"901405100000018\",\n      \"ip\": \"66.233.189.28\"\n    },\n    {\n      \"iccid\": \"8988280666000000000\",\n      \"id\": \"<device_id>\",\n      \"imsi1\": \"901405100000018\",\n      \"ip\": \"228.42.143.13\"\n    }\n  ],\n  \"page\": 1,\n  \"pageAmount\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "078c2a36-e031-46ab-a613-55f36268c0aa",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "iccid,-ip"
+                    },
+                    {
+                      "key": "q",
+                      "value": "iccid:8988280666000000000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 400,\n  \"statusText\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51acefaa-c82f-493f-b8e6-31da62191517",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "iccid,-ip"
+                    },
+                    {
+                      "key": "q",
+                      "value": "iccid:8988280666000000000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"statusText\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f06b481a-8d3a-44a8-bc15-2e03482644f9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "iccid,-ip"
+                    },
+                    {
+                      "key": "q",
+                      "value": "iccid:8988280666000000000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 403,\n  \"statusText\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e61cf5a9-705a-4856-8bf4-6d160791dcb2",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "iccid,-ip"
+                    },
+                    {
+                      "key": "q",
+                      "value": "iccid:8988280666000000000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39fd1538-3bd4-4750-b3e1-119c4c067a72",
+          "name": "Get Single Device",
+          "request": {
+            "name": "Get Single Device",
+            "description": {
+              "content": "Get detailed metadata from one specific Device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "inspect",
+                "devices",
+                ":deviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "a4651998-c6d6-4388-a07f-0c36aa7a155a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"iccid\": \"8988280666000000000\",\n  \"id\": \"stringstringstringstring\",\n  \"imsi1\": \"901405100000018\",\n  \"ip\": \"181.232.248.135\",\n  \"name\": \"<device_name>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2da07691-aeb8-4dea-9453-7d3f3c94ae47",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"statusText\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bac0f8a0-332d-414c-b90a-870f5b876010",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 403,\n  \"statusText\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0c93a76-4832-4ce1-9c99-d58b288feaba",
+              "name": "Not Found Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 404,\n  \"statusText\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58178ed2-1d7b-4c3e-9ec1-60ddf842ae1c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "472f9ddc-505c-42a3-a4cb-f9cd47ddb90f",
+          "name": "Get Device Telemetry",
+          "request": {
+            "name": "Get Device Telemetry",
+            "description": {
+              "content": "Get the current/last repored Shadow State (telemetry) Data for a specific Device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "inspect",
+                "devices",
+                ":deviceId",
+                "telemetry"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "<string>",
+                  "description": "Filter out shadow state data for specific protocol: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "5cb8715c-37d7-4d79-aeb1-76300329fcf3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "telemetry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"stringstringstringst\",\n  \"state\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1bbc23ed-eccd-471b-a289-4dc8097a9b73",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "telemetry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 400,\n  \"statusText\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e0b71cc-2dd1-4a44-a2e5-377cf9abb976",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "telemetry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"statusText\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c6fce3b-9f67-4e9f-874b-229049ae4d8f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "telemetry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 403,\n  \"statusText\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d2d7c1e-7b45-4e6e-955f-ac0bc77a3e0f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "telemetry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "635e574c-0386-4763-81b3-46b2eed8a479",
+          "name": "Get Device Historian Messages",
+          "request": {
+            "name": "Get Device Historian Messages",
+            "description": {
+              "content": "Get historic message data for a specific SIM device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "inspect",
+                "devices",
+                ":deviceId",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<string>",
+                  "description": "Timestamp from where onwards the historic data messages should be queried."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<string>",
+                  "description": "Timestamp until when the historic data messages should be queried."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10",
+                  "description": "Parameter for specifying the queried items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "<string>",
+                  "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>",
+                  "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "037a3f36-e9fa-4ecd-8dd9-6cd45b4084bf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<next_token>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"deviceId\": \"<device_id>\",\n      \"iccid\": \"8988280666000000000\",\n      \"payload\": \"<custom_payload>\",\n      \"protocol\": \"COAP\",\n      \"time\": \"2022-03-07T08:51:29.015Z\",\n      \"topic\": \"topic\"\n    },\n    {\n      \"deviceId\": \"<device_id>\",\n      \"iccid\": \"8988280666000000000\",\n      \"payload\": \"<custom_payload>\",\n      \"protocol\": \"COAP\",\n      \"time\": \"2022-03-07T08:51:29.015Z\",\n      \"topic\": \"topic\"\n    }\n  ],\n  \"nextToken\": \"<next_token>\",\n  \"firstToken\": \"<first_token>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b364a1d2-a1f8-4c25-b2e4-e2b4c87952dc",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<next_token>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 400,\n  \"statusText\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d08c31e9-98a0-4cb5-a4eb-0d9b521d4640",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<next_token>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"statusText\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21a8b542-fc29-4db7-b761-21f594eb7de9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<next_token>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 403,\n  \"statusText\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93e3874b-20f3-4e6a-bdd8-7988cc4d8a9f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<next_token>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a593158-ca44-4373-9b2c-22ee7a1bee3e",
+          "name": "Get Historian Messages",
+          "request": {
+            "name": "Get Historian Messages",
+            "description": {
+              "content": "Get a list of historic messages for devices based on the optional filter parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "inspect",
+                "devices",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<string>",
+                  "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                },
+                {
+                  "disabled": false,
+                  "key": "iccid",
+                  "value": "<string>",
+                  "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<string>",
+                  "description": "Timestamp from where onwards the historic data messages should be queried."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<string>",
+                  "description": "Timestamp until when the historic data messages should be queried."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10",
+                  "description": "Parameter for specifying the queried items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "<string>",
+                  "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>",
+                  "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "d31477be-5af5-486e-aeb3-cf4ab209ff05",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "iccid",
+                      "value": "8988280666000000000"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<next_token>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"deviceId\": \"<device_id>\",\n      \"iccid\": \"8988280666000000000\",\n      \"payload\": \"<custom_payload>\",\n      \"protocol\": \"COAP\",\n      \"time\": \"2022-03-07T08:51:29.015Z\"\n    },\n    {\n      \"deviceId\": \"<device_id>\",\n      \"iccid\": \"8988280666000000000\",\n      \"payload\": \"<custom_payload>\",\n      \"protocol\": \"COAP\",\n      \"time\": \"2022-03-07T08:51:29.015Z\"\n    }\n  ],\n  \"nextToken\": \"<next_token>\",\n  \"firstToken\": \"<first_token>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e109235-b341-45c2-8fac-8036953a03aa",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "iccid",
+                      "value": "8988280666000000000"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<next_token>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 400,\n  \"statusText\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c1d6b0e-0944-42a6-a4c8-ed5eef406b1d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "iccid",
+                      "value": "8988280666000000000"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<next_token>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"statusText\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40bce2b9-f37e-4200-ab52-277d5eaab9df",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "iccid",
+                      "value": "8988280666000000000"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<next_token>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 403,\n  \"statusText\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5325bddb-1ec4-4051-b8d4-332f647e7c4f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "iccid",
+                      "value": "8988280666000000000"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<next_token>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "576af8ef-76b0-4a59-86b9-f785e2347311",
+          "name": "Get Device Historian Insights",
+          "request": {
+            "name": "Get Device Historian Insights",
+            "description": {
+              "content": "Get insights of a unique SIM device for the Historian.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "inspect",
+                "devices",
+                ":deviceId",
+                "history",
+                "insights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<string>",
+                  "description": "Timestamp from where onwards the historic data messages should be queried."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<string>",
+                  "description": "Timestamp until when the historic data messages should be queried."
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "<string>",
+                  "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "The interval for which grouping of statistics should occur."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "9cf05ad6-92a5-4a53-8f27-c721b32d2242",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "history",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "1d"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"interval\": \"1d\",\n  \"items\": [\n    {\n      \"amount\": 8,\n      \"protocol\": \"COAP\",\n      \"time\": \"2022-03-07T08:51:29.015Z\"\n    },\n    {\n      \"amount\": 8,\n      \"protocol\": \"COAP\",\n      \"time\": \"2022-03-07T08:51:29.015Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5847e2d-f401-45c2-b301-10f0e09b72b3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "history",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "1d"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 400,\n  \"statusText\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a380e78-faf7-42ee-ab54-a68f2a085704",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "history",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "1d"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"statusText\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "688156c2-7a4c-4fc8-b8fa-8ecd93de51ba",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "history",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "1d"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 403,\n  \"statusText\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c61ce17-b097-4cb5-8ec8-a06449529881",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    ":deviceId",
+                    "history",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "1d"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5414e65-b334-41a4-a47d-282e9b4d9084",
+          "name": "Get Historian Insights",
+          "request": {
+            "name": "Get Historian Insights",
+            "description": {
+              "content": "Get insights for all devices from the Historian based on the optional filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "inspect",
+                "devices",
+                "history",
+                "insights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<string>",
+                  "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                },
+                {
+                  "disabled": false,
+                  "key": "iccid",
+                  "value": "<string>",
+                  "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<string>",
+                  "description": "Timestamp from where onwards the historic data messages should be queried."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<string>",
+                  "description": "Timestamp until when the historic data messages should be queried."
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "<string>",
+                  "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "The interval for which grouping of statistics should occur."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "1bc5fc78-3365-45b3-9d19-cacc468aa8b6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    "history",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "iccid",
+                      "value": "8988280666000000000"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "1d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"interval\": \"1d\",\n  \"items\": [\n    {\n      \"amount\": 8,\n      \"protocol\": \"COAP\",\n      \"time\": \"2022-03-07T08:51:29.015Z\"\n    },\n    {\n      \"amount\": 8,\n      \"protocol\": \"COAP\",\n      \"time\": \"2022-03-07T08:51:29.015Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fd8997c-f140-41c7-a8ea-e6c1c943172f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    "history",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "iccid",
+                      "value": "8988280666000000000"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "1d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 400,\n  \"statusText\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7dd5c0b8-817d-4fd6-92dc-ebd91b69062d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    "history",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "iccid",
+                      "value": "8988280666000000000"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "1d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"statusText\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f34ef63-b07f-43df-a1a9-6136d3fbf1e0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    "history",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "iccid",
+                      "value": "8988280666000000000"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "1d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 403,\n  \"statusText\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "120786fb-5d07-4dd4-9e9e-afec4cff12dc",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "inspect",
+                    "devices",
+                    "history",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "iccid",
+                      "value": "8988280666000000000"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-03-07T08:51:29.015Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-03-07T09:51:29.015Z"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "COAP"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "1d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Unknown Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.1nce.com/management-api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4ed4675c-5071-469c-841c-56dc7c642750",
+    "name": "Authorization Administration Logs Device Inspector API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+      "type": "text/plain"
+    }
+  }
+}

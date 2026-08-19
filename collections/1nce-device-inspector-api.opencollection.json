@@ -1,0 +1,295 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs Device Inspector API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Device Inspector",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/inspect/devices",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the requested devices page. Use this parameter to iterate through all devices on the different pages. The total amount of pages is listed in the response body (pageAmount)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Parameter for specifying the queried items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Filter parameter in <i>{filter}:{value}</i> format. Comma separated list of filtering criteria out of the following fields: <ul><li>iccid</li></ul><p><b>Example:</b> \"iccid:8988280666000000000\"</p>"
+              }
+            ]
+          },
+          "docs": "Get a list of all the Customer SIMs/Devices for the current organisation in the 1NCE OS."
+        },
+        {
+          "info": {
+            "name": "Get Single Device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/inspect/devices/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              }
+            ]
+          },
+          "docs": "Get detailed metadata from one specific Device."
+        },
+        {
+          "info": {
+            "name": "Get Device Telemetry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/inspect/devices/:deviceId/telemetry",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query",
+                "description": "Filter out shadow state data for specific protocol: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+              }
+            ]
+          },
+          "docs": "Get the current/last repored Shadow State (telemetry) Data for a specific Device."
+        },
+        {
+          "info": {
+            "name": "Get Device Historian Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/inspect/devices/:deviceId/history",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Timestamp from where onwards the historic data messages should be queried."
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Timestamp until when the historic data messages should be queried."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Parameter for specifying the queried items per page."
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query",
+                "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page."
+              }
+            ]
+          },
+          "docs": "Get historic message data for a specific SIM device."
+        },
+        {
+          "info": {
+            "name": "Get Historian Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/inspect/devices/history",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              },
+              {
+                "name": "iccid",
+                "value": "",
+                "type": "query",
+                "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM."
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Timestamp from where onwards the historic data messages should be queried."
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Timestamp until when the historic data messages should be queried."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Parameter for specifying the queried items per page."
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query",
+                "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "This API query uses token-based pagination. Each queried page will include a nextToken for accessing the next page for pagination. Please use the returned token in the nextToken query parameters to obtain the next page."
+              }
+            ]
+          },
+          "docs": "Get a list of historic messages for devices based on the optional filter parameters."
+        },
+        {
+          "info": {
+            "name": "Get Device Historian Insights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/inspect/devices/:deviceId/history/insights",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Timestamp from where onwards the historic data messages should be queried."
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Timestamp until when the historic data messages should be queried."
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query",
+                "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "The interval for which grouping of statistics should occur."
+              }
+            ]
+          },
+          "docs": "Get insights of a unique SIM device for the Historian."
+        },
+        {
+          "info": {
+            "name": "Get Historian Insights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/inspect/devices/history/insights",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              },
+              {
+                "name": "iccid",
+                "value": "",
+                "type": "query",
+                "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM."
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Timestamp from where onwards the historic data messages should be queried."
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Timestamp until when the historic data messages should be queried."
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query",
+                "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "The interval for which grouping of statistics should occur."
+              }
+            ]
+          },
+          "docs": "Get insights for all devices from the Historian based on the optional filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,720 @@
+{
+  "item": [
+    {
+      "id": "0be0d461-a0c5-4d05-b82e-06c2c388dc68",
+      "name": "Volume Limits",
+      "description": {
+        "content": "Limit Management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f2f52bdd-7cf0-4269-a28d-1a4d48b33289",
+          "name": "Get Global Limits",
+          "request": {
+            "name": "Get Global Limits",
+            "description": {
+              "content": "Get currently configured self-set monthly limits (Data, MT-SMS, MO-SMS) for all SIMs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sims",
+                "limits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "d1cf39b6-0ea0-4d0f-81e8-26093400cdc2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 1,\n    \"limit\": \"16\",\n    \"unit\": \"MB\"\n  },\n  \"smsMt\": {\n    \"id\": 1,\n    \"limit\": \"10\",\n    \"unit\": \"SMS\"\n  },\n  \"smsMo\": {\n    \"id\": 1,\n    \"limit\": \"10\",\n    \"unit\": \"SMS\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bbbb693-5e64-4420-8731-f41b27c366bb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3b15cf70-d818-45f7-b3e1-8de592924cbf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "88cb3d49-1215-4ca8-8cb0-b05e77918941",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2fac1c69-f796-4658-a49f-c4c4cf4feefa",
+              "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63b235b0-72d8-467b-8486-d0f61e564b3f",
+          "name": "Create Global Limits",
+          "request": {
+            "name": "Create Global Limits",
+            "description": {
+              "content": "Configure self-set monthly limits for all SIMs (Data, MT-SMS, MO-SMS).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sims",
+                "limits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dataLimitId\": \"<integer>\",\n  \"smsMtLimitId\": \"<integer>\",\n  \"smsMoLimitId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f2416811-42d8-45c6-96cf-1e1fd7f8cb80",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataLimitId\": \"<integer>\",\n  \"smsMtLimitId\": \"<integer>\",\n  \"smsMoLimitId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56b75968-b146-45aa-935e-1815932cee99",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataLimitId\": \"<integer>\",\n  \"smsMtLimitId\": \"<integer>\",\n  \"smsMoLimitId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c0406553-6752-4535-94cb-9d441061a7a2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataLimitId\": \"<integer>\",\n  \"smsMtLimitId\": \"<integer>\",\n  \"smsMoLimitId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fbc6fa67-6eec-41dc-aa7f-b17ff104f7d8",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataLimitId\": \"<integer>\",\n  \"smsMtLimitId\": \"<integer>\",\n  \"smsMoLimitId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4be7c3ef-caf6-4e99-b766-434d04ec4c07",
+              "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataLimitId\": \"<integer>\",\n  \"smsMtLimitId\": \"<integer>\",\n  \"smsMoLimitId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "deadbadc-ae67-4968-afaa-cdbafc20a090",
+          "name": "Get SIM Limits",
+          "request": {
+            "name": "Get SIM Limits",
+            "description": {
+              "content": "Get a list of slectable limits for a given service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sims",
+                ":service",
+                "limits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "data",
+                  "key": "service",
+                  "description": "(Required) The service name (data, smsMO, smsMT) for which to list the avaliable limit options."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "05804e9e-094f-4f62-a0fc-d47bd1b1ad03",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":service",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "data",
+                      "key": "service",
+                      "description": "(Required) The service name (data, smsMO, smsMT) for which to list the avaliable limit options."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 1,\n    \"limit\": \"16\",\n    \"unit\": \"MB\"\n  },\n  \"smsMt\": {\n    \"id\": 1,\n    \"limit\": \"10\",\n    \"unit\": \"SMS\"\n  },\n  \"smsMo\": {\n    \"id\": 1,\n    \"limit\": \"10\",\n    \"unit\": \"SMS\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a19acdad-5b14-4ca3-a0f8-b251f6f2dbbb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":service",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "data",
+                      "key": "service",
+                      "description": "(Required) The service name (data, smsMO, smsMT) for which to list the avaliable limit options."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2649a14d-401a-4bd8-8a14-4ee54191b0b9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":service",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "data",
+                      "key": "service",
+                      "description": "(Required) The service name (data, smsMO, smsMT) for which to list the avaliable limit options."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9261da8b-3c03-417b-9645-a5d8b7c12257",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":service",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "data",
+                      "key": "service",
+                      "description": "(Required) The service name (data, smsMO, smsMT) for which to list the avaliable limit options."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "48f5c9cf-0524-4a51-b575-dab55dafdbb4",
+              "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":service",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "data",
+                      "key": "service",
+                      "description": "(Required) The service name (data, smsMO, smsMT) for which to list the avaliable limit options."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.1nce.com/management-api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "eacb88e7-5826-4cca-99d0-9b83e741b584",
+    "name": "Authorization Administration Logs Volume Limits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+      "type": "text/plain"
+    }
+  }
+}

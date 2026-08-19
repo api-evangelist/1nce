@@ -1,0 +1,300 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs Device Locator API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Device Locator",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Device Positions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/locate/devices/:deviceId/positions",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount)."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Comma seperated list of device property keys in order. Prefix key with `-` to sort descending."
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "Source of the position."
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Parameter for specifying the queried items per page."
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Use ALL for a paginated list of all positions and SUMMARY to get the first, last and some positions inbetween."
+              }
+            ]
+          },
+          "docs": "Get positions of a specific device (maximum of last 7 days).\n![Creative Commons License](https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-sa.svg) [OpenCelliD Project](https://opencellid.org/) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)\n"
+        },
+        {
+          "info": {
+            "name": "Get Latest Devices Positions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/locate/positions/latest",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount)."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Comma seperated list of device property keys in order. Prefix key with `-` to sort descending."
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "Source of the position."
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "longitudeFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "longitudeTo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "latitudeFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "latitudeTo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Parameter for specifying the queried items per page."
+              }
+            ]
+          },
+          "docs": "Get latest positions of customer devices (maximum of last 7 days). Only one latest position is possible for a single device independent of source: either Celltower or GPS. This means that `source` query parameter selection can lead to no latest position returned for some devices.\n![Creative Commons License](https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-sa.svg) [OpenCelliD Project](https://opencellid.org/) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Intern"
+        },
+        {
+          "info": {
+            "name": "Get Device Celltower location resolutions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/locate/devices/:deviceId/activity",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Timestamp from where onwards the historic data should be queried. If not provided while \"endDateTime\" is provided defaults to 1 day before \"endDateTime\" timestamp, otherwise defaults to 1 day from now"
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Timestamp up to where the historic data should be queried. If not provided while \"startDateTime\" is provided defaults to 1 day after \"startDateTime\" timestamp, otherwise defaults to now"
+              }
+            ]
+          },
+          "docs": "Get Cell location resolutions for one device (maximum of last 7 days).\n![Creative Commons License](https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-sa.svg) [OpenCelliD Project](https://opencellid.org/) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)\n"
+        },
+        {
+          "info": {
+            "name": "Get all geofences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/locate/geofences",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Parameter for specifying the queried items per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount)."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name or Prefix of Geofence"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "scope of geofences"
+              }
+            ]
+          },
+          "docs": "Get an overview of all geofences.\nRate limits apply for this endpoint. See [Rate Limit Policy](https://help.1nce.com/api/api-rate-limits/).\n"
+        },
+        {
+          "info": {
+            "name": "Create geofence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/locate/geofences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new geofence."
+        },
+        {
+          "info": {
+            "name": "Get a geofence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/locate/geofences/:geofenceId",
+            "params": [
+              {
+                "name": "geofenceId",
+                "value": "",
+                "type": "path",
+                "description": "unique geofence ID"
+              }
+            ]
+          },
+          "docs": "Get details of a geofence."
+        },
+        {
+          "info": {
+            "name": "Patch a geofence",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.1nce.com/management-api/v1/locate/geofences/:geofenceId",
+            "params": [
+              {
+                "name": "geofenceId",
+                "value": "",
+                "type": "path",
+                "description": "unique geofence ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing geofence"
+        },
+        {
+          "info": {
+            "name": "Delete geofence",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.1nce.com/management-api/v1/locate/geofences/:geofenceId",
+            "params": [
+              {
+                "name": "geofenceId",
+                "value": "",
+                "type": "path",
+                "description": "unique geofence ID"
+              }
+            ]
+          },
+          "docs": "Delete a geofence."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

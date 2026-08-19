@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs SIM Events API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SIM Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SIM Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/sims/:iccid/events",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of events per page, maximum allowed value is 1000."
+              },
+              {
+                "name": "sort",
+                "value": "-timestamp,id",
+                "type": "query",
+                "description": "Sort values based on keys that are listed as a comma seperated list, prepend \"-\" for descending order."
+              }
+            ]
+          },
+          "docs": "Get diagnostic/event information for a SIM card."
+        },
+        {
+          "info": {
+            "name": "Get SIM Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/events",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number index of the requested SIM event page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of events per page, maximum allowed value is 1000."
+              }
+            ]
+          },
+          "docs": "Get diagnostic/event information for a SIM card."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

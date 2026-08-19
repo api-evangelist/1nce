@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Administration Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Administration Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/administrationLogs",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Parameter for specifying the queried items per page."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>geofenceId</li><li>category</li><li>iccid</li><li>type</li><li>startDateTime (UTC)</li><li>endDateTime (UTC)</li></ul><p><b>Example:</b> \"type:device,iccid:ICCID,startDateTime:2022-11-14T16:04:38.000Z\"</p>"
+              }
+            ]
+          },
+          "docs": "Get a list of the administration logs regarding the organization."
+        },
+        {
+          "info": {
+            "name": "Get Administration Logs Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/administrationLogs/stats",
+            "params": [
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Specify the needed timezone as string parameter (e.g., Europe/Amsterdam) for the resulting query output."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Specify the category as string parameter for the resulting query output."
+              }
+            ]
+          },
+          "docs": "Get the administration logs statistics for the current organization."
+        },
+        {
+          "info": {
+            "name": "Get Administration Log Payload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/administrationLogs/:adminLogId/payload",
+            "params": [
+              {
+                "name": "adminLogId",
+                "value": "",
+                "type": "path",
+                "description": "Unique Id of the administration log for which the payload should be queried."
+              }
+            ]
+          },
+          "docs": "Get a URL pointing to a single administration log payload. The received URL will trigger a download."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

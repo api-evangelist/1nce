@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs Settings API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Patch Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.1nce.com/management-api/v1/settings/1nceos/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Key name parameter of the setting to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enables or disables different settings for the 1NCE OS integration of a customer.\n\nDisclaimer: I acknowledge that activating the location feature involves processing nearby Cell Tower data by 1NCE. 1NCE processing of data is done anonymously. I understand that if the use of the service by me makes it linkable to individuals, additional data related responsibilities may apply. As per 1NCE General Terms and Conditions (GTC), I am solely responsible for complying with Data Protection laws and regul"
+        },
+        {
+          "info": {
+            "name": "Get customer settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/settings/1nceos",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Parameter for specifying the queried items per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount)."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Identifies in what language the description should be returned."
+              }
+            ]
+          },
+          "docs": "Gets customer settings related to 1NCE OS."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

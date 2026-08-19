@@ -1,0 +1,2122 @@
+{
+  "item": [
+    {
+      "id": "eb784da4-ce5a-43ca-9e37-f6ddd378f430",
+      "name": "SMS",
+      "description": {
+        "content": "SMS Management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f56f0be5-1875-4f3a-a97c-f39ebc7d3465",
+          "name": "Get MT/MO-SMS",
+          "request": {
+            "name": "Get MT/MO-SMS",
+            "description": {
+              "content": "Get a list of SMS sent and received by a specific SIM card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sims",
+                ":iccid",
+                "sms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Number index of the requested SIM SMS page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10",
+                  "description": "The number of SMS messages per page, maximum allowed value is 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Keys by which the SMS messages should be sorted, listed as comma sperated values."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iccid",
+                  "description": "(Required) The ICCID of the SIM to be queried."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "bb92b69d-5de3-4e10-ae26-c4ae63c090e7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "status,ip_address"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 590,\n    \"submit_date\": \"2015-10-05T13:56:59.000Z\",\n    \"delivery_date\": \"2015-10-05T13:56:59.000Z\",\n    \"expiry_date\": \"2015-10-06T13:56:59.000Z\",\n    \"final_date\": \"2015-10-05T13:57:03.000Z\",\n    \"retry_date\": \"2015-10-05T13:57:03.000Z\",\n    \"last_delivery_attempt\": \"2015-10-05T13:57:03.000Z\",\n    \"retry_count\": \"1\",\n    \"source_address\": \"1234567890\",\n    \"iccid\": \"8988303000000001000\",\n    \"msisdn\": \"883XXXXXXXXXXXX\",\n    \"imsi\": \"901XXXXXXXXXXXX\",\n    \"msc\": \"491600190000\",\n    \"dcs\": 0,\n    \"udh\": \"050003CC0301\",\n    \"payload\": \"This is a SMS message.\",\n    \"status\": {\n      \"id\": 4,\n      \"description\": \"DELIVERED\"\n    },\n    \"sms_type\": {\n      \"id\": 1,\n      \"description\": \"MT\"\n    },\n    \"source_address_type\": {\n      \"id\": 145\n    }\n  },\n  {\n    \"id\": 590,\n    \"submit_date\": \"2015-10-05T13:56:59.000Z\",\n    \"delivery_date\": \"2015-10-05T13:56:59.000Z\",\n    \"expiry_date\": \"2015-10-06T13:56:59.000Z\",\n    \"final_date\": \"2015-10-05T13:57:03.000Z\",\n    \"retry_date\": \"2015-10-05T13:57:03.000Z\",\n    \"last_delivery_attempt\": \"2015-10-05T13:57:03.000Z\",\n    \"retry_count\": \"1\",\n    \"source_address\": \"1234567890\",\n    \"iccid\": \"8988303000000001000\",\n    \"msisdn\": \"883XXXXXXXXXXXX\",\n    \"imsi\": \"901XXXXXXXXXXXX\",\n    \"msc\": \"491600190000\",\n    \"dcs\": 0,\n    \"udh\": \"050003CC0301\",\n    \"payload\": \"This is a SMS message.\",\n    \"status\": {\n      \"id\": 4,\n      \"description\": \"DELIVERED\"\n    },\n    \"sms_type\": {\n      \"id\": 1,\n      \"description\": \"MT\"\n    },\n    \"source_address_type\": {\n      \"id\": 145\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44a4d463-de78-4034-b2b3-9f258be9a3e6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "status,ip_address"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5da1e261-7dec-4f72-b08f-9b8e10a869f3",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "status,ip_address"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7bbf8956-292e-4ad5-b20e-4c83713af76c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "status,ip_address"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ef643542-d142-4353-a137-04027b1bfd9a",
+              "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "status,ip_address"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36bb8948-f19f-4936-aa99-1a1ffd55c914",
+          "name": "Create SMS",
+          "request": {
+            "name": "Create SMS",
+            "description": {
+              "content": "Create and send a MT-SMS towards a device with a 1NCE SIM.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sims",
+                ":iccid",
+                "sms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iccid",
+                  "description": "(Required) The ICCID of the SIM targeted for the MT-SMS."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_address\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"udh\": \"<string>\",\n  \"dcs\": \"<integer>\",\n  \"source_address_type\": {\n    \"id\": \"<number>\"\n  },\n  \"expiry_date\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "34edb196-675d-427f-97fc-5c28cf9ab0e7",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM targeted for the MT-SMS."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_address\": \"1234567890\",\n  \"payload\": \"This is a SMS message.\",\n  \"udh\": \"050003CC0301\",\n  \"dcs\": 0,\n  \"source_address_type\": {\n    \"id\": 145\n  },\n  \"expiry_date\": \"2018-03-14T16:10:29Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f9bcbcc4-3e19-43e3-9ef3-a825c1eaead4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM targeted for the MT-SMS."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_address\": \"1234567890\",\n  \"payload\": \"This is a SMS message.\",\n  \"udh\": \"050003CC0301\",\n  \"dcs\": 0,\n  \"source_address_type\": {\n    \"id\": 145\n  },\n  \"expiry_date\": \"2018-03-14T16:10:29Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d5ae7b5-7b0f-444c-b097-2dd04e734a44",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM targeted for the MT-SMS."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_address\": \"1234567890\",\n  \"payload\": \"This is a SMS message.\",\n  \"udh\": \"050003CC0301\",\n  \"dcs\": 0,\n  \"source_address_type\": {\n    \"id\": 145\n  },\n  \"expiry_date\": \"2018-03-14T16:10:29Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "72c4adee-3dcc-4f46-98ab-43e2f8a62681",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM targeted for the MT-SMS."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_address\": \"1234567890\",\n  \"payload\": \"This is a SMS message.\",\n  \"udh\": \"050003CC0301\",\n  \"dcs\": 0,\n  \"source_address_type\": {\n    \"id\": 145\n  },\n  \"expiry_date\": \"2018-03-14T16:10:29Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ffdf939-fe29-4ffc-b859-22d1c9341375",
+              "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM targeted for the MT-SMS."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_address\": \"1234567890\",\n  \"payload\": \"This is a SMS message.\",\n  \"udh\": \"050003CC0301\",\n  \"dcs\": 0,\n  \"source_address_type\": {\n    \"id\": 145\n  },\n  \"expiry_date\": \"2018-03-14T16:10:29Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4bd94c4-716f-4261-806a-c6a279180e71",
+          "name": "Get SMS Details",
+          "request": {
+            "name": "Get SMS Details",
+            "description": {
+              "content": "Query details about an individual SMS from a specifc SIM card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sims",
+                ":iccid",
+                "sms",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iccid",
+                  "description": "(Required) The ICCID of the SIM to be queried."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) The ID of the SMS message to be queried."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "06cd67ac-124b-449a-ba77-e1646a531bda",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) The ID of the SMS message to be queried."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 590,\n  \"submit_date\": \"2015-10-05T13:56:59.000Z\",\n  \"delivery_date\": \"2015-10-05T13:56:59.000Z\",\n  \"expiry_date\": \"2015-10-06T13:56:59.000Z\",\n  \"final_date\": \"2015-10-05T13:57:03.000Z\",\n  \"retry_date\": \"2015-10-05T13:57:03.000Z\",\n  \"last_delivery_attempt\": \"2015-10-05T13:57:03.000Z\",\n  \"retry_count\": \"1\",\n  \"source_address\": \"1234567890\",\n  \"iccid\": \"8988303000000001000\",\n  \"msisdn\": \"883XXXXXXXXXXXX\",\n  \"imsi\": \"901XXXXXXXXXXXX\",\n  \"msc\": \"491600190000\",\n  \"dcs\": 0,\n  \"udh\": \"050003CC0301\",\n  \"payload\": \"This is a SMS message.\",\n  \"status\": {\n    \"id\": 4,\n    \"description\": \"DELIVERED\"\n  },\n  \"sms_type\": {\n    \"id\": 1,\n    \"description\": \"MT\"\n  },\n  \"source_address_type\": {\n    \"id\": 145\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c1fd05c-96ee-4569-a7d9-4cc9773e1ffc",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) The ID of the SMS message to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "26b72097-4fde-4f7c-8669-02b22306fbe6",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) The ID of the SMS message to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "952553d7-4aa4-4d8a-80c3-91d51b48fedb",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) The ID of the SMS message to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dfb372f6-c45d-465a-b207-d190ac0214cc",
+              "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) The ID of the SMS message to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0072e974-49c7-425f-8cfe-df26d034ba6a",
+          "name": "Delete SMS",
+          "request": {
+            "name": "Delete SMS",
+            "description": {
+              "content": "Cancel a SMS message that is buffered to be delivered to the device with the SIM card but was not yet delivered.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sims",
+                ":iccid",
+                "sms",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iccid",
+                  "description": "(Required) The ICCID of the SIM to be queried."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) The ID of the SMS message to be queried."
+                }
+              ]
+            },
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "dd48289e-1766-4e35-adc3-eec3f0570c99",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) The ID of the SMS message to be queried."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "15530e42-cc09-4a76-96a9-60df45d2d545",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) The ID of the SMS message to be queried."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7d801902-70ed-4e62-9ebd-18c56df3fc2f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) The ID of the SMS message to be queried."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a3ed6e4b-a225-4b22-b68b-e59cf30250a4",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) The ID of the SMS message to be queried."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3470992b-5b5b-42ed-9176-bc196d70be42",
+              "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "sms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) The ID of the SMS message to be queried."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f991aba-ab2f-4904-b061-a11da060bf72",
+          "name": "Create SMS",
+          "request": {
+            "name": "Create SMS",
+            "description": {
+              "content": "Create and send an MT-SMS to a device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sims",
+                ":iccid",
+                "sms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iccid",
+                  "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_address\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"udh\": \"<string>\",\n  \"dcs\": \"<integer>\",\n  \"source_address_type\": {\n    \"id\": \"<number>\"\n  },\n  \"expiry_date\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2622ef3f-3e43-4526-b4a4-14ed54a96099",
+              "name": "Resource created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_address\": \"1234567890\",\n  \"payload\": \"This is an SMS message.\",\n  \"udh\": \"050003CC0301\",\n  \"dcs\": 0,\n  \"source_address_type\": {\n    \"id\": 145\n  },\n  \"expiry_date\": \"2028-03-14T16:10:29.000+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9829a889-a3ec-4517-aae4-b2f131b8a141",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_address\": \"1234567890\",\n  \"payload\": \"This is an SMS message.\",\n  \"udh\": \"050003CC0301\",\n  \"dcs\": 0,\n  \"source_address_type\": {\n    \"id\": 145\n  },\n  \"expiry_date\": \"2028-03-14T16:10:29.000+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1000,\n  \"error_token\": \"BadRequest\",\n  \"message\": \"Cannot parse parameter per_page as Int: For Input String \\\"abc\\\"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce5a914b-1c8a-4172-8704-487afa6fceda",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_address\": \"1234567890\",\n  \"payload\": \"This is an SMS message.\",\n  \"udh\": \"050003CC0301\",\n  \"dcs\": 0,\n  \"source_address_type\": {\n    \"id\": 145\n  },\n  \"expiry_date\": \"2028-03-14T16:10:29.000+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1000,\n  \"error_token\": \"NotFound\",\n  \"message\": \"Element not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db894780-a123-40f1-ab04-5fa04b925196",
+              "name": "Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_address\": \"1234567890\",\n  \"payload\": \"This is an SMS message.\",\n  \"udh\": \"050003CC0301\",\n  \"dcs\": 0,\n  \"source_address_type\": {\n    \"id\": 145\n  },\n  \"expiry_date\": \"2028-03-14T16:10:29.000+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1000,\n  \"error_token\": \"Conflict\",\n  \"message\": \"Conflicting request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e921f8b0-05a3-45f7-b18d-f8819c600957",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_address\": \"1234567890\",\n  \"payload\": \"This is an SMS message.\",\n  \"udh\": \"050003CC0301\",\n  \"dcs\": 0,\n  \"source_address_type\": {\n    \"id\": 145\n  },\n  \"expiry_date\": \"2028-03-14T16:10:29.000+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1000,\n  \"error_token\": \"InternalServerError\",\n  \"message\": \"Internal Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "110087d8-1019-4526-9475-85eecbed5d9f",
+          "name": "Get MT/MO-SMS",
+          "request": {
+            "name": "Get MT/MO-SMS",
+            "description": {
+              "content": "Get a list of SMS sent and received by a specific SIM card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sims",
+                ":iccid",
+                "sms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The number of returned chunk within the complete set."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "The numbers of items to return per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iccid",
+                  "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "ebdfb00b-aa4b-4d4d-8a01-0355f8823e38",
+              "name": "List of MT-SMS and MO-SMS for the device.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"submit_date\": \"2019-09-29T07:33:15.000Z\",\n    \"delivery_date\": \"2019-09-29T07:33:15.000Z\",\n    \"expiry_date\": \"2019-09-30T07:33:15.000Z\",\n    \"final_date\": \"2019-09-29T07:33:18.000Z\",\n    \"retry_date\": null,\n    \"last_delivery_attempt\": \"2019-09-29T07:33:15.000Z\",\n    \"retry_count\": 0,\n    \"gsm_map_error\": null,\n    \"dcs\": 0,\n    \"pid\": 0,\n    \"source_address\": \"1234\",\n    \"endpoint\": {\n      \"id\": 166,\n      \"name\": \"Your Endpoint\"\n    },\n    \"sim_id\": 0,\n    \"iccid\": \"8988303000000001000\",\n    \"msisdn\": \"883XXXXXXXXXXXX\",\n    \"imsi\": \"901XXXXXXXXXXXX\",\n    \"msc\": 491770940000,\n    \"udh\": \"\",\n    \"payload\": \"***\",\n    \"id\": 589,\n    \"status\": {\n      \"description\": \"FAILED\",\n      \"id\": 5\n    },\n    \"sms_type\": {\n      \"description\": \"MO\",\n      \"id\": 1\n    },\n    \"source_address_type\": {\n      \"description\": \"National\",\n      \"id\": 161\n    }\n  },\n  {\n    \"submit_date\": \"2019-09-29T07:33:15.000Z\",\n    \"delivery_date\": \"2019-09-29T07:33:15.000Z\",\n    \"expiry_date\": \"2019-09-30T07:33:15.000Z\",\n    \"final_date\": \"2019-09-29T07:33:18.000Z\",\n    \"retry_date\": null,\n    \"last_delivery_attempt\": \"2019-09-29T07:33:15.000Z\",\n    \"retry_count\": 0,\n    \"gsm_map_error\": null,\n    \"dcs\": 0,\n    \"pid\": 0,\n    \"source_address\": \"1234\",\n    \"endpoint\": {\n      \"id\": 166,\n      \"name\": \"Your Endpoint\"\n    },\n    \"sim_id\": 0,\n    \"iccid\": \"8988303000000001000\",\n    \"msisdn\": \"883XXXXXXXXXXXX\",\n    \"imsi\": \"901XXXXXXXXXXXX\",\n    \"msc\": 491770940000,\n    \"udh\": \"\",\n    \"payload\": \"***\",\n    \"id\": 589,\n    \"status\": {\n      \"description\": \"PENDING\",\n      \"id\": 4\n    },\n    \"sms_type\": {\n      \"description\": \"MT\",\n      \"id\": 2\n    },\n    \"source_address_type\": {\n      \"description\": \"National\",\n      \"id\": 161\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89cb5aa5-07e0-49f3-9367-d2d466e9a007",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1000,\n  \"error_token\": \"BadRequest\",\n  \"message\": \"Cannot parse parameter per_page as Int: For Input String \\\"abc\\\"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2aa70fe1-23a1-490c-a183-28e9bd770e1a",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1000,\n  \"error_token\": \"NotFound\",\n  \"message\": \"Element not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5dee567b-f9ca-4fdf-898d-f2892bdd58e2",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sims",
+                    ":iccid",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1000,\n  \"error_token\": \"InternalServerError\",\n  \"message\": \"Internal Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7f0e741-ab2f-4614-a188-8a8d0ac70d74",
+          "name": "Get SMS Details",
+          "request": {
+            "name": "Get SMS Details",
+            "description": {
+              "content": "Query details about an individual SMS from a specific SIM card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sims",
+                ":iccid",
+                "sms",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iccid",
+                  "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) The ID of the SMS message to be queried."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "b57d6162-cee8-44da-a671-3b4006cc8cd6",
+              "name": "Details of the requested SMS.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sims",
+                    ":iccid",
+                    "sms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) The ID of the SMS message to be queried."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submit_date\": \"2019-09-29T07:33:15.000Z\",\n  \"delivery_date\": \"2019-09-29T07:33:15.000Z\",\n  \"expiry_date\": \"2019-09-30T07:33:15.000Z\",\n  \"final_date\": \"2019-09-29T07:33:18.000Z\",\n  \"retry_date\": null,\n  \"last_delivery_attempt\": \"2019-09-29T07:33:15.000Z\",\n  \"retry_count\": 0,\n  \"gsm_map_error\": null,\n  \"dcs\": 0,\n  \"pid\": 0,\n  \"source_address\": \"1234\",\n  \"endpoint\": {\n    \"id\": 166,\n    \"name\": \"Your Endpoint\"\n  },\n  \"sim_id\": 0,\n  \"iccid\": \"8988303000000001000\",\n  \"msisdn\": \"883XXXXXXXXXXXX\",\n  \"imsi\": \"901XXXXXXXXXXXX\",\n  \"msc\": 491770940000,\n  \"udh\": \"\",\n  \"payload\": \"***\",\n  \"id\": 589,\n  \"status\": {\n    \"description\": \"DELIVERED\",\n    \"id\": 5\n  },\n  \"sms_type\": {\n    \"description\": \"MO\",\n    \"id\": 2\n  },\n  \"source_address_type\": {\n    \"description\": \"National\",\n    \"id\": 161\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a54f7aed-a15f-4320-a16c-c02705f21470",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sims",
+                    ":iccid",
+                    "sms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) The ID of the SMS message to be queried."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1000,\n  \"error_token\": \"BadRequest\",\n  \"message\": \"Cannot parse parameter per_page as Int: For Input String \\\"abc\\\"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f26c98a-88fe-457e-9236-225a87ff955a",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sims",
+                    ":iccid",
+                    "sms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) The ID of the SMS message to be queried."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1000,\n  \"error_token\": \"NotFound\",\n  \"message\": \"Element not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d265e26e-8734-4c51-893b-04c64b7208c0",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sims",
+                    ":iccid",
+                    "sms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM for MT-SMS or MO-SMS."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) The ID of the SMS message to be queried."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1000,\n  \"error_token\": \"InternalServerError\",\n  \"message\": \"Internal Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.1nce.com/management-api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "95a25a4b-7822-4735-af2b-1d95cd1ffc11",
+    "name": "Authorization Administration Logs SMS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+      "type": "text/plain"
+    }
+  }
+}

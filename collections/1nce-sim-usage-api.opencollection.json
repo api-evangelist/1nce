@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs SIM Usage API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SIM Usage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SIM Usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/sims/:iccid/usage",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              },
+              {
+                "name": "start_dt",
+                "value": "2022-07-22",
+                "type": "query",
+                "description": "Start date used for the query, format: YYYY-MM-DD"
+              },
+              {
+                "name": "end_dt",
+                "value": "2022-07-22",
+                "type": "query",
+                "description": "End date used for the usage query, format: YYYY-MM-DD"
+              }
+            ]
+          },
+          "docs": "Query the SIM data and SMS usage over a given period of time. The output is limited to the last 6 months."
+        },
+        {
+          "info": {
+            "name": "Get SIM Data Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/sims/:iccid/quota/data",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              }
+            ]
+          },
+          "docs": "Get the current data quota of a particular SIM."
+        },
+        {
+          "info": {
+            "name": "Get SIM SMS Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/sims/:iccid/quota/sms",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              }
+            ]
+          },
+          "docs": "Get the current SMS quota of a particular SIM."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,729 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs IoT Integrator API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IoT Integrator",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get device endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/endpoints"
+          },
+          "docs": "Get details about the device endpoints."
+        },
+        {
+          "info": {
+            "name": "Get single device endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/endpoints/:protocol",
+            "params": [
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "path",
+                "description": "Available protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+              }
+            ]
+          },
+          "docs": "Get details about the device endpoint of a specific protocol."
+        },
+        {
+          "info": {
+            "name": "Patch single device endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/endpoints/:protocol",
+            "params": [
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "path",
+                "description": "Available protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update endpoint related settings."
+        },
+        {
+          "info": {
+            "name": "Get device action requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/actions/requests",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Parameter for specifying the queried items per page."
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query",
+                "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a list of device action requests in the last 7 days."
+        },
+        {
+          "info": {
+            "name": "Get active device action requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/actions/requests/active",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Parameter for specifying the queried items per page."
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query",
+                "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a list of active device action requests in the last 7 days."
+        },
+        {
+          "info": {
+            "name": "Get archived device action requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/actions/requests/archived",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Parameter for specifying the queried items per page."
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query",
+                "description": "Filter out data for specific protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a list of archived device action requests in the last 7 days."
+        },
+        {
+          "info": {
+            "name": "Cancel all device action requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/:deviceId/actions/requests",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              }
+            ]
+          },
+          "docs": "Cancel all device action requests."
+        },
+        {
+          "info": {
+            "name": "Get single device action request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/actions/requests/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "ID of device action request"
+              }
+            ]
+          },
+          "docs": "Get details about the device action request."
+        },
+        {
+          "info": {
+            "name": "Cancel single device action request",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/actions/requests/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "ID of device action request"
+              }
+            ]
+          },
+          "docs": "Cancel single device action request."
+        },
+        {
+          "info": {
+            "name": "Create Pre-Shared Device Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/:deviceId/presharedkey",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post a new Custom Pre-Shared Key for a specific Device."
+        },
+        {
+          "info": {
+            "name": "Pre-Shared Devices Keys Import Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/presharedkey/jobs"
+          },
+          "docs": "Get status of Pre-Shared Keys Import jobs for the last 30 days."
+        },
+        {
+          "info": {
+            "name": "Import Pre-Shared Devices Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/presharedkey/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import new Custom Pre-Shared Keys for multiple Devices."
+        },
+        {
+          "info": {
+            "name": "Create Pre-Shared Device Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/:deviceId/psk",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post a new Custom Pre-Shared Key for a specific Device."
+        },
+        {
+          "info": {
+            "name": "Get Pre-Shared Device Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/:deviceId/psk/:protocol",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "path",
+                "description": "Available protocols: <ul><li>LWM2M</li><li>UDP</li><li>COAP</li></ul>"
+              }
+            ]
+          },
+          "docs": "Get the Pre-Shared Key of a specific Device."
+        },
+        {
+          "info": {
+            "name": "Pre-Shared Devices Keys Import Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/psk/jobs"
+          },
+          "docs": "Get status of Pre-Shared Keys Import jobs for the last 30 days."
+        },
+        {
+          "info": {
+            "name": "Import Pre-Shared Devices Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/psk/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import new Custom Pre-Shared Keys for multiple Devices."
+        },
+        {
+          "info": {
+            "name": "Create Action Request On Specific LwM2M Device.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/:deviceId/actions/LWM2M",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate LwM2M action like read, write, execute on specific device. It has to be connected to 1NCE LwM2M endpoint to invoke this event."
+        },
+        {
+          "info": {
+            "name": "Create Action Requests for LwM2M Devices.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/actions/LWM2M",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate LwM2M actions like read, write, execute on the specified devices. The devices have to be connected to 1NCE LwM2M endpoint to invoke this event."
+        },
+        {
+          "info": {
+            "name": "Create Action Request On Specific CoAP Device.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/:deviceId/actions/COAP",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate CoAP action on specific device."
+        },
+        {
+          "info": {
+            "name": "Create Action Requests for CoAP Devices.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/actions/COAP",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate CoAP action on the devices."
+        },
+        {
+          "info": {
+            "name": "Create Action Request On Specific UDP Device.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/:deviceId/actions/UDP",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate UDP action on specific device."
+        },
+        {
+          "info": {
+            "name": "Create Action Requests for UDP Devices.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/devices/actions/UDP",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate UDP action on devices."
+        },
+        {
+          "info": {
+            "name": "Get CloudFormation Parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/integrate/clouds/aws/parameters"
+          },
+          "docs": "Get the URLs to download/rollout the customer CloudFormation stack templates."
+        },
+        {
+          "info": {
+            "name": "Restart AWS Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/clouds/aws/:integrationId/restart",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "unique integration ID"
+              }
+            ]
+          },
+          "docs": "Restart AWS integration by forwarding test message to the integration."
+        },
+        {
+          "info": {
+            "name": "Test AWS Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/clouds/aws/:integrationId/test",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "unique integration ID"
+              }
+            ]
+          },
+          "docs": "Test AWS integration by forwarding test message to the integration."
+        },
+        {
+          "info": {
+            "name": "Create AWS Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/clouds/aws",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates AWS Integration, which becomes active only after customer Cloudformation stack is rolled out."
+        },
+        {
+          "info": {
+            "name": "Get Customer Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/integrate/clouds/:integrationId",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "unique integration ID"
+              }
+            ]
+          },
+          "docs": "Get Customer Integration details"
+        },
+        {
+          "info": {
+            "name": "Patch Customer Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.1nce.com/management-api/v1/integrate/clouds/:integrationId",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "unique integration ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Customer Integration"
+        },
+        {
+          "info": {
+            "name": "Delete Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.1nce.com/management-api/v1/integrate/clouds/:integrationId",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "unique integration ID"
+              }
+            ]
+          },
+          "docs": "Delete Integration for a specific customer."
+        },
+        {
+          "info": {
+            "name": "Get All Customer Integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/integrate/clouds"
+          },
+          "docs": "Get All Customer Integrations details"
+        },
+        {
+          "info": {
+            "name": "Get Integration Event Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/integrate/clouds/eventTypes"
+          },
+          "docs": "Get Available Integration Event Types."
+        },
+        {
+          "info": {
+            "name": "Create Webhook Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/clouds/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates Webhook Integration."
+        },
+        {
+          "info": {
+            "name": "Patch Customer Webhook Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.1nce.com/management-api/v1/integrate/clouds/webhooks/:integrationId",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "unique integration ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Customer Webhook Integration"
+        },
+        {
+          "info": {
+            "name": "Restart Webhook Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/clouds/webhooks/:integrationId/restart",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "unique integration ID"
+              }
+            ]
+          },
+          "docs": "Restart Webhook integration by forwarding test message to the integration."
+        },
+        {
+          "info": {
+            "name": "Test Webhook Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/integrate/clouds/webhooks/:integrationId/test",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "unique integration ID"
+              }
+            ]
+          },
+          "docs": "Test Webhook integration by forwarding test message to the integration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

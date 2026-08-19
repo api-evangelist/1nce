@@ -1,0 +1,476 @@
+{
+  "item": [
+    {
+      "id": "1e6ec0fe-507d-42a2-b7bf-7ab0b292272d",
+      "name": "Service Requests",
+      "description": {
+        "content": "Support Management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d770fff5-8fd2-4441-9c5a-29db3b87a782",
+          "name": "Get Service Requests",
+          "request": {
+            "name": "Get Service Requests",
+            "description": {
+              "content": "Get a list of all customer service requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "support"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Number index of the requested service request page. Use this parameter to iterate through all service requests on the different pages. The total amount of pages is listed in the response header."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "1",
+                  "description": "The number of service requests per page, maximum allowed value is 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "ae211c59-b34f-41d0-a4de-1d5e94bf6294",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "support"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"caseId\": \"12\",\n    \"communications\": [\n      {\n        \"communicationDate\": \"1955-03-30T15:42:37.186Z\",\n        \"direction\": \"IN\",\n        \"id\": \"1\",\n        \"originator\": \"string\",\n        \"subject\": \"Connectivity Issues\",\n        \"text\": \"Custom Text\",\n        \"type\": \"MAIL_OUT\"\n      },\n      {\n        \"communicationDate\": \"1978-07-14T23:55:32.863Z\",\n        \"direction\": \"IN\",\n        \"id\": \"1\",\n        \"originator\": \"string\",\n        \"subject\": \"Connectivity Issues\",\n        \"text\": \"Custom Text\",\n        \"type\": \"PHONE_IN\"\n      }\n    ],\n    \"createDate\": \"1989-12-10T17:03:27.080Z\",\n    \"solvedDate\": \"1984-10-31T12:17:03.888Z\",\n    \"status\": \"OPEN\",\n    \"subject\": \"Connectivity Issue\",\n    \"text\": \"Custom Text\"\n  },\n  {\n    \"caseId\": \"12\",\n    \"communications\": [\n      {\n        \"communicationDate\": \"1988-08-23T07:39:13.098Z\",\n        \"direction\": \"IN\",\n        \"id\": \"1\",\n        \"originator\": \"string\",\n        \"subject\": \"Connectivity Issues\",\n        \"text\": \"Custom Text\",\n        \"type\": \"MAIL_OUT\"\n      },\n      {\n        \"communicationDate\": \"1999-10-21T21:51:59.509Z\",\n        \"direction\": \"IN\",\n        \"id\": \"1\",\n        \"originator\": \"string\",\n        \"subject\": \"Connectivity Issues\",\n        \"text\": \"Custom Text\",\n        \"type\": \"PHONE_IN\"\n      }\n    ],\n    \"createDate\": \"1956-11-20T22:50:24.929Z\",\n    \"solvedDate\": \"1947-07-11T04:15:33.073Z\",\n    \"status\": \"OPEN\",\n    \"subject\": \"Connectivity Issue\",\n    \"text\": \"Custom Text\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c647efa5-8e72-4108-be7e-09259a95d7a6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "support"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "734901da-b1e3-441c-8566-b4aa576817ed",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "support"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "91fe7548-d1a9-4b19-a9bb-2feaab47e72b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "support"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1574ea46-1093-4336-a167-10dd6bc811e0",
+          "name": "Create Service Request",
+          "request": {
+            "name": "Create Service Request",
+            "description": {
+              "content": "Create a new service request towards 1NCE Support.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "support"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"replyToMail\": \"<string>\",\n  \"senderName\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"text\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c608cb1-c280-437e-9c3a-452525376c5d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "support"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"replyToMail\": \"e-mail@address.com\",\n  \"senderName\": \"Hans Mustermann\",\n  \"subject\": \"Connectivity Issue\",\n  \"text\": \"Custom Text\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9283c3b3-dcd6-4fe4-83fa-1b253e9107ab",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "support"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"replyToMail\": \"e-mail@address.com\",\n  \"senderName\": \"Hans Mustermann\",\n  \"subject\": \"Connectivity Issue\",\n  \"text\": \"Custom Text\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1b329ab6-86fd-404d-a3d8-36b8a70ce45b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "support"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"replyToMail\": \"e-mail@address.com\",\n  \"senderName\": \"Hans Mustermann\",\n  \"subject\": \"Connectivity Issue\",\n  \"text\": \"Custom Text\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d5bdf09c-4fb5-4451-afbd-ba32c86d20cd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "support"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"replyToMail\": \"e-mail@address.com\",\n  \"senderName\": \"Hans Mustermann\",\n  \"subject\": \"Connectivity Issue\",\n  \"text\": \"Custom Text\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "13c8c193-c068-4382-badc-de4409dbf77b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "support"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"replyToMail\": \"e-mail@address.com\",\n  \"senderName\": \"Hans Mustermann\",\n  \"subject\": \"Connectivity Issue\",\n  \"text\": \"Custom Text\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.1nce.com/management-api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6455c8c6-c239-4e40-a6f5-0938853e77f3",
+    "name": "Authorization Administration Logs Service Requests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+      "type": "text/plain"
+    }
+  }
+}

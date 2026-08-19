@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs Connectivity API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Connectivity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SIM Connectivity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/sims/:iccid/connectivity_info",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The iccid of the SIM in question."
+              },
+              {
+                "name": "subscriber",
+                "value": "true",
+                "type": "query",
+                "description": "Flag indicating if the subscriber information should be retrieved. Default value is true."
+              },
+              {
+                "name": "ussd",
+                "value": "false",
+                "type": "query",
+                "description": "Flag for retrieving the USSD connectivity info. Default value is false."
+              }
+            ]
+          },
+          "docs": "Retrieve connectivity information and cell tower of a device with a given SIM. The API call returns valid information when the 1NCE SIM is attached to a 2G/3G network only."
+        },
+        {
+          "info": {
+            "name": "Create Connectivity Reset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/sims/:iccid/reset",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be reset."
+              }
+            ]
+          },
+          "docs": "Trigger a connectivity reset for a given SIM. The actual reset will be done asynchronously. A positive-response only means that the connectivity-reset has been successfully placed into the queue."
+        },
+        {
+          "info": {
+            "name": "Create Connectivity Reset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/reset",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be reset."
+              }
+            ]
+          },
+          "docs": "Trigger a connectivity reset for a given SIM. The actual reset will be done asynchronously. A positive-response only means that the connectivity-reset has been successfully placed into the queue."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

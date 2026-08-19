@@ -1,0 +1,855 @@
+{
+  "item": [
+    {
+      "id": "91c786cd-b9b5-4a33-9ff6-c0874532fd71",
+      "name": "SIM Usage",
+      "description": {
+        "content": "Usage Management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "92de42c2-3c8b-4f76-a3e6-10b221fb5fe4",
+          "name": "Get SIM Usage",
+          "request": {
+            "name": "Get SIM Usage",
+            "description": {
+              "content": "Query the SIM data and SMS usage over a given period of time. The output is limited to the last 6 months.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sims",
+                ":iccid",
+                "usage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_dt",
+                  "value": "<string>",
+                  "description": "Start date used for the query, format: YYYY-MM-DD"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_dt",
+                  "value": "<string>",
+                  "description": "End date used for the usage query, format: YYYY-MM-DD"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iccid",
+                  "description": "(Required) The ICCID of the SIM to be queried."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "c4d23d71-b627-408b-a120-8b5ce800c185",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_dt",
+                      "value": "2022-07-22"
+                    },
+                    {
+                      "key": "end_dt",
+                      "value": "2022-07-22"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"stats\": [\n    {\n      \"data\": {\n        \"cost\": \"0.002803\",\n        \"currency\": {\n          \"id\": 1,\n          \"symbol\": \"€\",\n          \"code\": \"EUR\"\n        },\n        \"traffic_type\": {\n          \"description\": \"Data\",\n          \"id\": 1,\n          \"unit\": \"MB\"\n        },\n        \"volume\": \"0.002803\",\n        \"volume_rx\": \"0.001482\",\n        \"volume_tx\": \"0.001321\"\n      },\n      \"date\": \"2021-06-30T00:00:00.000Z\",\n      \"sms\": {\n        \"cost\": \"4\",\n        \"currency\": {\n          \"id\": 1,\n          \"symbol\": \"€\",\n          \"code\": \"EUR\"\n        },\n        \"traffic_type\": {\n          \"description\": \"SMS\",\n          \"id\": 1,\n          \"unit\": \"SMS\"\n        },\n        \"volume\": \"3\",\n        \"volume_rx\": \"2\",\n        \"volume_tx\": \"1\"\n      }\n    },\n    {\n      \"data\": {\n        \"cost\": \"0.002803\",\n        \"currency\": {\n          \"id\": 1,\n          \"symbol\": \"€\",\n          \"code\": \"EUR\"\n        },\n        \"traffic_type\": {\n          \"description\": \"Data\",\n          \"id\": 1,\n          \"unit\": \"MB\"\n        },\n        \"volume\": \"0.002803\",\n        \"volume_rx\": \"0.001482\",\n        \"volume_tx\": \"0.001321\"\n      },\n      \"date\": \"2021-06-30T00:00:00.000Z\",\n      \"sms\": {\n        \"cost\": \"4\",\n        \"currency\": {\n          \"id\": 1,\n          \"symbol\": \"€\",\n          \"code\": \"EUR\"\n        },\n        \"traffic_type\": {\n          \"description\": \"SMS\",\n          \"id\": 1,\n          \"unit\": \"SMS\"\n        },\n        \"volume\": \"3\",\n        \"volume_rx\": \"2\",\n        \"volume_tx\": \"1\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed612750-1334-41c0-aebc-7d6e119ac52e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_dt",
+                      "value": "2022-07-22"
+                    },
+                    {
+                      "key": "end_dt",
+                      "value": "2022-07-22"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ec1d5a10-8de4-4379-bdc7-f3fe4b490d43",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_dt",
+                      "value": "2022-07-22"
+                    },
+                    {
+                      "key": "end_dt",
+                      "value": "2022-07-22"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e9fe777-9144-4be4-a8af-c666f4519e34",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_dt",
+                      "value": "2022-07-22"
+                    },
+                    {
+                      "key": "end_dt",
+                      "value": "2022-07-22"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "472812d1-cee8-4d9d-aaa4-951ae16bb8fe",
+              "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_dt",
+                      "value": "2022-07-22"
+                    },
+                    {
+                      "key": "end_dt",
+                      "value": "2022-07-22"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff30192b-0088-4a09-a2a7-65cd265a96d0",
+          "name": "Get SIM Data Quota",
+          "request": {
+            "name": "Get SIM Data Quota",
+            "description": {
+              "content": "Get the current data quota of a particular SIM.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sims",
+                ":iccid",
+                "quota",
+                "data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iccid",
+                  "description": "(Required) The ICCID of the SIM to be queried."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "4d0665d2-435d-4f29-ab47-58551e47fa72",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "quota",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"volume\": 435.787951,\n  \"total_volume\": 500,\n  \"expiry_date\": \"2029-01-01T00:00:00.000Z\",\n  \"peak_throughput\": 1000000,\n  \"last_volume_added\": 500,\n  \"last_status_change_date\": \"2018-10-01T11:59:44.000Z\",\n  \"threshold_percentage\": 20\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab616780-740f-4145-9ced-6c0c96a63089",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "quota",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "10665736-0ec7-4a6f-a855-d6fc7f89d72a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "quota",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "513808cb-92e3-477d-97d4-0b30ef7bc8c3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "quota",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5d90f81b-c218-4e97-9871-377b9ed313d6",
+              "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "quota",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b1238c8-8ded-4886-8cd4-c2b823997f86",
+          "name": "Get SIM SMS Quota",
+          "request": {
+            "name": "Get SIM SMS Quota",
+            "description": {
+              "content": "Get the current SMS quota of a particular SIM.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sims",
+                ":iccid",
+                "quota",
+                "sms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iccid",
+                  "description": "(Required) The ICCID of the SIM to be queried."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "6e51860e-7a39-47db-ab22-300dc03306fd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "quota",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"volume\": 435.787951,\n  \"total_volume\": 500,\n  \"expiry_date\": \"2029-01-01T00:00:00.000Z\",\n  \"peak_throughput\": 1000000,\n  \"last_volume_added\": 500,\n  \"last_status_change_date\": \"2018-10-01T11:59:44.000Z\",\n  \"threshold_percentage\": 20\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99e2d84a-df63-4598-b096-3775d1d9f46c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "quota",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ac79d7dd-b332-4d83-8040-4948de0845f9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "quota",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b1fa7a19-a7c9-41ea-b74a-2b4ac3294a6b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "quota",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5ee032a-7a5f-4656-bc70-2e25fd5a89b1",
+              "name": "The following SIMs are expired and cannot be modified via API. Only extensions are permitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sims",
+                    ":iccid",
+                    "quota",
+                    "sms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccid",
+                      "description": "(Required) The ICCID of the SIM to be queried."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.1nce.com/management-api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "02287672-7960-47b3-bf13-f2c556d5cc3c",
+    "name": "Authorization Administration Logs SIM Usage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+      "type": "text/plain"
+    }
+  }
+}

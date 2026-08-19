@@ -1,0 +1,193 @@
+{
+  "item": [
+    {
+      "id": "2a16692a-d502-4b52-b31d-75b0008fa704",
+      "name": "Products",
+      "description": {
+        "content": "Product Information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6b7982f1-2d4e-4501-be67-0c08e1753988",
+          "name": "Get All Products",
+          "request": {
+            "name": "Get All Products",
+            "description": {
+              "content": "Get a list of all avaliable products.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "ced378e4-c480-4b3e-9103-f8b351d86185",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1001,\n    \"product\": \"1NCE IoT FlexSIM - Standard\",\n    \"material\": \"1NCE FlexSIM\",\n    \"package_size\": 1,\n    \"minQuantity\": 1,\n    \"maxQuantity\": 494,\n    \"maxQuantityPerCustomer\": 8390,\n    \"min_contract_duration\": 120,\n    \"one_time_charges\": [\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      },\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      }\n    ],\n    \"recurring_charges\": [\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      },\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      }\n    ]\n  },\n  {\n    \"id\": 1001,\n    \"product\": \"1NCE IoT FlexSIM - Standard\",\n    \"material\": \"1NCE FlexSIM\",\n    \"package_size\": 1,\n    \"minQuantity\": 1,\n    \"maxQuantity\": 8037,\n    \"maxQuantityPerCustomer\": 8415,\n    \"min_contract_duration\": 120,\n    \"one_time_charges\": [\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      },\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      }\n    ],\n    \"recurring_charges\": [\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      },\n      {\n        \"name\": \"provisionCharge\",\n        \"amount_net\": 10,\n        \"currency\": \"EUR\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff1fb9cc-1396-4af9-9a9e-5342ebefaa20",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9608faf7-f967-4cd1-ac75-f80cf38fdc41",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2fe4adef-c597-488b-adcd-94d017637968",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.1nce.com/management-api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9bcc01c3-e844-415c-bded-26be6ab047c5",
+    "name": "Authorization Administration Logs Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+      "type": "text/plain"
+    }
+  }
+}

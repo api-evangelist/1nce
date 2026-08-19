@@ -1,0 +1,282 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs General SIMs API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "General SIMs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All SIMs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/sims",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> \"ip_address:127.0.0.1,imei:4711\"</p>"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort values in a comma seperated list. Prepend \"-\" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>\"ip_address,-imei\"</p>"
+              }
+            ]
+          },
+          "docs": "Get a List of SIMs for the current account."
+        },
+        {
+          "info": {
+            "name": "Create Multiple SIM Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/sims",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change a list of SIMS for activate, deactivate, label, IMEI lock, etc. The actual change will be done asynchronously. A positive-response only means that the SIM changes has been successfully placed into the queue."
+        },
+        {
+          "info": {
+            "name": "Get Single SIM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/sims/:iccid",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              }
+            ]
+          },
+          "docs": "Get detail information (status, label, MSISDN, IMSI, ICCID, Lifetime, etc.) for a singe SIM based on the ICCID."
+        },
+        {
+          "info": {
+            "name": "Create Single SIM Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.1nce.com/management-api/v1/sims/:iccid",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be changed."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modification of a SIM card to activate, deactivate, change label, change IMEI lock, etc."
+        },
+        {
+          "info": {
+            "name": "Get SIM Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/sims/:iccid/status",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              }
+            ]
+          },
+          "docs": "Query the current status of a specific SIM card."
+        },
+        {
+          "info": {
+            "name": "Create SIM Transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/sims/simTransfer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger a SIM transfer workflow - if possible - for moving SIMs from one customer to another."
+        },
+        {
+          "info": {
+            "name": "Get All SIMs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number index of the requested SIM list page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Defines the size of a page, the number of individual SIMs listed on one page. The maximum allowed value is 100."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Filter parameter in <i>{filter}:{value}</i> format. Expects comma separated list of filtering criteria out of the following fields: <ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b> \"ip_address:127.0.0.1,imei:4711\"</p>"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort values in a comma seperated list. Prepend \"-\" for descending sort. Possible values:<ul><li>imei</li><li>ip_address</li></ul><p><b>Example:</b>\"ip_address,-imei\"</p>"
+              }
+            ]
+          },
+          "docs": "Get a List of SIMs for the current account."
+        },
+        {
+          "info": {
+            "name": "Get Single SIM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              }
+            ]
+          },
+          "docs": "Get detail information (status, label, MSISDN, IMSI, ICCID, Lifetime, etc.) for a singe SIM based on the ICCID."
+        },
+        {
+          "info": {
+            "name": "Modify SIM card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be changed."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modification of a SIM card to activate, deactivate, change label, change IMEI lock, etc."
+        },
+        {
+          "info": {
+            "name": "Get SIM Data Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/quota/data",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              }
+            ]
+          },
+          "docs": "Get the current data quota of a particular SIM."
+        },
+        {
+          "info": {
+            "name": "Get SIM SMS Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/quota/sms",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              }
+            ]
+          },
+          "docs": "Get the current SMS quota of a particular SIM."
+        },
+        {
+          "info": {
+            "name": "Get SIM Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/status",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              }
+            ]
+          },
+          "docs": "Query the current status of a specific SIM card.\n\nThis API retrieves connectivity details of a SIM. The following is a list of possible statuses: \n* `ATTACHED`:\n    The Endpoint has successfully attached to the Home Core network in the past.\n    The device will be shown as `ATTACHED` until the visited network has signaled that the device is inactive/offline.\n    Usually the visited network informs the Core Network within 1-2 days after a device went offline.\n\n* `ONLINE`:\n    The Endpoint has an "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

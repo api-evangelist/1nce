@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs Plugin system API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plugin system",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Install Datacake plugin for 1NCE OS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/partners/DATACAKE/plugins",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allows setting up an integration with Datacake workspace to allow data transfer from 1NCE OS."
+        },
+        {
+          "info": {
+            "name": "Install Mender plugin for 1NCE OS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/partners/MENDER/plugins",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allows setting up an integration with Mender to allow seamless firmware update management via 1NCE OS CoAP proxy. Public and private keys are optional fields, but if they are used, both must be provided"
+        },
+        {
+          "info": {
+            "name": "Install Tartabit plugin for 1NCE OS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/partners/TARTABIT/plugins",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allows setting up an integration with Tartabit to integrate with Azure, Oracle Cloud Infrastructure, Google Cloud and other cloud services via 1NCE OS."
+        },
+        {
+          "info": {
+            "name": "Install Memfault plugin for 1NCE OS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/partners/MEMFAULT/plugins",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allows setting up an integration with Memfault to allow seamless device debugging via 1NCE OS CoAP proxy."
+        },
+        {
+          "info": {
+            "name": "Get details about a specific plugin installation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/partners/plugins/:pluginId",
+            "params": [
+              {
+                "name": "pluginId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the plugin installation."
+              }
+            ]
+          },
+          "docs": "Retrieve details about a specific 1NCE OS plugin by it's installation ID."
+        },
+        {
+          "info": {
+            "name": "Uninstall a specific plugin by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.1nce.com/management-api/v1/partners/plugins/:pluginId",
+            "params": [
+              {
+                "name": "pluginId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the plugin installation."
+              }
+            ]
+          },
+          "docs": "Uninstall a specific plugin by ID to remove the functionality provided by the plugin."
+        },
+        {
+          "info": {
+            "name": "Restart a failed plugin by installation ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/partners/plugins/:pluginId/restart",
+            "params": [
+              {
+                "name": "pluginId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the plugin installation."
+              }
+            ]
+          },
+          "docs": "Attempt to restart a plugin that is in a failed state."
+        },
+        {
+          "info": {
+            "name": "Get a list of plugin installations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/partners/plugins"
+          },
+          "docs": "Retrieve a list of all installed plugins."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

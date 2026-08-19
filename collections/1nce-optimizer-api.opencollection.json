@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs Optimizer API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Optimizer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Test template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/optimize/messages/test",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Test a template with a sample input message."
+        },
+        {
+          "info": {
+            "name": "Get savings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/optimize/savings",
+            "params": [
+              {
+                "name": "range",
+                "value": "",
+                "type": "query",
+                "description": "Specify the range in days to receive data about."
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query",
+                "description": "Filter out by specific protocols: <ul><li>UDP</li><li>COAP</li></ul>"
+              },
+              {
+                "name": "iccid",
+                "value": "",
+                "type": "query",
+                "description": "ICCID of a SIM device, used to identifiy each 1NCE SIM."
+              }
+            ]
+          },
+          "docs": "Get statistics about the savings by using the optimizer."
+        },
+        {
+          "info": {
+            "name": "Get Optimizer Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/optimize/templates"
+          },
+          "docs": "Get all Translation Service Templates for the current organization."
+        },
+        {
+          "info": {
+            "name": "Create Optimizer Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/optimize/templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Translation Service Template."
+        },
+        {
+          "info": {
+            "name": "Update Optimizer Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.1nce.com/management-api/v1/optimize/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Unique Id of the Optimizer Template for which the update should be applied."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a specific Optimizer Template."
+        },
+        {
+          "info": {
+            "name": "Delete Optimizer Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.1nce.com/management-api/v1/optimize/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Unique Id of the Optimizer Template which should be deleted."
+              }
+            ]
+          },
+          "docs": "Delete a specific Optimizer Template."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

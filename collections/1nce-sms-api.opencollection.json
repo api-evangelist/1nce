@@ -1,0 +1,207 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs SMS API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SMS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get MT/MO-SMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/sims/:iccid/sms",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number index of the requested SIM SMS page. Use this parameter to iterate through all SIMs on the different pages. The total amount of pages is listed in the response header."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of SMS messages per page, maximum allowed value is 100."
+              },
+              {
+                "name": "sort",
+                "value": "status,ip_address",
+                "type": "query",
+                "description": "Keys by which the SMS messages should be sorted, listed as comma sperated values."
+              }
+            ]
+          },
+          "docs": "Get a list of SMS sent and received by a specific SIM card."
+        },
+        {
+          "info": {
+            "name": "Create SMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/sims/:iccid/sms",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM targeted for the MT-SMS."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create and send a MT-SMS towards a device with a 1NCE SIM."
+        },
+        {
+          "info": {
+            "name": "Get SMS Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/sims/:iccid/sms/:id",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              },
+              {
+                "name": "id",
+                "value": "123",
+                "type": "path",
+                "description": "The ID of the SMS message to be queried."
+              }
+            ]
+          },
+          "docs": "Query details about an individual SMS from a specifc SIM card."
+        },
+        {
+          "info": {
+            "name": "Delete SMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.1nce.com/management-api/v1/sims/:iccid/sms/:id",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be queried."
+              },
+              {
+                "name": "id",
+                "value": "123",
+                "type": "path",
+                "description": "The ID of the SMS message to be queried."
+              }
+            ]
+          },
+          "docs": "Cancel a SMS message that is buffered to be delivered to the device with the SIM card but was not yet delivered."
+        },
+        {
+          "info": {
+            "name": "Get MT/MO-SMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/sms",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM for MT-SMS or MO-SMS."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The number of returned chunk within the complete set."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of items to return per page."
+              }
+            ]
+          },
+          "docs": "Get a list of SMS sent and received by a specific SIM card."
+        },
+        {
+          "info": {
+            "name": "Create SMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/sms",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM for MT-SMS or MO-SMS."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create and send an MT-SMS to a device."
+        },
+        {
+          "info": {
+            "name": "Get SMS Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/sms/:id",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM for MT-SMS or MO-SMS."
+              },
+              {
+                "name": "id",
+                "value": "123",
+                "type": "path",
+                "description": "The ID of the SMS message to be queried."
+              }
+            ]
+          },
+          "docs": "Query details about an individual SMS from a specific SIM card."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

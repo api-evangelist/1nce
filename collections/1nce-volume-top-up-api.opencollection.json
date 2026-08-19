@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs Volume Top Up API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Volume Top Up",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Single Top Up",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/sims/:iccid/topup",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be topped up."
+              },
+              {
+                "name": "payment_method",
+                "value": "",
+                "type": "query",
+                "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process."
+              }
+            ]
+          },
+          "docs": "Top up the data/SMS volume of one specific SIM."
+        },
+        {
+          "info": {
+            "name": "Create Multiple Top Up",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/sims/topup",
+            "params": [
+              {
+                "name": "payment_method",
+                "value": "",
+                "type": "query",
+                "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Top up the data/SMS volume of a list of SIM."
+        },
+        {
+          "info": {
+            "name": "Enable Auto Top Up",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/sims/autoTopup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger an auto top up configuration update for the given SIMs."
+        },
+        {
+          "info": {
+            "name": "Create Single Top Up",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/topup",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM to be topped up."
+              },
+              {
+                "name": "payment_method",
+                "value": "",
+                "type": "query",
+                "description": "Optional payment method selection between creditcard, banktransfer, monthlyinvoice or boleto. If the parameter is left empty or is invalid, banktransfer is used as default for the top up order process."
+              }
+            ]
+          },
+          "docs": "Top up the data/SMS volume of one specific SIM."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

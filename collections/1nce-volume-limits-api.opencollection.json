@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs Volume Limits API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Volume Limits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Global Limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/sims/limits"
+          },
+          "docs": "Get currently configured self-set monthly limits (Data, MT-SMS, MO-SMS) for all SIMs."
+        },
+        {
+          "info": {
+            "name": "Create Global Limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.1nce.com/management-api/v1/sims/limits",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure self-set monthly limits for all SIMs (Data, MT-SMS, MO-SMS)."
+        },
+        {
+          "info": {
+            "name": "Get SIM Limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.1nce.com/management-api/v1/sims/:service/limits",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "The service name (data, smsMO, smsMT) for which to list the avaliable limit options."
+              }
+            ]
+          },
+          "docs": "Get a list of slectable limits for a given service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

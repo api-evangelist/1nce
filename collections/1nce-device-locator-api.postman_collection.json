@@ -1,0 +1,2500 @@
+{
+  "item": [
+    {
+      "id": "576c086f-f291-4330-b874-60fb950b11fc",
+      "name": "Device Locator",
+      "description": {
+        "content": "Get device positions and manage geofences",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "726cc0c5-cb23-4b38-84ca-638a88b0d9f1",
+          "name": "Get Device Positions",
+          "request": {
+            "name": "Get Device Positions",
+            "description": {
+              "content": "Get positions of a specific device (maximum of last 7 days).\n![Creative Commons License](https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-sa.svg) [OpenCelliD Project](https://opencellid.org/) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "locate",
+                "devices",
+                ":deviceId",
+                "positions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "-sampleTime,-sampleTime",
+                  "description": "Comma seperated list of device property keys in order. Prefix key with `-` to sort descending."
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>",
+                  "description": "Source of the position."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "100",
+                  "description": "Parameter for specifying the queried items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "ALL",
+                  "description": "Use ALL for a paginated list of all positions and SUMMARY to get the first, last and some positions inbetween."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "7c0ce493-618d-4f0b-ba07-e4a42be5808a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "devices",
+                    ":deviceId",
+                    "positions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-sampleTime,-sampleTime"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "ALL"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coordinates\": [\n    {\n      \"coordinate\": [\n        499.34514902681417,\n        853.2929959756874\n      ],\n      \"sampleTime\": \"1959-06-17T13:18:13.502Z\",\n      \"source\": \"CellTower\",\n      \"metadata\": {}\n    },\n    {\n      \"coordinate\": [\n        803.9972220514169,\n        8263.235679625417\n      ],\n      \"sampleTime\": \"1950-10-20T05:57:28.536Z\",\n      \"source\": \"GPS\",\n      \"metadata\": {}\n    }\n  ],\n  \"page\": 1,\n  \"pageAmount\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7897df3a-584e-446b-b7bf-8ca5abb55314",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "devices",
+                    ":deviceId",
+                    "positions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-sampleTime,-sampleTime"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "ALL"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 400,\n  \"statusText\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f489256-52b7-405f-9976-65a69332e46d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "devices",
+                    ":deviceId",
+                    "positions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-sampleTime,-sampleTime"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "ALL"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"statusText\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fbcc590-fb68-43c3-bad7-9aa6261a40c9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "devices",
+                    ":deviceId",
+                    "positions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-sampleTime,-sampleTime"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "ALL"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 403,\n  \"statusText\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e979721-989f-4aeb-9942-023582373042",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "devices",
+                    ":deviceId",
+                    "positions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-sampleTime,-sampleTime"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "ALL"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7186f7e7-8473-4ab0-9312-8c6245357823",
+          "name": "Get Latest Devices Positions",
+          "request": {
+            "name": "Get Latest Devices Positions",
+            "description": {
+              "content": "Get latest positions of customer devices (maximum of last 7 days). Only one latest position is possible for a single device independent of source: either Celltower or GPS. This means that `source` query parameter selection can lead to no latest position returned for some devices.\n![Creative Commons License](https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-sa.svg) [OpenCelliD Project](https://opencellid.org/) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "locate",
+                "positions",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<string>",
+                  "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "-sampleTime,-sampleTime",
+                  "description": "Comma seperated list of device property keys in order. Prefix key with `-` to sort descending."
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>",
+                  "description": "Source of the position."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "longitudeFrom",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "longitudeTo",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "latitudeFrom",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "latitudeTo",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "100",
+                  "description": "Parameter for specifying the queried items per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "02c259a2-a17d-41e7-a0e4-e6c288561fa3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "positions",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-sampleTime,-sampleTime"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02Z"
+                    },
+                    {
+                      "key": "longitudeFrom",
+                      "value": "-10"
+                    },
+                    {
+                      "key": "longitudeTo",
+                      "value": "10"
+                    },
+                    {
+                      "key": "latitudeFrom",
+                      "value": "-10"
+                    },
+                    {
+                      "key": "latitudeTo",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coordinates\": [\n    {\n      \"coordinate\": [\n        6589.219596984416,\n        1747.9488004622247\n      ],\n      \"deviceId\": \"<device_id>\",\n      \"sampleTime\": \"2022-03-07T08:51:29.015Z\",\n      \"source\": \"GPS\",\n      \"metadata\": {}\n    },\n    {\n      \"coordinate\": [\n        9312.289460910675,\n        8076.046656019925\n      ],\n      \"deviceId\": \"<device_id>\",\n      \"sampleTime\": \"2022-03-07T08:51:29.015Z\",\n      \"source\": \"GPS\",\n      \"metadata\": {}\n    }\n  ],\n  \"page\": 1,\n  \"pageAmount\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aae53bc2-3cd1-4649-a387-27c721fe6826",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "positions",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-sampleTime,-sampleTime"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02Z"
+                    },
+                    {
+                      "key": "longitudeFrom",
+                      "value": "-10"
+                    },
+                    {
+                      "key": "longitudeTo",
+                      "value": "10"
+                    },
+                    {
+                      "key": "latitudeFrom",
+                      "value": "-10"
+                    },
+                    {
+                      "key": "latitudeTo",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 400,\n  \"statusText\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec95f395-6961-466c-94bc-c962ef23ee38",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "positions",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-sampleTime,-sampleTime"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02Z"
+                    },
+                    {
+                      "key": "longitudeFrom",
+                      "value": "-10"
+                    },
+                    {
+                      "key": "longitudeTo",
+                      "value": "10"
+                    },
+                    {
+                      "key": "latitudeFrom",
+                      "value": "-10"
+                    },
+                    {
+                      "key": "latitudeTo",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"statusText\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa90cb26-9f21-4bbf-a527-7f02a1aa78a4",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "positions",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-sampleTime,-sampleTime"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02Z"
+                    },
+                    {
+                      "key": "longitudeFrom",
+                      "value": "-10"
+                    },
+                    {
+                      "key": "longitudeTo",
+                      "value": "10"
+                    },
+                    {
+                      "key": "latitudeFrom",
+                      "value": "-10"
+                    },
+                    {
+                      "key": "latitudeTo",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 403,\n  \"statusText\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5714cfc6-8b7d-4a69-afed-4aadb266e8ca",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "positions",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-sampleTime,-sampleTime"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02Z"
+                    },
+                    {
+                      "key": "longitudeFrom",
+                      "value": "-10"
+                    },
+                    {
+                      "key": "longitudeTo",
+                      "value": "10"
+                    },
+                    {
+                      "key": "latitudeFrom",
+                      "value": "-10"
+                    },
+                    {
+                      "key": "latitudeTo",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6b6c183-27a5-42b3-8a4b-75b51b2b8185",
+          "name": "Get Device Celltower location resolutions",
+          "request": {
+            "name": "Get Device Celltower location resolutions",
+            "description": {
+              "content": "Get Cell location resolutions for one device (maximum of last 7 days).\n![Creative Commons License](https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-sa.svg) [OpenCelliD Project](https://opencellid.org/) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "locate",
+                "devices",
+                ":deviceId",
+                "activity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<string>",
+                  "description": "Timestamp from where onwards the historic data should be queried. If not provided while \"endDateTime\" is provided defaults to 1 day before \"endDateTime\" timestamp, otherwise defaults to 1 day from now"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<string>",
+                  "description": "Timestamp up to where the historic data should be queried. If not provided while \"startDateTime\" is provided defaults to 1 day after \"startDateTime\" timestamp, otherwise defaults to now"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "7dd3e90c-aaa9-4b45-aba6-ff915f18a92d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "devices",
+                    ":deviceId",
+                    "activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02.000Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"iccid\": \"string\",\n      \"locationResolutionStatus\": \"FAILED\",\n      \"radioAccessType\": \"2G\",\n      \"resolutionMode\": \"ADVANCED\",\n      \"sampleTime\": \"1946-11-25T10:27:42.625Z\",\n      \"towerLocation\": {\n        \"longitude\": 5327.426980162138,\n        \"latitude\": 5919.969736642728\n      },\n      \"towerMetadata\": {\n        \"MCC\": \"string\",\n        \"MNC\": \"string\",\n        \"LAC\": \"string\",\n        \"CellID\": \"string\"\n      },\n      \"resolutionMetadata\": {}\n    },\n    {\n      \"iccid\": \"string\",\n      \"locationResolutionStatus\": \"FAILED\",\n      \"radioAccessType\": \"3.5G\",\n      \"resolutionMode\": \"BASIC\",\n      \"sampleTime\": \"2010-07-29T00:28:24.041Z\",\n      \"towerLocation\": {\n        \"longitude\": 5876.964722122072,\n        \"latitude\": 6301.0884602305905\n      },\n      \"towerMetadata\": {\n        \"MCC\": \"string\",\n        \"MNC\": \"string\",\n        \"LAC\": \"string\",\n        \"CellID\": \"string\"\n      },\n      \"resolutionMetadata\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "882a3292-7770-4973-b28d-b2bb97179485",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "devices",
+                    ":deviceId",
+                    "activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02.000Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 400,\n  \"statusText\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f33c8817-50cf-4aa4-ac91-63b9b8517919",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "devices",
+                    ":deviceId",
+                    "activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02.000Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"statusText\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21a4bf3a-1b07-433c-82d9-27436f162499",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "devices",
+                    ":deviceId",
+                    "activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02.000Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 403,\n  \"statusText\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53383804-9300-427d-ad10-ba4fe6d843e1",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "devices",
+                    ":deviceId",
+                    "activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "2022-01-01T01:01:01.000Z"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "2022-01-01T01:01:02.000Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66f2481e-87f5-420e-8fc2-f5bd27667fbb",
+          "name": "Get all geofences",
+          "request": {
+            "name": "Get all geofences",
+            "description": {
+              "content": "Get an overview of all geofences.\nRate limits apply for this endpoint. See [Rate Limit Policy](https://help.1nce.com/api/api-rate-limits/).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "locate",
+                "geofences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10",
+                  "description": "Parameter for specifying the queried items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Number of the requested page. Use this parameter to iterate through all items on the different pages. The total amount of pages is listed in the response body (pageAmount)."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Name or Prefix of Geofence"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<string>",
+                  "description": "The unique device ID which identifies each 1NCE SIM. Can be obtained from the Get All Devices API query. For 1NCE SIMS the device ID is equal to its iccid."
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "scope of geofences"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "07d538bb-bd6c-4d42-aec5-2140bab18cf9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"created\": \"2005-01-05T01:52:33.878Z\",\n      \"deviceId\": {},\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"circle\",\n      \"updated\": \"1963-12-02T05:27:57.864Z\"\n    },\n    {\n      \"created\": \"1998-05-06T11:47:49.884Z\",\n      \"deviceId\": {},\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"circle\",\n      \"updated\": \"1984-01-24T11:46:07.662Z\"\n    }\n  ],\n  \"page\": 3270.7648440716653,\n  \"pageAmount\": 6409.145012774897\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "081c9125-0572-4121-8e4d-0522f0d2b461",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 400,\n  \"statusText\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2baeb1d5-269c-427a-b31e-76dfc0dedd2d",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<device_id>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "202bf193-b1f9-4d6a-bcd4-83bd00e6b196",
+          "name": "Create geofence",
+          "request": {
+            "name": "Create geofence",
+            "description": {
+              "content": "Create a new geofence.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "locate",
+                "geofences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"coordinates\": [\n    [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ]\n  ],\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"eventTypes\": [\n    \"<string>\"\n  ],\n  \"eventSources\": [\n    \"<string>\"\n  ],\n  \"deviceId\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3bd6fb5a-d3fc-4b7e-b208-2c12f51c4712",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ]\n  ],\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"eventTypes\": [\n    \"<string>\"\n  ],\n  \"eventSources\": [\n    \"<string>\"\n  ],\n  \"deviceId\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coordinates\": [\n    [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ]\n  ],\n  \"deviceId\": {},\n  \"eventSources\": [\n    \"<string>\"\n  ],\n  \"eventTypes\": [\n    \"<string>\"\n  ],\n  \"id\": \"string\",\n  \"name\": \"<string>\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc2c11c3-3b2f-4961-8eb0-1f31e47b2cb2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ]\n  ],\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"eventTypes\": [\n    \"<string>\"\n  ],\n  \"eventSources\": [\n    \"<string>\"\n  ],\n  \"deviceId\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 400,\n  \"statusText\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "547bfae7-2664-4bba-bffc-1ba146e471a5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ]\n  ],\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"eventTypes\": [\n    \"<string>\"\n  ],\n  \"eventSources\": [\n    \"<string>\"\n  ],\n  \"deviceId\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"statusText\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "deb6d616-3cd8-4cc4-9dad-c86b587a9059",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ]\n  ],\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"eventTypes\": [\n    \"<string>\"\n  ],\n  \"eventSources\": [\n    \"<string>\"\n  ],\n  \"deviceId\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 403,\n  \"statusText\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea7f9eaa-6fe3-469a-9903-7dbbc8e7e2fa",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ]\n  ],\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"eventTypes\": [\n    \"<string>\"\n  ],\n  \"eventSources\": [\n    \"<string>\"\n  ],\n  \"deviceId\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9dc35fd-e51b-47ab-8372-764b887298d6",
+          "name": "Delete geofence",
+          "request": {
+            "name": "Delete geofence",
+            "description": {
+              "content": "Delete a geofence.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "locate",
+                "geofences",
+                ":geofenceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "geofenceId",
+                  "description": "(Required) unique geofence ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "ea02de8a-4eea-4823-b533-bba9736a0876",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences",
+                    ":geofenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceId",
+                      "description": "(Required) unique geofence ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "70630517-7100-455c-83d6-d26dd4b6beef",
+              "name": "Not Found Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences",
+                    ":geofenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceId",
+                      "description": "(Required) unique geofence ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 404,\n  \"statusText\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7fe89b8-b71c-4802-8b87-cb770873920a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences",
+                    ":geofenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceId",
+                      "description": "(Required) unique geofence ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ee79a75-4d87-4543-82e5-83f011945ea7",
+          "name": "Get a geofence",
+          "request": {
+            "name": "Get a geofence",
+            "description": {
+              "content": "Get details of a geofence.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "locate",
+                "geofences",
+                ":geofenceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "geofenceId",
+                  "description": "(Required) unique geofence ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "59d0e9ea-d807-4747-bbf3-fa54725043a9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences",
+                    ":geofenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceId",
+                      "description": "(Required) unique geofence ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coordinates\": [\n    [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ]\n  ],\n  \"created\": \"2023-05-20T19:31:26.329Z\",\n  \"deviceId\": {},\n  \"eventSources\": [\n    \"<string>\"\n  ],\n  \"eventTypes\": [\n    \"<string>\"\n  ],\n  \"id\": \"string\",\n  \"name\": \"<string>\",\n  \"type\": \"string\",\n  \"updated\": \"2014-12-02T16:04:32.008Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "830c5618-04e4-4056-891e-96bd4f670a9b",
+              "name": "Not Found Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences",
+                    ":geofenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceId",
+                      "description": "(Required) unique geofence ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 404,\n  \"statusText\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aeb155b2-adbd-409c-b49b-b1138c2e89e2",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences",
+                    ":geofenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceId",
+                      "description": "(Required) unique geofence ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b84346e6-745c-4acf-8fe0-dc23c8cab31a",
+          "name": "Patch a geofence",
+          "request": {
+            "name": "Patch a geofence",
+            "description": {
+              "content": "Update an existing geofence",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "locate",
+                "geofences",
+                ":geofenceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "geofenceId",
+                  "description": "(Required) unique geofence ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"eventTypes\": [\n    \"<string>\"\n  ],\n  \"eventSources\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "23e7bd27-efc1-44ee-a36c-f11b6ccead74",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences",
+                    ":geofenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceId",
+                      "description": "(Required) unique geofence ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"eventTypes\": [\n    \"<string>\"\n  ],\n  \"eventSources\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coordinates\": [\n    [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ]\n  ],\n  \"created\": \"2018-03-02T14:39:19.237Z\",\n  \"deviceId\": {},\n  \"eventSources\": [\n    \"<string>\"\n  ],\n  \"eventTypes\": [\n    \"<string>\"\n  ],\n  \"id\": \"string\",\n  \"name\": \"<string>\",\n  \"updated\": \"1986-10-03T05:36:46.505Z\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "321d7751-08e9-4bcf-aa8e-2d3a5958f935",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences",
+                    ":geofenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceId",
+                      "description": "(Required) unique geofence ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"eventTypes\": [\n    \"<string>\"\n  ],\n  \"eventSources\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 400,\n  \"statusText\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5eaae29-faf2-41e8-b7b0-a4eff2b81733",
+              "name": "Not Found Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences",
+                    ":geofenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceId",
+                      "description": "(Required) unique geofence ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"eventTypes\": [\n    \"<string>\"\n  ],\n  \"eventSources\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 404,\n  \"statusText\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4532ab8e-f241-4241-956f-2c96b008efc2",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "locate",
+                    "geofences",
+                    ":geofenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceId",
+                      "description": "(Required) unique geofence ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"eventTypes\": [\n    \"<string>\"\n  ],\n  \"eventSources\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusText\": \"Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.1nce.com/management-api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "56bad841-d0ab-4c86-88b2-16c7a1a3b279",
+    "name": "Authorization Administration Logs Device Locator API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation of the authentication used for the 1NCE APIs.\n\nContact Support:\n Name: 1NCE GmbH\n Email: info@1nce.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Authorization Administration Logs SMS by ICCID API",
+    "version": "v2.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SMS by ICCID",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cancel SMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.1nce.com/management-api/v2/sims/:iccid/sms/:id",
+            "params": [
+              {
+                "name": "iccid",
+                "value": "8988280666000000000",
+                "type": "path",
+                "description": "The ICCID of the SIM for MT-SMS or MO-SMS."
+              },
+              {
+                "name": "id",
+                "value": "123",
+                "type": "path",
+                "description": "The ID of the SMS message to be cancelled."
+              }
+            ]
+          },
+          "docs": "Cancel a SMS message that is buffered to be delivered to the device with the SIM card but was not yet delivered."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
