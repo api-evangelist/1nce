@@ -277,6 +277,8 @@ apis:
   description: Order Management
   humanURL: https://help.1nce.com/dev-hub/reference/api-welcome
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -304,6 +306,8 @@ apis:
   description: 1NCE OS Plugin System
   humanURL: https://help.1nce.com/dev-hub/reference/api-welcome
   tags:
+  - Plugin System
+  tags_raw:
   - Plugin system
   properties:
   - type: OpenAPI
@@ -331,6 +335,8 @@ apis:
   description: Product Information
   humanURL: https://help.1nce.com/dev-hub/reference/api-welcome
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
