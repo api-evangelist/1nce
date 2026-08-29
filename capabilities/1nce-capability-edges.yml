@@ -1,0 +1,46 @@
+slug: 1nce
+provider: 1NCE
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Telecommunications
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: General SIMs
+  spec_file: 1nce-general-sims-api-openapi.yml
+  capability_id: BC-2640.20
+  capability_id_l1: BC-2640
+  capability_name: SIM & eSIM Lifecycle Management
+  confidence: 0.9
+  evidence: GET /v1/sims — Get All SIMs; PUT /v2/sims/{iccid} — Modify SIM card; POST /v1/sims/simTransfer
+    — Create SIM Transfer; GET /v2/sims/{iccid}/status — Get SIM Status; schemas SIM_card, SimsSim, SimTransfer
+  reason: The surface manages the SIM estate by ICCID — listing, configuring, transferring, and reading
+    status and data/SMS quota of SIM cards — which is squarely SIM & eSIM lifecycle management within
+    telecom subscriber management.
+- tag: Service Requests
+  spec_file: 1nce-service-requests-api-openapi.yml
+  capability_id: BC-430.10
+  capability_id_l1: BC-430
+  capability_name: Customer Inquiry Management
+  confidence: 0.8
+  evidence: POST /v1/support createServiceRequestUsingPOST "Create Service Request"; schemas ManagementApiServiceRequest,
+    Communication
+  reason: Creating and listing support/service requests with customer communications is inbound customer
+    inquiry handling (support ticketing).
+- tag: Volume Top Up
+  spec_file: 1nce-volume-top-up-api-openapi.yml
+  capability_id: BC-2660.20
+  capability_id_l1: BC-2660
+  capability_name: Charging & Rating Management
+  confidence: 0.78
+  evidence: POST /v1/sims/{iccid}/topup topUpUsingPOST "Create Single Top Up"; POST /v1/sims/autoTopup
+    "Enable Auto Top Up"
+  reason: Single, bulk and automatic top-up of data volume is prepaid balance recharge, explicitly within
+    charging, rating and recharge management.

@@ -603,6 +603,9 @@ apis:
   - type: Documentation
     url: https://help.1nce.com/api/support-management/
 common:
+  - type: CapabilityMap
+    url: capabilities/1nce-capability-edges.yml
+    name: 1NCE Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/1nce/overview
   - type: AgenticAccess
