@@ -306,7 +306,7 @@ apis:
   description: 1NCE OS Plugin System
   humanURL: https://help.1nce.com/dev-hub/reference/api-welcome
   tags:
-  - Plugin System
+  - Plugin system
   tags_raw:
   - Plugin system
   properties:
