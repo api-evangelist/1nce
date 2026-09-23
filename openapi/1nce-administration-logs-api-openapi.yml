@@ -1,12 +1,12 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs API
-  description: Documentation of the authentication used for the 1NCE APIs.
   contact:
+    email: info@1nce.com
     name: 1NCE GmbH
     url: https://1nce.com
-    email: info@1nce.com
-  version: v2.1.1
+  description: Documentation of the 1NCE OS API which can be used for managing the 1NCE OS Service.
+  title: 1NCE OS Administration Logs API
+  version: v1.3
 servers:
 - url: https://api.1nce.com/management-api
 tags:
@@ -68,6 +68,8 @@ paths:
       summary: Get Administration Logs
       tags:
       - Administration Logs
+      operationId: getV1AdministrationLogs
+      x-operation-id-source: derived
   /v1/administrationLogs/stats:
     get:
       description: Get the administration logs statistics for the current organization.
@@ -112,6 +114,8 @@ paths:
       summary: Get Administration Logs Statistics
       tags:
       - Administration Logs
+      operationId: getV1AdministrationLogsStats
+      x-operation-id-source: derived
   /v1/administrationLogs/{adminLogId}/payload:
     get:
       description: Get a URL pointing to a single administration log payload. The received URL will trigger a download.
@@ -147,8 +151,29 @@ paths:
       summary: Get Administration Log Payload
       tags:
       - Administration Logs
+      operationId: getV1AdministrationLogsByAdminLogIdPayload
+      x-operation-id-source: derived
 components:
   schemas:
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
+      type: object
     getAdministrationLogsResponseschema_items_inner:
       properties:
         imsi:
@@ -224,6 +249,21 @@ components:
       - timestamp
       - type
       type: object
+    getAdministrationLogsStatisticsResponseschema_administrationLogs_inner:
+      properties:
+        day:
+          description: The timestamp value of the day of the administration log.
+          example: '2022-03-07'
+          format: date
+          type: string
+        amount:
+          description: The amount of administration logs received on the specified day.
+          example: 2
+          type: integer
+      required:
+      - amount
+      - day
+      type: object
     serverErrorResponse:
       description: An API error response in case of a Server Side Error.
       properties:
@@ -259,24 +299,6 @@ components:
           type: array
       title: Unauthorized Request
       type: object
-    getAdministrationLogsStatisticsResponseschema:
-      additionalProperties: false
-      description: Response to the get administration logs statistics request.
-      properties:
-        totalUniqueDevices:
-          description: The amount of unique devices that caused an administration log.
-          example: 2
-          type: integer
-        administrationLogs:
-          description: An array of administration logs stats.
-          items:
-            $ref: '#/components/schemas/getAdministrationLogsStatisticsResponseschema_administrationLogs_inner'
-          type: array
-      required:
-      - administrationLogs
-      - totalUniqueDevices
-      title: Get Administration Logs Statistics
-      type: object
     getAdministrationLogsResponseschema:
       additionalProperties: false
       description: Response to the get administration logs request.
@@ -298,24 +320,23 @@ components:
       - items
       title: Get Administration Logs Response
       type: object
-    badRequestResponse:
-      description: An API error response in case of an HTTP Bad Request.
+    getAdministrationLogsStatisticsResponseschema:
+      additionalProperties: false
+      description: Response to the get administration logs statistics request.
       properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 400
+        totalUniqueDevices:
+          description: The amount of unique devices that caused an administration log.
+          example: 2
           type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Bad Request
-          type: string
-        errors:
-          description: Detailed error information.
+        administrationLogs:
+          description: An array of administration logs stats.
           items:
-            type: object
+            $ref: '#/components/schemas/getAdministrationLogsStatisticsResponseschema_administrationLogs_inner'
           type: array
-      title: Bad Request
+      required:
+      - administrationLogs
+      - totalUniqueDevices
+      title: Get Administration Logs Statistics
       type: object
     forbiddenResponse:
       description: An API error response in case of an HTTP Forbidden Request.
@@ -336,34 +357,19 @@ components:
           type: array
       title: Forbidden Request
       type: object
-    getAdministrationLogsStatisticsResponseschema_administrationLogs_inner:
-      properties:
-        day:
-          description: The timestamp value of the day of the administration log.
-          example: '2022-03-07'
-          format: date
-          type: string
-        amount:
-          description: The amount of administration logs received on the specified day.
-          example: 2
-          type: integer
-      required:
-      - amount
-      - day
-      type: object
   responses:
-    UnauthorizedError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/unauthorizedRequestResponse'
-      description: Unauthorized
     InternalServerError:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/serverErrorResponse'
       description: Internal Server Error
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unauthorizedRequestResponse'
+      description: Unauthorized
     BadRequestError:
       content:
         application/json:
@@ -377,7 +383,7 @@ components:
             $ref: '#/components/schemas/forbiddenResponse'
       description: Forbidden
   securitySchemes:
-    BasicAuthentication:
+    BearerAuthentication:
+      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+      scheme: bearer
       type: http
-      scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

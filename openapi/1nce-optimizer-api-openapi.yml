@@ -1,12 +1,12 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs Optimizer API
-  description: Documentation of the authentication used for the 1NCE APIs.
   contact:
+    email: info@1nce.com
     name: 1NCE GmbH
     url: https://1nce.com
-    email: info@1nce.com
-  version: v2.1.1
+  description: Documentation of the 1NCE OS API which can be used for managing the 1NCE OS Service.
+  title: 1NCE OS Optimizer API
+  version: v1.3
 servers:
 - url: https://api.1nce.com/management-api
 tags:
@@ -42,6 +42,8 @@ paths:
       summary: Test template
       tags:
       - Optimizer
+      operationId: postV1OptimizeMessagesTest
+      x-operation-id-source: derived
   /v1/optimize/savings:
     get:
       description: Get statistics about the savings by using the optimizer.
@@ -101,6 +103,8 @@ paths:
       summary: Get savings
       tags:
       - Optimizer
+      operationId: getV1OptimizeSavings
+      x-operation-id-source: derived
   /v1/optimize/templates:
     get:
       description: Get all Translation Service Templates for the current organization.
@@ -120,6 +124,8 @@ paths:
       summary: Get Optimizer Templates
       tags:
       - Optimizer
+      operationId: getV1OptimizeTemplates
+      x-operation-id-source: derived
     post:
       description: Create a new Translation Service Template.
       requestBody:
@@ -149,6 +155,8 @@ paths:
       summary: Create Optimizer Template
       tags:
       - Optimizer
+      operationId: postV1OptimizeTemplates
+      x-operation-id-source: derived
   /v1/optimize/templates/{templateId}:
     delete:
       description: Delete a specific Optimizer Template.
@@ -175,6 +183,8 @@ paths:
       summary: Delete Optimizer Template
       tags:
       - Optimizer
+      operationId: deleteV1OptimizeTemplatesByTemplateId
+      x-operation-id-source: derived
     patch:
       description: Update a specific Optimizer Template.
       parameters:
@@ -216,73 +226,78 @@ paths:
       summary: Update Optimizer Template
       tags:
       - Optimizer
+      operationId: patchV1OptimizeTemplatesByTemplateId
+      x-operation-id-source: derived
 components:
-  responses:
-    UnauthorizedError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/unauthorizedRequestResponse'
-      description: Unauthorized
-    NotFoundError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/notFoundResponse'
-      description: Not Found Error
-    InternalServerError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/serverErrorResponse'
-      description: Internal Server Error
-    ForbiddenError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/forbiddenResponse'
-      description: Forbidden
-    ConflictError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/conflictResponse'
-      description: Conflict
-    UnprocessableEntityError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/unprocessableEntityResponse'
-      description: Unprocessable Entity
-    BadRequestError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/badRequestResponse'
-      description: Bad Request
   schemas:
-    getResponseschema_3_messagesTranslated:
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
+      type: object
+    getResponseschema_3_bytesSaved:
       additionalProperties: false
-      description: Statistics about the number of messages translated.
+      description: Statistics about the bytes reduced by using the translation templates.
       properties:
         value:
-          description: The number of messages translated.
+          description: The amount of bytes reduced by using the translation templates.
           example: 1
           type: number
         delta:
-          description: The difference to the number of messages translated in the previous timeframe.
+          description: The difference to the amount of bytes reduced in the previous timeframe.
           example: 1
           type: number
       required:
       - delta
       - value
       type: object
-    createTranslationTemplateRequestschema:
+    getTranslationTemplatesResponseschema:
+      description: Response to the get Translation Template request.
+      items:
+        $ref: '#/components/schemas/getTranslationTemplatesResponseschema_inner'
+      title: Get Translation Template Response
+      type: array
+    postResponseschema_1:
       additionalProperties: false
-      description: Post new Translation Template model.
+      description: Response to the test a translation template with a sample input message request.
+      properties:
+        translatedPayload:
+          description: A stringified JSON message (result from applying template to the sample input).
+          example: <message_json>
+          type: string
+        reducedBytes:
+          description: The number of bytes that the device didn't have to send over the network by using the translation template.
+          example: 1
+          type: number
+        energyUsageReduction:
+          description: The energy saved on data transfer using provided template in percent.
+          example: 10.0
+          type: number
+      required:
+      - energyUsageReduction
+      - reducedBytes
+      - translatedPayload
+      title: Test translation template response
+      type: object
+    postPatchTranslationTemplatesResponseschema:
+      description: Response to the post or the patch Translation Template request.
       properties:
         name:
-          description: Name of the new template.
+          description: Name of the specific template.
           example: <template_name>
           maxLength: 64
           minLength: 1
@@ -292,9 +307,20 @@ components:
           example: <template_json>
           minLength: 1
           type: string
+        status:
+          description: The current status of the template.
+          enum:
+          - ACTIVE
+          - INACTIVE
+          example: ACTIVE
+          type: string
+        id:
+          description: The unique ID of the template.
+          example: <template_id>
+          type: string
         protocolFilter:
           default: COAP
-          description: Protocol filter that applies to this template.
+          description: Protocol filter that applies to this template. Only the listed protocols will be processed by the template.
           example: COAP
           items:
             enum:
@@ -303,56 +329,29 @@ components:
             type: string
           minItems: 1
           type: array
-        status:
-          description: The current status of the template.
-          enum:
-          - ACTIVE
-          - INACTIVE
-          example: ACTIVE
-          type: string
       required:
+      - id
       - name
       - protocolFilter
+      - status
       - template
-      title: Templates request
+      title: Post/Patch Translation Template Response
       type: object
-    unauthorizedRequestResponse:
-      description: An API error response in case of an HTTP Unauthorized Request.
+    serverErrorResponse:
+      description: An API error response in case of a Server Side Error.
       properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 401
-          type: integer
         statusText:
           description: HTTP Status Text
           enum:
-          - Unauthorized
+          - Unknown Error
+          - Server Error
           type: string
         errors:
-          description: Detailed error information.
+          description: List of errors encountered while calling the API.
           items:
             type: object
           type: array
-      title: Unauthorized Request
-      type: object
-    notFoundResponse:
-      description: An API error response when a resource is Not Found.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 404
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Not Found
-          type: string
-        errors:
-          description: Detailed error information
-          items:
-            type: object
-          type: array
-      title: Not Found
+      title: Server Error
       type: object
     getTranslationTemplatesResponseschema_inner:
       properties:
@@ -392,6 +391,191 @@ components:
       - protocolFilter
       - status
       - template
+      type: object
+    postschema_4:
+      additionalProperties: false
+      description: Test a translation template with a sample input message request.
+      properties:
+        template:
+          description: A stringified JSON template.
+          example: <template_json>
+          minLength: 1
+          type: string
+        payload:
+          description: Sample input used to test the template (base64).
+          example: <sample_input_base64>
+          minLength: 1
+          type: string
+      required:
+      - payload
+      - template
+      title: Test translation template request
+      type: object
+    conflictResponse:
+      description: An API error response when a conflict is found.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 409
+          type: integer
+        statusText:
+          description: Http Status Text
+          enum:
+          - Conflict
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Conflict
+      type: object
+    unprocessableEntityResponse:
+      description: An API error response when the request is valid but cannot be processed.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 422
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unprocessable Entity
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Unprocessable Entity
+      type: object
+    getResponseschema_3:
+      additionalProperties: false
+      description: Response to the get optimizer savings request.
+      properties:
+        messagesTranslated:
+          $ref: '#/components/schemas/getResponseschema_3_messagesTranslated'
+        averageBytesReducedPerMessage:
+          $ref: '#/components/schemas/getResponseschema_3_averageBytesReducedPerMessage'
+        bytesSaved:
+          $ref: '#/components/schemas/getResponseschema_3_bytesSaved'
+      required:
+      - averageBytesReducedPerMessage
+      - bytesSaved
+      - messagesTranslated
+      title: Get optimizer savings response
+      type: object
+    getResponseschema_3_averageBytesReducedPerMessage:
+      additionalProperties: false
+      description: Statistics about the average amount of bytes reduced per translated message.
+      properties:
+        value:
+          description: The average amount of bytes reduced per translated message.
+          example: 1
+          type: number
+        delta:
+          description: The difference to the average amount of bytes reduced in the previous timeframe.
+          example: 1
+          type: number
+      required:
+      - delta
+      - value
+      type: object
+    forbiddenResponse:
+      description: An API error response in case of an HTTP Forbidden Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 403
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Forbidden
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Forbidden Request
+      type: object
+    notFoundResponse:
+      description: An API error response when a resource is Not Found.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 404
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Not Found
+          type: string
+        errors:
+          description: Detailed error information
+          items:
+            type: object
+          type: array
+      title: Not Found
+      type: object
+    unauthorizedRequestResponse:
+      description: An API error response in case of an HTTP Unauthorized Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 401
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unauthorized
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Unauthorized Request
+      type: object
+    createTranslationTemplateRequestschema:
+      additionalProperties: false
+      description: Post new Translation Template model.
+      properties:
+        name:
+          description: Name of the new template.
+          example: <template_name>
+          maxLength: 64
+          minLength: 1
+          type: string
+        template:
+          description: A stringified JSON template.
+          example: <template_json>
+          minLength: 1
+          type: string
+        protocolFilter:
+          default: COAP
+          description: Protocol filter that applies to this template.
+          example: COAP
+          items:
+            enum:
+            - COAP
+            - UDP
+            type: string
+          minItems: 1
+          type: array
+        status:
+          description: The current status of the template.
+          enum:
+          - ACTIVE
+          - INACTIVE
+          example: ACTIVE
+          type: string
+      required:
+      - name
+      - protocolFilter
+      - template
+      title: Templates request
       type: object
     patchTranslationTemplateRequestschema:
       additionalProperties: false
@@ -441,239 +625,67 @@ components:
           type: string
       title: Templates request
       type: object
-    postschema_4:
+    getResponseschema_3_messagesTranslated:
       additionalProperties: false
-      description: Test a translation template with a sample input message request.
-      properties:
-        template:
-          description: A stringified JSON template.
-          example: <template_json>
-          minLength: 1
-          type: string
-        payload:
-          description: Sample input used to test the template (base64).
-          example: <sample_input_base64>
-          minLength: 1
-          type: string
-      required:
-      - payload
-      - template
-      title: Test translation template request
-      type: object
-    postResponseschema_1:
-      additionalProperties: false
-      description: Response to the test a translation template with a sample input message request.
-      properties:
-        translatedPayload:
-          description: A stringified JSON message (result from applying template to the sample input).
-          example: <message_json>
-          type: string
-        reducedBytes:
-          description: The number of bytes that the device didn't have to send over the network by using the translation template.
-          example: 1
-          type: number
-        energyUsageReduction:
-          description: The energy saved on data transfer using provided template in percent.
-          example: 10.0
-          type: number
-      required:
-      - energyUsageReduction
-      - reducedBytes
-      - translatedPayload
-      title: Test translation template response
-      type: object
-    conflictResponse:
-      description: An API error response when a conflict is found.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 409
-          type: integer
-        statusText:
-          description: Http Status Text
-          enum:
-          - Conflict
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Conflict
-      type: object
-    getResponseschema_3_bytesSaved:
-      additionalProperties: false
-      description: Statistics about the bytes reduced by using the translation templates.
+      description: Statistics about the number of messages translated.
       properties:
         value:
-          description: The amount of bytes reduced by using the translation templates.
+          description: The number of messages translated.
           example: 1
           type: number
         delta:
-          description: The difference to the amount of bytes reduced in the previous timeframe.
+          description: The difference to the number of messages translated in the previous timeframe.
           example: 1
           type: number
       required:
       - delta
       - value
       type: object
-    getResponseschema_3_averageBytesReducedPerMessage:
-      additionalProperties: false
-      description: Statistics about the average amount of bytes reduced per translated message.
-      properties:
-        value:
-          description: The average amount of bytes reduced per translated message.
-          example: 1
-          type: number
-        delta:
-          description: The difference to the average amount of bytes reduced in the previous timeframe.
-          example: 1
-          type: number
-      required:
-      - delta
-      - value
-      type: object
-    getTranslationTemplatesResponseschema:
-      description: Response to the get Translation Template request.
-      items:
-        $ref: '#/components/schemas/getTranslationTemplatesResponseschema_inner'
-      title: Get Translation Template Response
-      type: array
-    postPatchTranslationTemplatesResponseschema:
-      description: Response to the post or the patch Translation Template request.
-      properties:
-        name:
-          description: Name of the specific template.
-          example: <template_name>
-          maxLength: 64
-          minLength: 1
-          type: string
-        template:
-          description: A stringified JSON template.
-          example: <template_json>
-          minLength: 1
-          type: string
-        status:
-          description: The current status of the template.
-          enum:
-          - ACTIVE
-          - INACTIVE
-          example: ACTIVE
-          type: string
-        id:
-          description: The unique ID of the template.
-          example: <template_id>
-          type: string
-        protocolFilter:
-          default: COAP
-          description: Protocol filter that applies to this template. Only the listed protocols will be processed by the template.
-          example: COAP
-          items:
-            enum:
-            - COAP
-            - UDP
-            type: string
-          minItems: 1
-          type: array
-      required:
-      - id
-      - name
-      - protocolFilter
-      - status
-      - template
-      title: Post/Patch Translation Template Response
-      type: object
-    getResponseschema_3:
-      additionalProperties: false
-      description: Response to the get optimizer savings request.
-      properties:
-        messagesTranslated:
-          $ref: '#/components/schemas/getResponseschema_3_messagesTranslated'
-        averageBytesReducedPerMessage:
-          $ref: '#/components/schemas/getResponseschema_3_averageBytesReducedPerMessage'
-        bytesSaved:
-          $ref: '#/components/schemas/getResponseschema_3_bytesSaved'
-      required:
-      - averageBytesReducedPerMessage
-      - bytesSaved
-      - messagesTranslated
-      title: Get optimizer savings response
-      type: object
-    serverErrorResponse:
-      description: An API error response in case of a Server Side Error.
-      properties:
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Unknown Error
-          - Server Error
-          type: string
-        errors:
-          description: List of errors encountered while calling the API.
-          items:
-            type: object
-          type: array
-      title: Server Error
-      type: object
-    unprocessableEntityResponse:
-      description: An API error response when the request is valid but cannot be processed.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 422
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Unprocessable Entity
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Unprocessable Entity
-      type: object
-    badRequestResponse:
-      description: An API error response in case of an HTTP Bad Request.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 400
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Bad Request
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Bad Request
-      type: object
-    forbiddenResponse:
-      description: An API error response in case of an HTTP Forbidden Request.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 403
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Forbidden
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Forbidden Request
-      type: object
+  responses:
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unauthorizedRequestResponse'
+      description: Unauthorized
+    InternalServerError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/serverErrorResponse'
+      description: Internal Server Error
+    UnprocessableEntityError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unprocessableEntityResponse'
+      description: Unprocessable Entity
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/badRequestResponse'
+      description: Bad Request
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/notFoundResponse'
+      description: Not Found Error
+    ForbiddenError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/forbiddenResponse'
+      description: Forbidden
+    ConflictError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/conflictResponse'
+      description: Conflict
   securitySchemes:
-    BasicAuthentication:
+    BearerAuthentication:
+      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+      scheme: bearer
       type: http
-      scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

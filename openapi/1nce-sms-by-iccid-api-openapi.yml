@@ -1,14 +1,22 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs SMS by ICCID API
-  description: Documentation of the authentication used for the 1NCE APIs.
+  title: SIM Management SMS by ICCID API
+  description: Documentation of the 1NCE API for SIM Management.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
   contact:
     name: 1NCE GmbH
     url: https://1nce.com
     email: info@1nce.com
-  version: v2.1.1
+  version: v2.0
 servers:
-- url: https://api.1nce.com/management-api
+- url: https://api.1nce.com/management-api/
+  description: API gateway
+  variables:
+    basePath:
+      default: v2
+      description: API Version Segment
 tags:
 - name: SMS by ICCID
 paths:
@@ -46,48 +54,37 @@ paths:
       security:
       - BearerAuthentication: []
 components:
-  schemas:
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequest'
+    ResourceDeleted:
+      description: Resource Deleted
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteItemResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerError'
     NotFound:
-      description: Not found Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: Element not found
-          description: Error Message with more details goes here
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
+  schemas:
     DeleteItemResponse:
       type: object
       properties:
         id:
           type: string
-    InternalServerError:
-      description: Internal Server Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: InternalServerError
-        message:
-          type: string
-          example: Internal Server Error
-          description: Error Message with more details goes here
     BadRequest:
       description: Validation Error
       type: object
@@ -106,33 +103,57 @@ components:
           type: string
           example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
           description: Error Message with more details goes here
-  responses:
     NotFound:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFound'
-    ResourceDeleted:
-      description: Resource Deleted
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DeleteItemResponse'
+      description: Not found Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: Element not found
+          description: Error Message with more details goes here
     InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/InternalServerError'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequest'
+      description: Internal Server Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: InternalServerError
+        message:
+          type: string
+          example: Internal Server Error
+          description: Error Message with more details goes here
   securitySchemes:
-    BasicAuthentication:
+    BearerAuthentication:
       type: http
-      scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.
+      scheme: bearer
+      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+x-tagGroups:
+- name: openapi-core-management
+  tags:
+  - Endpoint by ICCID
+- name: openapi-smsc-facade-management
+  tags:
+  - SMS by ICCID
+- name: openapi-ext-management
+  tags:
+  - Events by ICCID
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

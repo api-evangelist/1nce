@@ -1,14 +1,20 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs Volume Top Up API
-  description: Documentation of the authentication used for the 1NCE APIs.
+  title: 1nce Volume Top Up API
+  version: v2.0
   contact:
     name: 1NCE GmbH
     url: https://1nce.com
     email: info@1nce.com
-  version: v2.1.1
+  description: 'Operations tagged Volume Top Up across 2 of this provider''s published API definitions: 1nce-sim-management-openapi.yml, 1nce-sim-management-v2-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.1nce.com/management-api
+- url: https://api.1nce.com/management-api/
+  description: API gateway
+  variables:
+    basePath:
+      default: v2
+      description: API Version Segment
 tags:
 - name: Volume Top Up
   description: Top Up Management
@@ -80,6 +86,8 @@ paths:
       deprecated: false
       security:
       - BearerAuthentication: []
+    servers:
+    - url: https://api.1nce.com/management-api
   /v1/sims/topup:
     post:
       tags:
@@ -151,6 +159,8 @@ paths:
       security:
       - BearerAuthentication: []
       x-codegen-request-body-name: sims
+    servers:
+    - url: https://api.1nce.com/management-api
   /v1/sims/autoTopup:
     post:
       tags:
@@ -185,6 +195,8 @@ paths:
       security:
       - BearerAuthentication: []
       x-codegen-request-body-name: request
+    servers:
+    - url: https://api.1nce.com/management-api
   /v2/sims/{iccid}/topup:
     post:
       tags:
@@ -249,6 +261,13 @@ paths:
       deprecated: false
       security:
       - BearerAuthentication: []
+    servers:
+    - url: https://api.1nce.com/management-api/
+      description: API gateway
+      variables:
+        basePath:
+          default: v2
+          description: API Version Segment
 components:
   schemas:
     AutoTopupRequest:
@@ -266,7 +285,10 @@ components:
             example: '8988280666000000000'
       description: Request with a flag for enabeling and disabeling auto top up for the listed ICCIDs.
   securitySchemes:
-    BasicAuthentication:
+    BearerAuthentication:
       type: http
-      scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.
+      scheme: bearer
+      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+x-refined-from:
+- 1nce-sim-management-openapi.yml
+- 1nce-sim-management-v2-openapi.yml

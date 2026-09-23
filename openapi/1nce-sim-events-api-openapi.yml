@@ -1,14 +1,20 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs SIM Events API
-  description: Documentation of the authentication used for the 1NCE APIs.
+  title: 1nce SIM Events API
+  version: v2.0
   contact:
     name: 1NCE GmbH
     url: https://1nce.com
     email: info@1nce.com
-  version: v2.1.1
+  description: 'Operations tagged SIM Events across 2 of this provider''s published API definitions: 1nce-sim-management-openapi.yml, 1nce-sim-management-v2-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.1nce.com/management-api
+- url: https://api.1nce.com/management-api/
+  description: API gateway
+  variables:
+    basePath:
+      default: v2
+      description: API Version Segment
 tags:
 - name: SIM Events
   description: Event Management
@@ -34,7 +40,6 @@ paths:
         allowEmptyValue: false
         schema:
           minimum: 1
-          exclusiveMinimum: false
           type: integer
           default: 1
       - name: pageSize
@@ -43,9 +48,7 @@ paths:
         allowEmptyValue: false
         schema:
           maximum: 1000
-          exclusiveMaximum: false
           minimum: 1
-          exclusiveMinimum: false
           type: integer
           default: 10
       - name: sort
@@ -101,6 +104,8 @@ paths:
       deprecated: false
       security:
       - BearerAuthentication: []
+    servers:
+    - url: https://api.1nce.com/management-api
   /v2/sims/{iccid}/events:
     get:
       tags:
@@ -119,7 +124,6 @@ paths:
         allowEmptyValue: false
         schema:
           minimum: 1
-          exclusiveMinimum: false
           type: integer
           default: 1
       - name: pageSize
@@ -128,9 +132,7 @@ paths:
         allowEmptyValue: false
         schema:
           maximum: 1000
-          exclusiveMaximum: false
           minimum: 1
-          exclusiveMinimum: false
           type: integer
           default: 10
       summary: Get SIM Events
@@ -156,269 +158,15 @@ paths:
           $ref: '#/components/responses/InternalServerError'
       security:
       - BearerAuthentication: []
+    servers:
+    - url: https://api.1nce.com/management-api/
+      description: API gateway
+      variables:
+        basePath:
+          default: v2
+          description: API Version Segment
 components:
   schemas:
-    EndpointQuotaStatus:
-      type: object
-      description: '- 0 - "EXHAUSTED"
-
-        - 1 - "ACTIVE"
-
-        - 2 - "EXPIRED"
-
-        '
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 0
-          enum:
-          - 0
-          - 1
-          - 2
-        description:
-          type: string
-          example: EXHAUSTED
-          enum:
-          - EXHAUSTED
-          - ACTIVE
-          - EXPIRED
-      example:
-        id: 0
-        description: EXHAUSTED
-    NotFound:
-      description: Not found Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: Element not found
-          description: Error Message with more details goes here
-    EventQuotaDetail:
-      type: object
-      required:
-      - quota
-      properties:
-        quota:
-          oneOf:
-          - $ref: '#/components/schemas/QuotaDetail'
-          - $ref: '#/components/schemas/EndpointQuota'
-        regional_pool:
-          type: object
-          properties:
-            id:
-              type: integer
-              format: int64
-            name:
-              type: string
-    Country:
-      type: object
-      description: Represents a Country.
-      properties:
-        id:
-          type: integer
-          minimum: 0
-          example: 74
-          description: The Country's id. The id is the same as in the legacy system. 0 represents the "ANY"-country.
-        name:
-          type: string
-          example: Germany
-          description: The name of the Country.
-        country_code:
-          example: '49'
-          type: string
-          description: The international phone number prefix. “49” is the one for Germany, “381” is the one for Serbia.
-        mcc:
-          type: string
-          example: '262'
-          description: An MCC (Mobile Country Code) is used in combination with an MNC (a combination known as an "MCC/MNC tuple") to uniquely identify a mobile network operator (carrier) using the GSM (including GSM-R), UMTS, LTE, and 5G public land mobile networks.
-        iso_code:
-          type: string
-          example: de
-          description: The ISO 3166 code.
-    PdpContextDetail:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        country:
-          $ref: '#/components/schemas/Country'
-        volume:
-          type: object
-          properties:
-            tx:
-              type: number
-              format: double
-            rx:
-              type: number
-              format: double
-            total:
-              type: number
-              format: double
-        data_service_failure_cause:
-          type: string
-          enum:
-          - IMSI_NOT_FOUND
-          - APN_NOT_AUTHORIZED
-          - PDN_NOT_SUPPORTED
-          - IMEI_LOCK_BREACHED
-          - NO_QUOTA_FOUND
-          - QUOTA_EXPIRED
-          - QUOTA_EXHAUSTED
-          - MONTHLY_USAGE_LIMIT_EXCEEDED
-          - DATA_SERVICE_BARRED
-          - IMEI_LOCK_ENFORCED
-          - INACTIVITY_TIMER_EXPIRED
-        pdp_context:
-          type: object
-          properties:
-            tariff_id:
-              type: string
-            operator_id:
-              type: string
-            ratezone_id:
-              type: string
-            nsapi:
-              type: integer
-              format: int64
-            sgsn_control_plane_ip_address:
-              type: string
-            rac:
-              type: integer
-              format: int64
-              nullable: true
-            sgsn_data_plane_ip_address:
-              type: string
-            ci:
-              type: integer
-              format: int64
-              nullable: true
-            lac:
-              type: integer
-              format: int64
-              nullable: true
-            ue_ip_address:
-              type: string
-            mnc:
-              type: string
-            rat_type:
-              type: integer
-              format: int64
-            tx_teid_data_plane:
-              type: integer
-              format: int64
-            rx_teid:
-              type: integer
-              format: int64
-            ggsn_data_plane_ip_address:
-              type: string
-            mcc:
-              type: string
-            tx_teid_control_plane:
-              type: integer
-              format: int64
-            ggsn_control_plane_ip_address:
-              type: string
-            sac:
-              type: integer
-              format: int64
-              nullable: true
-            gtp_version:
-              type: integer
-              format: int64
-            apn:
-              type: string
-              nullable: true
-            imeisv:
-              type: string
-            imsi:
-              type: string
-            breakout_ip:
-              type: string
-              nullable: true
-            pdp_context_id:
-              type: integer
-              format: int64
-            tunnel_created:
-              type: string
-            region:
-              type: string
-            ipcan_session_id:
-              type: string
-              nullable: true
-            gtp_v1_uli:
-              type: object
-              properties:
-                lac:
-                  type: integer
-                  format: int64
-                ci:
-                  type: integer
-                  format: int64
-                sac:
-                  type: integer
-                  format: int64
-                rac:
-                  type: integer
-                  format: int64
-            gtp_v2_uli:
-              type: object
-              properties:
-                cgi:
-                  type: object
-                  properties:
-                    lac:
-                      type: integer
-                      format: int64
-                    ci:
-                      type: integer
-                      format: int64
-                sai:
-                  type: object
-                  properties:
-                    lac:
-                      type: integer
-                      format: int64
-                    sac:
-                      type: integer
-                      format: int64
-                rai:
-                  type: object
-                  properties:
-                    lac:
-                      type: integer
-                      format: int64
-                    rac:
-                      type: integer
-                      format: int64
-                tac:
-                  type: integer
-                  format: int64
-                eci:
-                  type: integer
-                  format: int64
-                lac:
-                  type: integer
-                  format: int64
-                menbi:
-                  type: integer
-                  format: int64
-                emenbi:
-                  type: integer
-                  format: int64
     SIM_Event:
       title: SIM Event
       type: object
@@ -468,55 +216,6 @@ components:
           description: Textual representation of the severity of the event.
           example: Info
       description: Information about a Event. Besides the timestamp and the event_type all other values are optional and might not be included in the actual responses.
-    LocationDetail:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        country:
-          $ref: '#/components/schemas/Country'
-        tapcode:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: integer
-              tapcode:
-                type: string
-        mnc:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: integer
-              mnc:
-                type: string
-        update_location_failure_reason:
-          type: string
-          example: RAT_NOT_ALLOWED
-    InternalServerError:
-      description: Internal Server Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: InternalServerError
-        message:
-          type: string
-          example: Internal Server Error
-          description: Error Message with more details goes here
     EventCollection:
       title: Event Collection
       type: object
@@ -531,6 +230,38 @@ components:
         totalPages:
           type: integer
           example: 5
+    QuotaDetail:
+      type: object
+      properties:
+        volume:
+          type: number
+          format: float
+        threshold_volume:
+          type: number
+          format: float
+          deprecated: true
+        threshold_percentage:
+          type: integer
+          format: int32
+          deprecated: true
+        threshold:
+          type: object
+          properties:
+            percentage:
+              type: integer
+              format: int32
+            volume:
+              type: number
+              format: float
+        id:
+          type: integer
+          format: int64
+        expiry_date:
+          type: string
+          format: date-time
+        total_volume:
+          type: number
+          format: float
     Event:
       type: object
       properties:
@@ -556,9 +287,10 @@ components:
           type: boolean
           example: true
         user:
-          type: string
+          type:
+          - string
+          - 'null'
           example: user
-          nullable: true
         description:
           type: string
           example: PDP Context deleted.
@@ -644,6 +376,23 @@ components:
           - $ref: '#/components/schemas/PdpContextDetail'
           - $ref: '#/components/schemas/EventQuotaDetail'
           - $ref: '#/components/schemas/VpnDetail'
+    EventQuotaDetail:
+      type: object
+      required:
+      - quota
+      properties:
+        quota:
+          oneOf:
+          - $ref: '#/components/schemas/QuotaDetail'
+          - $ref: '#/components/schemas/EndpointQuota'
+        regional_pool:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+            name:
+              type: string
     VpnDetail:
       type: object
       properties:
@@ -666,6 +415,278 @@ components:
             public_ip:
               type: string
               description: Public IP address
+    LocationDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        country:
+          $ref: '#/components/schemas/Country'
+        tapcode:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              tapcode:
+                type: string
+        mnc:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              mnc:
+                type: string
+        update_location_failure_reason:
+          type: string
+          example: RAT_NOT_ALLOWED
+    NotFound:
+      description: Not found Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: Element not found
+          description: Error Message with more details goes here
+    PdpContextDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        country:
+          $ref: '#/components/schemas/Country'
+        volume:
+          type: object
+          properties:
+            tx:
+              type: number
+              format: double
+            rx:
+              type: number
+              format: double
+            total:
+              type: number
+              format: double
+        data_service_failure_cause:
+          type: string
+          enum:
+          - IMSI_NOT_FOUND
+          - APN_NOT_AUTHORIZED
+          - PDN_NOT_SUPPORTED
+          - IMEI_LOCK_BREACHED
+          - NO_QUOTA_FOUND
+          - QUOTA_EXPIRED
+          - QUOTA_EXHAUSTED
+          - MONTHLY_USAGE_LIMIT_EXCEEDED
+          - DATA_SERVICE_BARRED
+          - IMEI_LOCK_ENFORCED
+          - INACTIVITY_TIMER_EXPIRED
+        pdp_context:
+          type: object
+          properties:
+            tariff_id:
+              type: string
+            operator_id:
+              type: string
+            ratezone_id:
+              type: string
+            nsapi:
+              type: integer
+              format: int64
+            sgsn_control_plane_ip_address:
+              type: string
+            rac:
+              type:
+              - integer
+              - 'null'
+              format: int64
+            sgsn_data_plane_ip_address:
+              type: string
+            ci:
+              type:
+              - integer
+              - 'null'
+              format: int64
+            lac:
+              type:
+              - integer
+              - 'null'
+              format: int64
+            ue_ip_address:
+              type: string
+            mnc:
+              type: string
+            rat_type:
+              type: integer
+              format: int64
+            tx_teid_data_plane:
+              type: integer
+              format: int64
+            rx_teid:
+              type: integer
+              format: int64
+            ggsn_data_plane_ip_address:
+              type: string
+            mcc:
+              type: string
+            tx_teid_control_plane:
+              type: integer
+              format: int64
+            ggsn_control_plane_ip_address:
+              type: string
+            sac:
+              type:
+              - integer
+              - 'null'
+              format: int64
+            gtp_version:
+              type: integer
+              format: int64
+            apn:
+              type:
+              - string
+              - 'null'
+            imeisv:
+              type: string
+            imsi:
+              type: string
+            breakout_ip:
+              type:
+              - string
+              - 'null'
+            pdp_context_id:
+              type: integer
+              format: int64
+            tunnel_created:
+              type: string
+            region:
+              type: string
+            ipcan_session_id:
+              type:
+              - string
+              - 'null'
+            gtp_v1_uli:
+              type: object
+              properties:
+                lac:
+                  type: integer
+                  format: int64
+                ci:
+                  type: integer
+                  format: int64
+                sac:
+                  type: integer
+                  format: int64
+                rac:
+                  type: integer
+                  format: int64
+            gtp_v2_uli:
+              type: object
+              properties:
+                cgi:
+                  type: object
+                  properties:
+                    lac:
+                      type: integer
+                      format: int64
+                    ci:
+                      type: integer
+                      format: int64
+                sai:
+                  type: object
+                  properties:
+                    lac:
+                      type: integer
+                      format: int64
+                    sac:
+                      type: integer
+                      format: int64
+                rai:
+                  type: object
+                  properties:
+                    lac:
+                      type: integer
+                      format: int64
+                    rac:
+                      type: integer
+                      format: int64
+                tac:
+                  type: integer
+                  format: int64
+                eci:
+                  type: integer
+                  format: int64
+                lac:
+                  type: integer
+                  format: int64
+                menbi:
+                  type: integer
+                  format: int64
+                emenbi:
+                  type: integer
+                  format: int64
+    InternalServerError:
+      description: Internal Server Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: InternalServerError
+        message:
+          type: string
+          example: Internal Server Error
+          description: Error Message with more details goes here
+    Country:
+      type: object
+      description: Represents a Country.
+      properties:
+        id:
+          type: integer
+          minimum: 0
+          example: 74
+          description: The Country's id. The id is the same as in the legacy system. 0 represents the "ANY"-country.
+        name:
+          type: string
+          example: Germany
+          description: The name of the Country.
+        country_code:
+          example: '49'
+          type: string
+          description: The international phone number prefix. “49” is the one for Germany, “381” is the one for Serbia.
+        mcc:
+          type: string
+          example: '262'
+          description: An MCC (Mobile Country Code) is used in combination with an MNC (a combination known as an "MCC/MNC tuple") to uniquely identify a mobile network operator (carrier) using the GSM (including GSM-R), UMTS, LTE, and 5G public land mobile networks.
+        iso_code:
+          type: string
+          example: de
+          description: The ISO 3166 code.
     EndpointQuota:
       type: object
       required:
@@ -770,53 +791,52 @@ components:
         threshold_volume: 20
         expiry_date: '2027-07-26T13:13:21Z'
         created_at: '2024-08-24T13:13:21Z'
-    QuotaDetail:
+    EndpointQuotaStatus:
       type: object
+      description: '- 0 - "EXHAUSTED"
+
+        - 1 - "ACTIVE"
+
+        - 2 - "EXPIRED"
+
+        '
       properties:
-        volume:
-          type: number
-          format: float
-        threshold_volume:
-          type: number
-          format: float
-          deprecated: true
-        threshold_percentage:
-          type: integer
-          format: int32
-          deprecated: true
-        threshold:
-          type: object
-          properties:
-            percentage:
-              type: integer
-              format: int32
-            volume:
-              type: number
-              format: float
         id:
           type: integer
           format: int64
-        expiry_date:
+          example: 0
+          enum:
+          - 0
+          - 1
+          - 2
+        description:
           type: string
-          format: date-time
-        total_volume:
-          type: number
-          format: float
+          example: EXHAUSTED
+          enum:
+          - EXHAUSTED
+          - ACTIVE
+          - EXPIRED
+      example:
+        id: 0
+        description: EXHAUSTED
   responses:
-    NotFound:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFound'
     InternalServerError:
       description: Internal server error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/InternalServerError'
+    NotFound:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
   securitySchemes:
-    BasicAuthentication:
+    BearerAuthentication:
       type: http
-      scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.
+      scheme: bearer
+      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+x-refined-from:
+- 1nce-sim-management-openapi.yml
+- 1nce-sim-management-v2-openapi.yml

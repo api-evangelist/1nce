@@ -1,12 +1,12 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs Settings API
-  description: Documentation of the authentication used for the 1NCE APIs.
   contact:
+    email: info@1nce.com
     name: 1NCE GmbH
     url: https://1nce.com
-    email: info@1nce.com
-  version: v2.1.1
+  description: Documentation of the 1NCE OS API which can be used for managing the 1NCE OS Service.
+  title: 1NCE OS Settings API
+  version: v1.3
 servers:
 - url: https://api.1nce.com/management-api
 tags:
@@ -18,9 +18,7 @@ paths:
       description: 'Enables or disables different settings for the 1NCE OS integration of a customer.
 
 
-        Disclaimer: I acknowledge that activating the location feature involves processing nearby Cell Tower data by 1NCE. 1NCE processing of data is done anonymously. I understand that if the use of the service by me makes it linkable to individuals, additional data related responsibilities may apply. As per 1NCE General Terms and Conditions (GTC), I am solely responsible for complying with Data Protection laws and regulations and obtaining necessary consents.
-
-        '
+        Disclaimer: I acknowledge that activating the location feature involves processing nearby Cell Tower data by 1NCE. 1NCE processing of data is done anonymously. I understand that if the use of the service by me makes it linkable to individuals, additional data related responsibilities may apply. As per 1NCE General Terms and Conditions (GTC), I am solely responsible for complying with Data Protection laws and regulations and obtaining necessary consents.'
       parameters:
       - description: Key name parameter of the setting to update.
         explode: false
@@ -56,6 +54,8 @@ paths:
       summary: Patch Settings
       tags:
       - Settings
+      operationId: patchV1Settings1nceosByName
+      x-operation-id-source: derived
   /v1/settings/1nceos:
     get:
       description: Gets customer settings related to 1NCE OS.
@@ -114,33 +114,46 @@ paths:
       summary: Get customer settings
       tags:
       - Settings
+      operationId: getV1Settings1nceos
+      x-operation-id-source: derived
 components:
-  responses:
-    UnauthorizedError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/unauthorizedRequestResponse'
-      description: Unauthorized
-    InternalServerError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/serverErrorResponse'
-      description: Internal Server Error
-    BadRequestError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/badRequestResponse'
-      description: Bad Request
-    ForbiddenError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/forbiddenResponse'
-      description: Forbidden
   schemas:
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
+      type: object
+    getResponseschema_10_items_inner_details:
+      additionalProperties: false
+      description: Details of the setting.
+      properties:
+        credits:
+          description: Credits remaining for ADVANCED_CELL_TOWER_LOCATION resolutions
+          example: 1000
+          type: number
+        expiryDate:
+          description: Expiry date of credits for ADVANCED_CELL_TOWER_LOCATION resolutions
+          example: '2030-03-07T08:51:29.015Z'
+          format: date-time
+          type: object
+      required:
+      - credits
+      - expiryDate
+      type: object
     serverErrorResponse:
       description: An API error response in case of a Server Side Error.
       properties:
@@ -157,48 +170,30 @@ components:
           type: array
       title: Server Error
       type: object
-    patchschema_2:
+    getResponseschema_10_items_inner:
       additionalProperties: false
-      description: Patch options for setting request.
       properties:
-        state:
-          description: State to set for setting.
-          enum:
-          - ENABLED
-          - DISABLED
-          type: string
-        readAndAcceptedDisclaimer:
-          description: Has the disclaimer for enabling CELL_TOWER_LOCATION setting been read and accepted.
-          type: boolean
-      required:
-      - state
-      title: Setting Patch Request
-      type: object
-    patchSettingResponseschema:
-      additionalProperties: false
-      description: Response to configuring a setting.
-      properties:
-        customerId:
-          description: Internal customer identifier.
-          example: <customer_identifier>
-          minLength: 1
-          type: string
         name:
-          description: Name of setting.
-          example: <setting_name>
-          minLength: 1
+          description: Name of the setting.
+          example: ADVANCED_CELL_TOWER_LOCATION
+          type: string
+        description:
+          description: Description of the setting.
+          example: Improves the Cell Tower Location functionality, especially for 3G, 4G and LTE-M.
           type: string
         state:
           description: State of the setting.
           enum:
           - ENABLED
           - DISABLED
+          example: ENABLED
           type: string
+        details:
+          $ref: '#/components/schemas/getResponseschema_10_items_inner_details'
       required:
-      - customerId
+      - description
       - name
       - state
-      title: Setting Patch Response
       type: object
     unauthorizedRequestResponse:
       description: An API error response in case of an HTTP Unauthorized Request.
@@ -242,50 +237,6 @@ components:
       - pageAmount
       title: Customer Settings Response
       type: object
-    getResponseschema_10_items_inner:
-      additionalProperties: false
-      properties:
-        name:
-          description: Name of the setting.
-          example: ADVANCED_CELL_TOWER_LOCATION
-          type: string
-        description:
-          description: Description of the setting.
-          example: Improves the Cell Tower Location functionality, especially for 3G, 4G and LTE-M.
-          type: string
-        state:
-          description: State of the setting.
-          enum:
-          - ENABLED
-          - DISABLED
-          example: ENABLED
-          type: string
-        details:
-          $ref: '#/components/schemas/getResponseschema_10_items_inner_details'
-      required:
-      - description
-      - name
-      - state
-      type: object
-    badRequestResponse:
-      description: An API error response in case of an HTTP Bad Request.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 400
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Bad Request
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Bad Request
-      type: object
     forbiddenResponse:
       description: An API error response in case of an HTTP Forbidden Request.
       properties:
@@ -305,25 +256,76 @@ components:
           type: array
       title: Forbidden Request
       type: object
-    getResponseschema_10_items_inner_details:
+    patchSettingResponseschema:
       additionalProperties: false
-      description: Details of the setting.
+      description: Response to configuring a setting.
       properties:
-        credits:
-          description: Credits remaining for ADVANCED_CELL_TOWER_LOCATION resolutions
-          example: 1000
-          type: number
-        expiryDate:
-          description: Expiry date of credits for ADVANCED_CELL_TOWER_LOCATION resolutions
-          example: '2030-03-07T08:51:29.015Z'
-          format: date-time
-          type: object
+        customerId:
+          description: Internal customer identifier.
+          example: <customer_identifier>
+          minLength: 1
+          type: string
+        name:
+          description: Name of setting.
+          example: <setting_name>
+          minLength: 1
+          type: string
+        state:
+          description: State of the setting.
+          enum:
+          - ENABLED
+          - DISABLED
+          type: string
       required:
-      - credits
-      - expiryDate
+      - customerId
+      - name
+      - state
+      title: Setting Patch Response
       type: object
+    patchschema_2:
+      additionalProperties: false
+      description: Patch options for setting request.
+      properties:
+        state:
+          description: State to set for setting.
+          enum:
+          - ENABLED
+          - DISABLED
+          type: string
+        readAndAcceptedDisclaimer:
+          description: Has the disclaimer for enabling CELL_TOWER_LOCATION setting been read and accepted.
+          type: boolean
+      required:
+      - state
+      title: Setting Patch Request
+      type: object
+  responses:
+    InternalServerError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/serverErrorResponse'
+      description: Internal Server Error
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unauthorizedRequestResponse'
+      description: Unauthorized
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/badRequestResponse'
+      description: Bad Request
+    ForbiddenError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/forbiddenResponse'
+      description: Forbidden
   securitySchemes:
-    BasicAuthentication:
+    BearerAuthentication:
+      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+      scheme: bearer
       type: http
-      scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

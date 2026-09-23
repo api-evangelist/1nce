@@ -1,12 +1,12 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs Volume Limits API
-  description: Documentation of the authentication used for the 1NCE APIs.
+  title: SIM Management Volume Limits API
+  description: Documentation of the 1NCE API for SIM Management.
   contact:
     name: 1NCE GmbH
     url: https://1nce.com
     email: info@1nce.com
-  version: v2.1.1
+  version: v2.0
 servers:
 - url: https://api.1nce.com/management-api
 tags:
@@ -118,31 +118,6 @@ paths:
       - BearerAuthentication: []
 components:
   schemas:
-    SetLimitsRequest:
-      title: Set Limits Request
-      type: object
-      properties:
-        dataLimitId:
-          type: integer
-          description: Data Limit ID (from /sims/data/limits list) to be set for the self-set data limit.
-        smsMtLimitId:
-          type: integer
-          description: SMS MT Limit ID (from /sims/smsMT/limits list) to be set for self-set MT-SMS limit.
-        smsMoLimitId:
-          type: integer
-          description: SMS MO Limit ID (from /sims/smsMO/limits list) to be set for self-set MO-SMS limit.
-      description: Configure the self-set limits (data, MT-SMS, MO-SMS) of all SIMs. Use /sims/{service}/limits to get a list of IDs for setting the limits.
-    Values_for_Limits:
-      title: Self-Set Limits
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CurrentLimitData'
-        smsMt:
-          $ref: '#/components/schemas/CurrentLimitSMS'
-        smsMo:
-          $ref: '#/components/schemas/CurrentLimitSMS'
-      description: Information about the self-set limits.
     CurrentLimitSMS:
       title: Current SMS Limit
       type: object
@@ -177,8 +152,36 @@ components:
           description: Unit of the set limit.
           example: MB
       description: Currently self-set gloabl data volume limit.
+    SetLimitsRequest:
+      title: Set Limits Request
+      type: object
+      properties:
+        dataLimitId:
+          type: integer
+          description: Data Limit ID (from /sims/data/limits list) to be set for the self-set data limit.
+        smsMtLimitId:
+          type: integer
+          description: SMS MT Limit ID (from /sims/smsMT/limits list) to be set for self-set MT-SMS limit.
+        smsMoLimitId:
+          type: integer
+          description: SMS MO Limit ID (from /sims/smsMO/limits list) to be set for self-set MO-SMS limit.
+      description: Configure the self-set limits (data, MT-SMS, MO-SMS) of all SIMs. Use /sims/{service}/limits to get a list of IDs for setting the limits.
+    Values_for_Limits:
+      title: Self-Set Limits
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CurrentLimitData'
+        smsMt:
+          $ref: '#/components/schemas/CurrentLimitSMS'
+        smsMo:
+          $ref: '#/components/schemas/CurrentLimitSMS'
+      description: Information about the self-set limits.
   securitySchemes:
-    BasicAuthentication:
+    BearerAuthentication:
       type: http
-      scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.
+      scheme: bearer
+      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

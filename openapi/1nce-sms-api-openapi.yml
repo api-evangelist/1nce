@@ -1,14 +1,20 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs SMS API
-  description: Documentation of the authentication used for the 1NCE APIs.
+  title: 1nce SMS API
+  version: v2.0
   contact:
     name: 1NCE GmbH
     url: https://1nce.com
     email: info@1nce.com
-  version: v2.1.1
+  description: 'Operations tagged SMS across 2 of this provider''s published API definitions: 1nce-sim-management-openapi.yml, 1nce-sim-management-v2-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.1nce.com/management-api
+- url: https://api.1nce.com/management-api/
+  description: API gateway
+  variables:
+    basePath:
+      default: v2
+      description: API Version Segment
 tags:
 - name: SMS
   description: SMS Management
@@ -34,7 +40,6 @@ paths:
         allowEmptyValue: false
         schema:
           minimum: 1
-          exclusiveMinimum: false
           type: integer
           default: 1
       - name: pageSize
@@ -43,9 +48,7 @@ paths:
         allowEmptyValue: false
         schema:
           maximum: 100
-          exclusiveMaximum: false
           minimum: 1
-          exclusiveMinimum: false
           type: integer
           default: 10
       - name: sort
@@ -128,6 +131,8 @@ paths:
       security:
       - BearerAuthentication: []
       x-codegen-request-body-name: sms
+    servers:
+    - url: https://api.1nce.com/management-api
   /v1/sims/{iccid}/sms/{id}:
     get:
       tags:
@@ -215,6 +220,8 @@ paths:
       deprecated: false
       security:
       - BearerAuthentication: []
+    servers:
+    - url: https://api.1nce.com/management-api
   /v2/sims/{iccid}/sms:
     post:
       tags:
@@ -290,6 +297,13 @@ paths:
           $ref: '#/components/responses/InternalServerError'
       security:
       - BearerAuthentication: []
+    servers:
+    - url: https://api.1nce.com/management-api/
+      description: API gateway
+      variables:
+        basePath:
+          default: v2
+          description: API Version Segment
   /v2/sims/{iccid}/sms/{id}:
     get:
       tags:
@@ -327,26 +341,15 @@ paths:
           $ref: '#/components/responses/InternalServerError'
       security:
       - BearerAuthentication: []
+    servers:
+    - url: https://api.1nce.com/management-api/
+      description: API gateway
+      variables:
+        basePath:
+          default: v2
+          description: API Version Segment
 components:
   schemas:
-    NotFound:
-      description: Not found Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: Element not found
-          description: Error Message with more details goes here
     SMSMessage:
       title: SMS Message Object
       type: object
@@ -374,6 +377,243 @@ components:
           description: Expiry Date of the sent SMS in ISO8601 format.
           example: '2018-03-14T16:10:29Z'
       description: SMS message object used to describe a SMS message.
+    Source_Address_Type:
+      title: Source Address Type
+      type: object
+      properties:
+        id:
+          type: number
+          description: Numerical identifier for the type of source address of an SMS. <ul><li>145 - International</li><li>161 - National</li><li>208 - Alphanumeric</li></ul>
+          example: 145
+          enum:
+          - 145
+          - 161
+          - 208
+    SMS-Data:
+      title: SMS Data Object
+      type: object
+      properties:
+        id:
+          type: number
+          description: ID of the SMS Data Object.
+          example: 590
+        submit_date:
+          type: string
+          description: The date and time on which this SMS was submitted.
+          example: '2015-10-05T13:56:59.000Z'
+        delivery_date:
+          type: string
+          description: The date and time on which this SMS was delivered.
+          example: '2015-10-05T13:56:59.000Z'
+        expiry_date:
+          type: string
+          description: The date and time on which this SMS will expire.
+          example: '2015-10-06T13:56:59.000Z'
+        final_date:
+          type: string
+          description: The final date and time.
+          example: '2015-10-05T13:57:03.000Z'
+        retry_date:
+          type: string
+          description: The date and time on which the delivery was retried.
+          example: '2015-10-05T13:57:03.000Z'
+        last_delivery_attempt:
+          type: string
+          description: The date and time on which the last delivery was attempted.
+          example: '2015-10-05T13:57:03.000Z'
+        retry_count:
+          type: string
+          description: The SMS delivery retry count.
+          example: '1'
+        source_address:
+          type: string
+          description: The source address of the SMS message.
+          example: '1234567890'
+        iccid:
+          type: string
+          description: The ICCID of the SIM involved in the SMS message.
+          example: '8988303000000001000'
+        msisdn:
+          type: string
+          description: MSISDN of the SIM involved in the SMS message.
+          example: 883XXXXXXXXXXXX
+        imsi:
+          type: string
+          description: IMSI of the SIM involved in the SMS message.
+          example: 901XXXXXXXXXXXX
+        msc:
+          type: string
+          description: MSC involved in processing the SMS message.
+          example: '491600190000'
+        dcs:
+          type: integer
+          description: The Data Coding Scheme (DCS) of the SMS.
+          format: int32
+          example: 0
+          enum:
+          - 0
+          - 4
+          - 8
+        udh:
+          type: string
+          description: User Data Header encoded has hex-String.
+          example: 050003CC0301
+        payload:
+          type: string
+          description: The content body of the SMS message.
+          example: This is a SMS message.
+        status:
+          $ref: '#/components/schemas/SmsStatus'
+        sms_type:
+          $ref: '#/components/schemas/Type_definition_for_a_SMS'
+        source_address_type:
+          $ref: '#/components/schemas/Source_Address_Type'
+      description: The SMS data object contains all information about a SMS message.
+    Type_definition_for_a_SMS:
+      title: Type definition for MT-SMS and MO-SMS.
+      type: object
+      properties:
+        id:
+          type: number
+          description: Numerical identifier for the type of SMS message.
+          example: 1
+        description:
+          type: string
+          description: Type description of the SMS message.
+          example: MT
+          enum:
+          - MT
+          - MO
+    SmsStatus:
+      title: SMS Status
+      type: object
+      properties:
+        id:
+          type: number
+          description: Numerical status identifier for a SMS message.
+          example: 4
+        description:
+          type: string
+          description: Text description of the message status.
+          example: DELIVERED
+    SMSMessage_2:
+      title: SMS Message Object
+      description: SMS message object used to describe an SMS message.
+      type: object
+      properties:
+        source_address:
+          type: string
+          description: The source address of the SMS. This value can be set to any number as it is not used.
+          example: '1234567890'
+        payload:
+          type: string
+          description: The content body of the SMS message.
+          example: This is an SMS message.
+        udh:
+          type: string
+          description: The optional User Data Header (UDH) encoded as a hex-String can be used to concatenate SMS messages.
+          example: 050003CC0301
+          pattern: ^([0-9a-fA-F])*$
+        dcs:
+          type: integer
+          description: The optional Data Coding Scheme (DCS) can be used for setting the message body format to HEX String or normal Text Mode.
+          example: 0
+        source_address_type:
+          $ref: '#/components/schemas/SMSSourceAddressType'
+        expiry_date:
+          type: string
+          format: date-time
+          description: Expiry Date of the sent SMS in ISO8601 (RFC3339) format.
+          example: '2028-03-14T16:10:29.000+00:00'
+    SMSSourceAddressType:
+      title: Source Address Type
+      type: object
+      properties:
+        id:
+          type: number
+          description: Numerical identifier for the type of source address of an SMS. <ul><li>145 - International</li><li>161 - National</li><li>208 - Alphanumeric</li></ul>
+          example: 145
+          enum:
+          - 145
+          - 161
+          - 208
+    Conflict:
+      description: Conflict HTTP Status 409
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: Conflict
+        message:
+          type: string
+          example: Conflicting request
+          description: Error Message with more details goes here
+    BadRequest:
+      description: Validation Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
+          description: Error Message with more details goes here
+    EndpointCreateSmsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+    NotFound:
+      description: Not found Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: Element not found
+          description: Error Message with more details goes here
+    InternalServerError:
+      description: Internal Server Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: InternalServerError
+        message:
+          type: string
+          example: Internal Server Error
+          description: Error Message with more details goes here
     SimsSms:
       type: object
       properties:
@@ -394,9 +634,10 @@ components:
           format: date-time
           example: '2019-09-29T07:33:18.000Z'
         retry_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           example: null
         last_delivery_attempt:
           type: string
@@ -407,8 +648,9 @@ components:
           format: int64
           example: 0
         gsm_map_error:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: null
         dcs:
           type: integer
@@ -518,246 +760,13 @@ components:
               type: integer
               format: int64
               example: 161
-    BadRequest:
-      description: Validation Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: BadRequest
-        message:
-          type: string
-          example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
-          description: Error Message with more details goes here
-    InternalServerError:
-      description: Internal Server Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: InternalServerError
-        message:
-          type: string
-          example: Internal Server Error
-          description: Error Message with more details goes here
-    SMS-Data:
-      title: SMS Data Object
-      type: object
-      properties:
-        id:
-          type: number
-          description: ID of the SMS Data Object.
-          example: 590
-        submit_date:
-          type: string
-          description: The date and time on which this SMS was submitted.
-          example: '2015-10-05T13:56:59.000Z'
-        delivery_date:
-          type: string
-          description: The date and time on which this SMS was delivered.
-          example: '2015-10-05T13:56:59.000Z'
-        expiry_date:
-          type: string
-          description: The date and time on which this SMS will expire.
-          example: '2015-10-06T13:56:59.000Z'
-        final_date:
-          type: string
-          description: The final date and time.
-          example: '2015-10-05T13:57:03.000Z'
-        retry_date:
-          type: string
-          description: The date and time on which the delivery was retried.
-          example: '2015-10-05T13:57:03.000Z'
-        last_delivery_attempt:
-          type: string
-          description: The date and time on which the last delivery was attempted.
-          example: '2015-10-05T13:57:03.000Z'
-        retry_count:
-          type: string
-          description: The SMS delivery retry count.
-          example: '1'
-        source_address:
-          type: string
-          description: The source address of the SMS message.
-          example: '1234567890'
-        iccid:
-          type: string
-          description: The ICCID of the SIM involved in the SMS message.
-          example: '8988303000000001000'
-        msisdn:
-          type: string
-          description: MSISDN of the SIM involved in the SMS message.
-          example: 883XXXXXXXXXXXX
-        imsi:
-          type: string
-          description: IMSI of the SIM involved in the SMS message.
-          example: 901XXXXXXXXXXXX
-        msc:
-          type: string
-          description: MSC involved in processing the SMS message.
-          example: '491600190000'
-        dcs:
-          type: integer
-          description: The Data Coding Scheme (DCS) of the SMS.
-          format: int32
-          example: 0
-          enum:
-          - 0
-          - 4
-          - 8
-        udh:
-          type: string
-          description: User Data Header encoded has hex-String.
-          example: 050003CC0301
-        payload:
-          type: string
-          description: The content body of the SMS message.
-          example: This is a SMS message.
-        status:
-          $ref: '#/components/schemas/SmsStatus'
-        sms_type:
-          $ref: '#/components/schemas/Type_definition_for_a_SMS'
-        source_address_type:
-          $ref: '#/components/schemas/Source_Address_Type'
-      description: The SMS data object contains all information about a SMS message.
-    SMSMessage_2:
-      title: SMS Message Object
-      description: SMS message object used to describe an SMS message.
-      type: object
-      properties:
-        source_address:
-          type: string
-          description: The source address of the SMS. This value can be set to any number as it is not used.
-          example: '1234567890'
-        payload:
-          type: string
-          description: The content body of the SMS message.
-          example: This is an SMS message.
-        udh:
-          type: string
-          description: The optional User Data Header (UDH) encoded as a hex-String can be used to concatenate SMS messages.
-          example: 050003CC0301
-          pattern: ^([0-9a-fA-F])*$
-        dcs:
-          type: integer
-          description: The optional Data Coding Scheme (DCS) can be used for setting the message body format to HEX String or normal Text Mode.
-          example: 0
-        source_address_type:
-          $ref: '#/components/schemas/SMSSourceAddressType'
-        expiry_date:
-          type: string
-          format: date-time
-          description: Expiry Date of the sent SMS in ISO8601 (RFC3339) format.
-          example: '2028-03-14T16:10:29.000+00:00'
-    Conflict:
-      description: Conflict HTTP Status 409
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: Conflict
-        message:
-          type: string
-          example: Conflicting request
-          description: Error Message with more details goes here
-    Source_Address_Type:
-      title: Source Address Type
-      type: object
-      properties:
-        id:
-          type: number
-          description: Numerical identifier for the type of source address of an SMS. <ul><li>145 - International</li><li>161 - National</li><li>208 - Alphanumeric</li></ul>
-          example: 145
-          enum:
-          - 145
-          - 161
-          - 208
-    Type_definition_for_a_SMS:
-      title: Type definition for MT-SMS and MO-SMS.
-      type: object
-      properties:
-        id:
-          type: number
-          description: Numerical identifier for the type of SMS message.
-          example: 1
-        description:
-          type: string
-          description: Type description of the SMS message.
-          example: MT
-          enum:
-          - MT
-          - MO
-    SmsStatus:
-      title: SMS Status
-      type: object
-      properties:
-        id:
-          type: number
-          description: Numerical status identifier for a SMS message.
-          example: 4
-        description:
-          type: string
-          description: Text description of the message status.
-          example: DELIVERED
-    SMSSourceAddressType:
-      title: Source Address Type
-      type: object
-      properties:
-        id:
-          type: number
-          description: Numerical identifier for the type of source address of an SMS. <ul><li>145 - International</li><li>161 - National</li><li>208 - Alphanumeric</li></ul>
-          example: 145
-          enum:
-          - 145
-          - 161
-          - 208
-    EndpointCreateSmsResponse:
-      type: object
-      properties:
-        id:
-          type: string
-  parameters:
-    PageParam:
-      in: query
-      name: page
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: The number of returned chunk within the complete set.
-    PerPageParam:
-      in: query
-      name: per_page
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 20
-      description: The numbers of items to return per page.
   responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequest'
     InternalServerError:
       description: Internal server error
       content:
@@ -776,14 +785,31 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Conflict'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequest'
+  parameters:
+    PerPageParam:
+      in: query
+      name: per_page
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
+      description: The numbers of items to return per page.
+    PageParam:
+      in: query
+      name: page
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The number of returned chunk within the complete set.
   securitySchemes:
-    BasicAuthentication:
+    BearerAuthentication:
       type: http
-      scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.
+      scheme: bearer
+      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+x-refined-from:
+- 1nce-sim-management-openapi.yml
+- 1nce-sim-management-v2-openapi.yml

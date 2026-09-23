@@ -1,12 +1,12 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs Agreements API
-  description: Documentation of the authentication used for the 1NCE APIs.
   contact:
+    email: info@1nce.com
     name: 1NCE GmbH
     url: https://1nce.com
-    email: info@1nce.com
-  version: v2.1.1
+  description: Documentation of the 1NCE OS API which can be used for managing the 1NCE OS Service.
+  title: 1NCE OS Agreements API
+  version: v1.3
 servers:
 - url: https://api.1nce.com/management-api
 tags:
@@ -34,8 +34,29 @@ paths:
       summary: Accept 1NCE OS Agreements
       tags:
       - Agreements
+      operationId: postV1Agreements1nceos
+      x-operation-id-source: derived
 components:
   schemas:
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
+      type: object
     serverErrorResponse:
       description: An API error response in case of a Server Side Error.
       properties:
@@ -63,25 +84,6 @@ components:
       - accepted
       title: Post Agreements Accepted
       type: object
-    badRequestResponse:
-      description: An API error response in case of an HTTP Bad Request.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 400
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Bad Request
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Bad Request
-      type: object
   responses:
     InternalServerError:
       content:
@@ -96,7 +98,7 @@ components:
             $ref: '#/components/schemas/badRequestResponse'
       description: Bad Request
   securitySchemes:
-    BasicAuthentication:
+    BearerAuthentication:
+      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+      scheme: bearer
       type: http
-      scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

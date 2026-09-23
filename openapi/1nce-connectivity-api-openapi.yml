@@ -1,14 +1,20 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs Connectivity API
-  description: Documentation of the authentication used for the 1NCE APIs.
+  title: 1nce Connectivity API
+  version: v2.0
   contact:
     name: 1NCE GmbH
     url: https://1nce.com
     email: info@1nce.com
-  version: v2.1.1
+  description: 'Operations tagged Connectivity across 2 of this provider''s published API definitions: 1nce-sim-management-openapi.yml, 1nce-sim-management-v2-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.1nce.com/management-api
+- url: https://api.1nce.com/management-api/
+  description: API gateway
+  variables:
+    basePath:
+      default: v2
+      description: API Version Segment
 tags:
 - name: Connectivity
   description: Connectivty Management
@@ -69,6 +75,8 @@ paths:
       deprecated: false
       security:
       - BearerAuthentication: []
+    servers:
+    - url: https://api.1nce.com/management-api
   /v1/sims/{iccid}/reset:
     post:
       tags:
@@ -103,6 +111,8 @@ paths:
       deprecated: false
       security:
       - BearerAuthentication: []
+    servers:
+    - url: https://api.1nce.com/management-api
   /v2/sims/{iccid}/reset:
     post:
       tags:
@@ -131,44 +141,41 @@ paths:
           $ref: '#/components/responses/InternalServerError'
       security:
       - BearerAuthentication: []
+    servers:
+    - url: https://api.1nce.com/management-api/
+      description: API gateway
+      variables:
+        basePath:
+          default: v2
+          description: API Version Segment
 components:
   schemas:
-    Conflict:
-      description: Conflict HTTP Status 409
+    CellGlobalId:
+      title: Cell Global IDs
       type: object
-      required:
-      - error_code
-      - error_token
-      - message
       properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
+        cid:
+          type: integer
+        lac:
+          type: integer
+        mcc:
           type: string
-          example: Conflict
-        message:
+        mnc:
           type: string
-          example: Conflicting request
-          description: Error Message with more details goes here
-    NotFound:
-      description: Not found Error
+      description: Mobile network parameter used to identify the cell tower of a SIM device.
+    UssdInfo:
+      title: Ussd Information
       type: object
-      required:
-      - error_code
-      - error_token
-      - message
       properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
+        success:
+          type: boolean
+          description: Boolean flag indicating the success of the USSD request.
+          example: false
+        error:
           type: string
-          example: NotFound
-        message:
-          type: string
-          example: Element not found
-          description: Error Message with more details goes here
+          description: Optional information if some error occurred.
+          example: Request Timeout Error
+      description: Optional ussd information, only set if the parameter 'ussd' is set to true.
     ConnectivityInfo:
       title: Connectivity Info
       type: object
@@ -213,19 +220,24 @@ components:
             cell_global_id:
               $ref: '#/components/schemas/CellGlobalId'
       description: The optional subscriber info returned when the 'subscriber' parameter is true and contains information about the current SIM device location based on the mobile network.
-    CellGlobalId:
-      title: Cell Global IDs
+    Conflict:
+      description: Conflict HTTP Status 409
       type: object
+      required:
+      - error_code
+      - error_token
+      - message
       properties:
-        cid:
-          type: integer
-        lac:
-          type: integer
-        mcc:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
           type: string
-        mnc:
+          example: Conflict
+        message:
           type: string
-      description: Mobile network parameter used to identify the cell tower of a SIM device.
+          example: Conflicting request
+          description: Error Message with more details goes here
     BadRequest:
       description: Validation Error
       type: object
@@ -243,6 +255,24 @@ components:
         message:
           type: string
           example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
+          description: Error Message with more details goes here
+    NotFound:
+      description: Not found Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: Element not found
           description: Error Message with more details goes here
     InternalServerError:
       description: Internal Server Error
@@ -262,20 +292,19 @@ components:
           type: string
           example: Internal Server Error
           description: Error Message with more details goes here
-    UssdInfo:
-      title: Ussd Information
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Boolean flag indicating the success of the USSD request.
-          example: false
-        error:
-          type: string
-          description: Optional information if some error occurred.
-          example: Request Timeout Error
-      description: Optional ussd information, only set if the parameter 'ussd' is set to true.
   responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequest'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerError'
     NotFound:
       description: Not found error
       content:
@@ -284,26 +313,17 @@ components:
             $ref: '#/components/schemas/NotFound'
     NoContent:
       description: No Content
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/InternalServerError'
     Conflict:
       description: Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Conflict'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequest'
   securitySchemes:
-    BasicAuthentication:
+    BearerAuthentication:
       type: http
-      scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.
+      scheme: bearer
+      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+x-refined-from:
+- 1nce-sim-management-openapi.yml
+- 1nce-sim-management-v2-openapi.yml

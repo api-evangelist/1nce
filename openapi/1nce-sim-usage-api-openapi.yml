@@ -1,12 +1,12 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs SIM Usage API
-  description: Documentation of the authentication used for the 1NCE APIs.
+  title: SIM Management SIM Usage API
+  description: Documentation of the 1NCE API for SIM Management.
   contact:
     name: 1NCE GmbH
     url: https://1nce.com
     email: info@1nce.com
-  version: v2.1.1
+  version: v2.0
 servers:
 - url: https://api.1nce.com/management-api
 tags:
@@ -149,135 +149,6 @@ paths:
       - BearerAuthentication: []
 components:
   schemas:
-    TrafficTypeData:
-      title: Traffic Type Data
-      type: object
-      properties:
-        description:
-          type: string
-          description: Defines the type of traffic listed.
-          example: Data
-        id:
-          type: integer
-          description: ID of the traffic type.
-          example: 1
-        unit:
-          type: string
-          description: Lists the unit used for the traffic type.
-          example: MB
-      description: Details about the data traffic type.
-    TrafficTypeSMS:
-      title: Traffic Type SMS
-      type: object
-      properties:
-        description:
-          type: string
-          description: Defines the type of traffic listed.
-          example: SMS
-        id:
-          type: integer
-          description: ID of the traffic type.
-          example: 1
-        unit:
-          type: string
-          description: Lists the unit used for the traffic type.
-          example: SMS
-      description: Details about the SMS traffic type.
-    DailyUsage:
-      title: Usage Record
-      type: object
-      properties:
-        stats:
-          type: array
-          description: List of queried usage statistics for the given SIM.
-          items:
-            $ref: '#/components/schemas/Daily'
-      description: Information about SIM data and SMS usage.
-    SmsUsage:
-      title: SMS Usage Record
-      type: object
-      properties:
-        cost:
-          type: string
-          description: The cost shown here match 1:1 the used SMS. There is no real cost value behind this number.
-          example: '4'
-        currency:
-          title: Currency
-          type: object
-          properties:
-            id:
-              type: integer
-              description: Id of the currency.
-              example: 1
-            symbol:
-              type: string
-              description: ASCII symbol of the currency.
-              example: €
-            code:
-              type: string
-              description: Standardized currency code.
-              example: EUR
-          description: Description of the currency.
-        traffic_type:
-          $ref: '#/components/schemas/TrafficTypeSMS'
-        volume:
-          type: string
-          description: The summed MO- and MT-SMS messages count.
-          example: '3'
-        volume_rx:
-          type: string
-          description: The used MO-SMS message count.
-          example: '2'
-        volume_tx:
-          type: string
-          description: The used MT-SMS message count.
-          example: '1'
-      description: A usage record for the SMS used by a SIM.
-    Quota:
-      title: Quota
-      type: object
-      properties:
-        volume:
-          type: number
-          description: Remaning volume of the selected SIM. Dependent on the query, the volume is either the number of SMS reamaining or the avaliable data volume in MB.
-          example: 435.787951
-        total_volume:
-          type: number
-          description: The total data volume in MB or SMS number this SIM has available over its lifetime.
-          example: 500
-        expiry_date:
-          type: string
-          description: The date when this current quota will expire.
-          example: '2029-01-01T00:00:00.000Z'
-        peak_throughput:
-          type: integer
-          description: The optional throughput in bit/s (only for data quotas).
-          example: 1000000
-        last_volume_added:
-          type: number
-          description: Amount of SMS or data volume which was last purchased for this SIM.
-          example: 500
-        last_status_change_date:
-          type: string
-          description: Timestamp of the last change to the quota.
-          example: '2018-10-01T11:59:44.000Z'
-        threshold_percentage:
-          type: integer
-          description: Threshold in percentage for which a volume notification will be send.
-          example: 20
-    Daily:
-      title: Daily Usage Record
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Data'
-        date:
-          type: string
-          description: Date of the shown usage record.
-          example: '2021-06-30T00:00:00.000Z'
-        sms:
-          $ref: '#/components/schemas/SmsUsage'
-      description: A daily usage record with summarized data about the SMS and data usage.
     Data:
       title: Data Usage Record
       type: object
@@ -318,8 +189,140 @@ components:
           description: The used TX (upstream, send by SIM) data volume in MB.
           example: '0.001321'
       description: A usage record for the data used by a SIM.
+    Quota:
+      title: Quota
+      type: object
+      properties:
+        volume:
+          type: number
+          description: Remaning volume of the selected SIM. Dependent on the query, the volume is either the number of SMS reamaining or the avaliable data volume in MB.
+          example: 435.787951
+        total_volume:
+          type: number
+          description: The total data volume in MB or SMS number this SIM has available over its lifetime.
+          example: 500
+        expiry_date:
+          type: string
+          description: The date when this current quota will expire.
+          example: '2029-01-01T00:00:00.000Z'
+        peak_throughput:
+          type: integer
+          description: The optional throughput in bit/s (only for data quotas).
+          example: 1000000
+        last_volume_added:
+          type: number
+          description: Amount of SMS or data volume which was last purchased for this SIM.
+          example: 500
+        last_status_change_date:
+          type: string
+          description: Timestamp of the last change to the quota.
+          example: '2018-10-01T11:59:44.000Z'
+        threshold_percentage:
+          type: integer
+          description: Threshold in percentage for which a volume notification will be send.
+          example: 20
+    SmsUsage:
+      title: SMS Usage Record
+      type: object
+      properties:
+        cost:
+          type: string
+          description: The cost shown here match 1:1 the used SMS. There is no real cost value behind this number.
+          example: '4'
+        currency:
+          title: Currency
+          type: object
+          properties:
+            id:
+              type: integer
+              description: Id of the currency.
+              example: 1
+            symbol:
+              type: string
+              description: ASCII symbol of the currency.
+              example: €
+            code:
+              type: string
+              description: Standardized currency code.
+              example: EUR
+          description: Description of the currency.
+        traffic_type:
+          $ref: '#/components/schemas/TrafficTypeSMS'
+        volume:
+          type: string
+          description: The summed MO- and MT-SMS messages count.
+          example: '3'
+        volume_rx:
+          type: string
+          description: The used MO-SMS message count.
+          example: '2'
+        volume_tx:
+          type: string
+          description: The used MT-SMS message count.
+          example: '1'
+      description: A usage record for the SMS used by a SIM.
+    TrafficTypeSMS:
+      title: Traffic Type SMS
+      type: object
+      properties:
+        description:
+          type: string
+          description: Defines the type of traffic listed.
+          example: SMS
+        id:
+          type: integer
+          description: ID of the traffic type.
+          example: 1
+        unit:
+          type: string
+          description: Lists the unit used for the traffic type.
+          example: SMS
+      description: Details about the SMS traffic type.
+    Daily:
+      title: Daily Usage Record
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        date:
+          type: string
+          description: Date of the shown usage record.
+          example: '2021-06-30T00:00:00.000Z'
+        sms:
+          $ref: '#/components/schemas/SmsUsage'
+      description: A daily usage record with summarized data about the SMS and data usage.
+    TrafficTypeData:
+      title: Traffic Type Data
+      type: object
+      properties:
+        description:
+          type: string
+          description: Defines the type of traffic listed.
+          example: Data
+        id:
+          type: integer
+          description: ID of the traffic type.
+          example: 1
+        unit:
+          type: string
+          description: Lists the unit used for the traffic type.
+          example: MB
+      description: Details about the data traffic type.
+    DailyUsage:
+      title: Usage Record
+      type: object
+      properties:
+        stats:
+          type: array
+          description: List of queried usage statistics for the given SIM.
+          items:
+            $ref: '#/components/schemas/Daily'
+      description: Information about SIM data and SMS usage.
   securitySchemes:
-    BasicAuthentication:
+    BearerAuthentication:
       type: http
-      scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.
+      scheme: bearer
+      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

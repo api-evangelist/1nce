@@ -1,12 +1,12 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs Devices API
-  description: Documentation of the authentication used for the 1NCE APIs.
   contact:
+    email: info@1nce.com
     name: 1NCE GmbH
     url: https://1nce.com
-    email: info@1nce.com
-  version: v2.1.1
+  description: Documentation of the 1NCE OS API which can be used for managing the 1NCE OS Service.
+  title: 1NCE OS Devices API
+  version: v1.3
 servers:
 - url: https://api.1nce.com/management-api
 tags:
@@ -54,9 +54,11 @@ paths:
           $ref: '#/components/responses/InternalServerError'
       security:
       - BearerAuthentication: []
-      summary: Create Action Request On Specific LwM2M Device.
+      summary: Create Action Request On Specific LwM2M Device
       tags:
       - Devices
+      operationId: postV1DevicesByDeviceIdActions
+      x-operation-id-source: derived
   /v1/devices/stats:
     get:
       description: Get general statistics related to customer devices
@@ -78,61 +80,28 @@ paths:
       summary: Get Devices Statistics
       tags:
       - Devices
+      operationId: getV1DevicesStats
+      x-operation-id-source: derived
 components:
-  responses:
-    UnauthorizedError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/unauthorizedRequestResponse'
-      description: Unauthorized
-    ConflictError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/conflictResponse'
-      description: Conflict
-    InternalServerError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/serverErrorResponse'
-      description: Internal Server Error
-    BadRequestError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/badRequestResponse'
-      description: Bad Request
-    NotFoundError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/notFoundResponse'
-      description: Not Found Error
-    ForbiddenError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/forbiddenResponse'
-      description: Forbidden
   schemas:
-    statisticsschema:
-      additionalProperties: false
-      description: General statistics related to customer devices.
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
       properties:
-        totalDevices:
-          description: Total amount of devices for the customer.
-          example: 10
+        statusCode:
+          description: HTTP Response Code
+          example: 400
           type: integer
-        activatedDevices:
-          description: Total amount of devices that completed the activation process.
-          example: 5
-          type: integer
-      required:
-      - activatedDevices
-      - totalDevices
-      title: Devices Statistics
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
       type: object
     serverErrorResponse:
       description: An API error response in case of a Server Side Error.
@@ -169,25 +138,6 @@ components:
           type: array
       title: Conflict
       type: object
-    badRequestResponse:
-      description: An API error response in case of an HTTP Bad Request.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 400
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Bad Request
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Bad Request
-      type: object
     unauthorizedRequestResponse:
       description: An API error response in case of an HTTP Unauthorized Request.
       properties:
@@ -207,24 +157,39 @@ components:
           type: array
       title: Unauthorized Request
       type: object
-    notFoundResponse:
-      description: An API error response when a resource is Not Found.
+    postResponseschema:
+      additionalProperties: false
+      description: Post device action response.
       properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 404
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Not Found
+        id:
+          description: Id of the created action request
+          example: trxHeBL0d234fsfds
           type: string
-        errors:
-          description: Detailed error information
-          items:
-            type: object
-          type: array
-      title: Not Found
+        message:
+          description: Message describing the result of operation.
+          example: Action write for resource /3/45/22 successfuly scheduled for device _vGxHeBL0dE9LG9EB2GHj.
+          type: string
+      required:
+      - id
+      - message
+      title: Device action response
+      type: object
+    statisticsschema:
+      additionalProperties: false
+      description: General statistics related to customer devices.
+      properties:
+        totalDevices:
+          description: Total amount of devices for the customer.
+          example: 10
+          type: integer
+        activatedDevices:
+          description: Total amount of devices that completed the activation process.
+          example: 5
+          type: integer
+      required:
+      - activatedDevices
+      - totalDevices
+      title: Devices Statistics
       type: object
     postschema_1:
       additionalProperties: false
@@ -286,25 +251,64 @@ components:
           type: array
       title: Forbidden Request
       type: object
-    postResponseschema:
-      additionalProperties: false
-      description: Post device action response.
+    notFoundResponse:
+      description: An API error response when a resource is Not Found.
       properties:
-        id:
-          description: Id of the created action request
-          example: trxHeBL0d234fsfds
+        statusCode:
+          description: HTTP Response Code
+          example: 404
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Not Found
           type: string
-        message:
-          description: Message describing the result of operation.
-          example: Action write for resource /3/45/22 successfuly scheduled for device _vGxHeBL0dE9LG9EB2GHj.
-          type: string
-      required:
-      - id
-      - message
-      title: Device action response
+        errors:
+          description: Detailed error information
+          items:
+            type: object
+          type: array
+      title: Not Found
       type: object
+  responses:
+    InternalServerError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/serverErrorResponse'
+      description: Internal Server Error
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unauthorizedRequestResponse'
+      description: Unauthorized
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/badRequestResponse'
+      description: Bad Request
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/notFoundResponse'
+      description: Not Found Error
+    ForbiddenError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/forbiddenResponse'
+      description: Forbidden
+    ConflictError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/conflictResponse'
+      description: Conflict
   securitySchemes:
-    BasicAuthentication:
+    BearerAuthentication:
+      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+      scheme: bearer
       type: http
-      scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.

@@ -1,12 +1,12 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs Orders API
-  description: Documentation of the authentication used for the 1NCE APIs.
+  title: Order Management Orders API
+  description: Documentation of the 1NCE API for Order Management.
   contact:
     name: 1NCE GmbH
     url: https://1nce.com
     email: info@1nce.com
-  version: v2.1.1
+  version: v2.0
 servers:
 - url: https://api.1nce.com/management-api
 tags:
@@ -27,7 +27,6 @@ paths:
         allowEmptyValue: false
         schema:
           minimum: 1
-          exclusiveMinimum: false
           type: integer
           default: 1
       - name: pageSize
@@ -36,9 +35,7 @@ paths:
         allowEmptyValue: false
         schema:
           maximum: 10
-          exclusiveMaximum: false
           minimum: 1
-          exclusiveMinimum: false
           type: integer
           default: 10
       - name: sort
@@ -169,6 +166,19 @@ components:
           type: integer
           description: Quantity to be ordered of the given product.
       description: Product id and order quantity of the specific product.
+    SIM:
+      title: SIM
+      type: object
+      properties:
+        iccid:
+          type: string
+          description: ICCID of a specific 1NCE SIM.
+          example: '8988280666000000000'
+        _links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      description: Details about a 1NCE SIM card.
     Additional_Order:
       title: Additional Order
       required:
@@ -187,6 +197,61 @@ components:
           description: Optional customer-specific reference for the order.
           example: <customer_reference>
       description: Parameters of the order to be placed.
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Relation of SIM link.
+          example: self
+        href:
+          type: string
+          description: Link for getting details about the specific SIM.
+          example: https://api.1nce.com/api/v1/sims/9999999999000000001
+    DeliveryAddress:
+      title: Delivery Address
+      type: object
+      properties:
+        salutation:
+          type: string
+          description: Salutation, supported values are '1' for 'Mr' and '2' for 'Ms'.
+          default: '1'
+          enum:
+          - '1'
+          - '2'
+        first_name:
+          type: string
+          description: First Name
+        last_name:
+          type: string
+          description: Last Name
+        company:
+          type: string
+          description: Company Name
+        street:
+          type: string
+          description: Street Name
+        address_line2:
+          type: string
+          description: Second Address Line
+        house_number:
+          type: string
+          description: House Number
+        zip:
+          type: string
+          description: ZIP Code
+        city:
+          type: string
+          description: City
+        country:
+          type: string
+          description: ISO 3166-1 Alpha-2 Country Code
+          example: DE
+        phone:
+          type: string
+          description: Phone Number with international prefix.
+      description: Address where the products of the order should be delivered to. If no additional address is provided here, the ordered products will be sent to the existing single delivery address. If more than one default delivery address is configured in the 1NCE organization, please provide a valid shipping address in the order request.
     Product_information:
       title: Product Information
       type: object
@@ -251,76 +316,11 @@ components:
           items:
             $ref: '#/components/schemas/Product_information'
       description: Detailed information about an order.
-    DeliveryAddress:
-      title: Delivery Address
-      type: object
-      properties:
-        salutation:
-          type: string
-          description: Salutation, supported values are '1' for 'Mr' and '2' for 'Ms'.
-          default: '1'
-          enum:
-          - '1'
-          - '2'
-        first_name:
-          type: string
-          description: First Name
-        last_name:
-          type: string
-          description: Last Name
-        company:
-          type: string
-          description: Company Name
-        street:
-          type: string
-          description: Street Name
-        address_line2:
-          type: string
-          description: Second Address Line
-        house_number:
-          type: string
-          description: House Number
-        zip:
-          type: string
-          description: ZIP Code
-        city:
-          type: string
-          description: City
-        country:
-          type: string
-          description: ISO 3166-1 Alpha-2 Country Code
-          example: DE
-        phone:
-          type: string
-          description: Phone Number with international prefix.
-      description: Address where the products of the order should be delivered to. If no additional address is provided here, the ordered products will be sent to the existing single delivery address. If more than one default delivery address is configured in the 1NCE organization, please provide a valid shipping address in the order request.
-    Link:
-      title: Link
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Relation of SIM link.
-          example: self
-        href:
-          type: string
-          description: Link for getting details about the specific SIM.
-          example: https://api.1nce.com/api/v1/sims/9999999999000000001
-    SIM:
-      title: SIM
-      type: object
-      properties:
-        iccid:
-          type: string
-          description: ICCID of a specific 1NCE SIM.
-          example: '8988280666000000000'
-        _links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-      description: Details about a 1NCE SIM card.
   securitySchemes:
-    BasicAuthentication:
+    BearerAuthentication:
       type: http
-      scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.
+      scheme: bearer
+      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

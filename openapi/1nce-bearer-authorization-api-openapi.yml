@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs Bearer Authorization API
+  title: Bearer Authorization API
   description: Documentation of the authentication used for the 1NCE APIs.
   contact:
     name: 1NCE GmbH

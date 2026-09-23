@@ -1,12 +1,12 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Authorization Administration Logs Device Inspector API
-  description: Documentation of the authentication used for the 1NCE APIs.
   contact:
+    email: info@1nce.com
     name: 1NCE GmbH
     url: https://1nce.com
-    email: info@1nce.com
-  version: v2.1.1
+  description: Documentation of the 1NCE OS API which can be used for managing the 1NCE OS Service.
+  title: 1NCE OS Device Inspector API
+  version: v1.3
 servers:
 - url: https://api.1nce.com/management-api
 tags:
@@ -79,6 +79,8 @@ paths:
       summary: Get All Devices
       tags:
       - Device Inspector
+      operationId: getV1InspectDevices
+      x-operation-id-source: derived
   /v1/inspect/devices/{deviceId}:
     get:
       description: Get detailed metadata from one specific Device.
@@ -112,6 +114,8 @@ paths:
       summary: Get Single Device
       tags:
       - Device Inspector
+      operationId: getV1InspectDevicesByDeviceId
+      x-operation-id-source: derived
   /v1/inspect/devices/{deviceId}/telemetry:
     get:
       description: Get the current/last repored Shadow State (telemetry) Data for a specific Device.
@@ -154,6 +158,8 @@ paths:
       summary: Get Device Telemetry
       tags:
       - Device Inspector
+      operationId: getV1InspectDevicesByDeviceIdTelemetry
+      x-operation-id-source: derived
   /v1/inspect/devices/{deviceId}/history:
     get:
       description: Get historic message data for a specific SIM device.
@@ -234,6 +240,8 @@ paths:
       summary: Get Device Historian Messages
       tags:
       - Device Inspector
+      operationId: getV1InspectDevicesByDeviceIdHistory
+      x-operation-id-source: derived
   /v1/inspect/devices/history:
     get:
       description: Get a list of historic messages for devices based on the optional filter parameters.
@@ -323,6 +331,8 @@ paths:
       summary: Get Historian Messages
       tags:
       - Device Inspector
+      operationId: getV1InspectDevicesHistory
+      x-operation-id-source: derived
   /v1/inspect/devices/{deviceId}/history/insights:
     get:
       description: Get insights of a unique SIM device for the Historian.
@@ -392,6 +402,8 @@ paths:
       summary: Get Device Historian Insights
       tags:
       - Device Inspector
+      operationId: getV1InspectDevicesByDeviceIdHistoryInsights
+      x-operation-id-source: derived
   /v1/inspect/devices/history/insights:
     get:
       description: Get insights for all devices from the Historian based on the optional filters.
@@ -470,39 +482,99 @@ paths:
       summary: Get Historian Insights
       tags:
       - Device Inspector
+      operationId: getV1InspectDevicesHistoryInsights
+      x-operation-id-source: derived
 components:
-  responses:
-    UnauthorizedError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/unauthorizedRequestResponse'
-      description: Unauthorized
-    NotFoundError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/notFoundResponse'
-      description: Not Found Error
-    InternalServerError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/serverErrorResponse'
-      description: Internal Server Error
-    ForbiddenError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/forbiddenResponse'
-      description: Forbidden
-    BadRequestError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/badRequestResponse'
-      description: Bad Request
   schemas:
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
+      type: object
+    getAllResponseschema_3_items_inner:
+      additionalProperties: false
+      properties:
+        iccid:
+          description: Iccid of the device.
+          example: '8988280666000000000'
+          pattern: ^[0-9]{19}$
+          type: string
+        time:
+          description: Time when message was received.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        payload:
+          description: Stringified JSON object or base64 encoded string.
+          example: <custom_payload>
+          type: string
+        protocol:
+          description: The protocol used to communicate.
+          enum:
+          - UDP
+          - COAP
+          - LWM2M
+          example: COAP
+          type: string
+        deviceId:
+          description: The unique ID of the device.
+          example: <device_id>
+          type: string
+      required:
+      - deviceId
+      - iccid
+      - payload
+      - protocol
+      - time
+      type: object
+    getResponseschema_5:
+      description: Get a device shadow state (telemetry data).
+      properties:
+        id:
+          description: Id of the device.
+          example: <device_id>
+          minLength: 19
+          type: string
+        state:
+          description: The current IoT Core Device State.
+          type: object
+      required:
+      - id
+      - state
+      title: Device Telemetry
+      type: object
+    getAllResponseschema_4:
+      additionalProperties: false
+      description: Get the history insights for a specific time range.
+      properties:
+        items:
+          description: List of messages.
+          items:
+            $ref: '#/components/schemas/getAllResponseschema_4_items_inner'
+          type: array
+        interval:
+          description: Interval of the message statistics, like 1h.
+          example: 1d
+          type: string
+      required:
+      - interval
+      - items
+      title: Device History Insights Response
+      type: object
     getResponseschema_7_items_inner:
       additionalProperties: false
       properties:
@@ -548,160 +620,6 @@ components:
       required:
       - items
       title: Device History Response
-      type: object
-    getAllResponseschema_2_items_inner:
-      properties:
-        id:
-          description: Id of the device.
-          example: <device_id>
-          minLength: 1
-          type: string
-        iccid:
-          description: Iccid of the device.
-          example: '8988280666000000000'
-          pattern: ^[0-9]{19}$
-          type: string
-        imsi1:
-          description: IMSI1 of the device.
-          example: '901405100000018'
-          pattern: ^[0-9]{15}$
-          type: string
-        ip:
-          description: Ip of the device.
-          example: x.x.x.x
-          format: ipv4
-          type: string
-      required:
-      - iccid
-      - id
-      - imsi1
-      - ip
-      type: object
-    getAllResponseschema_3_items_inner:
-      additionalProperties: false
-      properties:
-        iccid:
-          description: Iccid of the device.
-          example: '8988280666000000000'
-          pattern: ^[0-9]{19}$
-          type: string
-        time:
-          description: Time when message was received.
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        payload:
-          description: Stringified JSON object or base64 encoded string.
-          example: <custom_payload>
-          type: string
-        protocol:
-          description: The protocol used to communicate.
-          enum:
-          - UDP
-          - COAP
-          - LWM2M
-          example: COAP
-          type: string
-        deviceId:
-          description: The unique ID of the device.
-          example: <device_id>
-          type: string
-      required:
-      - deviceId
-      - iccid
-      - payload
-      - protocol
-      - time
-      type: object
-    unauthorizedRequestResponse:
-      description: An API error response in case of an HTTP Unauthorized Request.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 401
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Unauthorized
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Unauthorized Request
-      type: object
-    notFoundResponse:
-      description: An API error response when a resource is Not Found.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 404
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Not Found
-          type: string
-        errors:
-          description: Detailed error information
-          items:
-            type: object
-          type: array
-      title: Not Found
-      type: object
-    getResponseschema_7:
-      additionalProperties: false
-      description: Get the devices history insights for a specific time range.
-      properties:
-        items:
-          description: List of messages.
-          items:
-            $ref: '#/components/schemas/getResponseschema_7_items_inner'
-          type: array
-        interval:
-          description: Interval of the message statistics, like 1h.
-          example: 1d
-          type: string
-      required:
-      - interval
-      - items
-      title: Device History Insights Response
-      type: object
-    getResponseschema_5:
-      description: Get a device shadow state (telemetry data).
-      properties:
-        id:
-          description: Id of the device.
-          example: <device_id>
-          minLength: 19
-          type: string
-        state:
-          description: The current IoT Core Device State.
-          type: object
-      required:
-      - id
-      - state
-      title: Device Telemetry
-      type: object
-    getAllResponseschema_4:
-      additionalProperties: false
-      description: Get the history insights for a specific time range.
-      properties:
-        items:
-          description: List of messages.
-          items:
-            $ref: '#/components/schemas/getAllResponseschema_4_items_inner'
-          type: array
-        interval:
-          description: Interval of the message statistics, like 1h.
-          example: 1d
-          type: string
-      required:
-      - interval
-      - items
-      title: Device History Insights Response
       type: object
     getAllResponseschema_4_items_inner:
       additionalProperties: false
@@ -768,18 +686,12 @@ components:
       - pageAmount
       title: All Devices Request
       type: object
-    getResponseschema_4:
-      description: Get a single device metadata.
+    getAllResponseschema_2_items_inner:
       properties:
-        name:
-          description: Name of the device.
-          example: <device_name>
-          minLength: 1
-          type: string
         id:
           description: Id of the device.
           example: <device_id>
-          minLength: 19
+          minLength: 1
           type: string
         iccid:
           description: Iccid of the device.
@@ -801,7 +713,6 @@ components:
       - id
       - imsi1
       - ip
-      title: Single Devices Request
       type: object
     getResponseschema_6_items_inner:
       additionalProperties: false
@@ -843,25 +754,6 @@ components:
       - protocol
       - time
       type: object
-    badRequestResponse:
-      description: An API error response in case of an HTTP Bad Request.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 400
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Bad Request
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Bad Request
-      type: object
     forbiddenResponse:
       description: An API error response in case of an HTTP Forbidden Request.
       properties:
@@ -880,6 +772,97 @@ components:
             type: object
           type: array
       title: Forbidden Request
+      type: object
+    notFoundResponse:
+      description: An API error response when a resource is Not Found.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 404
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Not Found
+          type: string
+        errors:
+          description: Detailed error information
+          items:
+            type: object
+          type: array
+      title: Not Found
+      type: object
+    getResponseschema_7:
+      additionalProperties: false
+      description: Get the devices history insights for a specific time range.
+      properties:
+        items:
+          description: List of messages.
+          items:
+            $ref: '#/components/schemas/getResponseschema_7_items_inner'
+          type: array
+        interval:
+          description: Interval of the message statistics, like 1h.
+          example: 1d
+          type: string
+      required:
+      - interval
+      - items
+      title: Device History Insights Response
+      type: object
+    getResponseschema_4:
+      description: Get a single device metadata.
+      properties:
+        name:
+          description: Name of the device.
+          example: <device_name>
+          minLength: 1
+          type: string
+        id:
+          description: Id of the device.
+          example: <device_id>
+          minLength: 19
+          type: string
+        iccid:
+          description: Iccid of the device.
+          example: '8988280666000000000'
+          pattern: ^[0-9]{19}$
+          type: string
+        imsi1:
+          description: IMSI1 of the device.
+          example: '901405100000018'
+          pattern: ^[0-9]{15}$
+          type: string
+        ip:
+          description: Ip of the device.
+          example: x.x.x.x
+          format: ipv4
+          type: string
+      required:
+      - iccid
+      - id
+      - imsi1
+      - ip
+      title: Single Devices Request
+      type: object
+    unauthorizedRequestResponse:
+      description: An API error response in case of an HTTP Unauthorized Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 401
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unauthorized
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Unauthorized Request
       type: object
     getAllResponseschema_3:
       additionalProperties: false
@@ -902,8 +885,39 @@ components:
       - items
       title: History Response
       type: object
+  responses:
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unauthorizedRequestResponse'
+      description: Unauthorized
+    InternalServerError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/serverErrorResponse'
+      description: Internal Server Error
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/badRequestResponse'
+      description: Bad Request
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/notFoundResponse'
+      description: Not Found Error
+    ForbiddenError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/forbiddenResponse'
+      description: Forbidden
   securitySchemes:
-    BasicAuthentication:
+    BearerAuthentication:
+      description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
+      scheme: bearer
       type: http
-      scheme: basic
-      description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.
