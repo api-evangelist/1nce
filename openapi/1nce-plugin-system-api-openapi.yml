@@ -276,211 +276,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    badRequestResponse:
-      description: An API error response in case of an HTTP Bad Request.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 400
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Bad Request
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Bad Request
-      type: object
-    getResponseschema_12:
-      additionalProperties: false
-      description: Plugin installation details by ID request. Also contains Datacake specific fields.
-      properties:
-        id:
-          description: Plugin installation identifier
-          example: mo3--1DzmAgO-X777AY9h
-          type: string
-        partner:
-          description: Partner name
-          example: PLUGIN-PARTNER
-          type: string
-        created:
-          description: Plugin installation timestamp
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        updated:
-          description: Plugin installation update timestamp
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        status:
-          description: Status of the plugin installation
-          example: INSTALLED
-          type: string
-        workspaceId:
-          description: Datacake workspace ID of the plugin
-          example: abcdef12-0000-0000-ab12-123456789012
-          type: string
-      required:
-      - created
-      - id
-      - partner
-      - status
-      - updated
-      - workspaceId
-      title: Datacake plugin details
-      type: object
-    getAllResponseschema_6_items_inner:
-      additionalProperties: false
-      properties:
-        id:
-          description: Plugin installation identifier
-          example: mo3--1DzmAgO-X777AY9h
-          type: string
-        partner:
-          description: Partner name
-          example: PLUGIN-PARTNER
-          type: string
-        created:
-          description: Plugin installation timestamp
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        updated:
-          description: Plugin installation update timestamp
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        status:
-          description: Status of the plugin installation
-          example: INSTALLED
-          type: string
-      required:
-      - created
-      - id
-      - partner
-      - status
-      - updated
-      type: object
-    postResponseschema_10:
-      additionalProperties: false
-      description: Response to the Tartabit plugin installation request.
-      properties:
-        id:
-          description: Plugin installation identifier
-          example: mo3--1DzmAgO-X777AY9h
-          type: string
-        partner:
-          description: Partner name
-          example: TARTABIT
-          type: string
-        created:
-          description: Plugin installation timestamp
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        updated:
-          description: Plugin installation update timestamp
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        status:
-          description: Status of the plugin installation
-          example: INSTALLED
-          type: string
-        serverDomain:
-          description: Tartabit IoT Bridge host domain
-          type: string
-        webhookKey:
-          description: Webhook Secret from service specification in Tartabit IoT Bridge.
-          type: string
-      required:
-      - created
-      - id
-      - partner
-      - serverDomain
-      - status
-      - updated
-      - webhookKey
-      title: Plugin installation response
-      type: object
-    serverErrorResponse:
-      description: An API error response in case of a Server Side Error.
-      properties:
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Unknown Error
-          - Server Error
-          type: string
-        errors:
-          description: List of errors encountered while calling the API.
-          items:
-            type: object
-          type: array
-      title: Server Error
-      type: object
-    restartResponseschema:
-      additionalProperties: false
-      description: Response to the plugin installation details by ID request.
-      properties:
-        plugin:
-          $ref: '#/components/schemas/restartResponseschema_plugin'
-        restartStatus:
-          description: Restart action status
-          enum:
-          - SUCCESS
-          - FAILURE
-          example: SUCCESS
-          type: string
-        message:
-          description: Restart action detail message
-          example: Restart was successful
-          type: string
-      required:
-      - message
-      - plugin
-      - restartStatus
-      title: Get plugin details by ID response
-      type: object
-    postschema_8:
-      additionalProperties: false
-      description: A request to install the Datacake plugin for 1NCE OS.
-      properties:
-        workspaceId:
-          description: Datacake workspace ID
-          example: abcdef12-0000-0000-ab12-123456789012
-          maxLength: 64
-          minLength: 1
-          pattern: ^[-A-Za-z0-9()@:%_+.~#?&/=]*$
-          type: string
-      required:
-      - workspaceId
-      title: Datacake plugin installation
-      type: object
-    conflictResponse:
-      description: An API error response when a conflict is found.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 409
-          type: integer
-        statusText:
-          description: Http Status Text
-          enum:
-          - Conflict
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Conflict
-      type: object
     postResponseschema_9:
       additionalProperties: false
       description: Response to the Mender plugin installation request.
@@ -527,6 +322,59 @@ components:
       - updated
       title: Plugin installation response
       type: object
+    postschema_8:
+      additionalProperties: false
+      description: A request to install the Datacake plugin for 1NCE OS.
+      properties:
+        workspaceId:
+          description: Datacake workspace ID
+          example: abcdef12-0000-0000-ab12-123456789012
+          maxLength: 64
+          minLength: 1
+          pattern: ^[-A-Za-z0-9()@:%_+.~#?&/=]*$
+          type: string
+      required:
+      - workspaceId
+      title: Datacake plugin installation
+      type: object
+    notFoundResponse:
+      description: An API error response when a resource is Not Found.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 404
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Not Found
+          type: string
+        errors:
+          description: Detailed error information
+          items:
+            type: object
+          type: array
+      title: Not Found
+      type: object
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
+      type: object
     getAllResponseschema_6:
       additionalProperties: false
       description: List of Plugin installations
@@ -552,15 +400,61 @@ components:
       - pageAmount
       title: List of Plugins
       type: object
+    postschema_9:
+      additionalProperties: false
+      description: A request to install the Mender plugin for 1NCE OS.
+      properties:
+        tenantToken:
+          description: Mender tenant token
+          maxLength: 800
+          minLength: 1
+          type: string
+        privateKey:
+          description: Mender private key
+          maxLength: 3000
+          minLength: 1
+          type: string
+        publicKey:
+          description: Mender public key
+          maxLength: 1000
+          minLength: 1
+          type: string
+      required:
+      - tenantToken
+      title: Mender plugin installation
+      type: object
     _v1_partners_plugins__pluginId__get_200_response:
       oneOf:
       - $ref: '#/components/schemas/getResponseschema_12'
       - $ref: '#/components/schemas/getResponseschema_13'
       - $ref: '#/components/schemas/getResponseschema_14'
       - $ref: '#/components/schemas/getResponseschema_15'
-    getResponseschema_15:
+    restartResponseschema:
       additionalProperties: false
-      description: Plugin installation details by plugin ID. Also contains Memfault specific fields.
+      description: Response to the plugin installation details by ID request.
+      properties:
+        plugin:
+          $ref: '#/components/schemas/restartResponseschema_plugin'
+        restartStatus:
+          description: Restart action status
+          enum:
+          - SUCCESS
+          - FAILURE
+          example: SUCCESS
+          type: string
+        message:
+          description: Restart action detail message
+          example: Restart was successful
+          type: string
+      required:
+      - message
+      - plugin
+      - restartStatus
+      title: Get plugin details by ID response
+      type: object
+    postResponseschema_10:
+      additionalProperties: false
+      description: Response to the Tartabit plugin installation request.
       properties:
         id:
           description: Plugin installation identifier
@@ -568,7 +462,7 @@ components:
           type: string
         partner:
           description: Partner name
-          example: MEMFAULT
+          example: TARTABIT
           type: string
         created:
           description: Plugin installation timestamp
@@ -584,28 +478,21 @@ components:
           description: Status of the plugin installation
           example: INSTALLED
           type: string
-        email:
-          description: The email address used to create Memfault organization and to login to the Memfault frontend
-          example: john.doe@user.com
+        serverDomain:
+          description: Tartabit IoT Bridge host domain
           type: string
-        url:
-          description: The Memfault login URL address
-          example: https://app.memfault.com/invites/.eJyrVkrNTczr4sdfsd
-          type: string
-        memfaultProjectId:
-          description: Project id which is saved in the Memfault System
-          example: 34324-5434533fddgesdf-2sfdfsdfsf
+        webhookKey:
+          description: Webhook Secret from service specification in Tartabit IoT Bridge.
           type: string
       required:
       - created
-      - email
       - id
-      - memfaultProjectId
       - partner
+      - serverDomain
       - status
       - updated
-      - url
-      title: Memfault plugin details
+      - webhookKey
+      title: Plugin installation response
       type: object
     forbiddenResponse:
       description: An API error response in case of an HTTP Forbidden Request.
@@ -626,9 +513,28 @@ components:
           type: array
       title: Forbidden Request
       type: object
-    postResponseschema_8:
+    unauthorizedRequestResponse:
+      description: An API error response in case of an HTTP Unauthorized Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 401
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unauthorized
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Unauthorized Request
+      type: object
+    getResponseschema_12:
       additionalProperties: false
-      description: Response to the Datacake plugin installation request.
+      description: Plugin installation details by ID request. Also contains Datacake specific fields.
       properties:
         id:
           description: Plugin installation identifier
@@ -636,7 +542,7 @@ components:
           type: string
         partner:
           description: Partner name
-          example: DATACAKE
+          example: PLUGIN-PARTNER
           type: string
         created:
           description: Plugin installation timestamp
@@ -663,27 +569,65 @@ components:
       - status
       - updated
       - workspaceId
+      title: Datacake plugin details
+      type: object
+    postResponseschema_11:
+      additionalProperties: false
+      description: Response to the Memfault plugin installation request.
+      properties:
+        id:
+          description: Plugin installation identifier
+          example: mo3--1DzmAgO-X777AY9h
+          type: string
+        partner:
+          description: Partner name
+          example: MEMFAULT
+          type: string
+        created:
+          description: Plugin installation timestamp
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        updated:
+          description: Plugin installation update timestamp
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        status:
+          description: Status of the plugin installation
+          example: INSTALLED
+          type: string
+      required:
+      - created
+      - id
+      - partner
+      - status
+      - updated
       title: Plugin installation response
       type: object
-    notFoundResponse:
-      description: An API error response when a resource is Not Found.
+    conflictResponse:
+      description: An API error response when a conflict is found.
       properties:
         statusCode:
           description: HTTP Response Code
-          example: 404
+          example: 409
           type: integer
         statusText:
-          description: HTTP Status Text
+          description: Http Status Text
           enum:
-          - Not Found
+          - Conflict
           type: string
         errors:
-          description: Detailed error information
+          description: Detailed error information.
           items:
             type: object
           type: array
-      title: Not Found
+      title: Conflict
       type: object
+    restartResponseschema_plugin:
+      oneOf:
+      - $ref: '#/components/schemas/getResponseschema_12'
+      - $ref: '#/components/schemas/getResponseschema_14'
     postschema_10:
       additionalProperties: false
       description: A request to install the Tartabit plugin for 1NCE OS.
@@ -747,24 +691,92 @@ components:
       - webhookKey
       title: Tartabit plugin details
       type: object
-    unauthorizedRequestResponse:
-      description: An API error response in case of an HTTP Unauthorized Request.
+    postResponseschema_8:
+      additionalProperties: false
+      description: Response to the Datacake plugin installation request.
       properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 401
-          type: integer
+        id:
+          description: Plugin installation identifier
+          example: mo3--1DzmAgO-X777AY9h
+          type: string
+        partner:
+          description: Partner name
+          example: DATACAKE
+          type: string
+        created:
+          description: Plugin installation timestamp
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        updated:
+          description: Plugin installation update timestamp
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        status:
+          description: Status of the plugin installation
+          example: INSTALLED
+          type: string
+        workspaceId:
+          description: Datacake workspace ID of the plugin
+          example: abcdef12-0000-0000-ab12-123456789012
+          type: string
+      required:
+      - created
+      - id
+      - partner
+      - status
+      - updated
+      - workspaceId
+      title: Plugin installation response
+      type: object
+    getAllResponseschema_6_items_inner:
+      additionalProperties: false
+      properties:
+        id:
+          description: Plugin installation identifier
+          example: mo3--1DzmAgO-X777AY9h
+          type: string
+        partner:
+          description: Partner name
+          example: PLUGIN-PARTNER
+          type: string
+        created:
+          description: Plugin installation timestamp
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        updated:
+          description: Plugin installation update timestamp
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        status:
+          description: Status of the plugin installation
+          example: INSTALLED
+          type: string
+      required:
+      - created
+      - id
+      - partner
+      - status
+      - updated
+      type: object
+    serverErrorResponse:
+      description: An API error response in case of a Server Side Error.
+      properties:
         statusText:
           description: HTTP Status Text
           enum:
-          - Unauthorized
+          - Unknown Error
+          - Server Error
           type: string
         errors:
-          description: Detailed error information.
+          description: List of errors encountered while calling the API.
           items:
             type: object
           type: array
-      title: Unauthorized Request
+      title: Server Error
       type: object
     postschema_11:
       additionalProperties: false
@@ -772,13 +784,9 @@ components:
       properties: {}
       title: Memfault plugin installation
       type: object
-    restartResponseschema_plugin:
-      oneOf:
-      - $ref: '#/components/schemas/getResponseschema_12'
-      - $ref: '#/components/schemas/getResponseschema_14'
-    postResponseschema_11:
+    getResponseschema_15:
       additionalProperties: false
-      description: Response to the Memfault plugin installation request.
+      description: Plugin installation details by plugin ID. Also contains Memfault specific fields.
       properties:
         id:
           description: Plugin installation identifier
@@ -802,13 +810,28 @@ components:
           description: Status of the plugin installation
           example: INSTALLED
           type: string
+        email:
+          description: The email address used to create Memfault organization and to login to the Memfault frontend
+          example: john.doe@user.com
+          type: string
+        url:
+          description: The Memfault login URL address
+          example: https://app.memfault.com/invites/.eJyrVkrNTczr4sdfsd
+          type: string
+        memfaultProjectId:
+          description: Project id which is saved in the Memfault System
+          example: 34324-5434533fddgesdf-2sfdfsdfsf
+          type: string
       required:
       - created
+      - email
       - id
+      - memfaultProjectId
       - partner
       - status
       - updated
-      title: Plugin installation response
+      - url
+      title: Memfault plugin details
       type: object
     getResponseschema_13:
       additionalProperties: false
@@ -856,36 +879,19 @@ components:
       - updated
       title: Mender plugin details
       type: object
-    postschema_9:
-      additionalProperties: false
-      description: A request to install the Mender plugin for 1NCE OS.
-      properties:
-        tenantToken:
-          description: Mender tenant token
-          maxLength: 800
-          minLength: 1
-          type: string
-        privateKey:
-          description: Mender private key
-          maxLength: 3000
-          minLength: 1
-          type: string
-        publicKey:
-          description: Mender public key
-          maxLength: 1000
-          minLength: 1
-          type: string
-      required:
-      - tenantToken
-      title: Mender plugin installation
-      type: object
   responses:
-    UnauthorizedError:
+    ForbiddenError:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/unauthorizedRequestResponse'
-      description: Unauthorized
+            $ref: '#/components/schemas/forbiddenResponse'
+      description: Forbidden
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/notFoundResponse'
+      description: Not Found Error
     InternalServerError:
       content:
         application/json:
@@ -898,24 +904,18 @@ components:
           schema:
             $ref: '#/components/schemas/badRequestResponse'
       description: Bad Request
-    NotFoundError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/notFoundResponse'
-      description: Not Found Error
-    ForbiddenError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/forbiddenResponse'
-      description: Forbidden
     ConflictError:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/conflictResponse'
       description: Conflict
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unauthorizedRequestResponse'
+      description: Unauthorized
   securitySchemes:
     BearerAuthentication:
       description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.

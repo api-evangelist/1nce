@@ -149,46 +149,6 @@ paths:
       - BearerAuthentication: []
 components:
   schemas:
-    Data:
-      title: Data Usage Record
-      type: object
-      properties:
-        cost:
-          type: string
-          description: The cost shown here match 1:1 the used SMS. There is no real cost value behind this number.
-          example: '0.002803'
-        currency:
-          title: Currency
-          type: object
-          properties:
-            id:
-              type: integer
-              description: Id of the currency.
-              example: 1
-            symbol:
-              type: string
-              description: ASCII symbol of the currency.
-              example: €
-            code:
-              type: string
-              description: Standardized currency code.
-              example: EUR
-          description: Description of the currency.
-        traffic_type:
-          $ref: '#/components/schemas/TrafficTypeData'
-        volume:
-          type: string
-          description: The summed RX and TX data volume in MB.
-          example: '0.002803'
-        volume_rx:
-          type: string
-          description: The used RX (downstream, received by SIM) data volume in MB.
-          example: '0.001482'
-        volume_tx:
-          type: string
-          description: The used TX (upstream, send by SIM) data volume in MB.
-          example: '0.001321'
-      description: A usage record for the data used by a SIM.
     Quota:
       title: Quota
       type: object
@@ -221,6 +181,23 @@ components:
           type: integer
           description: Threshold in percentage for which a volume notification will be send.
           example: 20
+    TrafficTypeSMS:
+      title: Traffic Type SMS
+      type: object
+      properties:
+        description:
+          type: string
+          description: Defines the type of traffic listed.
+          example: SMS
+        id:
+          type: integer
+          description: ID of the traffic type.
+          example: 1
+        unit:
+          type: string
+          description: Lists the unit used for the traffic type.
+          example: SMS
+      description: Details about the SMS traffic type.
     SmsUsage:
       title: SMS Usage Record
       type: object
@@ -261,23 +238,6 @@ components:
           description: The used MT-SMS message count.
           example: '1'
       description: A usage record for the SMS used by a SIM.
-    TrafficTypeSMS:
-      title: Traffic Type SMS
-      type: object
-      properties:
-        description:
-          type: string
-          description: Defines the type of traffic listed.
-          example: SMS
-        id:
-          type: integer
-          description: ID of the traffic type.
-          example: 1
-        unit:
-          type: string
-          description: Lists the unit used for the traffic type.
-          example: SMS
-      description: Details about the SMS traffic type.
     Daily:
       title: Daily Usage Record
       type: object
@@ -291,6 +251,56 @@ components:
         sms:
           $ref: '#/components/schemas/SmsUsage'
       description: A daily usage record with summarized data about the SMS and data usage.
+    DailyUsage:
+      title: Usage Record
+      type: object
+      properties:
+        stats:
+          type: array
+          description: List of queried usage statistics for the given SIM.
+          items:
+            $ref: '#/components/schemas/Daily'
+      description: Information about SIM data and SMS usage.
+    Data:
+      title: Data Usage Record
+      type: object
+      properties:
+        cost:
+          type: string
+          description: The cost shown here match 1:1 the used SMS. There is no real cost value behind this number.
+          example: '0.002803'
+        currency:
+          title: Currency
+          type: object
+          properties:
+            id:
+              type: integer
+              description: Id of the currency.
+              example: 1
+            symbol:
+              type: string
+              description: ASCII symbol of the currency.
+              example: €
+            code:
+              type: string
+              description: Standardized currency code.
+              example: EUR
+          description: Description of the currency.
+        traffic_type:
+          $ref: '#/components/schemas/TrafficTypeData'
+        volume:
+          type: string
+          description: The summed RX and TX data volume in MB.
+          example: '0.002803'
+        volume_rx:
+          type: string
+          description: The used RX (downstream, received by SIM) data volume in MB.
+          example: '0.001482'
+        volume_tx:
+          type: string
+          description: The used TX (upstream, send by SIM) data volume in MB.
+          example: '0.001321'
+      description: A usage record for the data used by a SIM.
     TrafficTypeData:
       title: Traffic Type Data
       type: object
@@ -308,16 +318,6 @@ components:
           description: Lists the unit used for the traffic type.
           example: MB
       description: Details about the data traffic type.
-    DailyUsage:
-      title: Usage Record
-      type: object
-      properties:
-        stats:
-          type: array
-          description: List of queried usage statistics for the given SIM.
-          items:
-            $ref: '#/components/schemas/Daily'
-      description: Information about SIM data and SMS usage.
   securitySchemes:
     BearerAuthentication:
       type: http

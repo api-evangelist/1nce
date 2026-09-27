@@ -203,7 +203,7 @@ paths:
       - Volume Top Up
       summary: Create Single Top Up
       description: Top up the data/SMS volume of one specific SIM.
-      operationId: topUpUsingPOST
+      operationId: postV2SimsByIccidTopup
       parameters:
       - name: iccid
         in: path
@@ -261,6 +261,8 @@ paths:
       deprecated: false
       security:
       - BearerAuthentication: []
+      x-operation-id-source: normalized
+      x-operation-id-original: topUpUsingPOST
     servers:
     - url: https://api.1nce.com/management-api/
       description: API gateway

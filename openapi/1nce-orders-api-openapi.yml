@@ -153,19 +153,6 @@ paths:
       - BearerAuthentication: []
 components:
   schemas:
-    Ordered_product:
-      title: Product Order
-      type: object
-      properties:
-        productId:
-          type: integer
-          description: Specific id of the product to be ordered. For reference, check past orders or the product API call for avaliable product ids.
-          example: 1001
-        quantity:
-          minimum: 1
-          type: integer
-          description: Quantity to be ordered of the given product.
-      description: Product id and order quantity of the specific product.
     SIM:
       title: SIM
       type: object
@@ -179,6 +166,19 @@ components:
           items:
             $ref: '#/components/schemas/Link'
       description: Details about a 1NCE SIM card.
+    Ordered_product:
+      title: Product Order
+      type: object
+      properties:
+        productId:
+          type: integer
+          description: Specific id of the product to be ordered. For reference, check past orders or the product API call for avaliable product ids.
+          example: 1001
+        quantity:
+          minimum: 1
+          type: integer
+          description: Quantity to be ordered of the given product.
+      description: Product id and order quantity of the specific product.
     Additional_Order:
       title: Additional Order
       required:
@@ -197,18 +197,6 @@ components:
           description: Optional customer-specific reference for the order.
           example: <customer_reference>
       description: Parameters of the order to be placed.
-    Link:
-      title: Link
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Relation of SIM link.
-          example: self
-        href:
-          type: string
-          description: Link for getting details about the specific SIM.
-          example: https://api.1nce.com/api/v1/sims/9999999999000000001
     DeliveryAddress:
       title: Delivery Address
       type: object
@@ -265,6 +253,18 @@ components:
           description: Quantity of SIMs with this product id ordered.
           example: 1
       description: General information about an ordered product
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Relation of SIM link.
+          example: self
+        href:
+          type: string
+          description: Link for getting details about the specific SIM.
+          example: https://api.1nce.com/api/v1/sims/9999999999000000001
     Order:
       title: Order
       type: object

@@ -119,7 +119,7 @@ paths:
       - Connectivity
       summary: Create Connectivity Reset
       description: Trigger a connectivity reset for a given SIM. The actual reset will be done asynchronously. A positive-response only means that the connectivity-reset has been successfully placed into the queue.
-      operationId: resetConnectivityUsingPOST
+      operationId: postV2SimsByIccidReset
       parameters:
       - name: iccid
         in: path
@@ -141,6 +141,8 @@ paths:
           $ref: '#/components/responses/InternalServerError'
       security:
       - BearerAuthentication: []
+      x-operation-id-source: normalized
+      x-operation-id-original: resetConnectivityUsingPOST
     servers:
     - url: https://api.1nce.com/management-api/
       description: API gateway
@@ -163,36 +165,6 @@ components:
         mnc:
           type: string
       description: Mobile network parameter used to identify the cell tower of a SIM device.
-    UssdInfo:
-      title: Ussd Information
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Boolean flag indicating the success of the USSD request.
-          example: false
-        error:
-          type: string
-          description: Optional information if some error occurred.
-          example: Request Timeout Error
-      description: Optional ussd information, only set if the parameter 'ussd' is set to true.
-    ConnectivityInfo:
-      title: Connectivity Info
-      type: object
-      properties:
-        ussd_info:
-          $ref: '#/components/schemas/UssdInfo'
-        subscriber_info:
-          $ref: '#/components/schemas/SubscriberInfo'
-        request_timestamp:
-          type: string
-          description: Time in UTC the request was received.
-          example: 2018-11-07T17:21:46.121+0000
-        reply_timestamp:
-          type: string
-          description: Time in UTC the response was sent.
-          example: 2018-11-07T17:21:46.263+0000
-      description: Contains connectivity and cell tower information for a given SIM request.
     SubscriberInfo:
       title: Subscriber Information
       type: object
@@ -220,8 +192,38 @@ components:
             cell_global_id:
               $ref: '#/components/schemas/CellGlobalId'
       description: The optional subscriber info returned when the 'subscriber' parameter is true and contains information about the current SIM device location based on the mobile network.
-    Conflict:
-      description: Conflict HTTP Status 409
+    ConnectivityInfo:
+      title: Connectivity Info
+      type: object
+      properties:
+        ussd_info:
+          $ref: '#/components/schemas/UssdInfo'
+        subscriber_info:
+          $ref: '#/components/schemas/SubscriberInfo'
+        request_timestamp:
+          type: string
+          description: Time in UTC the request was received.
+          example: 2018-11-07T17:21:46.121+0000
+        reply_timestamp:
+          type: string
+          description: Time in UTC the response was sent.
+          example: 2018-11-07T17:21:46.263+0000
+      description: Contains connectivity and cell tower information for a given SIM request.
+    UssdInfo:
+      title: Ussd Information
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Boolean flag indicating the success of the USSD request.
+          example: false
+        error:
+          type: string
+          description: Optional information if some error occurred.
+          example: Request Timeout Error
+      description: Optional ussd information, only set if the parameter 'ussd' is set to true.
+    NotFound:
+      description: Not found Error
       type: object
       required:
       - error_code
@@ -233,10 +235,10 @@ components:
           example: 1000
         error_token:
           type: string
-          example: Conflict
+          example: NotFound
         message:
           type: string
-          example: Conflicting request
+          example: Element not found
           description: Error Message with more details goes here
     BadRequest:
       description: Validation Error
@@ -256,8 +258,8 @@ components:
           type: string
           example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
           description: Error Message with more details goes here
-    NotFound:
-      description: Not found Error
+    Conflict:
+      description: Conflict HTTP Status 409
       type: object
       required:
       - error_code
@@ -269,10 +271,10 @@ components:
           example: 1000
         error_token:
           type: string
-          example: NotFound
+          example: Conflict
         message:
           type: string
-          example: Element not found
+          example: Conflicting request
           description: Error Message with more details goes here
     InternalServerError:
       description: Internal Server Error
@@ -299,26 +301,26 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/BadRequest'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/InternalServerError'
     NotFound:
       description: Not found error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/NotFound'
-    NoContent:
-      description: No Content
     Conflict:
       description: Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Conflict'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerError'
+    NoContent:
+      description: No Content
   securitySchemes:
     BearerAuthentication:
       type: http
