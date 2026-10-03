@@ -356,6 +356,33 @@ paths:
           description: API Version Segment
 components:
   schemas:
+    SmsStatus:
+      title: SMS Status
+      type: object
+      properties:
+        id:
+          type: number
+          description: Numerical status identifier for a SMS message.
+          example: 4
+        description:
+          type: string
+          description: Text description of the message status.
+          example: DELIVERED
+    Type_definition_for_a_SMS:
+      title: Type definition for MT-SMS and MO-SMS.
+      type: object
+      properties:
+        id:
+          type: number
+          description: Numerical identifier for the type of SMS message.
+          example: 1
+        description:
+          type: string
+          description: Type description of the SMS message.
+          example: MT
+          enum:
+          - MT
+          - MO
     Source_Address_Type:
       title: Source Address Type
       type: object
@@ -475,35 +502,8 @@ components:
         source_address_type:
           $ref: '#/components/schemas/Source_Address_Type'
       description: The SMS data object contains all information about a SMS message.
-    SmsStatus:
-      title: SMS Status
-      type: object
-      properties:
-        id:
-          type: number
-          description: Numerical status identifier for a SMS message.
-          example: 4
-        description:
-          type: string
-          description: Text description of the message status.
-          example: DELIVERED
-    Type_definition_for_a_SMS:
-      title: Type definition for MT-SMS and MO-SMS.
-      type: object
-      properties:
-        id:
-          type: number
-          description: Numerical identifier for the type of SMS message.
-          example: 1
-        description:
-          type: string
-          description: Type description of the SMS message.
-          example: MT
-          enum:
-          - MT
-          - MO
-    NotFound:
-      description: Not found Error
+    Conflict:
+      description: Conflict HTTP Status 409
       type: object
       required:
       - error_code
@@ -515,93 +515,11 @@ components:
           example: 1000
         error_token:
           type: string
-          example: NotFound
+          example: Conflict
         message:
           type: string
-          example: Element not found
+          example: Conflicting request
           description: Error Message with more details goes here
-    BadRequest:
-      description: Validation Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: BadRequest
-        message:
-          type: string
-          example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
-          description: Error Message with more details goes here
-    EndpointCreateSmsResponse:
-      type: object
-      properties:
-        id:
-          type: string
-    SMSMessage_2:
-      title: SMS Message Object
-      description: SMS message object used to describe an SMS message.
-      type: object
-      properties:
-        source_address:
-          type: string
-          description: The source address of the SMS. This value can be set to any number as it is not used.
-          example: '1234567890'
-        payload:
-          type: string
-          description: The content body of the SMS message.
-          example: This is an SMS message.
-        udh:
-          type: string
-          description: The optional User Data Header (UDH) encoded as a hex-String can be used to concatenate SMS messages.
-          example: 050003CC0301
-          pattern: ^([0-9a-fA-F])*$
-        dcs:
-          type: integer
-          description: The optional Data Coding Scheme (DCS) can be used for setting the message body format to HEX String or normal Text Mode.
-          example: 0
-        source_address_type:
-          $ref: '#/components/schemas/SMSSourceAddressType'
-        expiry_date:
-          type: string
-          format: date-time
-          description: Expiry Date of the sent SMS in ISO8601 (RFC3339) format.
-          example: '2028-03-14T16:10:29.000+00:00'
-    InternalServerError:
-      description: Internal Server Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: InternalServerError
-        message:
-          type: string
-          example: Internal Server Error
-          description: Error Message with more details goes here
-    SMSSourceAddressType:
-      title: Source Address Type
-      type: object
-      properties:
-        id:
-          type: number
-          description: Numerical identifier for the type of source address of an SMS. <ul><li>145 - International</li><li>161 - National</li><li>208 - Alphanumeric</li></ul>
-          example: 145
-          enum:
-          - 145
-          - 161
-          - 208
     SimsSms:
       type: object
       properties:
@@ -748,8 +666,8 @@ components:
               type: integer
               format: int64
               example: 161
-    Conflict:
-      description: Conflict HTTP Status 409
+    BadRequest:
+      description: Validation Error
       type: object
       required:
       - error_code
@@ -761,11 +679,118 @@ components:
           example: 1000
         error_token:
           type: string
-          example: Conflict
+          example: BadRequest
         message:
           type: string
-          example: Conflicting request
+          example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
           description: Error Message with more details goes here
+    SMSSourceAddressType:
+      title: Source Address Type
+      type: object
+      properties:
+        id:
+          type: number
+          description: Numerical identifier for the type of source address of an SMS. <ul><li>145 - International</li><li>161 - National</li><li>208 - Alphanumeric</li></ul>
+          example: 145
+          enum:
+          - 145
+          - 161
+          - 208
+    SMSMessage_2:
+      title: SMS Message Object
+      description: SMS message object used to describe an SMS message.
+      type: object
+      properties:
+        source_address:
+          type: string
+          description: The source address of the SMS. This value can be set to any number as it is not used.
+          example: '1234567890'
+        payload:
+          type: string
+          description: The content body of the SMS message.
+          example: This is an SMS message.
+        udh:
+          type: string
+          description: The optional User Data Header (UDH) encoded as a hex-String can be used to concatenate SMS messages.
+          example: 050003CC0301
+          pattern: ^([0-9a-fA-F])*$
+        dcs:
+          type: integer
+          description: The optional Data Coding Scheme (DCS) can be used for setting the message body format to HEX String or normal Text Mode.
+          example: 0
+        source_address_type:
+          $ref: '#/components/schemas/SMSSourceAddressType'
+        expiry_date:
+          type: string
+          format: date-time
+          description: Expiry Date of the sent SMS in ISO8601 (RFC3339) format.
+          example: '2028-03-14T16:10:29.000+00:00'
+    InternalServerError:
+      description: Internal Server Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: InternalServerError
+        message:
+          type: string
+          example: Internal Server Error
+          description: Error Message with more details goes here
+    NotFound:
+      description: Not found Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: Element not found
+          description: Error Message with more details goes here
+    EndpointCreateSmsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequest'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerError'
+    Conflict:
+      description: Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Conflict'
+    NotFound:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
   parameters:
     PageParam:
       in: query
@@ -786,31 +811,6 @@ components:
         maximum: 1000
         default: 20
       description: The numbers of items to return per page.
-  responses:
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequest'
-    NotFound:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFound'
-    Conflict:
-      description: Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Conflict'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/InternalServerError'
   securitySchemes:
     BearerAuthentication:
       type: http

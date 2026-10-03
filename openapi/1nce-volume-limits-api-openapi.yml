@@ -118,6 +118,40 @@ paths:
       - BearerAuthentication: []
 components:
   schemas:
+    CurrentLimitSMS:
+      title: Current SMS Limit
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identifer for the currently configured limit.
+          example: 1
+        limit:
+          type: string
+          description: Value of the self-set limit.
+          example: '10'
+        unit:
+          type: string
+          description: Unit of the set limit.
+          example: SMS
+      description: Currently self-set gloabl SMS limit for the given service (MT-SMS, MO-SMS).
+    CurrentLimitData:
+      title: Current Data Limit
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identifer for the currently configured limit.
+          example: 1
+        limit:
+          type: string
+          description: Value of the self-set limit.
+          example: '16'
+        unit:
+          type: string
+          description: Unit of the set limit.
+          example: MB
+      description: Currently self-set gloabl data volume limit.
     Values_for_Limits:
       title: Self-Set Limits
       type: object
@@ -143,40 +177,6 @@ components:
           type: integer
           description: SMS MO Limit ID (from /sims/smsMO/limits list) to be set for self-set MO-SMS limit.
       description: Configure the self-set limits (data, MT-SMS, MO-SMS) of all SIMs. Use /sims/{service}/limits to get a list of IDs for setting the limits.
-    CurrentLimitData:
-      title: Current Data Limit
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Identifer for the currently configured limit.
-          example: 1
-        limit:
-          type: string
-          description: Value of the self-set limit.
-          example: '16'
-        unit:
-          type: string
-          description: Unit of the set limit.
-          example: MB
-      description: Currently self-set gloabl data volume limit.
-    CurrentLimitSMS:
-      title: Current SMS Limit
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Identifer for the currently configured limit.
-          example: 1
-        limit:
-          type: string
-          description: Value of the self-set limit.
-          example: '10'
-        unit:
-          type: string
-          description: Unit of the set limit.
-          example: SMS
-      description: Currently self-set gloabl SMS limit for the given service (MT-SMS, MO-SMS).
   securitySchemes:
     BearerAuthentication:
       type: http

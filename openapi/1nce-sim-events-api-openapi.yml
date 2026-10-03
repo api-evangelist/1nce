@@ -169,20 +169,6 @@ paths:
           description: API Version Segment
 components:
   schemas:
-    EventCollection:
-      title: Event Collection
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/SIM_Event'
-        totalEvents:
-          type: integer
-          example: 10
-        totalPages:
-          type: integer
-          example: 5
     SIM_Event:
       title: SIM Event
       type: object
@@ -232,6 +218,118 @@ components:
           description: Textual representation of the severity of the event.
           example: Info
       description: Information about a Event. Besides the timestamp and the event_type all other values are optional and might not be included in the actual responses.
+    EventCollection:
+      title: Event Collection
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SIM_Event'
+        totalEvents:
+          type: integer
+          example: 10
+        totalPages:
+          type: integer
+          example: 5
+    EndpointQuotaStatus:
+      type: object
+      description: '- 0 - "EXHAUSTED"
+
+        - 1 - "ACTIVE"
+
+        - 2 - "EXPIRED"
+
+        '
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 0
+          enum:
+          - 0
+          - 1
+          - 2
+        description:
+          type: string
+          example: EXHAUSTED
+          enum:
+          - EXHAUSTED
+          - ACTIVE
+          - EXPIRED
+      example:
+        id: 0
+        description: EXHAUSTED
+    EventQuotaDetail:
+      type: object
+      required:
+      - quota
+      properties:
+        quota:
+          oneOf:
+          - $ref: '#/components/schemas/QuotaDetail'
+          - $ref: '#/components/schemas/EndpointQuota'
+        regional_pool:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+            name:
+              type: string
+    VpnDetail:
+      type: object
+      properties:
+        vpn_id:
+          type: integer
+          format: int64
+          description: OSS VPN ID
+        region:
+          type: string
+          description: AWS region code
+        client:
+          type: object
+          properties:
+            version:
+              type: string
+              description: OpenVPN Client version
+            private_ip:
+              type: string
+              description: Private IP address
+            public_ip:
+              type: string
+              description: Public IP address
+    LocationDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        country:
+          $ref: '#/components/schemas/Country'
+        tapcode:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              tapcode:
+                type: string
+        mnc:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              mnc:
+                type: string
+        update_location_failure_reason:
+          type: string
+          example: RAT_NOT_ALLOWED
     PdpContextDetail:
       type: object
       properties:
@@ -412,217 +510,6 @@ components:
                 emenbi:
                   type: integer
                   format: int64
-    NotFound:
-      description: Not found Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: Element not found
-          description: Error Message with more details goes here
-    VpnDetail:
-      type: object
-      properties:
-        vpn_id:
-          type: integer
-          format: int64
-          description: OSS VPN ID
-        region:
-          type: string
-          description: AWS region code
-        client:
-          type: object
-          properties:
-            version:
-              type: string
-              description: OpenVPN Client version
-            private_ip:
-              type: string
-              description: Private IP address
-            public_ip:
-              type: string
-              description: Public IP address
-    EventQuotaDetail:
-      type: object
-      required:
-      - quota
-      properties:
-        quota:
-          oneOf:
-          - $ref: '#/components/schemas/QuotaDetail'
-          - $ref: '#/components/schemas/EndpointQuota'
-        regional_pool:
-          type: object
-          properties:
-            id:
-              type: integer
-              format: int64
-            name:
-              type: string
-    QuotaDetail:
-      type: object
-      properties:
-        volume:
-          type: number
-          format: float
-        threshold_volume:
-          type: number
-          format: float
-          deprecated: true
-        threshold_percentage:
-          type: integer
-          format: int32
-          deprecated: true
-        threshold:
-          type: object
-          properties:
-            percentage:
-              type: integer
-              format: int32
-            volume:
-              type: number
-              format: float
-        id:
-          type: integer
-          format: int64
-        expiry_date:
-          type: string
-          format: date-time
-        total_volume:
-          type: number
-          format: float
-    EndpointQuota:
-      type: object
-      required:
-      - id
-      - status
-      - volume
-      - total_volume
-      - last_volume_added
-      - service
-      - threshold_percentage
-      - threshold_volume
-      - expiry_date
-      - created_at
-      - accumulated_total_volume
-      properties:
-        id:
-          type: integer
-          format: int64
-          minimum: 1
-        status:
-          $ref: '#/components/schemas/EndpointQuotaStatus'
-        volume:
-          type: number
-          format: double
-          description: 'Amount left i.e. still available for use:
-
-            - for SMS: the quantity/number of short messages
-
-            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
-
-            - can be negative
-
-            '
-        total_volume:
-          type: number
-          format: double
-          description: 'Initially provisioned volume or (in case the quota was topped up) the remaining volume at that time plus the
-
-            volume of the topup.
-
-            - for SMS: the quantity/number of short messages
-
-            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
-
-            '
-        accumulated_total_volume:
-          type: number
-          format: double
-          description: 'Sum of initially provisioned volume and all topup volumes.
-
-            '
-        last_volume_added:
-          type: number
-          format: double
-          description: 'Last volume amount added:
-
-            - for SMS: the quantity/number of short messages
-
-            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
-
-            '
-        service:
-          type: string
-          enum:
-          - sms
-          - data
-        threshold_percentage:
-          type: integer
-          format: int64
-          minimum: 0
-          maximum: 100
-          description: Percentage of the [total_volume] for triggering a threshold event.  The threshold event is triggered when the remaining volume reaches or falls below this percentage.
-        threshold_volume:
-          type: number
-          format: double
-          description: 'Calculated upon quota creation and upon quota topup as [total_volume] * [threshold_percentage]:
-
-            - for SMS: the quantity/number of short messages
-
-            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
-
-            '
-        expiry_date:
-          type: string
-          format: date-time
-          description: ISO8601 DateTime
-        created_at:
-          type: string
-          format: date-time
-          description: ISO8601 DateTime
-      example:
-        id: 1
-        status:
-          id: 0
-          description: EXHAUSTED
-        volume: 95.5
-        total_volume: 100
-        accumulated_total_volume: 100
-        last_volume_added: 0
-        service: data
-        threshold_percentage: 20
-        threshold_volume: 20
-        expiry_date: '2027-07-26T13:13:21Z'
-        created_at: '2024-08-24T13:13:21Z'
-    InternalServerError:
-      description: Internal Server Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: InternalServerError
-        message:
-          type: string
-          example: Internal Server Error
-          description: Error Message with more details goes here
     Event:
       type: object
       properties:
@@ -737,6 +624,142 @@ components:
           - $ref: '#/components/schemas/PdpContextDetail'
           - $ref: '#/components/schemas/EventQuotaDetail'
           - $ref: '#/components/schemas/VpnDetail'
+    EndpointQuota:
+      type: object
+      required:
+      - id
+      - status
+      - volume
+      - total_volume
+      - last_volume_added
+      - service
+      - threshold_percentage
+      - threshold_volume
+      - expiry_date
+      - created_at
+      - accumulated_total_volume
+      properties:
+        id:
+          type: integer
+          format: int64
+          minimum: 1
+        status:
+          $ref: '#/components/schemas/EndpointQuotaStatus'
+        volume:
+          type: number
+          format: double
+          description: 'Amount left i.e. still available for use:
+
+            - for SMS: the quantity/number of short messages
+
+            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
+
+            - can be negative
+
+            '
+        total_volume:
+          type: number
+          format: double
+          description: 'Initially provisioned volume or (in case the quota was topped up) the remaining volume at that time plus the
+
+            volume of the topup.
+
+            - for SMS: the quantity/number of short messages
+
+            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
+
+            '
+        accumulated_total_volume:
+          type: number
+          format: double
+          description: 'Sum of initially provisioned volume and all topup volumes.
+
+            '
+        last_volume_added:
+          type: number
+          format: double
+          description: 'Last volume amount added:
+
+            - for SMS: the quantity/number of short messages
+
+            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
+
+            '
+        service:
+          type: string
+          enum:
+          - sms
+          - data
+        threshold_percentage:
+          type: integer
+          format: int64
+          minimum: 0
+          maximum: 100
+          description: Percentage of the [total_volume] for triggering a threshold event.  The threshold event is triggered when the remaining volume reaches or falls below this percentage.
+        threshold_volume:
+          type: number
+          format: double
+          description: 'Calculated upon quota creation and upon quota topup as [total_volume] * [threshold_percentage]:
+
+            - for SMS: the quantity/number of short messages
+
+            - for Data: the amount of data traffic in megabytes. 1 megabyte = 1024 kilobytes.
+
+            '
+        expiry_date:
+          type: string
+          format: date-time
+          description: ISO8601 DateTime
+        created_at:
+          type: string
+          format: date-time
+          description: ISO8601 DateTime
+      example:
+        id: 1
+        status:
+          id: 0
+          description: EXHAUSTED
+        volume: 95.5
+        total_volume: 100
+        accumulated_total_volume: 100
+        last_volume_added: 0
+        service: data
+        threshold_percentage: 20
+        threshold_volume: 20
+        expiry_date: '2027-07-26T13:13:21Z'
+        created_at: '2024-08-24T13:13:21Z'
+    QuotaDetail:
+      type: object
+      properties:
+        volume:
+          type: number
+          format: float
+        threshold_volume:
+          type: number
+          format: float
+          deprecated: true
+        threshold_percentage:
+          type: integer
+          format: int32
+          deprecated: true
+        threshold:
+          type: object
+          properties:
+            percentage:
+              type: integer
+              format: int32
+            volume:
+              type: number
+              format: float
+        id:
+          type: integer
+          format: int64
+        expiry_date:
+          type: string
+          format: date-time
+        total_volume:
+          type: number
+          format: float
     Country:
       type: object
       description: Represents a Country.
@@ -762,78 +785,55 @@ components:
           type: string
           example: de
           description: The ISO 3166 code.
-    LocationDetail:
+    InternalServerError:
+      description: Internal Server Error
       type: object
+      required:
+      - error_code
+      - error_token
+      - message
       properties:
-        id:
-          type: integer
-          format: int64
-        name:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
           type: string
-        country:
-          $ref: '#/components/schemas/Country'
-        tapcode:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: integer
-              tapcode:
-                type: string
-        mnc:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: integer
-              mnc:
-                type: string
-        update_location_failure_reason:
+          example: InternalServerError
+        message:
           type: string
-          example: RAT_NOT_ALLOWED
-    EndpointQuotaStatus:
-      type: object
-      description: '- 0 - "EXHAUSTED"
-
-        - 1 - "ACTIVE"
-
-        - 2 - "EXPIRED"
-
-        '
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 0
-          enum:
-          - 0
-          - 1
-          - 2
-        description:
-          type: string
-          example: EXHAUSTED
-          enum:
-          - EXHAUSTED
-          - ACTIVE
-          - EXPIRED
-      example:
-        id: 0
-        description: EXHAUSTED
-  responses:
+          example: Internal Server Error
+          description: Error Message with more details goes here
     NotFound:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFound'
+      description: Not found Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: Element not found
+          description: Error Message with more details goes here
+  responses:
     InternalServerError:
       description: Internal server error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/InternalServerError'
+    NotFound:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
   securitySchemes:
     BearerAuthentication:
       type: http

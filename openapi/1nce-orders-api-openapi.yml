@@ -153,50 +153,6 @@ paths:
       - BearerAuthentication: []
 components:
   schemas:
-    SIM:
-      title: SIM
-      type: object
-      properties:
-        iccid:
-          type: string
-          description: ICCID of a specific 1NCE SIM.
-          example: '8988280666000000000'
-        _links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-      description: Details about a 1NCE SIM card.
-    Ordered_product:
-      title: Product Order
-      type: object
-      properties:
-        productId:
-          type: integer
-          description: Specific id of the product to be ordered. For reference, check past orders or the product API call for avaliable product ids.
-          example: 1001
-        quantity:
-          minimum: 1
-          type: integer
-          description: Quantity to be ordered of the given product.
-      description: Product id and order quantity of the specific product.
-    Additional_Order:
-      title: Additional Order
-      required:
-      - products
-      type: object
-      properties:
-        products:
-          type: array
-          description: The specific products to be ordered.
-          items:
-            $ref: '#/components/schemas/Ordered_product'
-        delivery_address:
-          $ref: '#/components/schemas/DeliveryAddress'
-        customer_reference:
-          type: string
-          description: Optional customer-specific reference for the order.
-          example: <customer_reference>
-      description: Parameters of the order to be placed.
     DeliveryAddress:
       title: Delivery Address
       type: object
@@ -240,31 +196,50 @@ components:
           type: string
           description: Phone Number with international prefix.
       description: Address where the products of the order should be delivered to. If no additional address is provided here, the ordered products will be sent to the existing single delivery address. If more than one default delivery address is configured in the 1NCE organization, please provide a valid shipping address in the order request.
-    Product_information:
-      title: Product Information
+    SIM:
+      title: SIM
       type: object
       properties:
-        product_id:
+        iccid:
+          type: string
+          description: ICCID of a specific 1NCE SIM.
+          example: '8988280666000000000'
+        _links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      description: Details about a 1NCE SIM card.
+    Additional_Order:
+      title: Additional Order
+      required:
+      - products
+      type: object
+      properties:
+        products:
+          type: array
+          description: The specific products to be ordered.
+          items:
+            $ref: '#/components/schemas/Ordered_product'
+        delivery_address:
+          $ref: '#/components/schemas/DeliveryAddress'
+        customer_reference:
+          type: string
+          description: Optional customer-specific reference for the order.
+          example: <customer_reference>
+      description: Parameters of the order to be placed.
+    Ordered_product:
+      title: Product Order
+      type: object
+      properties:
+        productId:
           type: integer
-          description: Specific id of the product ordered. For reference, check past orders or the product API call for avaliable product ids.
+          description: Specific id of the product to be ordered. For reference, check past orders or the product API call for avaliable product ids.
           example: 1001
         quantity:
+          minimum: 1
           type: integer
-          description: Quantity of SIMs with this product id ordered.
-          example: 1
-      description: General information about an ordered product
-    Link:
-      title: Link
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Relation of SIM link.
-          example: self
-        href:
-          type: string
-          description: Link for getting details about the specific SIM.
-          example: https://api.1nce.com/api/v1/sims/9999999999000000001
+          description: Quantity to be ordered of the given product.
+      description: Product id and order quantity of the specific product.
     Order:
       title: Order
       type: object
@@ -316,6 +291,31 @@ components:
           items:
             $ref: '#/components/schemas/Product_information'
       description: Detailed information about an order.
+    Link:
+      title: Link
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Relation of SIM link.
+          example: self
+        href:
+          type: string
+          description: Link for getting details about the specific SIM.
+          example: https://api.1nce.com/api/v1/sims/9999999999000000001
+    Product_information:
+      title: Product Information
+      type: object
+      properties:
+        product_id:
+          type: integer
+          description: Specific id of the product ordered. For reference, check past orders or the product API call for avaliable product ids.
+          example: 1001
+        quantity:
+          type: integer
+          description: Quantity of SIMs with this product id ordered.
+          example: 1
+      description: General information about an ordered product
   securitySchemes:
     BearerAuthentication:
       type: http

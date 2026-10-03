@@ -93,6 +93,28 @@ paths:
       - BasicAuthentication: []
 components:
   schemas:
+    Bearer_Token_400:
+      title: Bearer Token 400 Response
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: HTTP status code 400 (Bad Request) indicating that there was an issue with the request towards the 1NCE API. Please double check the executed API request.
+          default: 400
+        errorCode:
+          type: string
+          description: String error code indicating the reference error.
+          enum:
+          - BadCredentials
+          - AuthValidationError
+          - BodyValidationError
+          - UnsupportedContentTypeError
+          example: AuthValidationError
+        message:
+          type: string
+          description: String explanation of the error that occurred.
+          example: 'Auth header validation error: Missing attributes ''password'''
+      description: Response of querying the access token for the 1NCE API.
     Bearer_Token_200:
       title: Bearer Token 200 Response
       type: object
@@ -123,28 +145,6 @@ components:
           type: string
           description: Scope access level of the returned token.
           default: all
-      description: Response of querying the access token for the 1NCE API.
-    Bearer_Token_400:
-      title: Bearer Token 400 Response
-      type: object
-      properties:
-        statusCode:
-          type: integer
-          description: HTTP status code 400 (Bad Request) indicating that there was an issue with the request towards the 1NCE API. Please double check the executed API request.
-          default: 400
-        errorCode:
-          type: string
-          description: String error code indicating the reference error.
-          enum:
-          - BadCredentials
-          - AuthValidationError
-          - BodyValidationError
-          - UnsupportedContentTypeError
-          example: AuthValidationError
-        message:
-          type: string
-          description: String explanation of the error that occurred.
-          example: 'Auth header validation error: Missing attributes ''password'''
       description: Response of querying the access token for the 1NCE API.
   securitySchemes:
     BasicAuthentication:

@@ -99,43 +99,6 @@ paths:
       x-codegen-request-body-name: request
 components:
   schemas:
-    Service_request:
-      title: Service Request
-      type: object
-      properties:
-        caseId:
-          type: string
-          description: String case id to reference the support case.
-          example: '12'
-        communications:
-          type: array
-          items:
-            $ref: '#/components/schemas/Communication'
-        createDate:
-          type: string
-          description: Timestamp when the service request was created.
-          format: date-time
-        solvedDate:
-          type: string
-          description: Timestamp when the service request was marked as solved.
-          format: date-time
-        status:
-          type: string
-          description: Current status of the service request.
-          example: OPEN
-          enum:
-          - OPEN
-          - IN_PROGRESS
-          - CLOSED
-        subject:
-          type: string
-          description: Subject of the service request ticket.
-          example: Connectivity Issue
-        text:
-          type: string
-          description: Text body of the service request ticket.
-          example: Custom Text
-      description: Detailed content of the service request ticket.
     ManagementApiServiceRequest:
       title: Service Request
       type: object
@@ -197,6 +160,43 @@ components:
           - MAIL_IN
           - MAIL_OUT
       description: Details about the communication in the service request.
+    Service_request:
+      title: Service Request
+      type: object
+      properties:
+        caseId:
+          type: string
+          description: String case id to reference the support case.
+          example: '12'
+        communications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Communication'
+        createDate:
+          type: string
+          description: Timestamp when the service request was created.
+          format: date-time
+        solvedDate:
+          type: string
+          description: Timestamp when the service request was marked as solved.
+          format: date-time
+        status:
+          type: string
+          description: Current status of the service request.
+          example: OPEN
+          enum:
+          - OPEN
+          - IN_PROGRESS
+          - CLOSED
+        subject:
+          type: string
+          description: Subject of the service request ticket.
+          example: Connectivity Issue
+        text:
+          type: string
+          description: Text body of the service request ticket.
+          example: Custom Text
+      description: Detailed content of the service request ticket.
   securitySchemes:
     BearerAuthentication:
       type: http
