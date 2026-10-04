@@ -514,23 +514,27 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Name:
-      description: The name of the geofence
-      maxLength: 50
+    EventSources:
+      description: The sources of coordinates to evaluate towards geofence. Defaults to [GPS, CellTower]
+      items:
+        enum:
+        - CellTower
+        - GPS
+        type: string
+      maxItems: 2
+      minItems: 1
+      type: array
+      uniqueItems: true
+    Created:
+      description: When the Geofence was created
+      format: date-time
       type: string
-    postGeofenceResponseschema:
-      description: Response to post geofence request.
-      oneOf:
-      - $ref: '#/components/schemas/postGeofenceResponseschema_oneOf'
-      - $ref: '#/components/schemas/postGeofenceResponseschema_oneOf_1'
-      title: Post Geofence Response
-    postschema_5:
-      description: Request to create a geofence.
-      oneOf:
-      - $ref: '#/components/schemas/CreatePolygonGeofence'
-      - $ref: '#/components/schemas/CreateCircleGeofence'
-      title: Post Geofence Request
-      type: object
+    Type:
+      description: The type of Geofence
+      enum:
+      - polygon
+      - circle
+      type: string
     getResponseschema_9_items_inner:
       additionalProperties: false
       properties:
@@ -577,103 +581,43 @@ components:
       - resolutionMode
       - sampleTime
       type: object
-    getResponseschema_9_items_inner_towerLocation:
-      description: Coordinates of the specific celltower
+    serverErrorResponse:
+      description: An API error response in case of a Server Side Error.
       properties:
-        longitude:
-          type: number
-        latitude:
-          type: number
-      type: object
-    getAllGeofenceResponseschema:
-      description: Response to get all geofences request.
-      properties:
-        items:
-          description: List of geofences
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unknown Error
+          - Server Error
+          type: string
+        errors:
+          description: List of errors encountered while calling the API.
           items:
-            $ref: '#/components/schemas/GenericGeofenceData'
+            type: object
           type: array
+      title: Server Error
+      type: object
+    getLatestResponseschema:
+      description: Get latest positions of customer devices.
+      properties:
         page:
-          description: Current page number
-          minimum: 1
+          description: The current page number of the positions.
+          example: 1
           type: number
         pageAmount:
-          description: Total number of pages
-          minimum: 1
+          description: The total amount of pages needed to show all positions.
+          example: 10
           type: number
+        coordinates:
+          description: Latest positions of each customer device
+          items:
+            $ref: '#/components/schemas/getLatestResponseschema_coordinates_inner'
+          type: array
       required:
-      - items
+      - coordinates
       - page
       - pageAmount
-      title: Get All Geofences Response
-      type: object
-    EventTypes:
-      description: The event types to register to. Defaults to [ENTER, EXIT]
-      items:
-        enum:
-        - ENTER
-        - EXIT
-        type: string
-      maxItems: 2
-      minItems: 1
-      type: array
-      uniqueItems: true
-    patchGeofenceResponseschema_oneOf_1:
-      additionalProperties: false
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        name:
-          $ref: '#/components/schemas/Name'
-        eventTypes:
-          $ref: '#/components/schemas/EventTypes'
-        eventSources:
-          $ref: '#/components/schemas/EventSources'
-        type:
-          description: The type of geofence
-          type: string
-        radius:
-          $ref: '#/components/schemas/Radius'
-        center:
-          $ref: '#/components/schemas/Center'
-        deviceId:
-          $ref: '#/components/schemas/DeviceId'
-        created:
-          $ref: '#/components/schemas/Created'
-        updated:
-          $ref: '#/components/schemas/Updated'
-      required:
-      - center
-      - created
-      - deviceId
-      - eventSources
-      - eventTypes
-      - id
-      - name
-      - radius
-      - updated
-      type: object
-    GenericGeofenceData:
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        name:
-          $ref: '#/components/schemas/Name'
-        created:
-          $ref: '#/components/schemas/Created'
-        updated:
-          $ref: '#/components/schemas/Updated'
-        deviceId:
-          $ref: '#/components/schemas/DeviceId'
-        type:
-          $ref: '#/components/schemas/Type'
-      required:
-      - created
-      - deviceId
-      - id
-      - name
-      - type
-      - updated
+      title: Latest Devices Positions response
       type: object
     postGeofenceResponseschema_oneOf:
       additionalProperties: false
@@ -702,8 +646,44 @@ components:
       - name
       - type
       type: object
-    DeviceId:
-      description: The device for which this Geofence is bound to
+    getResponseschema_8:
+      description: Get positions of a specific device.
+      properties:
+        page:
+          description: The current page number of the positions.
+          example: 1
+          type: number
+        pageAmount:
+          description: The total amount of pages needed to show all positions.
+          example: 10
+          type: number
+        coordinates:
+          description: Positions of the device
+          items:
+            $ref: '#/components/schemas/getResponseschema_8_coordinates_inner'
+          type: array
+      required:
+      - coordinates
+      - page
+      - pageAmount
+      title: Device Positions response
+      type: object
+    EventTypes:
+      description: The event types to register to. Defaults to [ENTER, EXIT]
+      items:
+        enum:
+        - ENTER
+        - EXIT
+        type: string
+      maxItems: 2
+      minItems: 1
+      type: array
+      uniqueItems: true
+    Radius:
+      description: Circle geofence radius in meters
+      maximum: 30000
+      minimum: 50
+      type: number
     badRequestResponse:
       description: An API error response in case of an HTTP Bad Request.
       properties:
@@ -723,160 +703,31 @@ components:
           type: array
       title: Bad Request
       type: object
-    getLatestResponseschema:
-      description: Get latest positions of customer devices.
-      properties:
-        page:
-          description: The current page number of the positions.
-          example: 1
-          type: number
-        pageAmount:
-          description: The total amount of pages needed to show all positions.
-          example: 10
-          type: number
-        coordinates:
-          description: Latest positions of each customer device
-          items:
-            $ref: '#/components/schemas/getLatestResponseschema_coordinates_inner'
-          type: array
-      required:
-      - coordinates
-      - page
-      - pageAmount
-      title: Latest Devices Positions response
-      type: object
-    patchschema_1:
-      additionalProperties: false
-      description: Request to update a geofence.
-      properties:
-        name:
-          $ref: '#/components/schemas/Name'
-        eventTypes:
-          $ref: '#/components/schemas/EventTypes'
-        eventSources:
-          $ref: '#/components/schemas/EventSources'
-      title: Patch Geofence Request
-      type: object
-    getResponseschema_8_coordinates_inner:
-      additionalProperties: false
-      properties:
-        coordinate:
-          description: Coordinates of the specific position, in the following format [long, lat]
-          items:
-            type: number
-          maxItems: 2
-          minItems: 2
-          type: array
-        sampleTime:
-          description: Sample time of the position
-          format: date-time
-          type: string
-        source:
-          description: Source of the Position
-          enum:
-          - GPS
-          - CellTower
-          type: string
-        metadata:
-          description: Metadata of the Position
-          type: object
-      required:
-      - coordinate
-      - sampleTime
-      - source
-      type: object
-    CreatePolygonGeofence:
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/Name'
-        eventTypes:
-          $ref: '#/components/schemas/EventTypes'
-        eventSources:
-          $ref: '#/components/schemas/EventSources'
-        deviceId:
-          $ref: '#/components/schemas/DeviceId'
-        type:
-          description: The type of geofence
-          type: string
-        coordinates:
-          $ref: '#/components/schemas/Coordinates'
-      required:
-      - coordinates
-      - name
-      - type
-      type: object
-    Type:
-      description: The type of Geofence
-      enum:
-      - polygon
-      - circle
-      type: string
-    getGeofenceResponseschema:
-      description: Response to get geofence request.
+    patchGeofenceResponseschema:
+      description: Patch request geofence response.
       oneOf:
-      - $ref: '#/components/schemas/PolygonGeofenceData'
-      - $ref: '#/components/schemas/CircleGeofenceData'
-      title: Get Geofence Response
-    serverErrorResponse:
-      description: An API error response in case of a Server Side Error.
+      - $ref: '#/components/schemas/patchGeofenceResponseschema_oneOf'
+      - $ref: '#/components/schemas/patchGeofenceResponseschema_oneOf_1'
+      title: Patch Geofence Response
+    getResponseschema_9_items_inner_towerMetadata:
+      description: Identifier attributes of the tower
       properties:
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Unknown Error
-          - Server Error
+        MCC:
           type: string
-        errors:
-          description: List of errors encountered while calling the API.
-          items:
-            type: object
-          type: array
-      title: Server Error
+        MNC:
+          type: string
+        LAC:
+          type: string
+        CellID:
+          type: string
       type: object
-    Radius:
-      description: Circle geofence radius in meters
-      maximum: 30000
-      minimum: 50
-      type: number
-    Center:
-      description: The coordinates of the center of the geofence (long, lat)
-      items:
-        type: number
-      maxItems: 2
-      minItems: 2
-      type: array
-    patchGeofenceResponseschema_oneOf:
-      additionalProperties: false
+    getResponseschema_9_items_inner_towerLocation:
+      description: Coordinates of the specific celltower
       properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        name:
-          $ref: '#/components/schemas/Name'
-        eventTypes:
-          $ref: '#/components/schemas/EventTypes'
-        eventSources:
-          $ref: '#/components/schemas/EventSources'
-        type:
-          description: The type of geofence
-          type: string
-        coordinates:
-          $ref: '#/components/schemas/Coordinates'
-        deviceId:
-          $ref: '#/components/schemas/DeviceId'
-        created:
-          $ref: '#/components/schemas/Created'
-        updated:
-          $ref: '#/components/schemas/Updated'
-      required:
-      - coordinates
-      - created
-      - deviceId
-      - eventSources
-      - eventTypes
-      - id
-      - name
-      - updated
+        longitude:
+          type: number
+        latitude:
+          type: number
       type: object
     getLatestResponseschema_coordinates_inner:
       additionalProperties: false
@@ -912,37 +763,21 @@ components:
       - sampleTime
       - source
       type: object
-    patchGeofenceResponseschema:
-      description: Patch request geofence response.
-      oneOf:
-      - $ref: '#/components/schemas/patchGeofenceResponseschema_oneOf'
-      - $ref: '#/components/schemas/patchGeofenceResponseschema_oneOf_1'
-      title: Patch Geofence Response
-    Coordinates:
-      description: The polygon geofence coordinates
-      items:
-        items:
-          description: Coordinates (long, lat)
-          items:
-            type: number
-          maxItems: 2
-          minItems: 2
-          type: array
-        minItems: 4
-        type: array
-      minItems: 1
-      type: array
-    CreateCircleGeofence:
+    Name:
+      description: The name of the geofence
+      maxLength: 50
+      type: string
+    patchGeofenceResponseschema_oneOf_1:
       additionalProperties: false
       properties:
+        id:
+          $ref: '#/components/schemas/Id'
         name:
           $ref: '#/components/schemas/Name'
         eventTypes:
           $ref: '#/components/schemas/EventTypes'
         eventSources:
           $ref: '#/components/schemas/EventSources'
-        deviceId:
-          $ref: '#/components/schemas/DeviceId'
         type:
           description: The type of geofence
           type: string
@@ -950,48 +785,30 @@ components:
           $ref: '#/components/schemas/Radius'
         center:
           $ref: '#/components/schemas/Center'
-      required:
-      - name
-      - radius
-      - type
-      type: object
-    PolygonGeofenceData:
-      additionalProperties: false
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        name:
-          $ref: '#/components/schemas/Name'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
         created:
           $ref: '#/components/schemas/Created'
         updated:
           $ref: '#/components/schemas/Updated'
-        deviceId:
-          $ref: '#/components/schemas/DeviceId'
-        eventTypes:
-          $ref: '#/components/schemas/EventTypes'
-        eventSources:
-          $ref: '#/components/schemas/EventSources'
-        type:
-          description: The type of geofence
-          type: string
-        coordinates:
-          $ref: '#/components/schemas/Coordinates'
       required:
-      - coordinates
+      - center
       - created
       - deviceId
       - eventSources
       - eventTypes
       - id
       - name
-      - type
+      - radius
       - updated
       type: object
-    Created:
-      description: When the Geofence was created
-      format: date-time
-      type: string
+    Center:
+      description: The coordinates of the center of the geofence (long, lat)
+      items:
+        type: number
+      maxItems: 2
+      minItems: 2
+      type: array
     unauthorizedRequestResponse:
       description: An API error response in case of an HTTP Unauthorized Request.
       properties:
@@ -1011,107 +828,13 @@ components:
           type: array
       title: Unauthorized Request
       type: object
-    getResponseschema_8:
-      description: Get positions of a specific device.
-      properties:
-        page:
-          description: The current page number of the positions.
-          example: 1
-          type: number
-        pageAmount:
-          description: The total amount of pages needed to show all positions.
-          example: 10
-          type: number
-        coordinates:
-          description: Positions of the device
-          items:
-            $ref: '#/components/schemas/getResponseschema_8_coordinates_inner'
-          type: array
-      required:
-      - coordinates
-      - page
-      - pageAmount
-      title: Device Positions response
-      type: object
-    postGeofenceResponseschema_oneOf_1:
-      additionalProperties: false
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        name:
-          $ref: '#/components/schemas/Name'
-        eventTypes:
-          $ref: '#/components/schemas/EventTypes'
-        eventSources:
-          $ref: '#/components/schemas/EventSources'
-        type:
-          description: The type of geofence
-          type: string
-        radius:
-          $ref: '#/components/schemas/Radius'
-        center:
-          $ref: '#/components/schemas/Center'
-        deviceId:
-          $ref: '#/components/schemas/DeviceId'
-      required:
-      - center
-      - deviceId
-      - eventSources
-      - eventTypes
-      - id
-      - name
-      - radius
-      - type
-      type: object
-    EventSources:
-      description: The sources of coordinates to evaluate towards geofence. Defaults to [GPS, CellTower]
-      items:
-        enum:
-        - CellTower
-        - GPS
-        type: string
-      maxItems: 2
-      minItems: 1
-      type: array
-      uniqueItems: true
     Updated:
       description: When the Geofence was last updated
       format: date-time
       type: string
-    forbiddenResponse:
-      description: An API error response in case of an HTTP Forbidden Request.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 403
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Forbidden
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Forbidden Request
-      type: object
     Id:
       description: Identifier of the geofence
       type: string
-    getResponseschema_9:
-      description: Get Cell location resolutions for one device (maximum of last 7 days).
-      properties:
-        items:
-          description: Location resolutions of the device
-          items:
-            $ref: '#/components/schemas/getResponseschema_9_items_inner'
-          type: array
-      required:
-      - items
-      title: Device Celltower Location Resolutions response
-      type: object
     CircleGeofenceData:
       additionalProperties: false
       properties:
@@ -1148,17 +871,143 @@ components:
       - type
       - updated
       type: object
-    getResponseschema_9_items_inner_towerMetadata:
-      description: Identifier attributes of the tower
+    patchGeofenceResponseschema_oneOf:
+      additionalProperties: false
       properties:
-        MCC:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          $ref: '#/components/schemas/Name'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+        type:
+          description: The type of geofence
           type: string
-        MNC:
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+        created:
+          $ref: '#/components/schemas/Created'
+        updated:
+          $ref: '#/components/schemas/Updated'
+      required:
+      - coordinates
+      - created
+      - deviceId
+      - eventSources
+      - eventTypes
+      - id
+      - name
+      - updated
+      type: object
+    PolygonGeofenceData:
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          $ref: '#/components/schemas/Name'
+        created:
+          $ref: '#/components/schemas/Created'
+        updated:
+          $ref: '#/components/schemas/Updated'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+        type:
+          description: The type of geofence
           type: string
-        LAC:
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+      required:
+      - coordinates
+      - created
+      - deviceId
+      - eventSources
+      - eventTypes
+      - id
+      - name
+      - type
+      - updated
+      type: object
+    CreatePolygonGeofence:
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/Name'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+        type:
+          description: The type of geofence
           type: string
-        CellID:
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+      required:
+      - coordinates
+      - name
+      - type
+      type: object
+    postGeofenceResponseschema_oneOf_1:
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          $ref: '#/components/schemas/Name'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+        type:
+          description: The type of geofence
           type: string
+        radius:
+          $ref: '#/components/schemas/Radius'
+        center:
+          $ref: '#/components/schemas/Center'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+      required:
+      - center
+      - deviceId
+      - eventSources
+      - eventTypes
+      - id
+      - name
+      - radius
+      - type
+      type: object
+    getAllGeofenceResponseschema:
+      description: Response to get all geofences request.
+      properties:
+        items:
+          description: List of geofences
+          items:
+            $ref: '#/components/schemas/GenericGeofenceData'
+          type: array
+        page:
+          description: Current page number
+          minimum: 1
+          type: number
+        pageAmount:
+          description: Total number of pages
+          minimum: 1
+          type: number
+      required:
+      - items
+      - page
+      - pageAmount
+      title: Get All Geofences Response
       type: object
     notFoundResponse:
       description: An API error response when a resource is Not Found.
@@ -1179,6 +1028,157 @@ components:
           type: array
       title: Not Found
       type: object
+    getResponseschema_8_coordinates_inner:
+      additionalProperties: false
+      properties:
+        coordinate:
+          description: Coordinates of the specific position, in the following format [long, lat]
+          items:
+            type: number
+          maxItems: 2
+          minItems: 2
+          type: array
+        sampleTime:
+          description: Sample time of the position
+          format: date-time
+          type: string
+        source:
+          description: Source of the Position
+          enum:
+          - GPS
+          - CellTower
+          type: string
+        metadata:
+          description: Metadata of the Position
+          type: object
+      required:
+      - coordinate
+      - sampleTime
+      - source
+      type: object
+    getGeofenceResponseschema:
+      description: Response to get geofence request.
+      oneOf:
+      - $ref: '#/components/schemas/PolygonGeofenceData'
+      - $ref: '#/components/schemas/CircleGeofenceData'
+      title: Get Geofence Response
+    CreateCircleGeofence:
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/Name'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+        type:
+          description: The type of geofence
+          type: string
+        radius:
+          $ref: '#/components/schemas/Radius'
+        center:
+          $ref: '#/components/schemas/Center'
+      required:
+      - name
+      - radius
+      - type
+      type: object
+    GenericGeofenceData:
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          $ref: '#/components/schemas/Name'
+        created:
+          $ref: '#/components/schemas/Created'
+        updated:
+          $ref: '#/components/schemas/Updated'
+        deviceId:
+          $ref: '#/components/schemas/DeviceId'
+        type:
+          $ref: '#/components/schemas/Type'
+      required:
+      - created
+      - deviceId
+      - id
+      - name
+      - type
+      - updated
+      type: object
+    postschema_5:
+      description: Request to create a geofence.
+      oneOf:
+      - $ref: '#/components/schemas/CreatePolygonGeofence'
+      - $ref: '#/components/schemas/CreateCircleGeofence'
+      title: Post Geofence Request
+      type: object
+    DeviceId:
+      description: The device for which this Geofence is bound to
+    getResponseschema_9:
+      description: Get Cell location resolutions for one device (maximum of last 7 days).
+      properties:
+        items:
+          description: Location resolutions of the device
+          items:
+            $ref: '#/components/schemas/getResponseschema_9_items_inner'
+          type: array
+      required:
+      - items
+      title: Device Celltower Location Resolutions response
+      type: object
+    postGeofenceResponseschema:
+      description: Response to post geofence request.
+      oneOf:
+      - $ref: '#/components/schemas/postGeofenceResponseschema_oneOf'
+      - $ref: '#/components/schemas/postGeofenceResponseschema_oneOf_1'
+      title: Post Geofence Response
+    forbiddenResponse:
+      description: An API error response in case of an HTTP Forbidden Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 403
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Forbidden
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Forbidden Request
+      type: object
+    patchschema_1:
+      additionalProperties: false
+      description: Request to update a geofence.
+      properties:
+        name:
+          $ref: '#/components/schemas/Name'
+        eventTypes:
+          $ref: '#/components/schemas/EventTypes'
+        eventSources:
+          $ref: '#/components/schemas/EventSources'
+      title: Patch Geofence Request
+      type: object
+    Coordinates:
+      description: The polygon geofence coordinates
+      items:
+        items:
+          description: Coordinates (long, lat)
+          items:
+            type: number
+          maxItems: 2
+          minItems: 2
+          type: array
+        minItems: 4
+        type: array
+      minItems: 1
+      type: array
   responses:
     InternalServerError:
       content:
@@ -1186,24 +1186,24 @@ components:
           schema:
             $ref: '#/components/schemas/serverErrorResponse'
       description: Internal Server Error
-    UnauthorizedError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/unauthorizedRequestResponse'
-      description: Unauthorized
-    BadRequestError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/badRequestResponse'
-      description: Bad Request
     ForbiddenError:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/forbiddenResponse'
       description: Forbidden
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/badRequestResponse'
+      description: Bad Request
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unauthorizedRequestResponse'
+      description: Unauthorized
     NotFoundError:
       content:
         application/json:

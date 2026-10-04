@@ -48,6 +48,23 @@ paths:
       - BearerAuthentication: []
 components:
   schemas:
+    Charge:
+      title: Charge
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the charge.
+          example: provisionCharge
+        amount_net:
+          type: number
+          description: Net amount of the charge.
+          example: 10
+        currency:
+          type: string
+          description: Currency of the charge.
+          example: EUR
+      description: Charging price for a product or service offered by 1NCE.
     Product:
       title: Product
       type: object
@@ -93,23 +110,6 @@ components:
           items:
             $ref: '#/components/schemas/Charge'
       description: Information about a specific 1NCE product.
-    Charge:
-      title: Charge
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the charge.
-          example: provisionCharge
-        amount_net:
-          type: number
-          description: Net amount of the charge.
-          example: 10
-        currency:
-          type: string
-          description: Currency of the charge.
-          example: EUR
-      description: Charging price for a product or service offered by 1NCE.
   securitySchemes:
     BearerAuthentication:
       type: http

@@ -54,66 +54,6 @@ paths:
       security:
       - BearerAuthentication: []
 components:
-  schemas:
-    DeleteItemResponse:
-      type: object
-      properties:
-        id:
-          type: string
-    BadRequest:
-      description: Validation Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: BadRequest
-        message:
-          type: string
-          example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
-          description: Error Message with more details goes here
-    InternalServerError:
-      description: Internal Server Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: InternalServerError
-        message:
-          type: string
-          example: Internal Server Error
-          description: Error Message with more details goes here
-    NotFound:
-      description: Not found Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: Element not found
-          description: Error Message with more details goes here
   responses:
     BadRequest:
       description: Bad request
@@ -139,6 +79,66 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/NotFound'
+  schemas:
+    InternalServerError:
+      description: Internal Server Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: InternalServerError
+        message:
+          type: string
+          example: Internal Server Error
+          description: Error Message with more details goes here
+    DeleteItemResponse:
+      type: object
+      properties:
+        id:
+          type: string
+    NotFound:
+      description: Not found Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: Element not found
+          description: Error Message with more details goes here
+    BadRequest:
+      description: Validation Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
+          description: Error Message with more details goes here
   securitySchemes:
     BearerAuthentication:
       type: http

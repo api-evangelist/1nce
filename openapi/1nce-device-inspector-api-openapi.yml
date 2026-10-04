@@ -486,14 +486,39 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    getAllResponseschema_4:
+    getResponseschema_7_items_inner:
       additionalProperties: false
-      description: Get the history insights for a specific time range.
+      properties:
+        time:
+          description: Date of the device statistics.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        protocol:
+          description: Protocol of the message.
+          enum:
+          - UDP
+          - COAP
+          - LWM2M
+          example: COAP
+          type: string
+        amount:
+          description: Amount of messages.
+          example: 8
+          type: number
+      required:
+      - amount
+      - protocol
+      - time
+      type: object
+    getResponseschema_7:
+      additionalProperties: false
+      description: Get the devices history insights for a specific time range.
       properties:
         items:
           description: List of messages.
           items:
-            $ref: '#/components/schemas/getAllResponseschema_4_items_inner'
+            $ref: '#/components/schemas/getResponseschema_7_items_inner'
           type: array
         interval:
           description: Interval of the message statistics, like 1h.
@@ -504,21 +529,125 @@ components:
       - items
       title: Device History Insights Response
       type: object
-    getResponseschema_5:
-      description: Get a device shadow state (telemetry data).
+    serverErrorResponse:
+      description: An API error response in case of a Server Side Error.
       properties:
-        id:
-          description: Id of the device.
-          example: <device_id>
-          minLength: 19
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unknown Error
+          - Server Error
           type: string
-        state:
-          description: The current IoT Core Device State.
-          type: object
+        errors:
+          description: List of errors encountered while calling the API.
+          items:
+            type: object
+          type: array
+      title: Server Error
+      type: object
+    getAllResponseschema_4_items_inner:
+      additionalProperties: false
+      properties:
+        time:
+          description: Date of the statistics.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        protocol:
+          description: Protocol of the message.
+          enum:
+          - UDP
+          - COAP
+          - LWM2M
+          example: COAP
+          type: string
+        amount:
+          description: Amount of messages.
+          example: 8
+          type: number
       required:
-      - id
-      - state
-      title: Device Telemetry
+      - amount
+      - protocol
+      - time
+      type: object
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
+      type: object
+    getAllResponseschema_3_items_inner:
+      additionalProperties: false
+      properties:
+        iccid:
+          description: Iccid of the device.
+          example: '8988280666000000000'
+          pattern: ^[0-9]{19}$
+          type: string
+        time:
+          description: Time when message was received.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        payload:
+          description: Stringified JSON object or base64 encoded string.
+          example: <custom_payload>
+          type: string
+        protocol:
+          description: The protocol used to communicate.
+          enum:
+          - UDP
+          - COAP
+          - LWM2M
+          example: COAP
+          type: string
+        deviceId:
+          description: The unique ID of the device.
+          example: <device_id>
+          type: string
+      required:
+      - deviceId
+      - iccid
+      - payload
+      - protocol
+      - time
+      type: object
+    getAllResponseschema_2:
+      description: Get all devices as a list.
+      properties:
+        items:
+          description: List of devices.
+          items:
+            $ref: '#/components/schemas/getAllResponseschema_2_items_inner'
+          type: array
+        page:
+          description: Current page number.
+          example: 1
+          minimum: 1
+          type: number
+        pageAmount:
+          description: Total number of pages.
+          example: 2
+          minimum: 1
+          type: number
+      required:
+      - items
+      - page
+      - pageAmount
+      title: All Devices Request
       type: object
     getResponseschema_6_items_inner:
       additionalProperties: false
@@ -559,86 +688,6 @@ components:
       - payload
       - protocol
       - time
-      type: object
-    badRequestResponse:
-      description: An API error response in case of an HTTP Bad Request.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 400
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Bad Request
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Bad Request
-      type: object
-    serverErrorResponse:
-      description: An API error response in case of a Server Side Error.
-      properties:
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Unknown Error
-          - Server Error
-          type: string
-        errors:
-          description: List of errors encountered while calling the API.
-          items:
-            type: object
-          type: array
-      title: Server Error
-      type: object
-    getAllResponseschema_3:
-      additionalProperties: false
-      description: Get all messages from the historian.
-      properties:
-        items:
-          description: List of messages.
-          items:
-            $ref: '#/components/schemas/getAllResponseschema_3_items_inner'
-          type: array
-        nextToken:
-          description: This API query uses token-based pagination. A queried page will include a nextToken for accessing the next page for pagination if a further page is available. Please use the returned token in the nextToken query parameters to obtain the next page.
-          example: <next_token>
-          type: string
-        firstToken:
-          description: When no nextToken is passed as part of the query parameters, the firstToken is provided as reference to the first page of the queried pages.
-          example: <first_token>
-          type: string
-      required:
-      - items
-      title: History Response
-      type: object
-    getAllResponseschema_2:
-      description: Get all devices as a list.
-      properties:
-        items:
-          description: List of devices.
-          items:
-            $ref: '#/components/schemas/getAllResponseschema_2_items_inner'
-          type: array
-        page:
-          description: Current page number.
-          example: 1
-          minimum: 1
-          type: number
-        pageAmount:
-          description: Total number of pages.
-          example: 2
-          minimum: 1
-          type: number
-      required:
-      - items
-      - page
-      - pageAmount
-      title: All Devices Request
       type: object
     unauthorizedRequestResponse:
       description: An API error response in case of an HTTP Unauthorized Request.
@@ -687,6 +736,62 @@ components:
       - imsi1
       - ip
       type: object
+    notFoundResponse:
+      description: An API error response when a resource is Not Found.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 404
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Not Found
+          type: string
+        errors:
+          description: Detailed error information
+          items:
+            type: object
+          type: array
+      title: Not Found
+      type: object
+    getResponseschema_5:
+      description: Get a device shadow state (telemetry data).
+      properties:
+        id:
+          description: Id of the device.
+          example: <device_id>
+          minLength: 19
+          type: string
+        state:
+          description: The current IoT Core Device State.
+          type: object
+      required:
+      - id
+      - state
+      title: Device Telemetry
+      type: object
+    getAllResponseschema_3:
+      additionalProperties: false
+      description: Get all messages from the historian.
+      properties:
+        items:
+          description: List of messages.
+          items:
+            $ref: '#/components/schemas/getAllResponseschema_3_items_inner'
+          type: array
+        nextToken:
+          description: This API query uses token-based pagination. A queried page will include a nextToken for accessing the next page for pagination if a further page is available. Please use the returned token in the nextToken query parameters to obtain the next page.
+          example: <next_token>
+          type: string
+        firstToken:
+          description: When no nextToken is passed as part of the query parameters, the firstToken is provided as reference to the first page of the queried pages.
+          example: <first_token>
+          type: string
+      required:
+      - items
+      title: History Response
+      type: object
     getResponseschema_6:
       additionalProperties: false
       description: Get all device messages from the historian.
@@ -707,67 +812,6 @@ components:
       required:
       - items
       title: Device History Response
-      type: object
-    getAllResponseschema_3_items_inner:
-      additionalProperties: false
-      properties:
-        iccid:
-          description: Iccid of the device.
-          example: '8988280666000000000'
-          pattern: ^[0-9]{19}$
-          type: string
-        time:
-          description: Time when message was received.
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        payload:
-          description: Stringified JSON object or base64 encoded string.
-          example: <custom_payload>
-          type: string
-        protocol:
-          description: The protocol used to communicate.
-          enum:
-          - UDP
-          - COAP
-          - LWM2M
-          example: COAP
-          type: string
-        deviceId:
-          description: The unique ID of the device.
-          example: <device_id>
-          type: string
-      required:
-      - deviceId
-      - iccid
-      - payload
-      - protocol
-      - time
-      type: object
-    getResponseschema_7_items_inner:
-      additionalProperties: false
-      properties:
-        time:
-          description: Date of the device statistics.
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        protocol:
-          description: Protocol of the message.
-          enum:
-          - UDP
-          - COAP
-          - LWM2M
-          example: COAP
-          type: string
-        amount:
-          description: Amount of messages.
-          example: 8
-          type: number
-      required:
-      - amount
-      - protocol
-      - time
       type: object
     getResponseschema_4:
       description: Get a single device metadata.
@@ -823,14 +867,14 @@ components:
           type: array
       title: Forbidden Request
       type: object
-    getResponseschema_7:
+    getAllResponseschema_4:
       additionalProperties: false
-      description: Get the devices history insights for a specific time range.
+      description: Get the history insights for a specific time range.
       properties:
         items:
           description: List of messages.
           items:
-            $ref: '#/components/schemas/getResponseschema_7_items_inner'
+            $ref: '#/components/schemas/getAllResponseschema_4_items_inner'
           type: array
         interval:
           description: Interval of the message statistics, like 1h.
@@ -841,50 +885,6 @@ components:
       - items
       title: Device History Insights Response
       type: object
-    getAllResponseschema_4_items_inner:
-      additionalProperties: false
-      properties:
-        time:
-          description: Date of the statistics.
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        protocol:
-          description: Protocol of the message.
-          enum:
-          - UDP
-          - COAP
-          - LWM2M
-          example: COAP
-          type: string
-        amount:
-          description: Amount of messages.
-          example: 8
-          type: number
-      required:
-      - amount
-      - protocol
-      - time
-      type: object
-    notFoundResponse:
-      description: An API error response when a resource is Not Found.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 404
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Not Found
-          type: string
-        errors:
-          description: Detailed error information
-          items:
-            type: object
-          type: array
-      title: Not Found
-      type: object
   responses:
     InternalServerError:
       content:
@@ -892,24 +892,24 @@ components:
           schema:
             $ref: '#/components/schemas/serverErrorResponse'
       description: Internal Server Error
-    UnauthorizedError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/unauthorizedRequestResponse'
-      description: Unauthorized
-    BadRequestError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/badRequestResponse'
-      description: Bad Request
     ForbiddenError:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/forbiddenResponse'
       description: Forbidden
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/badRequestResponse'
+      description: Bad Request
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unauthorizedRequestResponse'
+      description: Unauthorized
     NotFoundError:
       content:
         application/json:

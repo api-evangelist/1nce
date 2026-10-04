@@ -149,6 +149,16 @@ paths:
       - BearerAuthentication: []
 components:
   schemas:
+    DailyUsage:
+      title: Usage Record
+      type: object
+      properties:
+        stats:
+          type: array
+          description: List of queried usage statistics for the given SIM.
+          items:
+            $ref: '#/components/schemas/Daily'
+      description: Information about SIM data and SMS usage.
     TrafficTypeSMS:
       title: Traffic Type SMS
       type: object
@@ -166,73 +176,51 @@ components:
           description: Lists the unit used for the traffic type.
           example: SMS
       description: Details about the SMS traffic type.
-    DailyUsage:
-      title: Usage Record
+    Daily:
+      title: Daily Usage Record
       type: object
       properties:
-        stats:
-          type: array
-          description: List of queried usage statistics for the given SIM.
-          items:
-            $ref: '#/components/schemas/Daily'
-      description: Information about SIM data and SMS usage.
-    Data:
-      title: Data Usage Record
-      type: object
-      properties:
-        cost:
+        data:
+          $ref: '#/components/schemas/Data'
+        date:
           type: string
-          description: The cost shown here match 1:1 the used SMS. There is no real cost value behind this number.
-          example: '0.002803'
-        currency:
-          title: Currency
-          type: object
-          properties:
-            id:
-              type: integer
-              description: Id of the currency.
-              example: 1
-            symbol:
-              type: string
-              description: ASCII symbol of the currency.
-              example: €
-            code:
-              type: string
-              description: Standardized currency code.
-              example: EUR
-          description: Description of the currency.
-        traffic_type:
-          $ref: '#/components/schemas/TrafficTypeData'
+          description: Date of the shown usage record.
+          example: '2021-06-30T00:00:00.000Z'
+        sms:
+          $ref: '#/components/schemas/SmsUsage'
+      description: A daily usage record with summarized data about the SMS and data usage.
+    Quota:
+      title: Quota
+      type: object
+      properties:
         volume:
+          type: number
+          description: Remaning volume of the selected SIM. Dependent on the query, the volume is either the number of SMS reamaining or the avaliable data volume in MB.
+          example: 435.787951
+        total_volume:
+          type: number
+          description: The total data volume in MB or SMS number this SIM has available over its lifetime.
+          example: 500
+        expiry_date:
           type: string
-          description: The summed RX and TX data volume in MB.
-          example: '0.002803'
-        volume_rx:
-          type: string
-          description: The used RX (downstream, received by SIM) data volume in MB.
-          example: '0.001482'
-        volume_tx:
-          type: string
-          description: The used TX (upstream, send by SIM) data volume in MB.
-          example: '0.001321'
-      description: A usage record for the data used by a SIM.
-    TrafficTypeData:
-      title: Traffic Type Data
-      type: object
-      properties:
-        description:
-          type: string
-          description: Defines the type of traffic listed.
-          example: Data
-        id:
+          description: The date when this current quota will expire.
+          example: '2029-01-01T00:00:00.000Z'
+        peak_throughput:
           type: integer
-          description: ID of the traffic type.
-          example: 1
-        unit:
+          description: The optional throughput in bit/s (only for data quotas).
+          example: 1000000
+        last_volume_added:
+          type: number
+          description: Amount of SMS or data volume which was last purchased for this SIM.
+          example: 500
+        last_status_change_date:
           type: string
-          description: Lists the unit used for the traffic type.
-          example: MB
-      description: Details about the data traffic type.
+          description: Timestamp of the last change to the quota.
+          example: '2018-10-01T11:59:44.000Z'
+        threshold_percentage:
+          type: integer
+          description: Threshold in percentage for which a volume notification will be send.
+          example: 20
     SmsUsage:
       title: SMS Usage Record
       type: object
@@ -273,51 +261,63 @@ components:
           description: The used MT-SMS message count.
           example: '1'
       description: A usage record for the SMS used by a SIM.
-    Quota:
-      title: Quota
+    TrafficTypeData:
+      title: Traffic Type Data
       type: object
       properties:
+        description:
+          type: string
+          description: Defines the type of traffic listed.
+          example: Data
+        id:
+          type: integer
+          description: ID of the traffic type.
+          example: 1
+        unit:
+          type: string
+          description: Lists the unit used for the traffic type.
+          example: MB
+      description: Details about the data traffic type.
+    Data:
+      title: Data Usage Record
+      type: object
+      properties:
+        cost:
+          type: string
+          description: The cost shown here match 1:1 the used SMS. There is no real cost value behind this number.
+          example: '0.002803'
+        currency:
+          title: Currency
+          type: object
+          properties:
+            id:
+              type: integer
+              description: Id of the currency.
+              example: 1
+            symbol:
+              type: string
+              description: ASCII symbol of the currency.
+              example: €
+            code:
+              type: string
+              description: Standardized currency code.
+              example: EUR
+          description: Description of the currency.
+        traffic_type:
+          $ref: '#/components/schemas/TrafficTypeData'
         volume:
-          type: number
-          description: Remaning volume of the selected SIM. Dependent on the query, the volume is either the number of SMS reamaining or the avaliable data volume in MB.
-          example: 435.787951
-        total_volume:
-          type: number
-          description: The total data volume in MB or SMS number this SIM has available over its lifetime.
-          example: 500
-        expiry_date:
           type: string
-          description: The date when this current quota will expire.
-          example: '2029-01-01T00:00:00.000Z'
-        peak_throughput:
-          type: integer
-          description: The optional throughput in bit/s (only for data quotas).
-          example: 1000000
-        last_volume_added:
-          type: number
-          description: Amount of SMS or data volume which was last purchased for this SIM.
-          example: 500
-        last_status_change_date:
+          description: The summed RX and TX data volume in MB.
+          example: '0.002803'
+        volume_rx:
           type: string
-          description: Timestamp of the last change to the quota.
-          example: '2018-10-01T11:59:44.000Z'
-        threshold_percentage:
-          type: integer
-          description: Threshold in percentage for which a volume notification will be send.
-          example: 20
-    Daily:
-      title: Daily Usage Record
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Data'
-        date:
+          description: The used RX (downstream, received by SIM) data volume in MB.
+          example: '0.001482'
+        volume_tx:
           type: string
-          description: Date of the shown usage record.
-          example: '2021-06-30T00:00:00.000Z'
-        sms:
-          $ref: '#/components/schemas/SmsUsage'
-      description: A daily usage record with summarized data about the SMS and data usage.
+          description: The used TX (upstream, send by SIM) data volume in MB.
+          example: '0.001321'
+      description: A usage record for the data used by a SIM.
   securitySchemes:
     BearerAuthentication:
       type: http

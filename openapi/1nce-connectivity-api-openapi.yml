@@ -152,6 +152,36 @@ paths:
           description: API Version Segment
 components:
   schemas:
+    ConnectivityInfo:
+      title: Connectivity Info
+      type: object
+      properties:
+        ussd_info:
+          $ref: '#/components/schemas/UssdInfo'
+        subscriber_info:
+          $ref: '#/components/schemas/SubscriberInfo'
+        request_timestamp:
+          type: string
+          description: Time in UTC the request was received.
+          example: 2018-11-07T17:21:46.121+0000
+        reply_timestamp:
+          type: string
+          description: Time in UTC the response was sent.
+          example: 2018-11-07T17:21:46.263+0000
+      description: Contains connectivity and cell tower information for a given SIM request.
+    CellGlobalId:
+      title: Cell Global IDs
+      type: object
+      properties:
+        cid:
+          type: integer
+        lac:
+          type: integer
+        mcc:
+          type: string
+        mnc:
+          type: string
+      description: Mobile network parameter used to identify the cell tower of a SIM device.
     SubscriberInfo:
       title: Subscriber Information
       type: object
@@ -179,36 +209,6 @@ components:
             cell_global_id:
               $ref: '#/components/schemas/CellGlobalId'
       description: The optional subscriber info returned when the 'subscriber' parameter is true and contains information about the current SIM device location based on the mobile network.
-    CellGlobalId:
-      title: Cell Global IDs
-      type: object
-      properties:
-        cid:
-          type: integer
-        lac:
-          type: integer
-        mcc:
-          type: string
-        mnc:
-          type: string
-      description: Mobile network parameter used to identify the cell tower of a SIM device.
-    ConnectivityInfo:
-      title: Connectivity Info
-      type: object
-      properties:
-        ussd_info:
-          $ref: '#/components/schemas/UssdInfo'
-        subscriber_info:
-          $ref: '#/components/schemas/SubscriberInfo'
-        request_timestamp:
-          type: string
-          description: Time in UTC the request was received.
-          example: 2018-11-07T17:21:46.121+0000
-        reply_timestamp:
-          type: string
-          description: Time in UTC the response was sent.
-          example: 2018-11-07T17:21:46.263+0000
-      description: Contains connectivity and cell tower information for a given SIM request.
     UssdInfo:
       title: Ussd Information
       type: object
@@ -239,24 +239,6 @@ components:
         message:
           type: string
           example: Conflicting request
-          description: Error Message with more details goes here
-    BadRequest:
-      description: Validation Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: BadRequest
-        message:
-          type: string
-          example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
           description: Error Message with more details goes here
     InternalServerError:
       description: Internal Server Error
@@ -294,33 +276,51 @@ components:
           type: string
           example: Element not found
           description: Error Message with more details goes here
+    BadRequest:
+      description: Validation Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
+          description: Error Message with more details goes here
   responses:
-    NoContent:
-      description: No Content
     BadRequest:
       description: Bad request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/BadRequest'
+    NoContent:
+      description: No Content
     InternalServerError:
       description: Internal server error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/InternalServerError'
-    Conflict:
-      description: Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Conflict'
     NotFound:
       description: Not found error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/NotFound'
+    Conflict:
+      description: Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Conflict'
   securitySchemes:
     BearerAuthentication:
       type: http

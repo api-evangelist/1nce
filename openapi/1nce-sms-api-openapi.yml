@@ -356,18 +356,6 @@ paths:
           description: API Version Segment
 components:
   schemas:
-    SmsStatus:
-      title: SMS Status
-      type: object
-      properties:
-        id:
-          type: number
-          description: Numerical status identifier for a SMS message.
-          example: 4
-        description:
-          type: string
-          description: Text description of the message status.
-          example: DELIVERED
     Type_definition_for_a_SMS:
       title: Type definition for MT-SMS and MO-SMS.
       type: object
@@ -383,6 +371,18 @@ components:
           enum:
           - MT
           - MO
+    SmsStatus:
+      title: SMS Status
+      type: object
+      properties:
+        id:
+          type: number
+          description: Numerical status identifier for a SMS message.
+          example: 4
+        description:
+          type: string
+          description: Text description of the message status.
+          example: DELIVERED
     Source_Address_Type:
       title: Source Address Type
       type: object
@@ -666,8 +666,8 @@ components:
               type: integer
               format: int64
               example: 161
-    BadRequest:
-      description: Validation Error
+    InternalServerError:
+      description: Internal Server Error
       type: object
       required:
       - error_code
@@ -679,10 +679,10 @@ components:
           example: 1000
         error_token:
           type: string
-          example: BadRequest
+          example: InternalServerError
         message:
           type: string
-          example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
+          example: Internal Server Error
           description: Error Message with more details goes here
     SMSSourceAddressType:
       title: Source Address Type
@@ -696,6 +696,24 @@ components:
           - 145
           - 161
           - 208
+    NotFound:
+      description: Not found Error
+      type: object
+      required:
+      - error_code
+      - error_token
+      - message
+      properties:
+        error_code:
+          type: number
+          example: 1000
+        error_token:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: Element not found
+          description: Error Message with more details goes here
     SMSMessage_2:
       title: SMS Message Object
       description: SMS message object used to describe an SMS message.
@@ -725,8 +743,8 @@ components:
           format: date-time
           description: Expiry Date of the sent SMS in ISO8601 (RFC3339) format.
           example: '2028-03-14T16:10:29.000+00:00'
-    InternalServerError:
-      description: Internal Server Error
+    BadRequest:
+      description: Validation Error
       type: object
       required:
       - error_code
@@ -738,59 +756,16 @@ components:
           example: 1000
         error_token:
           type: string
-          example: InternalServerError
+          example: BadRequest
         message:
           type: string
-          example: Internal Server Error
-          description: Error Message with more details goes here
-    NotFound:
-      description: Not found Error
-      type: object
-      required:
-      - error_code
-      - error_token
-      - message
-      properties:
-        error_code:
-          type: number
-          example: 1000
-        error_token:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: Element not found
+          example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
           description: Error Message with more details goes here
     EndpointCreateSmsResponse:
       type: object
       properties:
         id:
           type: string
-  responses:
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequest'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/InternalServerError'
-    Conflict:
-      description: Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Conflict'
-    NotFound:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFound'
   parameters:
     PageParam:
       in: query
@@ -811,6 +786,31 @@ components:
         maximum: 1000
         default: 20
       description: The numbers of items to return per page.
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequest'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerError'
+    NotFound:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
+    Conflict:
+      description: Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Conflict'
   securitySchemes:
     BearerAuthentication:
       type: http

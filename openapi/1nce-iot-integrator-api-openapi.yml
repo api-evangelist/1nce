@@ -1379,77 +1379,21 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    bulkPostschema_1:
-      additionalProperties: false
-      description: Bulk Post CoAP device action.
+    getAllResponseschema_5_items_inner:
       properties:
-        deviceIds:
-          description: Devices that should receive the data
-          items:
-            example: <device_id>
-            pattern: ^[a-zA-Z0-9_-]{1,}$
-            type: string
-          maxItems: 100
-          minItems: 1
-          type: array
-        payload:
-          description: Data that should be sent to the devices
-          example: enable_sensor
+        id:
+          description: Unique ID of the Integration
+          example: 2BLURnaUZSlbKp6vN1V5dYiJvC4
+          minLength: 1
           type: string
-        payloadType:
-          description: Type of the payload
-          enum:
-          - STRING
-          - BASE64
+        lastSuccessfulMessageDelivery:
+          description: Timestamp of the first message successfully delivered to integration, in ISO 8601 format
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
           type: string
-        port:
-          description: Communication port number of the devices
-          example: 3000
-          maximum: 65535
-          minimum: 1
-          type: integer
-        path:
-          description: Absolute path to the resource
-          example: example?param1=query_param_example
-          pattern: ^[a-zA-Z0-9\-._~%:/?#@!$&'()*+,;=]{0,255}$
-          type: string
-        requestType:
-          description: CoAP request type that should be sent
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - PATCH
-          type: string
-        requestMode:
-          default: SEND_NOW
-          description: Action request execution mode
-          enum:
-          - SEND_NOW
-          - SEND_WHEN_ACTIVE
-          type: string
-        sendAttempts:
-          default: 1
-          description: The maximum number of attempts to send data to the devices
-          maximum: 5
-          minimum: 1
-          type: number
-      required:
-      - deviceIds
-      - path
-      - port
-      - requestType
-      title: Device action request
-      type: object
-    postResponseschema_4:
-      additionalProperties: false
-      description: Post AWS integration response
-      properties:
         name:
-          description: Name of the new AWS integration.
-          example: <integraton_name>
-          maxLength: 128
+          description: name
+          example: a-sample-integration-name
           minLength: 1
           type: string
         eventTypes:
@@ -1459,40 +1403,27 @@ components:
           minItems: 1
           type: array
         state:
-          description: State of the new AWS integration.
+          description: Current state of the Integration
           enum:
           - ROLLOUT_STARTED
           - ROLLOUT_DONE
           - ROLLOUT_FAILED
-          - INTEGRATION_ACTIVE
           - INTEGRATION_FAILED
-          example: ROLLOUT_STARTED
-          minLength: 1
+          - INTEGRATION_ACTIVE
           type: string
         type:
-          description: Type of the new integration.
+          description: Type of the Integration
           enum:
           - AWS
-          example: AWS
-          minLength: 1
-          type: string
-        id:
-          description: ID of the new AWS integration.
-          example: <integration_id>
-          minLength: 1
-          type: string
-        jwt:
-          description: JWT token with details for integration stack creation
-          example: <jwt_token>
-          minLength: 1
+          - WEBHOOK
           type: string
         createdTime:
-          description: Created timestamp of the AWS integration.
+          description: Created timestamp of Integration
           example: '2022-03-07T08:51:29.015Z'
           format: date-time
           type: string
         updatedTime:
-          description: Updated timestamp of the AWS integration.
+          description: Updated timestamp of Integration
           example: '2022-03-07T08:51:29.015Z'
           format: date-time
           type: string
@@ -1506,55 +1437,10 @@ components:
       - eventTypes
       - id
       - jsonPayloadEnabled
-      - jwt
       - name
       - state
       - type
       - updatedTime
-      title: AWS Integration response
-      type: object
-    patchResponseschema:
-      additionalProperties: false
-      description: Response to the patch device endpoints request.
-      properties:
-        protocol:
-          description: The protocol of the endpoint.
-          example: COAP
-          type: string
-        active:
-          description: The current status of the endpoint.
-          example: true
-          type: boolean
-        domain:
-          description: The domain of the endpoint.
-          example: coap.os.1nce.com
-          type: string
-        ipAddresses:
-          items:
-            description: The public IP addresses of the endpoint.
-            example: 127.0.0.1
-            type: string
-          type: array
-        port:
-          description: The port of the endpoint.
-          example: 5683
-          type: number
-        securePort:
-          description: The port of the endpoint.
-          example: 5684
-          type: number
-        settings:
-          items:
-            $ref: '#/components/schemas/getResponseschema_settings_inner'
-          type: array
-      required:
-      - active
-      - domain
-      - ipAddresses
-      - port
-      - protocol
-      - settings
-      title: Patch Device Endpoints Response
       type: object
     patchschema:
       additionalProperties: false
@@ -1573,143 +1459,13 @@ components:
       - settings
       title: Device Endpoint Patch Request
       type: object
-    getResponseschema_1:
+    postschema_1:
       additionalProperties: false
-      description: Response to the request to get device action request.
+      description: Post LwM2M device action.
       properties:
-        id:
-          description: The ID of the request.
-          example: <request_id>
-          type: string
-        status:
-          description: The status of the request.
-          enum:
-          - SCHEDULED
-          - IN_PROGRESS
-          - FAILED
-          - SUCCEEDED
-          - CANCELLED
-          example: IN_PROGRESS
-          type: string
-        deviceId:
-          description: The unique ID of the device.
-          example: <device_id>
-          type: string
-        ip:
-          description: The IP address of the device.
-          example: x.x.x.x
-          type: string
-        protocol:
-          description: The protocol of the request.
-          example: LWM2M
-          type: string
-        created:
-          description: The timestamp at which the request was created.
-          format: date-time
-          type: string
-        updated:
-          description: The timestamp at which the request was updated.
-          format: date-time
-          type: string
-        mode:
-          description: The mode of the request.
-          enum:
-          - SEND_NOW
-          - SEND_WHEN_ACTIVE
-          example: SEND_NOW
-          type: string
-        resultData:
-          description: Result data (can include response from device etc.).
-          type: object
-        requestData:
-          description: Protocol specific request data.
-          type: object
-        sendAttemptsLeft:
-          description: How many attempts are left to send data to the device
-          example: 1
-          maximum: 5
-          minimum: 0
-          type: number
-        sendAttempts:
-          description: The maximum number of attempts to send data to a device
-          example: 3
-          maximum: 5
-          minimum: 1
-          type: number
-      required:
-      - created
-      - deviceId
-      - id
-      - ip
-      - mode
-      - protocol
-      - status
-      - updated
-      title: Get Device Action Request Response
-      type: object
-    getAllResponseschema:
-      additionalProperties: false
-      description: Response to the get device endpoints request.
-      properties:
-        items:
-          description: An array of endpoint items.
-          items:
-            $ref: '#/components/schemas/getAllResponseschema_items_inner'
-          type: array
-        page:
-          description: The current page number of the endpoints.
-          example: 1
-          type: number
-        pageAmount:
-          description: The total amount of pages needed to show all endpoints.
-          example: 10
-          type: number
-      required:
-      - items
-      - page
-      - pageAmount
-      title: Get Device Endpoints Response
-      type: object
-    postResponseschema_2:
-      additionalProperties: false
-      description: Post AWS integration restart response
-      properties:
-        integration:
-          $ref: '#/components/schemas/postResponseschema_2_integration'
-        restartStatus:
-          description: AWS integration restart status.
-          enum:
-          - SUCCESS
-          - FAILURE
-          example: SUCCESS
-          type: string
-        message:
-          description: AWS integration restart message.
-          example: Restart was successful
-          minLength: 1
-          type: string
-      required:
-      - integration
-      - message
-      - restartStatus
-      title: AWS Integration restart response
-      type: object
-    bulkPostschema:
-      additionalProperties: false
-      description: Bulk Post LwM2M device action.
-      properties:
-        deviceIds:
-          description: Devices that should receive the data
-          items:
-            example: <device_id>
-            pattern: ^[a-zA-Z0-9_-]{1,}$
-            type: string
-          maxItems: 100
-          minItems: 1
-          type: array
         action:
           default: read
-          description: LwM2M action name to send to the devices.
+          description: LwM2M action name to send to device.
           enum:
           - read
           - write
@@ -1735,507 +1491,14 @@ components:
           type: string
         sendAttempts:
           default: 1
-          description: The maximum number of attempts to send data to the devices
+          description: The maximum number of attempts to send data to a device
           maximum: 5
           minimum: 1
           type: number
       required:
       - action
-      - deviceIds
       - resourceAddress
       title: Device action request
-      type: object
-    postResponseschema_6_integration:
-      additionalProperties: false
-      properties:
-        name:
-          description: Name of the Webhook integration.
-          example: <integraton_name>
-          maxLength: 128
-          minLength: 1
-          type: string
-        state:
-          description: State of the Webhook integration.
-          enum:
-          - ROLLOUT_DONE
-          - INTEGRATION_ACTIVE
-          - INTEGRATION_FAILED
-          example: INTEGRATION_ACTIVE
-          type: string
-        type:
-          description: Type of the integration.
-          enum:
-          - WEBHOOK
-          example: WEBHOOK
-          type: string
-        id:
-          description: ID of the Webhook integration.
-          example: <integration_id>
-          minLength: 1
-          type: string
-        createdTime:
-          description: Created timestamp of the Webhook integration.
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        updatedTime:
-          description: Updated timestamp of the Webhook integration.
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        lastSuccessfulMessageDelivery:
-          description: Timestamp of the first message successfully delivered to integration, in ISO 8601 format
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        eventTypes:
-          description: A list of event types
-          items:
-            $ref: '#/components/schemas/postResponseschema_2_integration_eventTypes_inner'
-          minItems: 1
-          type: array
-      required:
-      - createdTime
-      - eventTypes
-      - id
-      - name
-      - state
-      - type
-      - updatedTime
-      type: object
-    postschema_3:
-      additionalProperties: false
-      description: Post UDP device action.
-      properties:
-        payload:
-          description: Data that should be sent to a device
-          example: enable_sensor
-          type: string
-        payloadType:
-          description: Type of the payload
-          enum:
-          - STRING
-          - BASE64
-          type: string
-        port:
-          description: Communication port number of a device
-          example: 3000
-          maximum: 65535
-          minimum: 1
-          type: integer
-        requestMode:
-          default: SEND_NOW
-          description: Action request execution mode
-          enum:
-          - SEND_NOW
-          - SEND_WHEN_ACTIVE
-          type: string
-      required:
-      - payload
-      - payloadType
-      - port
-      title: Device action request
-      type: object
-    getCloudFormationParameters:
-      additionalProperties: false
-      description: Get the CloudFormation parameters currently configured.
-      properties:
-        awsIntegration:
-          description: A list of all aws cloud connection integration templates and their respective versions.
-          items:
-            $ref: '#/components/schemas/getCloudFormationParameters_awsIntegration_inner'
-          type: array
-      required:
-      - awsIntegration
-      title: Get CloudFormation Parameters Response
-      type: object
-    deleteResponseschema:
-      additionalProperties: false
-      description: Response to the request to cancel device action request.
-      properties:
-        id:
-          description: The ID of the request.
-          example: <request_id>
-          type: string
-        status:
-          description: The status of the request.
-          enum:
-          - CANCELLED
-          example: CANCELLED
-          type: string
-      required:
-      - id
-      - status
-      title: Cancel Device Action Request Response
-      type: object
-    patchschema_4:
-      additionalProperties: false
-      description: Patch Webhook integration request
-      properties:
-        url:
-          description: URL of the webhook (HTTPS required)
-          example: https://www.example.com
-          format: uri
-          type: string
-        headers:
-          additionalProperties:
-            type: string
-          description: Headers that should be sent to the webhook. Only string values and no nested objects
-          type: object
-        eventTypes:
-          description: A list of all event types
-          items:
-            $ref: '#/components/schemas/patchschema_3_eventTypes_inner'
-          minItems: 1
-          type: array
-        jsonPayloadEnabled:
-          description: Flag if the payloads of this integration should be bridged in JSON format.
-          example: true
-          type: boolean
-      title: WebhookIntegration request
-      type: object
-    deleteAllResponseschema:
-      description: Response to the request to cancel all device action requests.
-      items:
-        $ref: '#/components/schemas/deleteAllResponseschema_inner'
-      title: Cancel All Device Action Requests Response
-      type: array
-    postResponseschema_4_eventTypes_inner:
-      properties:
-        type:
-          description: Name of the event type
-          enum:
-          - TELEMETRY_DATA
-          - LIFECYCLE
-          - ERROR
-          - GEOFENCE
-          - LOCATION
-          example: TELEMETRY_DATA
-          type: string
-        version:
-          description: Version of the event type
-          example: 1.0.0
-          type: string
-      required:
-      - type
-      - version
-      type: object
-    patchschema_3_eventTypes_inner:
-      additionalProperties: false
-      properties:
-        type:
-          description: Name of the event type
-          enum:
-          - TELEMETRY_DATA
-          - LIFECYCLE
-          - ERROR
-          - GEOFENCE
-          - LOCATION
-          example: TELEMETRY_DATA
-          type: string
-        version:
-          description: Version of the event type
-          example: 1.0.0
-          type: string
-      required:
-      - type
-      type: object
-    getArchivedResponseschema_items_inner:
-      additionalProperties: false
-      properties:
-        id:
-          description: The ID of the request.
-          example: <request_id>
-          type: string
-        status:
-          description: The status of the request.
-          enum:
-          - FAILED
-          - SUCCEEDED
-          - CANCELLED
-          example: SUCCEEDED
-          type: string
-        deviceId:
-          description: The unique ID of the device.
-          example: <device_id>
-          type: string
-        ip:
-          description: The IP address of the device.
-          example: x.x.x.x
-          type: string
-        protocol:
-          description: The protocol of the request.
-          enum:
-          - UDP
-          - COAP
-          - LWM2M
-          example: LWM2M
-          type: string
-        created:
-          description: The timestamp at which the request was created.
-          format: date-time
-          type: string
-        updated:
-          description: The timestamp at which the request was updated.
-          format: date-time
-          type: string
-        mode:
-          description: The mode of the request.
-          enum:
-          - SEND_NOW
-          - SEND_WHEN_ACTIVE
-          example: SEND_NOW
-          type: string
-        resultData:
-          description: Result data (can include response from device etc.).
-          type: object
-        requestData:
-          description: Protocol specific request data.
-          type: object
-        sendAttemptsLeft:
-          description: How many attempts are left to send data to the device
-          example: 1
-          maximum: 5
-          minimum: 0
-          type: number
-        sendAttempts:
-          description: The maximum number of attempts to send data to a device
-          example: 3
-          maximum: 5
-          minimum: 1
-          type: number
-      required:
-      - created
-      - deviceId
-      - id
-      - ip
-      - mode
-      - protocol
-      - status
-      - updated
-      type: object
-    postResponseschema_2_integration_eventTypes_inner:
-      properties:
-        type:
-          description: Name of the event type
-          enum:
-          - TELEMETRY_DATA
-          - LIFECYCLE
-          - ERROR
-          - GEOFENCE
-          - LOCATION
-          example: TELEMETRY_DATA
-          type: string
-        version:
-          description: Version of the event type
-          example: 1.0.0
-          type: string
-      required:
-      - type
-      type: object
-    badRequestResponse:
-      description: An API error response in case of an HTTP Bad Request.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 400
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Bad Request
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Bad Request
-      type: object
-    postschema_6:
-      additionalProperties: false
-      description: Post AWS integration request
-      properties:
-        name:
-          description: Name of the new AWS integration.
-          example: <integraton_name>
-          maxLength: 128
-          minLength: 1
-          type: string
-        eventTypes:
-          description: A list of event types
-          items:
-            $ref: '#/components/schemas/postschema_6_eventTypes_inner'
-          minItems: 1
-          type: array
-        jsonPayloadEnabled:
-          default: false
-          description: Flag if the payloads of this integration should be bridged in JSON format.
-          example: true
-          type: boolean
-      required:
-      - eventTypes
-      - name
-      title: AWS Integration request
-      type: object
-    patchResponseschema_1:
-      additionalProperties: false
-      description: Patch integration response
-      properties:
-        name:
-          description: Name of the integration.
-          example: <integraton_name>
-          maxLength: 128
-          minLength: 1
-          type: string
-        eventTypes:
-          description: A list of event types
-          items:
-            $ref: '#/components/schemas/postResponseschema_4_eventTypes_inner'
-          minItems: 1
-          type: array
-        state:
-          description: State of the integration.
-          enum:
-          - ROLLOUT_STARTED
-          - ROLLOUT_DONE
-          - ROLLOUT_FAILED
-          - INTEGRATION_ACTIVE
-          - INTEGRATION_FAILED
-          example: ROLLOUT_DONE
-          minLength: 1
-          type: string
-        type:
-          description: Type of the integration.
-          enum:
-          - WEBHOOK
-          - AWS
-          example: WEBHOOK
-          minLength: 1
-          type: string
-        id:
-          description: ID of the integration.
-          example: <integration_id>
-          minLength: 1
-          type: string
-        createdTime:
-          description: Created timestamp of the integration.
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        updatedTime:
-          description: Updated timestamp of the integration.
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        awsAccountId:
-          description: AWS Account Id where the stack was deployed, only showed when AWS Integration
-          example: '123456789012'
-          type: string
-        region:
-          description: AWS Region where the stack was deployed, only showed when AWS Integration
-          example: eu-central-1
-          type: string
-        jwt:
-          description: JWT token with details for integration stack creation
-          example: <jwt_token>
-          minLength: 1
-          type: string
-        headers:
-          description: Headers of the integration.
-          type: object
-        url:
-          description: URL of the integration.
-          example: https://example.com
-          format: uri
-          minLength: 1
-          type: string
-        jsonPayloadEnabled:
-          default: false
-          description: Flag if the payloads of this integration should be bridged in JSON format.
-          example: true
-          type: boolean
-      required:
-      - createdTime
-      - eventTypes
-      - id
-      - jsonPayloadEnabled
-      - name
-      - state
-      - type
-      - updatedTime
-      title: Integration response
-      type: object
-    getResponseschema:
-      additionalProperties: false
-      description: Response to the get device endpoints request.
-      properties:
-        protocol:
-          description: The protocol of the endpoint.
-          example: COAP
-          type: string
-        active:
-          description: The current status of the endpoint.
-          example: true
-          type: boolean
-        domain:
-          description: The domain of the endpoint.
-          example: coap.os.1nce.com
-          type: string
-        ipAddresses:
-          items:
-            description: The public IP addresses of the endpoint.
-            example: 127.0.0.1
-            type: string
-          type: array
-        port:
-          description: The port of the endpoint.
-          example: 5683
-          type: number
-        securePort:
-          description: The port of the endpoint.
-          example: 5684
-          type: number
-        settings:
-          items:
-            $ref: '#/components/schemas/getResponseschema_settings_inner'
-          type: array
-      required:
-      - active
-      - domain
-      - ipAddresses
-      - port
-      - protocol
-      title: Get Device Endpoints Response
-      type: object
-    patchschema_settings_inner:
-      properties:
-        name:
-          description: Name of the setting.
-          enum:
-          - LWM2M_PASSIVE_REPORTING
-          type: string
-        state:
-          description: State of the setting.
-          enum:
-          - ENABLED
-          - DISABLED
-          example: ENABLED
-          type: string
-      required:
-      - name
-      - state
-      type: object
-    bulkPostResponseschema_acceptedRequests_inner:
-      properties:
-        deviceId:
-          description: Id of the device.
-          example: <device_id>
-          type: string
-        requestId:
-          description: Id of the request.
-          example: <request_id>
-          type: string
       type: object
     patchResponseschema_2:
       additionalProperties: false
@@ -2311,75 +1574,6 @@ components:
       - url
       title: Webhook Integration response
       type: object
-    postschema_2:
-      additionalProperties: false
-      description: Post CoAP device action.
-      properties:
-        payload:
-          description: Data that should be sent to a device
-          example: enable_sensor
-          type: string
-        payloadType:
-          description: Type of the payload
-          enum:
-          - STRING
-          - BASE64
-          type: string
-        port:
-          description: Communication port number of a device
-          example: 3000
-          maximum: 65535
-          minimum: 1
-          type: integer
-        path:
-          description: Absolute path to the resource
-          example: example?param1=query_param_example
-          pattern: ^[a-zA-Z0-9\-._~%:/?#@!$&'()*+,;=]{0,255}$
-          type: string
-        requestType:
-          description: CoAP request type that should be sent
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - PATCH
-          type: string
-        requestMode:
-          default: SEND_NOW
-          description: Action request execution mode
-          enum:
-          - SEND_NOW
-          - SEND_WHEN_ACTIVE
-          type: string
-        sendAttempts:
-          default: 1
-          description: The maximum number of attempts to send data to a device
-          maximum: 5
-          minimum: 1
-          type: number
-      required:
-      - path
-      - port
-      - requestType
-      title: Device action request
-      type: object
-    serverErrorResponse:
-      description: An API error response in case of a Server Side Error.
-      properties:
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Unknown Error
-          - Server Error
-          type: string
-        errors:
-          description: List of errors encountered while calling the API.
-          items:
-            type: object
-          type: array
-      title: Server Error
-      type: object
     bulkPostResponseschema:
       additionalProperties: false
       description: Post device action response.
@@ -2406,110 +1600,171 @@ components:
       - rejectedDevices
       title: Device action response
       type: object
-    postResponseschema_2_integration:
+    getResponseschema:
       additionalProperties: false
+      description: Response to the get device endpoints request.
       properties:
-        name:
-          description: Name of the AWS integration.
-          example: <integraton_name>
-          maxLength: 128
-          minLength: 1
+        protocol:
+          description: The protocol of the endpoint.
+          example: COAP
           type: string
-        state:
-          description: State of the AWS integration.
-          enum:
-          - ROLLOUT_STARTED
-          - ROLLOUT_DONE
-          - ROLLOUT_FAILED
-          - INTEGRATION_ACTIVE
-          - INTEGRATION_FAILED
-          example: ROLLOUT_STARTED
+        active:
+          description: The current status of the endpoint.
+          example: true
+          type: boolean
+        domain:
+          description: The domain of the endpoint.
+          example: coap.os.1nce.com
           type: string
-        type:
-          description: Type of the integration.
-          enum:
-          - AWS
-          example: AWS
-          type: string
-        id:
-          description: ID of the AWS integration.
-          example: <integration_id>
-          minLength: 1
-          type: string
-        createdTime:
-          description: Created timestamp of the AWS integration.
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        updatedTime:
-          description: Updated timestamp of the AWS integration.
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        lastSuccessfulMessageDelivery:
-          description: Timestamp of the first message successfully delivered to integration, in ISO 8601 format
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        eventTypes:
-          description: A list of event types
+        ipAddresses:
           items:
-            $ref: '#/components/schemas/postResponseschema_2_integration_eventTypes_inner'
-          minItems: 1
+            description: The public IP addresses of the endpoint.
+            example: 127.0.0.1
+            type: string
+          type: array
+        port:
+          description: The port of the endpoint.
+          example: 5683
+          type: number
+        securePort:
+          description: The port of the endpoint.
+          example: 5684
+          type: number
+        settings:
+          items:
+            $ref: '#/components/schemas/getResponseschema_settings_inner'
           type: array
       required:
-      - createdTime
-      - eventTypes
-      - id
-      - name
-      - state
-      - type
-      - updatedTime
+      - active
+      - domain
+      - ipAddresses
+      - port
+      - protocol
+      title: Get Device Endpoints Response
       type: object
-    getResponseschema_2:
-      description: Get status of device PreSharedKey import job.
+    postschema_3:
+      additionalProperties: false
+      description: Post UDP device action.
+      properties:
+        payload:
+          description: Data that should be sent to a device
+          example: enable_sensor
+          type: string
+        payloadType:
+          description: Type of the payload
+          enum:
+          - STRING
+          - BASE64
+          type: string
+        port:
+          description: Communication port number of a device
+          example: 3000
+          maximum: 65535
+          minimum: 1
+          type: integer
+        requestMode:
+          default: SEND_NOW
+          description: Action request execution mode
+          enum:
+          - SEND_NOW
+          - SEND_WHEN_ACTIVE
+          type: string
+      required:
+      - payload
+      - payloadType
+      - port
+      title: Device action request
+      type: object
+    serverErrorResponse:
+      description: An API error response in case of a Server Side Error.
+      properties:
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unknown Error
+          - Server Error
+          type: string
+        errors:
+          description: List of errors encountered while calling the API.
+          items:
+            type: object
+          type: array
+      title: Server Error
+      type: object
+    getAllResponseschema_1:
+      additionalProperties: false
+      description: Response to the request to get device action requests.
       properties:
         items:
-          description: Customer import jobs data
+          description: An array of request items.
           items:
-            $ref: '#/components/schemas/getResponseschema_2_items_inner'
+            $ref: '#/components/schemas/getAllResponseschema_1_items_inner'
           type: array
         page:
-          description: Current page number.
+          description: The current page number of the requests.
           example: 1
-          minimum: 1
           type: number
         pageAmount:
-          description: Total number of pages.
-          example: 2
-          minimum: 1
+          description: The total amount of pages needed to show all requests.
+          example: 10
           type: number
       required:
       - items
       - page
       - pageAmount
-      title: PSK import status Request
+      title: Get Device Action Requests Response
       type: object
-    conflictResponse:
-      description: An API error response when a conflict is found.
+    getEventTypesResponseschema_eventTypes_inner:
       properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 409
-          type: integer
-        statusText:
-          description: Http Status Text
+        name:
+          description: Name of the event type.
           enum:
-          - Conflict
+          - TELEMETRY_DATA
+          - LIFECYCLE
+          - ERROR
+          - GEOFENCE
+          - TEST_MESSAGE
+          - LOCATION
+          example: TELEMETRY_DATA
+          minLength: 1
           type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Conflict
+        description:
+          description: Description of the event type.
+          minLength: 1
+          type: string
+        version:
+          description: Version of the event type.
+          example: 1.0.0
+          minLength: 1
+          type: string
+        payload:
+          description: Payload of the event type.
+          type: object
+      required:
+      - description
+      - name
+      - payload
+      - version
       type: object
-    getActiveResponseschema_items_inner:
+    patchschema_settings_inner:
+      properties:
+        name:
+          description: Name of the setting.
+          enum:
+          - LWM2M_PASSIVE_REPORTING
+          type: string
+        state:
+          description: State of the setting.
+          enum:
+          - ENABLED
+          - DISABLED
+          example: ENABLED
+          type: string
+      required:
+      - name
+      - state
+      type: object
+    getArchivedResponseschema_items_inner:
       additionalProperties: false
       properties:
         id:
@@ -2519,9 +1774,10 @@ components:
         status:
           description: The status of the request.
           enum:
-          - SCHEDULED
-          - IN_PROGRESS
-          example: IN_PROGRESS
+          - FAILED
+          - SUCCEEDED
+          - CANCELLED
+          example: SUCCEEDED
           type: string
         deviceId:
           description: The unique ID of the device.
@@ -2582,29 +1838,24 @@ components:
       - status
       - updated
       type: object
-    postResponseschema_6:
-      additionalProperties: false
-      description: Post Webhook integration restart response
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
       properties:
-        integration:
-          $ref: '#/components/schemas/postResponseschema_6_integration'
-        restartStatus:
-          description: Webhook integration restart status.
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
           enum:
-          - SUCCESS
-          - FAILURE
-          example: SUCCESS
+          - Bad Request
           type: string
-        message:
-          description: Webhook integration restart message.
-          example: Restart was successful
-          minLength: 1
-          type: string
-      required:
-      - integration
-      - message
-      - restartStatus
-      title: Webhook Integration restart response
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
       type: object
     postResponseschema_5:
       additionalProperties: false
@@ -2680,24 +1931,252 @@ components:
       - url
       title: Webhook Integration response
       type: object
-    unauthorizedRequestResponse:
-      description: An API error response in case of an HTTP Unauthorized Request.
+    postResponseschema_6:
+      additionalProperties: false
+      description: Post Webhook integration restart response
       properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 401
-          type: integer
-        statusText:
-          description: HTTP Status Text
+        integration:
+          $ref: '#/components/schemas/postResponseschema_6_integration'
+        restartStatus:
+          description: Webhook integration restart status.
           enum:
-          - Unauthorized
+          - SUCCESS
+          - FAILURE
+          example: SUCCESS
           type: string
-        errors:
-          description: Detailed error information.
+        message:
+          description: Webhook integration restart message.
+          example: Restart was successful
+          minLength: 1
+          type: string
+      required:
+      - integration
+      - message
+      - restartStatus
+      title: Webhook Integration restart response
+      type: object
+    postschema_6:
+      additionalProperties: false
+      description: Post AWS integration request
+      properties:
+        name:
+          description: Name of the new AWS integration.
+          example: <integraton_name>
+          maxLength: 128
+          minLength: 1
+          type: string
+        eventTypes:
+          description: A list of event types
           items:
-            type: object
+            $ref: '#/components/schemas/postschema_6_eventTypes_inner'
+          minItems: 1
           type: array
-      title: Unauthorized Request
+        jsonPayloadEnabled:
+          default: false
+          description: Flag if the payloads of this integration should be bridged in JSON format.
+          example: true
+          type: boolean
+      required:
+      - eventTypes
+      - name
+      title: AWS Integration request
+      type: object
+    deleteResponseschema:
+      additionalProperties: false
+      description: Response to the request to cancel device action request.
+      properties:
+        id:
+          description: The ID of the request.
+          example: <request_id>
+          type: string
+        status:
+          description: The status of the request.
+          enum:
+          - CANCELLED
+          example: CANCELLED
+          type: string
+      required:
+      - id
+      - status
+      title: Cancel Device Action Request Response
+      type: object
+    deleteAllResponseschema_inner:
+      additionalProperties: false
+      properties:
+        id:
+          description: The ID of the request.
+          example: <request_id>
+          type: string
+        status:
+          description: The status of the request.
+          enum:
+          - CANCELLED
+          example: CANCELLED
+          type: string
+      required:
+      - id
+      - status
+      type: object
+    getAllResponseschema_1_items_inner:
+      additionalProperties: false
+      properties:
+        id:
+          description: The ID of the request.
+          example: <request_id>
+          type: string
+        status:
+          description: The status of the request.
+          enum:
+          - SCHEDULED
+          - IN_PROGRESS
+          - FAILED
+          - SUCCEEDED
+          - CANCELLED
+          example: IN_PROGRESS
+          type: string
+        deviceId:
+          description: The unique ID of the device.
+          example: <device_id>
+          type: string
+        ip:
+          description: The IP address of the device.
+          example: x.x.x.x
+          type: string
+        protocol:
+          description: The protocol of the request.
+          example: LWM2M
+          type: string
+        created:
+          description: The timestamp at which the request was created.
+          format: date-time
+          type: string
+        updated:
+          description: The timestamp at which the request was updated.
+          format: date-time
+          type: string
+        mode:
+          description: The mode of the request.
+          enum:
+          - SEND_NOW
+          - SEND_WHEN_ACTIVE
+          example: SEND_NOW
+          type: string
+        resultData:
+          description: Result data (can include response from device etc.).
+          type: object
+        requestData:
+          description: Protocol specific request data.
+          type: object
+        sendAttemptsLeft:
+          description: How many attempts are left to send data to the device
+          example: 1
+          maximum: 5
+          minimum: 0
+          type: number
+        sendAttempts:
+          description: The maximum number of attempts to send data to a device
+          example: 3
+          maximum: 5
+          minimum: 1
+          type: number
+      required:
+      - created
+      - deviceId
+      - id
+      - ip
+      - mode
+      - protocol
+      - status
+      - updated
+      type: object
+    patchschema_4:
+      additionalProperties: false
+      description: Patch Webhook integration request
+      properties:
+        url:
+          description: URL of the webhook (HTTPS required)
+          example: https://www.example.com
+          format: uri
+          type: string
+        headers:
+          additionalProperties:
+            type: string
+          description: Headers that should be sent to the webhook. Only string values and no nested objects
+          type: object
+        eventTypes:
+          description: A list of all event types
+          items:
+            $ref: '#/components/schemas/patchschema_3_eventTypes_inner'
+          minItems: 1
+          type: array
+        jsonPayloadEnabled:
+          description: Flag if the payloads of this integration should be bridged in JSON format.
+          example: true
+          type: boolean
+      title: WebhookIntegration request
+      type: object
+    getEventTypesResponseschema:
+      description: Get all event types response
+      properties:
+        eventTypes:
+          description: List of event types
+          items:
+            $ref: '#/components/schemas/getEventTypesResponseschema_eventTypes_inner'
+          type: array
+      required:
+      - eventTypes
+      title: Get Event Types Response
+      type: object
+    postschema_inner:
+      additionalProperties: false
+      properties:
+        deviceId:
+          description: The unique ID of the device.
+          example: <device_id>
+          type: string
+        secretKey:
+          description: Pre-shared secret key for a device.
+          example: <custom_pre-shared_key>
+          maxLength: 128
+          minLength: 8
+          type: string
+        protocol:
+          description: Protocol PSK is applied for
+          enum:
+          - COAP
+          - LWM2M
+          type: string
+        format:
+          description: The format in which the secret key was provided.
+          enum:
+          - STRING
+          - HEX
+          type: string
+      required:
+      - deviceId
+      - protocol
+      - secretKey
+      type: object
+    postResponseschema_7:
+      additionalProperties: false
+      description: Post Webhook integration test response
+      properties:
+        testStatus:
+          description: Webhook integration test status.
+          enum:
+          - SUCCESS
+          - FAILURE
+          example: SUCCESS
+          type: string
+        message:
+          description: Webhook integration test message.
+          example: Test was successful
+          minLength: 1
+          type: string
+      required:
+      - message
+      - testStatus
+      title: Webhook Integration test response
       type: object
     patchschema_3:
       additionalProperties: false
@@ -2725,122 +2204,43 @@ components:
           type: boolean
       title: Integration request
       type: object
-    postPreSharedKeyResponseschema:
-      additionalProperties: false
-      description: Post pre-shared key response.
+    conflictResponse:
+      description: An API error response when a conflict is found.
       properties:
-        deviceId:
-          description: Identifier of the device.
-          example: <device_id>
-          minLength: 1
-          type: string
-        identity:
-          description: Client identity of the pre-shared key.
-          example: <identity>
-          minLength: 1
-          type: string
-        secretKey:
-          description: Secret key of the pre-shared key.
-          example: <secret_key>
-          maxLength: 256
-          minLength: 8
-          type: string
-        createdAt:
-          description: Created timestamp of the pre-shared key.
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        updatedAt:
-          description: Updated timestamp of the pre-shared key.
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        protocol:
-          description: Protocol PSK is applied for
+        statusCode:
+          description: HTTP Response Code
+          example: 409
+          type: integer
+        statusText:
+          description: Http Status Text
           enum:
-          - COAP
-          - LWM2M
+          - Conflict
           type: string
-        format:
-          description: The format in which the secret key was provided.
-          enum:
-          - STRING
-          - HEX
-          type: string
-      required:
-      - createdAt
-      - deviceId
-      - format
-      - identity
-      - protocol
-      - secretKey
-      - updatedAt
-      title: Pre-shared key response.
-      type: object
-    getResponseschema_settings_inner:
-      properties:
-        name:
-          description: Name of the setting.
-          example: LWM2M_PASSIVE_REPORTING
-          type: string
-        state:
-          description: State of the setting.
-          enum:
-          - ENABLED
-          - DISABLED
-          example: ENABLED
-          type: string
-        description:
-          description: Description of the setting.
-          example: This is an example description of a setting
-          type: string
-      required:
-      - name
-      - state
-      type: object
-    getAllResponseschema_1:
-      additionalProperties: false
-      description: Response to the request to get device action requests.
-      properties:
-        items:
-          description: An array of request items.
+        errors:
+          description: Detailed error information.
           items:
-            $ref: '#/components/schemas/getAllResponseschema_1_items_inner'
+            type: object
           type: array
-        page:
-          description: The current page number of the requests.
-          example: 1
-          type: number
-        pageAmount:
-          description: The total amount of pages needed to show all requests.
-          example: 10
-          type: number
-      required:
-      - items
-      - page
-      - pageAmount
-      title: Get Device Action Requests Response
+      title: Conflict
       type: object
-    postResponseschema_3:
-      additionalProperties: false
-      description: Post AWS integration test response
+    unauthorizedRequestResponse:
+      description: An API error response in case of an HTTP Unauthorized Request.
       properties:
-        testStatus:
-          description: AWS integration test status.
+        statusCode:
+          description: HTTP Response Code
+          example: 401
+          type: integer
+        statusText:
+          description: HTTP Status Text
           enum:
-          - SUCCESS
-          - FAILURE
-          example: SUCCESS
+          - Unauthorized
           type: string
-        message:
-          description: AWS integration test message.
-          example: Test was successful
-          minLength: 1
-          type: string
-      required:
-      - message
-      - testStatus
-      title: AWS Integration test response
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Unauthorized Request
       type: object
     getAllResponseschema_5:
       description: Get a list of Integrations
@@ -2865,158 +2265,6 @@ components:
       - page
       - pageAmount
       title: Get a list of Integrations
-      type: object
-    getArchivedResponseschema:
-      additionalProperties: false
-      description: Response to the request to get archived device action requests.
-      properties:
-        items:
-          description: An array of request items.
-          items:
-            $ref: '#/components/schemas/getArchivedResponseschema_items_inner'
-          type: array
-        page:
-          description: The current page number of the requests.
-          example: 1
-          type: number
-        pageAmount:
-          description: The total amount of pages needed to show all requests.
-          example: 10
-          type: number
-      required:
-      - items
-      - page
-      - pageAmount
-      title: Get Archived Device Action Requests Response
-      type: object
-    postResponseschema:
-      additionalProperties: false
-      description: Post device action response.
-      properties:
-        id:
-          description: Id of the created action request
-          example: trxHeBL0d234fsfds
-          type: string
-        message:
-          description: Message describing the result of operation.
-          example: Action write for resource /3/45/22 successfuly scheduled for device _vGxHeBL0dE9LG9EB2GHj.
-          type: string
-      required:
-      - id
-      - message
-      title: Device action response
-      type: object
-    postschema:
-      description: Import of Pre-Shared Keys for multiple devices.
-      items:
-        $ref: '#/components/schemas/postschema_inner'
-      maxItems: 5000
-      minItems: 1
-      title: Pre-Shared Keys import request.
-      type: array
-    postschema_1:
-      additionalProperties: false
-      description: Post LwM2M device action.
-      properties:
-        action:
-          default: read
-          description: LwM2M action name to send to device.
-          enum:
-          - read
-          - write
-          - execute
-          - observe-start
-          - observe-end
-          example: read
-          type: string
-        resourceAddress:
-          description: LwM2M OMA object resource address.
-          example: /3/45/22
-          type: string
-        data:
-          description: Data which should be written to some resource, should be passed only in write operation.
-          example: enable_sensor
-          type: string
-        requestMode:
-          default: SEND_NOW
-          description: Action request execution mode
-          enum:
-          - SEND_NOW
-          - SEND_WHEN_ACTIVE
-          type: string
-        sendAttempts:
-          default: 1
-          description: The maximum number of attempts to send data to a device
-          maximum: 5
-          minimum: 1
-          type: number
-      required:
-      - action
-      - resourceAddress
-      title: Device action request
-      type: object
-    getAllResponseschema_5_items_inner:
-      properties:
-        id:
-          description: Unique ID of the Integration
-          example: 2BLURnaUZSlbKp6vN1V5dYiJvC4
-          minLength: 1
-          type: string
-        lastSuccessfulMessageDelivery:
-          description: Timestamp of the first message successfully delivered to integration, in ISO 8601 format
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        name:
-          description: name
-          example: a-sample-integration-name
-          minLength: 1
-          type: string
-        eventTypes:
-          description: A list of event types
-          items:
-            $ref: '#/components/schemas/postResponseschema_4_eventTypes_inner'
-          minItems: 1
-          type: array
-        state:
-          description: Current state of the Integration
-          enum:
-          - ROLLOUT_STARTED
-          - ROLLOUT_DONE
-          - ROLLOUT_FAILED
-          - INTEGRATION_FAILED
-          - INTEGRATION_ACTIVE
-          type: string
-        type:
-          description: Type of the Integration
-          enum:
-          - AWS
-          - WEBHOOK
-          type: string
-        createdTime:
-          description: Created timestamp of Integration
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        updatedTime:
-          description: Updated timestamp of Integration
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        jsonPayloadEnabled:
-          default: false
-          description: Flag if the payloads of this integration should be bridged in JSON format.
-          example: true
-          type: boolean
-      required:
-      - createdTime
-      - eventTypes
-      - id
-      - jsonPayloadEnabled
-      - name
-      - state
-      - type
-      - updatedTime
       type: object
     bulkPostschema_2:
       additionalProperties: false
@@ -3061,110 +2309,233 @@ components:
       - port
       title: Device action request
       type: object
-    getActiveResponseschema:
-      additionalProperties: false
-      description: Response to the request to get active device action requests.
+    getAllResponseschema_items_inner:
       properties:
-        items:
-          description: An array of request items.
-          items:
-            $ref: '#/components/schemas/getActiveResponseschema_items_inner'
-          type: array
-        page:
-          description: The current page number of the requests.
-          example: 1
-          type: number
-        pageAmount:
-          description: The total amount of pages needed to show all requests.
-          example: 10
-          type: number
-      required:
-      - items
-      - page
-      - pageAmount
-      title: Get Active Device Action Requests Response
-      type: object
-    getResponseschema_2_items_inner:
-      additionalProperties: false
-      properties:
-        id:
-          description: The unique ID of the import job.
-          example: <job_id>
+        protocol:
+          description: The protocol of the endpoint.
+          example: COAP
           type: string
-        createdAt:
-          description: Time when job created
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        updatedAt:
-          description: Time when job last updated
-          example: '2022-03-07T08:51:29.015Z'
-          format: date-time
-          type: string
-        status:
-          description: Status of the job.
-          enum:
-          - IN_PROGRESS
-          - DONE
-          type: string
-        amount:
-          description: Total number of device PSK to import
-          example: 2
-          type: number
-        failed:
-          description: Number of device PSK imports failed
-          example: 1
-          type: number
-        done:
-          description: Number of device PSK imports succeeded
-          example: 1
-          type: number
-      required:
-      - amount
-      - createdAt
-      - done
-      - failed
-      - id
-      - status
-      - updatedAt
-      type: object
-    postschema_7:
-      additionalProperties: false
-      description: Post Webhook integration request
-      properties:
-        name:
-          description: Name of the new Webhook integration
-          example: <integraton_name>
-          maxLength: 128
-          minLength: 1
-          type: string
-        url:
-          description: URL of the webhook (HTTPS required)
-          example: https://www.example.com
-          format: uri
-          type: string
-        headers:
-          additionalProperties:
-            type: string
-          description: Headers that should be sent to the webhook. Only string values and no nested objects
-          type: object
-        eventTypes:
-          description: A list of event types
-          items:
-            $ref: '#/components/schemas/postschema_6_eventTypes_inner'
-          minItems: 1
-          type: array
-        jsonPayloadEnabled:
-          default: false
-          description: Flag if the payloads of this integration should be bridged in JSON format.
+        active:
+          description: The current status of the endpoint.
           example: true
           type: boolean
+        domain:
+          description: The domain of the endpoint.
+          example: coap.os.1nce.com
+          type: string
+        ipAddresses:
+          items:
+            description: The public IP addresses of the endpoint.
+            example: 127.0.0.1
+            type: string
+          type: array
+        port:
+          description: The port of the endpoint.
+          example: 5683
+          type: number
+        securePort:
+          description: The port of the endpoint.
+          example: 5684
+          type: number
       required:
-      - eventTypes
-      - headers
-      - name
-      - url
-      title: Webhook Integration request
+      - active
+      - domain
+      - ipAddresses
+      - port
+      - protocol
+      type: object
+    postPreSharedKeyschema:
+      additionalProperties: false
+      description: Post a pre-shared key for a specific device.
+      properties:
+        secretKey:
+          description: Pre-shared secret key for a device.
+          example: <custom_pre-shared_key>
+          maxLength: 256
+          minLength: 8
+          type: string
+        protocol:
+          description: Protocol PSK is applied for
+          enum:
+          - COAP
+          - LWM2M
+          type: string
+        format:
+          description: The format in which the secret key was provided.
+          enum:
+          - STRING
+          - HEX
+          type: string
+      required:
+      - protocol
+      - secretKey
+      title: Pre-shared key post request.
+      type: object
+    postschema_2:
+      additionalProperties: false
+      description: Post CoAP device action.
+      properties:
+        payload:
+          description: Data that should be sent to a device
+          example: enable_sensor
+          type: string
+        payloadType:
+          description: Type of the payload
+          enum:
+          - STRING
+          - BASE64
+          type: string
+        port:
+          description: Communication port number of a device
+          example: 3000
+          maximum: 65535
+          minimum: 1
+          type: integer
+        path:
+          description: Absolute path to the resource
+          example: example?param1=query_param_example
+          pattern: ^[a-zA-Z0-9\-._~%:/?#@!$&'()*+,;=]{0,255}$
+          type: string
+        requestType:
+          description: CoAP request type that should be sent
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+          type: string
+        requestMode:
+          default: SEND_NOW
+          description: Action request execution mode
+          enum:
+          - SEND_NOW
+          - SEND_WHEN_ACTIVE
+          type: string
+        sendAttempts:
+          default: 1
+          description: The maximum number of attempts to send data to a device
+          maximum: 5
+          minimum: 1
+          type: number
+      required:
+      - path
+      - port
+      - requestType
+      title: Device action request
+      type: object
+    postschema_6_eventTypes_inner:
+      properties:
+        type:
+          description: Name of the event type
+          enum:
+          - TELEMETRY_DATA
+          - LIFECYCLE
+          - ERROR
+          - GEOFENCE
+          - LOCATION
+          example: TELEMETRY_DATA
+          type: string
+        version:
+          description: Version of the event type, if not provided latest version will be used
+          example: 1.0.0
+          type: string
+      required:
+      - type
+      type: object
+    bulkPostschema:
+      additionalProperties: false
+      description: Bulk Post LwM2M device action.
+      properties:
+        deviceIds:
+          description: Devices that should receive the data
+          items:
+            example: <device_id>
+            pattern: ^[a-zA-Z0-9_-]{1,}$
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+        action:
+          default: read
+          description: LwM2M action name to send to the devices.
+          enum:
+          - read
+          - write
+          - execute
+          - observe-start
+          - observe-end
+          example: read
+          type: string
+        resourceAddress:
+          description: LwM2M OMA object resource address.
+          example: /3/45/22
+          type: string
+        data:
+          description: Data which should be written to some resource, should be passed only in write operation.
+          example: enable_sensor
+          type: string
+        requestMode:
+          default: SEND_NOW
+          description: Action request execution mode
+          enum:
+          - SEND_NOW
+          - SEND_WHEN_ACTIVE
+          type: string
+        sendAttempts:
+          default: 1
+          description: The maximum number of attempts to send data to the devices
+          maximum: 5
+          minimum: 1
+          type: number
+      required:
+      - action
+      - deviceIds
+      - resourceAddress
+      title: Device action request
+      type: object
+    patchResponseschema:
+      additionalProperties: false
+      description: Response to the patch device endpoints request.
+      properties:
+        protocol:
+          description: The protocol of the endpoint.
+          example: COAP
+          type: string
+        active:
+          description: The current status of the endpoint.
+          example: true
+          type: boolean
+        domain:
+          description: The domain of the endpoint.
+          example: coap.os.1nce.com
+          type: string
+        ipAddresses:
+          items:
+            description: The public IP addresses of the endpoint.
+            example: 127.0.0.1
+            type: string
+          type: array
+        port:
+          description: The port of the endpoint.
+          example: 5683
+          type: number
+        securePort:
+          description: The port of the endpoint.
+          example: 5684
+          type: number
+        settings:
+          items:
+            $ref: '#/components/schemas/getResponseschema_settings_inner'
+          type: array
+      required:
+      - active
+      - domain
+      - ipAddresses
+      - port
+      - protocol
+      - settings
+      title: Patch Device Endpoints Response
       type: object
     getResponseschema_11:
       description: Get Integration response
@@ -3257,6 +2628,755 @@ components:
       - updatedTime
       title: Get Integration Response
       type: object
+    postPreSharedKeyResponseschema:
+      additionalProperties: false
+      description: Post pre-shared key response.
+      properties:
+        deviceId:
+          description: Identifier of the device.
+          example: <device_id>
+          minLength: 1
+          type: string
+        identity:
+          description: Client identity of the pre-shared key.
+          example: <identity>
+          minLength: 1
+          type: string
+        secretKey:
+          description: Secret key of the pre-shared key.
+          example: <secret_key>
+          maxLength: 256
+          minLength: 8
+          type: string
+        createdAt:
+          description: Created timestamp of the pre-shared key.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        updatedAt:
+          description: Updated timestamp of the pre-shared key.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        protocol:
+          description: Protocol PSK is applied for
+          enum:
+          - COAP
+          - LWM2M
+          type: string
+        format:
+          description: The format in which the secret key was provided.
+          enum:
+          - STRING
+          - HEX
+          type: string
+      required:
+      - createdAt
+      - deviceId
+      - format
+      - identity
+      - protocol
+      - secretKey
+      - updatedAt
+      title: Pre-shared key response.
+      type: object
+    getResponseschema_settings_inner:
+      properties:
+        name:
+          description: Name of the setting.
+          example: LWM2M_PASSIVE_REPORTING
+          type: string
+        state:
+          description: State of the setting.
+          enum:
+          - ENABLED
+          - DISABLED
+          example: ENABLED
+          type: string
+        description:
+          description: Description of the setting.
+          example: This is an example description of a setting
+          type: string
+      required:
+      - name
+      - state
+      type: object
+    postResponseschema_2_integration:
+      additionalProperties: false
+      properties:
+        name:
+          description: Name of the AWS integration.
+          example: <integraton_name>
+          maxLength: 128
+          minLength: 1
+          type: string
+        state:
+          description: State of the AWS integration.
+          enum:
+          - ROLLOUT_STARTED
+          - ROLLOUT_DONE
+          - ROLLOUT_FAILED
+          - INTEGRATION_ACTIVE
+          - INTEGRATION_FAILED
+          example: ROLLOUT_STARTED
+          type: string
+        type:
+          description: Type of the integration.
+          enum:
+          - AWS
+          example: AWS
+          type: string
+        id:
+          description: ID of the AWS integration.
+          example: <integration_id>
+          minLength: 1
+          type: string
+        createdTime:
+          description: Created timestamp of the AWS integration.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        updatedTime:
+          description: Updated timestamp of the AWS integration.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        lastSuccessfulMessageDelivery:
+          description: Timestamp of the first message successfully delivered to integration, in ISO 8601 format
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        eventTypes:
+          description: A list of event types
+          items:
+            $ref: '#/components/schemas/postResponseschema_2_integration_eventTypes_inner'
+          minItems: 1
+          type: array
+      required:
+      - createdTime
+      - eventTypes
+      - id
+      - name
+      - state
+      - type
+      - updatedTime
+      type: object
+    patchResponseschema_1:
+      additionalProperties: false
+      description: Patch integration response
+      properties:
+        name:
+          description: Name of the integration.
+          example: <integraton_name>
+          maxLength: 128
+          minLength: 1
+          type: string
+        eventTypes:
+          description: A list of event types
+          items:
+            $ref: '#/components/schemas/postResponseschema_4_eventTypes_inner'
+          minItems: 1
+          type: array
+        state:
+          description: State of the integration.
+          enum:
+          - ROLLOUT_STARTED
+          - ROLLOUT_DONE
+          - ROLLOUT_FAILED
+          - INTEGRATION_ACTIVE
+          - INTEGRATION_FAILED
+          example: ROLLOUT_DONE
+          minLength: 1
+          type: string
+        type:
+          description: Type of the integration.
+          enum:
+          - WEBHOOK
+          - AWS
+          example: WEBHOOK
+          minLength: 1
+          type: string
+        id:
+          description: ID of the integration.
+          example: <integration_id>
+          minLength: 1
+          type: string
+        createdTime:
+          description: Created timestamp of the integration.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        updatedTime:
+          description: Updated timestamp of the integration.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        awsAccountId:
+          description: AWS Account Id where the stack was deployed, only showed when AWS Integration
+          example: '123456789012'
+          type: string
+        region:
+          description: AWS Region where the stack was deployed, only showed when AWS Integration
+          example: eu-central-1
+          type: string
+        jwt:
+          description: JWT token with details for integration stack creation
+          example: <jwt_token>
+          minLength: 1
+          type: string
+        headers:
+          description: Headers of the integration.
+          type: object
+        url:
+          description: URL of the integration.
+          example: https://example.com
+          format: uri
+          minLength: 1
+          type: string
+        jsonPayloadEnabled:
+          default: false
+          description: Flag if the payloads of this integration should be bridged in JSON format.
+          example: true
+          type: boolean
+      required:
+      - createdTime
+      - eventTypes
+      - id
+      - jsonPayloadEnabled
+      - name
+      - state
+      - type
+      - updatedTime
+      title: Integration response
+      type: object
+    getCloudFormationParameters:
+      additionalProperties: false
+      description: Get the CloudFormation parameters currently configured.
+      properties:
+        awsIntegration:
+          description: A list of all aws cloud connection integration templates and their respective versions.
+          items:
+            $ref: '#/components/schemas/getCloudFormationParameters_awsIntegration_inner'
+          type: array
+      required:
+      - awsIntegration
+      title: Get CloudFormation Parameters Response
+      type: object
+    getResponseschema_2:
+      description: Get status of device PreSharedKey import job.
+      properties:
+        items:
+          description: Customer import jobs data
+          items:
+            $ref: '#/components/schemas/getResponseschema_2_items_inner'
+          type: array
+        page:
+          description: Current page number.
+          example: 1
+          minimum: 1
+          type: number
+        pageAmount:
+          description: Total number of pages.
+          example: 2
+          minimum: 1
+          type: number
+      required:
+      - items
+      - page
+      - pageAmount
+      title: PSK import status Request
+      type: object
+    getActiveResponseschema:
+      additionalProperties: false
+      description: Response to the request to get active device action requests.
+      properties:
+        items:
+          description: An array of request items.
+          items:
+            $ref: '#/components/schemas/getActiveResponseschema_items_inner'
+          type: array
+        page:
+          description: The current page number of the requests.
+          example: 1
+          type: number
+        pageAmount:
+          description: The total amount of pages needed to show all requests.
+          example: 10
+          type: number
+      required:
+      - items
+      - page
+      - pageAmount
+      title: Get Active Device Action Requests Response
+      type: object
+    notFoundResponse:
+      description: An API error response when a resource is Not Found.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 404
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Not Found
+          type: string
+        errors:
+          description: Detailed error information
+          items:
+            type: object
+          type: array
+      title: Not Found
+      type: object
+    deleteAllResponseschema:
+      description: Response to the request to cancel all device action requests.
+      items:
+        $ref: '#/components/schemas/deleteAllResponseschema_inner'
+      title: Cancel All Device Action Requests Response
+      type: array
+    getArchivedResponseschema:
+      additionalProperties: false
+      description: Response to the request to get archived device action requests.
+      properties:
+        items:
+          description: An array of request items.
+          items:
+            $ref: '#/components/schemas/getArchivedResponseschema_items_inner'
+          type: array
+        page:
+          description: The current page number of the requests.
+          example: 1
+          type: number
+        pageAmount:
+          description: The total amount of pages needed to show all requests.
+          example: 10
+          type: number
+      required:
+      - items
+      - page
+      - pageAmount
+      title: Get Archived Device Action Requests Response
+      type: object
+    postResponseschema:
+      additionalProperties: false
+      description: Post device action response.
+      properties:
+        id:
+          description: Id of the created action request
+          example: trxHeBL0d234fsfds
+          type: string
+        message:
+          description: Message describing the result of operation.
+          example: Action write for resource /3/45/22 successfuly scheduled for device _vGxHeBL0dE9LG9EB2GHj.
+          type: string
+      required:
+      - id
+      - message
+      title: Device action response
+      type: object
+    getActiveResponseschema_items_inner:
+      additionalProperties: false
+      properties:
+        id:
+          description: The ID of the request.
+          example: <request_id>
+          type: string
+        status:
+          description: The status of the request.
+          enum:
+          - SCHEDULED
+          - IN_PROGRESS
+          example: IN_PROGRESS
+          type: string
+        deviceId:
+          description: The unique ID of the device.
+          example: <device_id>
+          type: string
+        ip:
+          description: The IP address of the device.
+          example: x.x.x.x
+          type: string
+        protocol:
+          description: The protocol of the request.
+          enum:
+          - UDP
+          - COAP
+          - LWM2M
+          example: LWM2M
+          type: string
+        created:
+          description: The timestamp at which the request was created.
+          format: date-time
+          type: string
+        updated:
+          description: The timestamp at which the request was updated.
+          format: date-time
+          type: string
+        mode:
+          description: The mode of the request.
+          enum:
+          - SEND_NOW
+          - SEND_WHEN_ACTIVE
+          example: SEND_NOW
+          type: string
+        resultData:
+          description: Result data (can include response from device etc.).
+          type: object
+        requestData:
+          description: Protocol specific request data.
+          type: object
+        sendAttemptsLeft:
+          description: How many attempts are left to send data to the device
+          example: 1
+          maximum: 5
+          minimum: 0
+          type: number
+        sendAttempts:
+          description: The maximum number of attempts to send data to a device
+          example: 3
+          maximum: 5
+          minimum: 1
+          type: number
+      required:
+      - created
+      - deviceId
+      - id
+      - ip
+      - mode
+      - protocol
+      - status
+      - updated
+      type: object
+    patchschema_3_eventTypes_inner:
+      additionalProperties: false
+      properties:
+        type:
+          description: Name of the event type
+          enum:
+          - TELEMETRY_DATA
+          - LIFECYCLE
+          - ERROR
+          - GEOFENCE
+          - LOCATION
+          example: TELEMETRY_DATA
+          type: string
+        version:
+          description: Version of the event type
+          example: 1.0.0
+          type: string
+      required:
+      - type
+      type: object
+    bulkPostschema_1:
+      additionalProperties: false
+      description: Bulk Post CoAP device action.
+      properties:
+        deviceIds:
+          description: Devices that should receive the data
+          items:
+            example: <device_id>
+            pattern: ^[a-zA-Z0-9_-]{1,}$
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+        payload:
+          description: Data that should be sent to the devices
+          example: enable_sensor
+          type: string
+        payloadType:
+          description: Type of the payload
+          enum:
+          - STRING
+          - BASE64
+          type: string
+        port:
+          description: Communication port number of the devices
+          example: 3000
+          maximum: 65535
+          minimum: 1
+          type: integer
+        path:
+          description: Absolute path to the resource
+          example: example?param1=query_param_example
+          pattern: ^[a-zA-Z0-9\-._~%:/?#@!$&'()*+,;=]{0,255}$
+          type: string
+        requestType:
+          description: CoAP request type that should be sent
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+          type: string
+        requestMode:
+          default: SEND_NOW
+          description: Action request execution mode
+          enum:
+          - SEND_NOW
+          - SEND_WHEN_ACTIVE
+          type: string
+        sendAttempts:
+          default: 1
+          description: The maximum number of attempts to send data to the devices
+          maximum: 5
+          minimum: 1
+          type: number
+      required:
+      - deviceIds
+      - path
+      - port
+      - requestType
+      title: Device action request
+      type: object
+    postResponseschema_2:
+      additionalProperties: false
+      description: Post AWS integration restart response
+      properties:
+        integration:
+          $ref: '#/components/schemas/postResponseschema_2_integration'
+        restartStatus:
+          description: AWS integration restart status.
+          enum:
+          - SUCCESS
+          - FAILURE
+          example: SUCCESS
+          type: string
+        message:
+          description: AWS integration restart message.
+          example: Restart was successful
+          minLength: 1
+          type: string
+      required:
+      - integration
+      - message
+      - restartStatus
+      title: AWS Integration restart response
+      type: object
+    postResponseschema_4_eventTypes_inner:
+      properties:
+        type:
+          description: Name of the event type
+          enum:
+          - TELEMETRY_DATA
+          - LIFECYCLE
+          - ERROR
+          - GEOFENCE
+          - LOCATION
+          example: TELEMETRY_DATA
+          type: string
+        version:
+          description: Version of the event type
+          example: 1.0.0
+          type: string
+      required:
+      - type
+      - version
+      type: object
+    postResponseschema_2_integration_eventTypes_inner:
+      properties:
+        type:
+          description: Name of the event type
+          enum:
+          - TELEMETRY_DATA
+          - LIFECYCLE
+          - ERROR
+          - GEOFENCE
+          - LOCATION
+          example: TELEMETRY_DATA
+          type: string
+        version:
+          description: Version of the event type
+          example: 1.0.0
+          type: string
+      required:
+      - type
+      type: object
+    postResponseschema_3:
+      additionalProperties: false
+      description: Post AWS integration test response
+      properties:
+        testStatus:
+          description: AWS integration test status.
+          enum:
+          - SUCCESS
+          - FAILURE
+          example: SUCCESS
+          type: string
+        message:
+          description: AWS integration test message.
+          example: Test was successful
+          minLength: 1
+          type: string
+      required:
+      - message
+      - testStatus
+      title: AWS Integration test response
+      type: object
+    postResponseschema_6_integration:
+      additionalProperties: false
+      properties:
+        name:
+          description: Name of the Webhook integration.
+          example: <integraton_name>
+          maxLength: 128
+          minLength: 1
+          type: string
+        state:
+          description: State of the Webhook integration.
+          enum:
+          - ROLLOUT_DONE
+          - INTEGRATION_ACTIVE
+          - INTEGRATION_FAILED
+          example: INTEGRATION_ACTIVE
+          type: string
+        type:
+          description: Type of the integration.
+          enum:
+          - WEBHOOK
+          example: WEBHOOK
+          type: string
+        id:
+          description: ID of the Webhook integration.
+          example: <integration_id>
+          minLength: 1
+          type: string
+        createdTime:
+          description: Created timestamp of the Webhook integration.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        updatedTime:
+          description: Updated timestamp of the Webhook integration.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        lastSuccessfulMessageDelivery:
+          description: Timestamp of the first message successfully delivered to integration, in ISO 8601 format
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        eventTypes:
+          description: A list of event types
+          items:
+            $ref: '#/components/schemas/postResponseschema_2_integration_eventTypes_inner'
+          minItems: 1
+          type: array
+      required:
+      - createdTime
+      - eventTypes
+      - id
+      - name
+      - state
+      - type
+      - updatedTime
+      type: object
+    getAllResponseschema:
+      additionalProperties: false
+      description: Response to the get device endpoints request.
+      properties:
+        items:
+          description: An array of endpoint items.
+          items:
+            $ref: '#/components/schemas/getAllResponseschema_items_inner'
+          type: array
+        page:
+          description: The current page number of the endpoints.
+          example: 1
+          type: number
+        pageAmount:
+          description: The total amount of pages needed to show all endpoints.
+          example: 10
+          type: number
+      required:
+      - items
+      - page
+      - pageAmount
+      title: Get Device Endpoints Response
+      type: object
+    getResponseschema_2_items_inner:
+      additionalProperties: false
+      properties:
+        id:
+          description: The unique ID of the import job.
+          example: <job_id>
+          type: string
+        createdAt:
+          description: Time when job created
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        updatedAt:
+          description: Time when job last updated
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
+          type: string
+        status:
+          description: Status of the job.
+          enum:
+          - IN_PROGRESS
+          - DONE
+          type: string
+        amount:
+          description: Total number of device PSK to import
+          example: 2
+          type: number
+        failed:
+          description: Number of device PSK imports failed
+          example: 1
+          type: number
+        done:
+          description: Number of device PSK imports succeeded
+          example: 1
+          type: number
+      required:
+      - amount
+      - createdAt
+      - done
+      - failed
+      - id
+      - status
+      - updatedAt
+      type: object
+    postschema_7:
+      additionalProperties: false
+      description: Post Webhook integration request
+      properties:
+        name:
+          description: Name of the new Webhook integration
+          example: <integraton_name>
+          maxLength: 128
+          minLength: 1
+          type: string
+        url:
+          description: URL of the webhook (HTTPS required)
+          example: https://www.example.com
+          format: uri
+          type: string
+        headers:
+          additionalProperties:
+            type: string
+          description: Headers that should be sent to the webhook. Only string values and no nested objects
+          type: object
+        eventTypes:
+          description: A list of event types
+          items:
+            $ref: '#/components/schemas/postschema_6_eventTypes_inner'
+          minItems: 1
+          type: array
+        jsonPayloadEnabled:
+          default: false
+          description: Flag if the payloads of this integration should be bridged in JSON format.
+          example: true
+          type: boolean
+      required:
+      - eventTypes
+      - headers
+      - name
+      - url
+      title: Webhook Integration request
+      type: object
     forbiddenResponse:
       description: An API error response in case of an HTTP Forbidden Request.
       properties:
@@ -3276,215 +3396,99 @@ components:
           type: array
       title: Forbidden Request
       type: object
-    postschema_6_eventTypes_inner:
-      properties:
-        type:
-          description: Name of the event type
-          enum:
-          - TELEMETRY_DATA
-          - LIFECYCLE
-          - ERROR
-          - GEOFENCE
-          - LOCATION
-          example: TELEMETRY_DATA
-          type: string
-        version:
-          description: Version of the event type, if not provided latest version will be used
-          example: 1.0.0
-          type: string
-      required:
-      - type
-      type: object
-    deleteAllResponseschema_inner:
-      additionalProperties: false
-      properties:
-        id:
-          description: The ID of the request.
-          example: <request_id>
-          type: string
-        status:
-          description: The status of the request.
-          enum:
-          - CANCELLED
-          example: CANCELLED
-          type: string
-      required:
-      - id
-      - status
-      type: object
-    postResponseschema_7:
-      additionalProperties: false
-      description: Post Webhook integration test response
-      properties:
-        testStatus:
-          description: Webhook integration test status.
-          enum:
-          - SUCCESS
-          - FAILURE
-          example: SUCCESS
-          type: string
-        message:
-          description: Webhook integration test message.
-          example: Test was successful
-          minLength: 1
-          type: string
-      required:
-      - message
-      - testStatus
-      title: Webhook Integration test response
-      type: object
-    getCloudFormationParameters_awsIntegration_inner:
-      properties:
-        version:
-          description: The specific version of a template.
-          example: v2.1
-          type: string
-        url:
-          description: The resource URL to the template.
-          example: <template_url>
-          type: string
-      required:
-      - url
-      - version
-      type: object
-    postschema_inner:
-      additionalProperties: false
+    bulkPostResponseschema_acceptedRequests_inner:
       properties:
         deviceId:
-          description: The unique ID of the device.
+          description: Id of the device.
           example: <device_id>
           type: string
-        secretKey:
-          description: Pre-shared secret key for a device.
-          example: <custom_pre-shared_key>
-          maxLength: 128
-          minLength: 8
+        requestId:
+          description: Id of the request.
+          example: <request_id>
           type: string
-        protocol:
-          description: Protocol PSK is applied for
-          enum:
-          - COAP
-          - LWM2M
-          type: string
-        format:
-          description: The format in which the secret key was provided.
-          enum:
-          - STRING
-          - HEX
-          type: string
-      required:
-      - deviceId
-      - protocol
-      - secretKey
       type: object
-    getEventTypesResponseschema_eventTypes_inner:
+    postschema:
+      description: Import of Pre-Shared Keys for multiple devices.
+      items:
+        $ref: '#/components/schemas/postschema_inner'
+      maxItems: 5000
+      minItems: 1
+      title: Pre-Shared Keys import request.
+      type: array
+    postResponseschema_4:
+      additionalProperties: false
+      description: Post AWS integration response
       properties:
         name:
-          description: Name of the event type.
-          enum:
-          - TELEMETRY_DATA
-          - LIFECYCLE
-          - ERROR
-          - GEOFENCE
-          - TEST_MESSAGE
-          - LOCATION
-          example: TELEMETRY_DATA
+          description: Name of the new AWS integration.
+          example: <integraton_name>
+          maxLength: 128
           minLength: 1
           type: string
-        description:
-          description: Description of the event type.
+        eventTypes:
+          description: A list of event types
+          items:
+            $ref: '#/components/schemas/postResponseschema_4_eventTypes_inner'
+          minItems: 1
+          type: array
+        state:
+          description: State of the new AWS integration.
+          enum:
+          - ROLLOUT_STARTED
+          - ROLLOUT_DONE
+          - ROLLOUT_FAILED
+          - INTEGRATION_ACTIVE
+          - INTEGRATION_FAILED
+          example: ROLLOUT_STARTED
           minLength: 1
           type: string
-        version:
-          description: Version of the event type.
-          example: 1.0.0
+        type:
+          description: Type of the new integration.
+          enum:
+          - AWS
+          example: AWS
           minLength: 1
           type: string
-        payload:
-          description: Payload of the event type.
-          type: object
-      required:
-      - description
-      - name
-      - payload
-      - version
-      type: object
-    postPreSharedKeyschema:
-      additionalProperties: false
-      description: Post a pre-shared key for a specific device.
-      properties:
-        secretKey:
-          description: Pre-shared secret key for a device.
-          example: <custom_pre-shared_key>
-          maxLength: 256
-          minLength: 8
+        id:
+          description: ID of the new AWS integration.
+          example: <integration_id>
+          minLength: 1
           type: string
-        protocol:
-          description: Protocol PSK is applied for
-          enum:
-          - COAP
-          - LWM2M
+        jwt:
+          description: JWT token with details for integration stack creation
+          example: <jwt_token>
+          minLength: 1
           type: string
-        format:
-          description: The format in which the secret key was provided.
-          enum:
-          - STRING
-          - HEX
+        createdTime:
+          description: Created timestamp of the AWS integration.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
           type: string
-      required:
-      - protocol
-      - secretKey
-      title: Pre-shared key post request.
-      type: object
-    getAllResponseschema_items_inner:
-      properties:
-        protocol:
-          description: The protocol of the endpoint.
-          example: COAP
+        updatedTime:
+          description: Updated timestamp of the AWS integration.
+          example: '2022-03-07T08:51:29.015Z'
+          format: date-time
           type: string
-        active:
-          description: The current status of the endpoint.
+        jsonPayloadEnabled:
+          default: false
+          description: Flag if the payloads of this integration should be bridged in JSON format.
           example: true
           type: boolean
-        domain:
-          description: The domain of the endpoint.
-          example: coap.os.1nce.com
-          type: string
-        ipAddresses:
-          items:
-            description: The public IP addresses of the endpoint.
-            example: 127.0.0.1
-            type: string
-          type: array
-        port:
-          description: The port of the endpoint.
-          example: 5683
-          type: number
-        securePort:
-          description: The port of the endpoint.
-          example: 5684
-          type: number
       required:
-      - active
-      - domain
-      - ipAddresses
-      - port
-      - protocol
-      type: object
-    getEventTypesResponseschema:
-      description: Get all event types response
-      properties:
-        eventTypes:
-          description: List of event types
-          items:
-            $ref: '#/components/schemas/getEventTypesResponseschema_eventTypes_inner'
-          type: array
-      required:
+      - createdTime
       - eventTypes
-      title: Get Event Types Response
+      - id
+      - jsonPayloadEnabled
+      - jwt
+      - name
+      - state
+      - type
+      - updatedTime
+      title: AWS Integration response
       type: object
-    getAllResponseschema_1_items_inner:
+    getResponseschema_1:
       additionalProperties: false
+      description: Response to the request to get device action request.
       properties:
         id:
           description: The ID of the request.
@@ -3554,25 +3558,21 @@ components:
       - protocol
       - status
       - updated
+      title: Get Device Action Request Response
       type: object
-    notFoundResponse:
-      description: An API error response when a resource is Not Found.
+    getCloudFormationParameters_awsIntegration_inner:
       properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 404
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Not Found
+        version:
+          description: The specific version of a template.
+          example: v2.1
           type: string
-        errors:
-          description: Detailed error information
-          items:
-            type: object
-          type: array
-      title: Not Found
+        url:
+          description: The resource URL to the template.
+          example: <template_url>
+          type: string
+      required:
+      - url
+      - version
       type: object
   responses:
     InternalServerError:
@@ -3581,30 +3581,30 @@ components:
           schema:
             $ref: '#/components/schemas/serverErrorResponse'
       description: Internal Server Error
-    ConflictError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/conflictResponse'
-      description: Conflict
-    UnauthorizedError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/unauthorizedRequestResponse'
-      description: Unauthorized
-    BadRequestError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/badRequestResponse'
-      description: Bad Request
     ForbiddenError:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/forbiddenResponse'
       description: Forbidden
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/badRequestResponse'
+      description: Bad Request
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/unauthorizedRequestResponse'
+      description: Unauthorized
+    ConflictError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/conflictResponse'
+      description: Conflict
     NotFoundError:
       content:
         application/json:
