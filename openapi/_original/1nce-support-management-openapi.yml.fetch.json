@@ -1,0 +1,12 @@
+{
+ "url": "https://help.1nce.com/specs/support-management.json",
+ "requested_url": "https://help.1nce.com/specs/support-management.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 5157,
+ "sha256": "484234ec6a467e14fb5191b5649514c928e670b327204c6df974e7520d972f2e",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

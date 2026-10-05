@@ -1,0 +1,12 @@
+{
+ "url": "https://help.1nce.com/specs/sim-management.json",
+ "requested_url": "https://help.1nce.com/specs/sim-management.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 93218,
+ "sha256": "bff55a9c1918a23988b6a1e961766782c4ad5c663013ce0ba8fbec69ff594809",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

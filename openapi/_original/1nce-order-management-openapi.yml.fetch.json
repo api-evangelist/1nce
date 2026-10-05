@@ -1,0 +1,12 @@
+{
+ "url": "https://help.1nce.com/specs/order-management.json",
+ "requested_url": "https://help.1nce.com/specs/order-management.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 8552,
+ "sha256": "2982e7c6ace1f6ee906c5aed73d04b8d0f87562a7c7c2c536d9e4a7662c9fd0a",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

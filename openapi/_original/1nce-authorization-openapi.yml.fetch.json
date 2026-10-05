@@ -1,0 +1,12 @@
+{
+ "url": "https://help.1nce.com/specs/authorization.json",
+ "requested_url": "https://help.1nce.com/specs/authorization.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 7607,
+ "sha256": "6251b029fb19e8ef8be1bc607b13a7392b19c8247c245aa373f1e841597296f6",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
