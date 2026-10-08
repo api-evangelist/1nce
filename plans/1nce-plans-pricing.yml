@@ -144,3 +144,56 @@ plans:
         unit: 1
         price: '0.00'
         userMultiplied: false
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - metered
+  - subscription
+  units:
+  - data
+  - object
+  - period
+  plans:
+  - name: IoT Lifetime Flat
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - object
+    - period
+    periods:
+    - one-time
+  - name: High Data IoT
+    access: addon
+    model: metered
+    model_how: derived
+    units:
+    - data
+    periods:
+    - per-use
+  - name: 1NCE Fixers
+    access: addon
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: 1NCE Premium Service
+    access: addon
+    model: subscription
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: 1NCE OS
+    access: free
+    model: free
+    model_how: derived
+    units:
+    - object
+    periods:
+    - one-time
