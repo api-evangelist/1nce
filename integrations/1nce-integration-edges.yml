@@ -19,7 +19,25 @@ edges:
     api_families_basis: null
     detected_by: sweep-telco-network-apis.py
     detected: '2026-10-12'
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=c723b95a-2428-44ad-9f90-9a18d6bce57d
+  listing_count: 2
+  apps:
+  - 1NCE For All
+  - 1NCE IoT Flat Rate
+  seller_name: 1NCE
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
 generated: '2026-10-12'
 method: searched
 checked:
+- https://aws.amazon.com/marketplace/
 - https://raw.githubusercontent.com/camaraproject/camara-landscape/main/landscape.yml
+marketplace_apps: []
