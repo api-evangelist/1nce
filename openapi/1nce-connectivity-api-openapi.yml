@@ -169,6 +169,19 @@ components:
           description: Time in UTC the response was sent.
           example: 2018-11-07T17:21:46.263+0000
       description: Contains connectivity and cell tower information for a given SIM request.
+    UssdInfo:
+      title: Ussd Information
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Boolean flag indicating the success of the USSD request.
+          example: false
+        error:
+          type: string
+          description: Optional information if some error occurred.
+          example: Request Timeout Error
+      description: Optional ussd information, only set if the parameter 'ussd' is set to true.
     CellGlobalId:
       title: Cell Global IDs
       type: object
@@ -209,19 +222,6 @@ components:
             cell_global_id:
               $ref: '#/components/schemas/CellGlobalId'
       description: The optional subscriber info returned when the 'subscriber' parameter is true and contains information about the current SIM device location based on the mobile network.
-    UssdInfo:
-      title: Ussd Information
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Boolean flag indicating the success of the USSD request.
-          example: false
-        error:
-          type: string
-          description: Optional information if some error occurred.
-          example: Request Timeout Error
-      description: Optional ussd information, only set if the parameter 'ussd' is set to true.
     Conflict:
       description: Conflict HTTP Status 409
       type: object
@@ -295,6 +295,24 @@ components:
           example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
           description: Error Message with more details goes here
   responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerError'
+    Conflict:
+      description: Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Conflict'
+    NotFound:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
     BadRequest:
       description: Bad request
       content:
@@ -303,24 +321,6 @@ components:
             $ref: '#/components/schemas/BadRequest'
     NoContent:
       description: No Content
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/InternalServerError'
-    NotFound:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFound'
-    Conflict:
-      description: Operation cannot be completed because the resource is referenced by other resources or otherwise colliding.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Conflict'
   securitySchemes:
     BearerAuthentication:
       type: http

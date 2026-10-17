@@ -170,6 +170,40 @@ components:
       - amount
       - day
       type: object
+    serverErrorResponse:
+      description: An API error response in case of a Server Side Error.
+      properties:
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Unknown Error
+          - Server Error
+          type: string
+        errors:
+          description: List of errors encountered while calling the API.
+          items:
+            type: object
+          type: array
+      title: Server Error
+      type: object
+    getAdministrationLogsStatisticsResponseschema:
+      additionalProperties: false
+      description: Response to the get administration logs statistics request.
+      properties:
+        totalUniqueDevices:
+          description: The amount of unique devices that caused an administration log.
+          example: 2
+          type: integer
+        administrationLogs:
+          description: An array of administration logs stats.
+          items:
+            $ref: '#/components/schemas/getAdministrationLogsStatisticsResponseschema_administrationLogs_inner'
+          type: array
+      required:
+      - administrationLogs
+      - totalUniqueDevices
+      title: Get Administration Logs Statistics
+      type: object
     getAdministrationLogsResponseschema:
       additionalProperties: false
       description: Response to the get administration logs request.
@@ -190,22 +224,6 @@ components:
       required:
       - items
       title: Get Administration Logs Response
-      type: object
-    serverErrorResponse:
-      description: An API error response in case of a Server Side Error.
-      properties:
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Unknown Error
-          - Server Error
-          type: string
-        errors:
-          description: List of errors encountered while calling the API.
-          items:
-            type: object
-          type: array
-      title: Server Error
       type: object
     unauthorizedRequestResponse:
       description: An API error response in case of an HTTP Unauthorized Request.
@@ -244,43 +262,6 @@ components:
             type: object
           type: array
       title: Forbidden Request
-      type: object
-    getAdministrationLogsStatisticsResponseschema:
-      additionalProperties: false
-      description: Response to the get administration logs statistics request.
-      properties:
-        totalUniqueDevices:
-          description: The amount of unique devices that caused an administration log.
-          example: 2
-          type: integer
-        administrationLogs:
-          description: An array of administration logs stats.
-          items:
-            $ref: '#/components/schemas/getAdministrationLogsStatisticsResponseschema_administrationLogs_inner'
-          type: array
-      required:
-      - administrationLogs
-      - totalUniqueDevices
-      title: Get Administration Logs Statistics
-      type: object
-    badRequestResponse:
-      description: An API error response in case of an HTTP Bad Request.
-      properties:
-        statusCode:
-          description: HTTP Response Code
-          example: 400
-          type: integer
-        statusText:
-          description: HTTP Status Text
-          enum:
-          - Bad Request
-          type: string
-        errors:
-          description: Detailed error information.
-          items:
-            type: object
-          type: array
-      title: Bad Request
       type: object
     getAdministrationLogsResponseschema_items_inner:
       properties:
@@ -356,6 +337,25 @@ components:
       - message
       - timestamp
       - type
+      type: object
+    badRequestResponse:
+      description: An API error response in case of an HTTP Bad Request.
+      properties:
+        statusCode:
+          description: HTTP Response Code
+          example: 400
+          type: integer
+        statusText:
+          description: HTTP Status Text
+          enum:
+          - Bad Request
+          type: string
+        errors:
+          description: Detailed error information.
+          items:
+            type: object
+          type: array
+      title: Bad Request
       type: object
   responses:
     InternalServerError:

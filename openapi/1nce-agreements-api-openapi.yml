@@ -51,17 +51,6 @@ components:
             $ref: '#/components/schemas/badRequestResponse'
       description: Bad Request
   schemas:
-    postAgreementsRequestschema:
-      description: The agreements acceptance request model.
-      properties:
-        accepted:
-          default: true
-          description: Flag indicating that the Terms of Use and Data Processing agreeements are accepted. Please note that only true is accepted.
-          type: boolean
-      required:
-      - accepted
-      title: Post Agreements Accepted
-      type: object
     serverErrorResponse:
       description: An API error response in case of a Server Side Error.
       properties:
@@ -77,6 +66,17 @@ components:
             type: object
           type: array
       title: Server Error
+      type: object
+    postAgreementsRequestschema:
+      description: The agreements acceptance request model.
+      properties:
+        accepted:
+          default: true
+          description: Flag indicating that the Terms of Use and Data Processing agreeements are accepted. Please note that only true is accepted.
+          type: boolean
+      required:
+      - accepted
+      title: Post Agreements Accepted
       type: object
     badRequestResponse:
       description: An API error response in case of an HTTP Bad Request.

@@ -149,24 +149,14 @@ paths:
       - BearerAuthentication: []
 components:
   schemas:
-    DailyUsage:
-      title: Usage Record
-      type: object
-      properties:
-        stats:
-          type: array
-          description: List of queried usage statistics for the given SIM.
-          items:
-            $ref: '#/components/schemas/Daily'
-      description: Information about SIM data and SMS usage.
-    TrafficTypeSMS:
-      title: Traffic Type SMS
+    TrafficTypeData:
+      title: Traffic Type Data
       type: object
       properties:
         description:
           type: string
           description: Defines the type of traffic listed.
-          example: SMS
+          example: Data
         id:
           type: integer
           description: ID of the traffic type.
@@ -174,21 +164,8 @@ components:
         unit:
           type: string
           description: Lists the unit used for the traffic type.
-          example: SMS
-      description: Details about the SMS traffic type.
-    Daily:
-      title: Daily Usage Record
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Data'
-        date:
-          type: string
-          description: Date of the shown usage record.
-          example: '2021-06-30T00:00:00.000Z'
-        sms:
-          $ref: '#/components/schemas/SmsUsage'
-      description: A daily usage record with summarized data about the SMS and data usage.
+          example: MB
+      description: Details about the data traffic type.
     Quota:
       title: Quota
       type: object
@@ -261,23 +238,6 @@ components:
           description: The used MT-SMS message count.
           example: '1'
       description: A usage record for the SMS used by a SIM.
-    TrafficTypeData:
-      title: Traffic Type Data
-      type: object
-      properties:
-        description:
-          type: string
-          description: Defines the type of traffic listed.
-          example: Data
-        id:
-          type: integer
-          description: ID of the traffic type.
-          example: 1
-        unit:
-          type: string
-          description: Lists the unit used for the traffic type.
-          example: MB
-      description: Details about the data traffic type.
     Data:
       title: Data Usage Record
       type: object
@@ -318,6 +278,46 @@ components:
           description: The used TX (upstream, send by SIM) data volume in MB.
           example: '0.001321'
       description: A usage record for the data used by a SIM.
+    TrafficTypeSMS:
+      title: Traffic Type SMS
+      type: object
+      properties:
+        description:
+          type: string
+          description: Defines the type of traffic listed.
+          example: SMS
+        id:
+          type: integer
+          description: ID of the traffic type.
+          example: 1
+        unit:
+          type: string
+          description: Lists the unit used for the traffic type.
+          example: SMS
+      description: Details about the SMS traffic type.
+    Daily:
+      title: Daily Usage Record
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        date:
+          type: string
+          description: Date of the shown usage record.
+          example: '2021-06-30T00:00:00.000Z'
+        sms:
+          $ref: '#/components/schemas/SmsUsage'
+      description: A daily usage record with summarized data about the SMS and data usage.
+    DailyUsage:
+      title: Usage Record
+      type: object
+      properties:
+        stats:
+          type: array
+          description: List of queried usage statistics for the given SIM.
+          items:
+            $ref: '#/components/schemas/Daily'
+      description: Information about SIM data and SMS usage.
   securitySchemes:
     BearerAuthentication:
       type: http

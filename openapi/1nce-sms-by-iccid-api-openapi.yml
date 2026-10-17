@@ -54,31 +54,6 @@ paths:
       security:
       - BearerAuthentication: []
 components:
-  responses:
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequest'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/InternalServerError'
-    ResourceDeleted:
-      description: Resource Deleted
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DeleteItemResponse'
-    NotFound:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFound'
   schemas:
     InternalServerError:
       description: Internal Server Error
@@ -98,11 +73,6 @@ components:
           type: string
           example: Internal Server Error
           description: Error Message with more details goes here
-    DeleteItemResponse:
-      type: object
-      properties:
-        id:
-          type: string
     NotFound:
       description: Not found Error
       type: object
@@ -139,6 +109,36 @@ components:
           type: string
           example: 'Cannot parse parameter per_page as Int: For Input String "abc"'
           description: Error Message with more details goes here
+    DeleteItemResponse:
+      type: object
+      properties:
+        id:
+          type: string
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerError'
+    NotFound:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequest'
+    ResourceDeleted:
+      description: Resource Deleted
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteItemResponse'
   securitySchemes:
     BearerAuthentication:
       type: http
