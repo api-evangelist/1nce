@@ -1215,3 +1215,9 @@ components:
       description: Bearer Authentication Token used to gain access to the 1NCE API. Please refer to the Open Authorization (/oauth/token) request for obtaining a Bearer Token.
       scheme: bearer
       type: http
+x-provenance:
+  method: harvested
+  publisher: 1NCE
+  source: https://help.1nce.com/specs/1nce-os.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

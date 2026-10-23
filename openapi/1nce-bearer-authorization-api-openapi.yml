@@ -151,3 +151,9 @@ components:
       type: http
       scheme: basic
       description: Basic authentication used for obtaining the Bearer Authentication Token. The Bearer Token can then be used to make any further API calls towards the 1NCE API.
+x-provenance:
+  method: harvested
+  publisher: 1NCE
+  source: https://help.1nce.com/specs/authorization.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
