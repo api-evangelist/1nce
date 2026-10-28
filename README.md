@@ -1,4 +1,4 @@
-# 1NCE (1nce)
+# 1NCE
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,203 +66,184 @@
 
 1NCE is a Cologne-headquartered global IoT connectivity provider best known for the IoT Lifetime Flat — a single one-time fee that bundles a multi-network SIM with 500 MB of data and 250 SMS over a 10-year subscription. The 1NCE Management API on api.1nce.com/management-api exposes the same surface as the customer portal across six product areas — Authorization, SIM Management (v1 and v2), Order Management, Product Information, Support Management, and 1NCE OS — with OAuth 2.0 bearer-token security and a public api-catalog document. 1NCE OS layers integration, device locator, inspector, optimizer, and partner-plugin services on top of the connectivity bundle, while the company's GitHub organization publishes the 1NCE IoT C SDK, FreeRTOS / Zephyr / Arduino blueprints, AWS IoT onboarding tooling, CloudFormation templates, and an MCP server for AI agent integration.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/1nce/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/1nce/refs/heads/main/apis.yml)
+**Areas:** IoT · Connectivity · SIM · Cellular · NB-IoT · LTE-M · eUICC · Edge · Embedded · Global Roaming
 
-## Scope
+## 1NCE on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for 1NCE is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/1nce/](https://apis.io/providers/1nce/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (22)
 
-- IoT
-- Connectivity
-- SIM
-- Cellular
-- NB-IoT
-- LTE-M
-- eUICC
-- Edge
-- Embedded
-- Global Roaming
+- [1NCE Administration Logs API](https://apis.io/apis/1nce/1nce-administration-logs-api/) — 1NCE OS Administration Logs
+- [1NCE Agreements API](https://apis.io/apis/1nce/1nce-agreements-api/) — 1NCE OS Agreements
+- [1NCE Bearer Authorization API](https://apis.io/apis/1nce/1nce-bearer-authorization-api/) — Obtain Bearer Token
+- [1NCE Connectivity API](https://apis.io/apis/1nce/1nce-connectivity-api/) — Connectivty Management
+- [1NCE Device Inspector API](https://apis.io/apis/1nce/1nce-device-inspector-api/) — Inspect details of the devices
+- [1NCE Device Locator API](https://apis.io/apis/1nce/1nce-device-locator-api/) — Get device positions and manage geofences
+- [1NCE Devices API](https://apis.io/apis/1nce/1nce-devices-api/) — Device Management
+- [1NCE General SIMs API](https://apis.io/apis/1nce/1nce-general-sims-api/) — General SIM Management
+- [1NCE IoT Integrator API](https://apis.io/apis/1nce/1nce-iot-integrator-api/) — Integrate Devices and Clouds
+- [1NCE Optimizer API](https://apis.io/apis/1nce/1nce-optimizer-api/) — Optimize energy consumption
+- [1NCE Orders API](https://apis.io/apis/1nce/1nce-orders-api/) — Order Management
+- [1NCE Plugin system API](https://apis.io/apis/1nce/1nce-plugin-system-api/) — 1NCE OS Plugin System
+- [1NCE Products API](https://apis.io/apis/1nce/1nce-products-api/) — Product Information
+- [1NCE Service Requests API](https://apis.io/apis/1nce/1nce-service-requests-api/) — Support Management
+- [1NCE Settings API](https://apis.io/apis/1nce/1nce-settings-api/) — 1NCE OS Settings
+- [1NCE SIM Events API](https://apis.io/apis/1nce/1nce-sim-events-api/) — Event Management
+- [1NCE SIM Extension API](https://apis.io/apis/1nce/1nce-sim-extension-api/) — SIM Extension Management
+- [1NCE SIM Usage API](https://apis.io/apis/1nce/1nce-sim-usage-api/) — Usage Management
+- [1NCE SMS API](https://apis.io/apis/1nce/1nce-sms-api/) — SMS Management
+- [1NCE SMS by ICCID API](https://apis.io/apis/1nce/1nce-sms-by-iccid-api/) — The SMS by ICCID API from 1NCE — 1 operation(s) for sms by iccid.
+- [1NCE Volume Limits API](https://apis.io/apis/1nce/1nce-volume-limits-api/) — Limit Management
+- [1NCE Volume Top Up API](https://apis.io/apis/1nce/1nce-volume-top-up-api/) — Top Up Management
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-25T00:00:00.000Z
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### 1NCE Authorization API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-OAuth 2.0 client-credentials flow that issues bearer tokens for all 1NCE Management API endpoints. POST /oauth/token (Basic Auth) returns a short-lived access token used to call SIM Management, Order Management, Product Information, Support Management, and 1NCE OS services on api.1nce.com/management-api.
+- [1Nce Agentic Access](https://apis.io/agentic-access/1nce/1nce-agentic-access/)
 
-- **Human URL:** [https://help.1nce.com/dev-hub/reference/api-welcome](https://help.1nce.com/dev-hub/reference/api-welcome)
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Authorization
-- OAuth
-- IoT
+- [1NCE Device](https://apis.io/schemas/1nce/1nce-device/)
+- [1NCE SIM](https://apis.io/schemas/1nce/1nce-sim/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://help.1nce.com/api/authorization/)
-- [OpenAPI](openapi/1nce-authorization-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/1nce-authorization.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/1nce-authorization.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [OpenAPI](openapi/1nce-authorization-v2-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/1nce-authorization-v2.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/1nce-authorization-v2.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Linked-data contexts for the provider's vocabulary.
 
-### 1NCE SIM Management API
+- [1Nce Context](https://apis.io/jsonld/1nce/1nce-context/)
 
-Manage, control, and monitor 1NCE IoT SIM cards by ICCID across the lifecycle. v1 covers General SIMs, SMS (MT/MO), Connectivity, SIM Events, SIM Usage, Volume Limits, Volume Top Up, and SIM Extension; v2 (current) covers SIMs, Connectivity, SMS, and SIM Events on the v2 API surface. Includes data and SMS quotas, connectivity reset, status, top-ups, and event history.
+#### Collections (52)
 
-- **Human URL:** [https://help.1nce.com/api/sim-management/](https://help.1nce.com/api/sim-management/)
+Postman and Open Collection request collections.
 
-#### Tags
+- [Authorization Administration Logs API](https://apis.io/collections/1nce/open-1nce-administration-logs-api/)
+- [Authorization Administration Logs Agreements API](https://apis.io/collections/1nce/open-1nce-agreements-api/)
+- [Authorization](https://apis.io/collections/1nce/open-1nce-authorization/)
+- [Authorization](https://apis.io/collections/1nce/open-1nce-authorization-v2/)
+- [Authorization Administration Logs Bearer Authorization API](https://apis.io/collections/1nce/open-1nce-bearer-authorization-api/)
+- [Authorization Administration Logs Connectivity API](https://apis.io/collections/1nce/open-1nce-connectivity-api/)
+- [Authorization Administration Logs Device Inspector API](https://apis.io/collections/1nce/open-1nce-device-inspector-api/)
+- [Authorization Administration Logs Device Locator API](https://apis.io/collections/1nce/open-1nce-device-locator-api/)
+- [Authorization Administration Logs Devices API](https://apis.io/collections/1nce/open-1nce-devices-api/)
+- [Authorization Administration Logs General SIMs API](https://apis.io/collections/1nce/open-1nce-general-sims-api/)
+- [Authorization Administration Logs IoT Integrator API](https://apis.io/collections/1nce/open-1nce-iot-integrator-api/)
+- [Authorization Administration Logs Optimizer API](https://apis.io/collections/1nce/open-1nce-optimizer-api/)
+- [Order Management](https://apis.io/collections/1nce/open-1nce-order-management/)
+- [Authorization Administration Logs Orders API](https://apis.io/collections/1nce/open-1nce-orders-api/)
+- [1NCE OS](https://apis.io/collections/1nce/open-1nce-os/)
+- [Authorization Administration Logs Plugin system API](https://apis.io/collections/1nce/open-1nce-plugin-system-api/)
+- [Product Information](https://apis.io/collections/1nce/open-1nce-product-information/)
+- [Authorization Administration Logs Products API](https://apis.io/collections/1nce/open-1nce-products-api/)
+- [Authorization Administration Logs Service Requests API](https://apis.io/collections/1nce/open-1nce-service-requests-api/)
+- [Authorization Administration Logs Settings API](https://apis.io/collections/1nce/open-1nce-settings-api/)
+- [Authorization Administration Logs SIM Events API](https://apis.io/collections/1nce/open-1nce-sim-events-api/)
+- [Authorization Administration Logs SIM Extension API](https://apis.io/collections/1nce/open-1nce-sim-extension-api/)
+- [SIM Management](https://apis.io/collections/1nce/open-1nce-sim-management/)
+- [SIM Management](https://apis.io/collections/1nce/open-1nce-sim-management-v2/)
+- [Authorization Administration Logs SIM Usage API](https://apis.io/collections/1nce/open-1nce-sim-usage-api/)
+- …and 27 more published on APIs.io
 
-- SIM
-- Connectivity
-- SMS
-- Events
-- Usage
-- IoT
+#### Governance rules (1)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://help.1nce.com/api/sim-management/)
-- [OpenAPI](openapi/1nce-sim-management-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/1nce-sim-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/1nce-sim-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [OpenAPI](openapi/1nce-sim-management-v2-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/1nce-sim-management-v2.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/1nce-sim-management-v2.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/1nce-sim-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/1nce-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [1NCE — jsonschema rules](https://apis.io/rules/1nce/1nce-jsonschema-spectral-rules/)
 
-### 1NCE OS API
+#### Security (3)
 
-1NCE OS APIs for the bundled IoT operating system services. Covers IoT Integrator (CoAP/UDP/LwM2M device endpoints, PSK provisioning, AWS IoT cloud integration), Device Locator (positions, geofences), Device Inspector (device stats and diagnostics), Optimizer (payload compression savings and message tests), Devices, Settings, Administration Logs, Agreements, and the Plugin system (Datacake, Memfault, Mender, Tartabit).
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://help.1nce.com/api/1nce-os/](https://help.1nce.com/api/1nce-os/)
+- [1Nce Authentication](https://apis.io/security/1nce/1nce-authentication/)
+- [1Nce Domain Security](https://apis.io/security/1nce/1nce-domain-security/)
+- [1Nce Vulnerability Disclosure](https://apis.io/security/1nce/1nce-vulnerability-disclosure/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- IoT
-- Device Integration
-- Device Locator
-- Device Inspector
-- Optimizer
-- Plugins
-- AWS IoT
+Published plans, tiers and prices.
 
-#### Properties
+- [1Nce Plans Pricing](https://apis.io/plans/1nce/1nce-plans-pricing/)
 
-- [Documentation](https://help.1nce.com/api/1nce-os/)
-- [OpenAPI](openapi/1nce-os-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/1nce-os.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/1nce-os.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/1nce-device-schema.json) — [JSON Schema](https://json-schema.org/specification)
+#### Rate limits (1)
 
-### 1NCE Order Management API
+Published request limits.
 
-Programmatically create and inspect 1NCE orders. /v1/orders lists and submits new orders for SIM cards or services; /v1/orders/{order_number} retrieves order detail, status, and line items so customers can automate SIM provisioning flows.
+- [1Nce Rate Limits](https://apis.io/rate-limits/1nce/1nce-rate-limits/)
 
-- **Human URL:** [https://help.1nce.com/api/order-management/](https://help.1nce.com/api/order-management/)
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Orders
-- Provisioning
-- IoT
+- [1Nce Finops](https://apis.io/finops/1nce/1nce-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://help.1nce.com/api/order-management/)
-- [OpenAPI](openapi/1nce-order-management-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/1nce-order-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/1nce-order-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### 1NCE Product Information API
-
-Query the 1NCE product catalog including the IoT Lifetime Flat, Industrial and Business SIM form factors, High Data IoT add-ons, and 1NCE OS service entitlements via /v1/products.
-
-- **Human URL:** [https://help.1nce.com/api/product-information/](https://help.1nce.com/api/product-information/)
-
-#### Tags
-
-- Catalog
-- Products
-- IoT
-
-#### Properties
-
-- [Documentation](https://help.1nce.com/api/product-information/)
-- [OpenAPI](openapi/1nce-product-information-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/1nce-product-information.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/1nce-product-information.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### 1NCE Support Management API
-
-Open and track 1NCE customer support tickets programmatically via /v1/support so device-fleet operators can escalate connectivity, billing, or 1NCE Fixers requests from inside their own systems.
-
-- **Human URL:** [https://help.1nce.com/api/support-management/](https://help.1nce.com/api/support-management/)
-
-#### Tags
-
-- Support
-- Tickets
-- IoT
-
-#### Properties
-
-- [Documentation](https://help.1nce.com/api/support-management/)
-- [OpenAPI](openapi/1nce-support-management-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/1nce-support-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/1nce-support-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Portal](https://www.1nce.com/en-us/)
+- [Website](https://www.1nce.com/)
 - [Documentation](https://help.1nce.com/docs/)
-- [Documentation](https://help.1nce.com/dev-hub/reference/api-welcome)
-- [Documentation](https://help.1nce.com/dev-hub/reference/api-best-practices)
-- [Getting Started](https://help.1nce.com/starting-guide/docs/api-general-information)
-- [Sandbox](https://help.1nce.com/api/v2/)
-- [Documentation](https://help.1nce.com/.well-known/api-catalog)
-- [Portal](https://portal.1nce.com/)
-- [Sign Up](https://portal.1nce.com/portal/customer/registration)
-- [Documentation](https://www.1nce.com/en-us/1nce-connect/features/rest-api)
-- [Portal](https://www.1nce.com/en-us/1nce-connect)
-- [Portal](https://www.1nce.com/en-us/1nce-os)
-- [Code Examples](https://www.1nce.com/en-us/resources/news/blog/iot-cookbook)
+- [Getting started](https://help.1nce.com/starting-guide/docs/api-general-information)
 - [Blog](https://www.1nce.com/en-us/resources/news/blog)
-- [GitHub Organization](https://github.com/1NCE-GmbH)
-- [SDK](https://github.com/1NCE-GmbH/1nce-iot-c-sdk)
-- [Code Examples](https://github.com/1NCE-GmbH/blueprint-freertos)
-- [Code Examples](https://github.com/1NCE-GmbH/blueprint-zephyr)
-- [Code Examples](https://github.com/1NCE-GmbH/blueprint-arduino)
-- [Code Examples](https://github.com/1NCE-GmbH/1nce-iot-device-onboarding)
-- [Code Examples](https://github.com/1NCE-GmbH/cfn-templates)
-- [Tool](https://github.com/1NCE-GmbH/1nce-mcp-server)
-- [LinkedIn](https://www.linkedin.com/company/1nce-gmbh)
-- [Twitter](https://twitter.com/1nce_iot)
-- [YouTube](https://www.youtube.com/@1nce_iot)
-- [Terms of Service](https://www.1nce.com/en-us/legal/terms-and-conditions)
-- [Privacy Policy](https://www.1nce.com/en-us/legal/privacy-policy)
-- [Documentation](https://www.1nce.com/en-us/legal/imprint)
-- [Contact Form](https://www.1nce.com/en-us/contact)
-- [F A Q](https://www.1nce.com/en-us/support/faq)
-- [Documentation](https://help.1nce.com/dev-hub/reference/api-best-practices)
-- [Plans](plans/1nce-plans-pricing.yml)
-- [Rate Limits](rate-limits/1nce-rate-limits.yml)
-- [Fin Ops](finops/1nce-finops.yml)
-- [Features](undefined)
+- [Terms of service](https://www.1nce.com/en-us/legal/terms-and-conditions)
+- [Privacy policy](https://www.1nce.com/en-us/legal/privacy-policy)
+- [GitHub](https://github.com/1NCE-GmbH)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 44.7** — developing · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 67.0 |
+| Contract governance | 9.8 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 48.8 |
+| Access clarity | 50.0 |
+
+**Agent readiness 22.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 25.8** — Telecommunications
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/1nce/](https://apis.io/providers/1nce/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for 1NCE: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/1nce/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
